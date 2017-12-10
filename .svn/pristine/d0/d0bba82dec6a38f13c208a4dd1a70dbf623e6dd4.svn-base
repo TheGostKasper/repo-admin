@@ -1,0 +1,20 @@
+﻿
+@{
+    ViewBag.Title = "MerchantServingAreaMap";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+
+<div class="selectDataTable">
+    <select id="merchantList">
+        <option>Select ...</option>
+    </select>
+</div>
+<br />
+<div id="map"></div>
+
+@section scripts{
+
+    <script src="~/Scripts/dest/admin.merchantservingarea.min.js"></script>
+
+}

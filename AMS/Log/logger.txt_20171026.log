@@ -1,0 +1,397 @@
+
+*****ERROR*****
+Time: 2017-10-26 09:27:32,841 
+Thread: 24 
+Identity: admin@weelo.com.eg
+Message: eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJyb2xlIjoiQWRtaW4iLCJ1bmlxdWVfbmFtZSI6ImFkbWluQHdlZWxvLmNvbS5lZyIsInN1YiI6ImFkbWluQHdlZWxvLmNvbS5lZyIsImlzcyI6Imh0dHA6Ly8xOTIuMTY4LjEuMTAwIiwiYXVkIjoiYXVkaWVuY2UiLCJleHAiOjE1NDA1Mzg4NTAsIm5iZiI6MTUwOTAwMjg1MH0.LOfyo-kISfOxTBu5wp3lapQ76x8hLGDY6M4TUUrCPfQ
+StackTrace: 
+Data: "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJyb2xlIjoiQWRtaW4iLCJ1bmlxdWVfbmFtZSI6ImFkbWluQHdlZWxvLmNvbS5lZyIsInN1YiI6ImFkbWluQHdlZWxvLmNvbS5lZyIsImlzcyI6Imh0dHA6Ly8xOTIuMTY4LjEuMTAwIiwiYXVkIjoiYXVkaWVuY2UiLCJleHAiOjE1NDA1Mzg4NTAsIm5iZiI6MTUwOTAwMjg1MH0.LOfyo-kISfOxTBu5wp3lapQ76x8hLGDY6M4TUUrCPfQ"
+*****ERROR*****
+Time: 2017-10-26 09:27:32,856 
+Thread: 24 
+Identity: admin@weelo.com.eg
+Message: 1DE844B0C61867C803D0435C73DF15CB9BBB80CE605616A0AD5B158EB6D9B2C53BC883EEF891F467FAC5F2C60FDFD77A11A30C140DF0D5697F7E887A5B831CFC9E3C0249BF50B3D416BAD9D8D8F50642F61914B0D3A6A6712554A52F2631077DA547EB63E76CA452820ABC133FFC075257B190E06040AC025EE8AC84A0F9A651B5D588E6AFA66C0499C397AFECC68DBF55F22F87682216FA956C5767C43C2463604FD9EA6AC712B17AF292E46FFD38EF555259EA5747A10D04064A86FCD5DB4F353BB78EE7E56AC0FF2F098268E6CDFFE27A9FDDAD62E302FFF90680F79BF4CD7A8B3DA8AFDDE7E54447C3ECB02409D00C56D2D734F73323F369D8F2BB5FE6CCC3D85E96A6B462055015F91193331A58FD560F8C863A6EF78EBBDBE7425B051CD0E04EE98FA03A07D82D3EC87C112F56AEE3BEE93025597D0A7AF38CAD314304CE9414C55FD12ED0BCD55E32531369244DCCE423E1D9C2CD166655B00C9BCD67F5ACD40515C1CC33B481E693F874D3B1C5DF2048942DB89BA48C662B6444E7A6C26E7B494E744F49AD7F5D46AAED4D2C2E0075BEEAF7DE042D6435F74113F5994D783FD97029111FA4C9F25D4FED021EE2E17B94B8C853441FAB9B78E819F7E57CF3892A1584B01235B4E7BE2B5593425C69B6EB7D58ABC3C0277DABA866661B1E2C96A4D6A7CD5F717EAC8B533C81EE6CE7C1EEDB69E062DF855692351C9156921BF2D49BD843F9BDB3A234E2952985FD7D1CCD29CB0EE2D9816397F46BACC5
+StackTrace: 
+Data: "1DE844B0C61867C803D0435C73DF15CB9BBB80CE605616A0AD5B158EB6D9B2C53BC883EEF891F467FAC5F2C60FDFD77A11A30C140DF0D5697F7E887A5B831CFC9E3C0249BF50B3D416BAD9D8D8F50642F61914B0D3A6A6712554A52F2631077DA547EB63E76CA452820ABC133FFC075257B190E06040AC025EE8AC84A0F9A651B5D588E6AFA66C0499C397AFECC68DBF55F22F87682216FA956C5767C43C2463604FD9EA6AC712B17AF292E46FFD38EF555259EA5747A10D04064A86FCD5DB4F353BB78EE7E56AC0FF2F098268E6CDFFE27A9FDDAD62E302FFF90680F79BF4CD7A8B3DA8AFDDE7E54447C3ECB02409D00C56D2D734F73323F369D8F2BB5FE6CCC3D85E96A6B462055015F91193331A58FD560F8C863A6EF78EBBDBE7425B051CD0E04EE98FA03A07D82D3EC87C112F56AEE3BEE93025597D0A7AF38CAD314304CE9414C55FD12ED0BCD55E32531369244DCCE423E1D9C2CD166655B00C9BCD67F5ACD40515C1CC33B481E693F874D3B1C5DF2048942DB89BA48C662B6444E7A6C26E7B494E744F49AD7F5D46AAED4D2C2E0075BEEAF7DE042D6435F74113F5994D783FD97029111FA4C9F25D4FED021EE2E17B94B8C853441FAB9B78E819F7E57CF3892A1584B01235B4E7BE2B5593425C69B6EB7D58ABC3C0277DABA866661B1E2C96A4D6A7CD5F717EAC8B533C81EE6CE7C1EEDB69E062DF855692351C9156921BF2D49BD843F9BDB3A234E2952985FD7D1CCD29CB0EE2D9816397F46BACC5"
+*****ERROR*****
+Time: 2017-10-26 09:35:08,908 
+Thread: 34 
+Identity: 
+Message: eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJyb2xlIjoiQWRtaW4iLCJ1bmlxdWVfbmFtZSI6ImFkbWluQHdlZWxvLmNvbS5lZyIsInN1YiI6ImFkbWluQHdlZWxvLmNvbS5lZyIsImlzcyI6Imh0dHA6Ly8xOTIuMTY4LjEuMTAwIiwiYXVkIjoiYXVkaWVuY2UiLCJleHAiOjE1NDA1MzkzMDgsIm5iZiI6MTUwOTAwMzMwOH0.6Aq6DQ2XSockALU9n24szoljfoYDhMwt9CPOE2-0CCM
+StackTrace: 
+Data: "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJyb2xlIjoiQWRtaW4iLCJ1bmlxdWVfbmFtZSI6ImFkbWluQHdlZWxvLmNvbS5lZyIsInN1YiI6ImFkbWluQHdlZWxvLmNvbS5lZyIsImlzcyI6Imh0dHA6Ly8xOTIuMTY4LjEuMTAwIiwiYXVkIjoiYXVkaWVuY2UiLCJleHAiOjE1NDA1MzkzMDgsIm5iZiI6MTUwOTAwMzMwOH0.6Aq6DQ2XSockALU9n24szoljfoYDhMwt9CPOE2-0CCM"
+*****ERROR*****
+Time: 2017-10-26 09:35:08,908 
+Thread: 34 
+Identity: 
+Message: BC51DF67A10F84097B7ABB9E7AA3A86752437875857D3F65B578FBD0DAE9F3D1854B3F1A165C644929F51CB6B7CFF53C1CC43A255F3C463915096589DB1A1AB2ABD8D200228207DBF32FC5A84B1F311264C3EE7D826A197D29C705B9934284DF40A83306B9D73F8AB33B365B6746CEFA6932F17840F88020D2AE5227B0F59649CBD997D46E0FBA24CD13F98BBA32BF32C51D53364EAF493090A51E8D95CA8FAF6B8607BFB31114A1736C3E9B067CD157B93DF9E7A1F987133E1B8D9F7DB59D892EC66909E8821D85C120189A1AE41567CAFEFA93F0FBC297D1F6A646D3B193239C6F630291B5EAD69E72FD76568C94924B7C7F9B2DCE07E4F3C44780D4B5035EB2A38BF24A80923765545453F53C11AE93CE3F6295134D7E05FD77C47DCEF22329485F5E02273EFBDFE2F35AE648FCC5DC967D79BD5C1FB4EA6D18F41C0AA9B3439DB6E06C54B368B196DFE1A3A2BE35E065651ECE8299CADF19175EEDE68586557C06DF7A11A38EF9887271A383A4686D19094AC3634182E29553D596FA5D2534EC0952CA0917F1E3EBCD4BD355B46A6CFDB93B3CC22972C775098715AD06CD9C9B8EC44AACBA25FCF362574D807FE3CFBE48905937E6F94082FD126F03F3A62DD1FAA04EC88D4549FD66B4F4E212612851AFB9BFE1E575A4EEB4D6EBDF47F0856AC8AA4D38FEB0D54C985F99FE5F357AC15A862E8CA4407FF611589894E2363D997668754655BE8D1C61DA4B6579F77D10842E9A5F5EAB26341F38326E5BF8
+StackTrace: 
+Data: "BC51DF67A10F84097B7ABB9E7AA3A86752437875857D3F65B578FBD0DAE9F3D1854B3F1A165C644929F51CB6B7CFF53C1CC43A255F3C463915096589DB1A1AB2ABD8D200228207DBF32FC5A84B1F311264C3EE7D826A197D29C705B9934284DF40A83306B9D73F8AB33B365B6746CEFA6932F17840F88020D2AE5227B0F59649CBD997D46E0FBA24CD13F98BBA32BF32C51D53364EAF493090A51E8D95CA8FAF6B8607BFB31114A1736C3E9B067CD157B93DF9E7A1F987133E1B8D9F7DB59D892EC66909E8821D85C120189A1AE41567CAFEFA93F0FBC297D1F6A646D3B193239C6F630291B5EAD69E72FD76568C94924B7C7F9B2DCE07E4F3C44780D4B5035EB2A38BF24A80923765545453F53C11AE93CE3F6295134D7E05FD77C47DCEF22329485F5E02273EFBDFE2F35AE648FCC5DC967D79BD5C1FB4EA6D18F41C0AA9B3439DB6E06C54B368B196DFE1A3A2BE35E065651ECE8299CADF19175EEDE68586557C06DF7A11A38EF9887271A383A4686D19094AC3634182E29553D596FA5D2534EC0952CA0917F1E3EBCD4BD355B46A6CFDB93B3CC22972C775098715AD06CD9C9B8EC44AACBA25FCF362574D807FE3CFBE48905937E6F94082FD126F03F3A62DD1FAA04EC88D4549FD66B4F4E212612851AFB9BFE1E575A4EEB4D6EBDF47F0856AC8AA4D38FEB0D54C985F99FE5F357AC15A862E8CA4407FF611589894E2363D997668754655BE8D1C61DA4B6579F77D10842E9A5F5EAB26341F38326E5BF8"
+*****ERROR*****
+Time: 2017-10-26 09:51:05,233 
+Thread: 38 
+Identity: admin@weelo.com.eg
+Message: eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJyb2xlIjoiQWRtaW4iLCJ1bmlxdWVfbmFtZSI6ImFkbWluQHdlZWxvLmNvbS5lZyIsInN1YiI6ImFkbWluQHdlZWxvLmNvbS5lZyIsImlzcyI6Imh0dHA6Ly8xOTIuMTY4LjEuMTAwIiwiYXVkIjoiYXVkaWVuY2UiLCJleHAiOjE1NDA1NDAyNjUsIm5iZiI6MTUwOTAwNDI2NX0.lNQl8bj2YmP1eU8hQPxSnFqsEWKv-R7ojq2YBISnKYc
+StackTrace: 
+Data: "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJyb2xlIjoiQWRtaW4iLCJ1bmlxdWVfbmFtZSI6ImFkbWluQHdlZWxvLmNvbS5lZyIsInN1YiI6ImFkbWluQHdlZWxvLmNvbS5lZyIsImlzcyI6Imh0dHA6Ly8xOTIuMTY4LjEuMTAwIiwiYXVkIjoiYXVkaWVuY2UiLCJleHAiOjE1NDA1NDAyNjUsIm5iZiI6MTUwOTAwNDI2NX0.lNQl8bj2YmP1eU8hQPxSnFqsEWKv-R7ojq2YBISnKYc"
+*****ERROR*****
+Time: 2017-10-26 09:51:05,235 
+Thread: 38 
+Identity: admin@weelo.com.eg
+Message: AE758B1AA7AE5981B5F30DE3117D108BABD75386E64C081CAE1E15FE5B370344912F1E5D4384BA46CE039A4C147A98F772308D2DBB47DAFD7AC046D5D413143BEA9952F3ECC9875E7FC15B5FF8B6192C9E7FE0BCBF8270AB843F9A2B0F453D21763037C9E9D8ADDCFC9C7CA4945BBDC37E49A39809DE388097398307C15C93BE9AAB57E02EE1DC20E8595B8A5575CD39BC2C1BD6E43D182F37F8634C740FDCA1AB2C6DF5DFD9EE733782A3AE58AA0AAD305BD38CCF8A62A76A3161D8D5E5244C62DB5DD4793B396588521C3882225BAF0DDFBB15EFBD347E7CD203DAE4A5763D77BF8A748178EC6F2576E3CD299D50FAD6EF53EA02371FEEC8FFD101A234DAC76788548D12929CC96081C78F3188E33ABB7F656B18CA9DCED2242E034D363F18ABEE242C4166E7641AD064EB075BAFFAB3AEF820C96FCDB60CF08DFE82D3FEAC1C9D8E0205ED50481CCA6C49430526A6BD707F9BE0D895901B96E351963BE4B811D2F04CDE89BF553CF1AAB8424F6729C3E53A6AAD1B05573AD99DFDE41F1C3C91F067AE4F94C99E199E6AC740785FC34A8A32CDBAEBA3D82AE51CBE1C1110225D06CA796967F880FA8032DBB645C25623AC403D2C9375E29187329E3AD365A1A2B8C341871258DF5A829BD0C248A3B4F81E5FE642AE59A9ABB38BF503860CF06D926ABCA1E21F1E5E80A02A16C015906DCB58C35DCD1F89107E3FB48A98167AB5EE13869E19589DDAF3A9444D553B845247EE9390D547BBAA0EBF235B7D20FC
+StackTrace: 
+Data: "AE758B1AA7AE5981B5F30DE3117D108BABD75386E64C081CAE1E15FE5B370344912F1E5D4384BA46CE039A4C147A98F772308D2DBB47DAFD7AC046D5D413143BEA9952F3ECC9875E7FC15B5FF8B6192C9E7FE0BCBF8270AB843F9A2B0F453D21763037C9E9D8ADDCFC9C7CA4945BBDC37E49A39809DE388097398307C15C93BE9AAB57E02EE1DC20E8595B8A5575CD39BC2C1BD6E43D182F37F8634C740FDCA1AB2C6DF5DFD9EE733782A3AE58AA0AAD305BD38CCF8A62A76A3161D8D5E5244C62DB5DD4793B396588521C3882225BAF0DDFBB15EFBD347E7CD203DAE4A5763D77BF8A748178EC6F2576E3CD299D50FAD6EF53EA02371FEEC8FFD101A234DAC76788548D12929CC96081C78F3188E33ABB7F656B18CA9DCED2242E034D363F18ABEE242C4166E7641AD064EB075BAFFAB3AEF820C96FCDB60CF08DFE82D3FEAC1C9D8E0205ED50481CCA6C49430526A6BD707F9BE0D895901B96E351963BE4B811D2F04CDE89BF553CF1AAB8424F6729C3E53A6AAD1B05573AD99DFDE41F1C3C91F067AE4F94C99E199E6AC740785FC34A8A32CDBAEBA3D82AE51CBE1C1110225D06CA796967F880FA8032DBB645C25623AC403D2C9375E29187329E3AD365A1A2B8C341871258DF5A829BD0C248A3B4F81E5FE642AE59A9ABB38BF503860CF06D926ABCA1E21F1E5E80A02A16C015906DCB58C35DCD1F89107E3FB48A98167AB5EE13869E19589DDAF3A9444D553B845247EE9390D547BBAA0EBF235B7D20FC"
+*****ERROR*****
+Time: 2017-10-26 15:53:28,943 
+Thread: 128 
+Identity: 
+Message: eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJyb2xlIjpbIkFkbWluIiwiVXNlciJdLCJ1bmlxdWVfbmFtZSI6ImFkbWluQHdlZWxvLmNvbS5lZyIsInN1YiI6ImFkbWluQHdlZWxvLmNvbS5lZyIsImlzcyI6Imh0dHA6Ly8xOTIuMTY4LjEuMTAwIiwiYXVkIjoiYXVkaWVuY2UiLCJleHAiOjE1NDA1NjIwMDgsIm5iZiI6MTUwOTAyNjAwOH0.vR6EPHMaImvlY1BrdVEshFc0Mh1ebKRI4LAN4lbzXzI
+StackTrace: 
+Data: "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJyb2xlIjpbIkFkbWluIiwiVXNlciJdLCJ1bmlxdWVfbmFtZSI6ImFkbWluQHdlZWxvLmNvbS5lZyIsInN1YiI6ImFkbWluQHdlZWxvLmNvbS5lZyIsImlzcyI6Imh0dHA6Ly8xOTIuMTY4LjEuMTAwIiwiYXVkIjoiYXVkaWVuY2UiLCJleHAiOjE1NDA1NjIwMDgsIm5iZiI6MTUwOTAyNjAwOH0.vR6EPHMaImvlY1BrdVEshFc0Mh1ebKRI4LAN4lbzXzI"
+*****ERROR*****
+Time: 2017-10-26 15:53:28,980 
+Thread: 128 
+Identity: 
+Message: E4773BA43A56410E3E4A277035C09C1E9198FC32E072D4604AC78FC493A6927C14362EFBD5577F671E023DFC0A09467DE729FC35C945EE1BC27203049546CF01F09D4EB4AB920D42CA10CDE7F7990659B88FFA3F83B14CE0CB17E26B7BF239FAC8AA6A2FC65B8FE6C3DEEC74CA4756A62CD293ADA9DAF4C2D677DA14392DB1CFD795FB9359E6D19E1A80D5C25E4C7B2A644B385CAF0CC95CBFF9BA8DB599E093F287230319E5D8E8557C0A7E45F710A7FE5873E7B6F06540D28A9597A8C8A4DB2770D84776EC141811FF74EFAA370FB30C00C50255DB5AF5C1C2604BAE697024A5B4C4FFEEA998EE5D22D89BF6F02FE6FD430ADA76A6BF2C3C3B892D01161EE62014350FE1B3AE9D7A0DEA496DB971F866097CD9DCF8A234A2047904DD3BBF2920D636DC7D789C2168E38F8412CB4B2E8F2CF69A433CEBE8C5185A1CF6DBB696BBBB95967200A62707F36A8982017AE421DAC33249192361E5C128970D9207C9F167375469C106BC929F703ABA2C5224946072C2CCBED08DE3CB680A33C2F8FCCFD07F804C58F050E389068B3EBAA74C49E8508746499079438358DDC57A676196AE139D359273E9E968A98C975D94F701EA4AB633292751BB8C48368BB0A1F8BE78D2BF9DA765FA777287F2DD5338782BDE61946E0FD33200C333B3BBD0DACE30102F5E368820762E5A71E57B77198EFDEB536678694B065F692FA501F223AC33DE052FC45FE1D831271103ADE750E43C8353C92D0C21D5F9925FF4F602967E
+StackTrace: 
+Data: "E4773BA43A56410E3E4A277035C09C1E9198FC32E072D4604AC78FC493A6927C14362EFBD5577F671E023DFC0A09467DE729FC35C945EE1BC27203049546CF01F09D4EB4AB920D42CA10CDE7F7990659B88FFA3F83B14CE0CB17E26B7BF239FAC8AA6A2FC65B8FE6C3DEEC74CA4756A62CD293ADA9DAF4C2D677DA14392DB1CFD795FB9359E6D19E1A80D5C25E4C7B2A644B385CAF0CC95CBFF9BA8DB599E093F287230319E5D8E8557C0A7E45F710A7FE5873E7B6F06540D28A9597A8C8A4DB2770D84776EC141811FF74EFAA370FB30C00C50255DB5AF5C1C2604BAE697024A5B4C4FFEEA998EE5D22D89BF6F02FE6FD430ADA76A6BF2C3C3B892D01161EE62014350FE1B3AE9D7A0DEA496DB971F866097CD9DCF8A234A2047904DD3BBF2920D636DC7D789C2168E38F8412CB4B2E8F2CF69A433CEBE8C5185A1CF6DBB696BBBB95967200A62707F36A8982017AE421DAC33249192361E5C128970D9207C9F167375469C106BC929F703ABA2C5224946072C2CCBED08DE3CB680A33C2F8FCCFD07F804C58F050E389068B3EBAA74C49E8508746499079438358DDC57A676196AE139D359273E9E968A98C975D94F701EA4AB633292751BB8C48368BB0A1F8BE78D2BF9DA765FA777287F2DD5338782BDE61946E0FD33200C333B3BBD0DACE30102F5E368820762E5A71E57B77198EFDEB536678694B065F692FA501F223AC33DE052FC45FE1D831271103ADE750E43C8353C92D0C21D5F9925FF4F602967E"
+*****ERROR*****
+Time: 2017-10-26 17:56:32,171 
+Thread: 159 
+Identity: admin@weelo.com.eg
+Message: An error occurred while updating the entries. See the inner exception for details.
+StackTrace: System.Data.Entity.Infrastructure.DbUpdateException: An error occurred while updating the entries. See the inner exception for details. ---> System.Data.Entity.Core.UpdateException: An error occurred while updating the entries. See the inner exception for details. ---> MySql.Data.MySqlClient.MySqlException: Cannot delete or update a parent row: a foreign key constraint fails (`weelo-local`.`merchant`, CONSTRAINT `CurrencyM_Id` FOREIGN KEY (`CurrencyId`) REFERENCES `Currency` (`Id`) ON DELETE NO ACTION ON UPDATE NO ACTION)
+   at MySql.Data.MySqlClient.MySqlStream.ReadPacket()
+   at MySql.Data.MySqlClient.NativeDriver.GetResult(Int32& affectedRow, Int64& insertedId)
+   at MySql.Data.MySqlClient.Driver.GetResult(Int32 statementId, Int32& affectedRows, Int64& insertedId)
+   at MySql.Data.MySqlClient.Driver.NextResult(Int32 statementId, Boolean force)
+   at MySql.Data.MySqlClient.MySqlDataReader.NextResult()
+   at MySql.Data.MySqlClient.MySqlCommand.ExecuteReader(CommandBehavior behavior)
+   at MySql.Data.MySqlClient.MySqlCommand.ExecuteNonQuery()
+   at MySql.Data.Entity.EFMySqlCommand.ExecuteNonQuery()
+   at System.Data.Entity.Infrastructure.Interception.DbCommandDispatcher.<NonQuery>b__0(DbCommand t, DbCommandInterceptionContext`1 c)
+   at System.Data.Entity.Infrastructure.Interception.InternalDispatcher`1.Dispatch[TTarget,TInterceptionContext,TResult](TTarget target, Func`3 operation, TInterceptionContext interceptionContext, Action`3 executing, Action`3 executed)
+   at System.Data.Entity.Infrastructure.Interception.DbCommandDispatcher.NonQuery(DbCommand command, DbCommandInterceptionContext interceptionContext)
+   at System.Data.Entity.Internal.InterceptableDbCommand.ExecuteNonQuery()
+   at System.Data.Entity.Core.Mapping.Update.Internal.DynamicUpdateCommand.Execute(Dictionary`2 identifierValues, List`1 generatedValues)
+   at System.Data.Entity.Core.Mapping.Update.Internal.UpdateTranslator.Update()
+   --- End of inner exception stack trace ---
+   at System.Data.Entity.Core.Mapping.Update.Internal.UpdateTranslator.Update()
+   at System.Data.Entity.Core.EntityClient.Internal.EntityAdapter.<Update>b__2(UpdateTranslator ut)
+   at System.Data.Entity.Core.EntityClient.Internal.EntityAdapter.Update[T](T noChangesResult, Func`2 updateFunction)
+   at System.Data.Entity.Core.EntityClient.Internal.EntityAdapter.Update()
+   at System.Data.Entity.Core.Objects.ObjectContext.<SaveChangesToStore>b__35()
+   at System.Data.Entity.Core.Objects.ObjectContext.ExecuteInTransaction[T](Func`1 func, IDbExecutionStrategy executionStrategy, Boolean startLocalTransaction, Boolean releaseConnectionOnSuccess)
+   at System.Data.Entity.Core.Objects.ObjectContext.SaveChangesToStore(SaveOptions options, IDbExecutionStrategy executionStrategy, Boolean startLocalTransaction)
+   at System.Data.Entity.Core.Objects.ObjectContext.<>c__DisplayClass2a.<SaveChangesInternal>b__27()
+   at System.Data.Entity.Infrastructure.DefaultExecutionStrategy.Execute[TResult](Func`1 operation)
+   at System.Data.Entity.Core.Objects.ObjectContext.SaveChangesInternal(SaveOptions options, Boolean executeInExistingTransaction)
+   at System.Data.Entity.Core.Objects.ObjectContext.SaveChanges(SaveOptions options)
+   at System.Data.Entity.Internal.InternalContext.SaveChanges()
+   --- End of inner exception stack trace ---
+   at System.Data.Entity.Internal.InternalContext.SaveChanges()
+   at System.Data.Entity.Internal.LazyInternalContext.SaveChanges()
+   at System.Data.Entity.DbContext.SaveChanges()
+   at AMS.Controllers.CurrencyController.<DeleteConfirmed>d__9.MoveNext() in D:\CODE\WEB\Weelo-Admin\AMS\Controllers\CurrencyController.cs:line 176
+
+Data: {"id":6}
+*****ERROR*****
+Time: 2017-10-26 17:57:25,749 
+Thread: 39 
+Identity: admin@weelo.com.eg
+Message: An error occurred while updating the entries. See the inner exception for details.
+StackTrace: System.Data.Entity.Infrastructure.DbUpdateException: An error occurred while updating the entries. See the inner exception for details. ---> System.Data.Entity.Core.UpdateException: An error occurred while updating the entries. See the inner exception for details. ---> MySql.Data.MySqlClient.MySqlException: Cannot delete or update a parent row: a foreign key constraint fails (`weelo-local`.`employeerole`, CONSTRAINT `emp_em_ID` FOREIGN KEY (`EmpId`) REFERENCES `Employee` (`Id`) ON DELETE NO ACTION ON UPDATE NO ACTION)
+   at MySql.Data.MySqlClient.MySqlStream.ReadPacket()
+   at MySql.Data.MySqlClient.NativeDriver.GetResult(Int32& affectedRow, Int64& insertedId)
+   at MySql.Data.MySqlClient.Driver.GetResult(Int32 statementId, Int32& affectedRows, Int64& insertedId)
+   at MySql.Data.MySqlClient.Driver.NextResult(Int32 statementId, Boolean force)
+   at MySql.Data.MySqlClient.MySqlDataReader.NextResult()
+   at MySql.Data.MySqlClient.MySqlCommand.ExecuteReader(CommandBehavior behavior)
+   at MySql.Data.MySqlClient.MySqlCommand.ExecuteNonQuery()
+   at MySql.Data.Entity.EFMySqlCommand.ExecuteNonQuery()
+   at System.Data.Common.DbCommand.ExecuteNonQueryAsync(CancellationToken cancellationToken)
+--- End of stack trace from previous location where exception was thrown ---
+   at System.Runtime.CompilerServices.TaskAwaiter.ThrowForNonSuccess(Task task)
+   at System.Runtime.CompilerServices.TaskAwaiter.HandleNonSuccessAndDebuggerNotification(Task task)
+   at System.Data.Entity.Utilities.TaskExtensions.CultureAwaiter`1.GetResult()
+   at System.Data.Entity.Core.Mapping.Update.Internal.DynamicUpdateCommand.<ExecuteAsync>d__0.MoveNext()
+--- End of stack trace from previous location where exception was thrown ---
+   at System.Runtime.CompilerServices.TaskAwaiter.ThrowForNonSuccess(Task task)
+   at System.Runtime.CompilerServices.TaskAwaiter.HandleNonSuccessAndDebuggerNotification(Task task)
+   at System.Data.Entity.Core.Mapping.Update.Internal.UpdateTranslator.<UpdateAsync>d__0.MoveNext()
+   --- End of inner exception stack trace ---
+   at System.Data.Entity.Core.Mapping.Update.Internal.UpdateTranslator.<UpdateAsync>d__0.MoveNext()
+--- End of stack trace from previous location where exception was thrown ---
+   at System.Runtime.CompilerServices.TaskAwaiter.ThrowForNonSuccess(Task task)
+   at System.Runtime.CompilerServices.TaskAwaiter.HandleNonSuccessAndDebuggerNotification(Task task)
+   at System.Data.Entity.Core.Objects.ObjectContext.<ExecuteInTransactionAsync>d__3d`1.MoveNext()
+--- End of stack trace from previous location where exception was thrown ---
+   at System.Runtime.CompilerServices.TaskAwaiter.ThrowForNonSuccess(Task task)
+   at System.Runtime.CompilerServices.TaskAwaiter.HandleNonSuccessAndDebuggerNotification(Task task)
+   at System.Data.Entity.Core.Objects.ObjectContext.<SaveChangesToStoreAsync>d__39.MoveNext()
+--- End of stack trace from previous location where exception was thrown ---
+   at System.Runtime.CompilerServices.TaskAwaiter.ThrowForNonSuccess(Task task)
+   at System.Runtime.CompilerServices.TaskAwaiter.HandleNonSuccessAndDebuggerNotification(Task task)
+   at System.Data.Entity.Core.Objects.ObjectContext.<SaveChangesInternalAsync>d__31.MoveNext()
+   --- End of inner exception stack trace ---
+   at System.Runtime.CompilerServices.TaskAwaiter.ThrowForNonSuccess(Task task)
+   at System.Runtime.CompilerServices.TaskAwaiter.HandleNonSuccessAndDebuggerNotification(Task task)
+   at System.Runtime.CompilerServices.TaskAwaiter`1.GetResult()
+   at AMS.Controllers.EmployeeController.<DeleteConfirmed>d__10.MoveNext() in D:\CODE\WEB\Weelo-Admin\AMS\Controllers\EmployeeController.cs:line 180
+
+Data: {"Message":"Cannot Delete Employee","id":11}
+*****ERROR*****
+Time: 2017-10-26 17:57:29,779 
+Thread: 167 
+Identity: admin@weelo.com.eg
+Message: An error occurred while updating the entries. See the inner exception for details.
+StackTrace: System.Data.Entity.Infrastructure.DbUpdateException: An error occurred while updating the entries. See the inner exception for details. ---> System.Data.Entity.Core.UpdateException: An error occurred while updating the entries. See the inner exception for details. ---> MySql.Data.MySqlClient.MySqlException: Cannot delete or update a parent row: a foreign key constraint fails (`weelo-local`.`employeerole`, CONSTRAINT `emp_em_ID` FOREIGN KEY (`EmpId`) REFERENCES `Employee` (`Id`) ON DELETE NO ACTION ON UPDATE NO ACTION)
+   at MySql.Data.MySqlClient.MySqlStream.ReadPacket()
+   at MySql.Data.MySqlClient.NativeDriver.GetResult(Int32& affectedRow, Int64& insertedId)
+   at MySql.Data.MySqlClient.Driver.GetResult(Int32 statementId, Int32& affectedRows, Int64& insertedId)
+   at MySql.Data.MySqlClient.Driver.NextResult(Int32 statementId, Boolean force)
+   at MySql.Data.MySqlClient.MySqlDataReader.NextResult()
+   at MySql.Data.MySqlClient.MySqlCommand.ExecuteReader(CommandBehavior behavior)
+   at MySql.Data.MySqlClient.MySqlCommand.ExecuteNonQuery()
+   at MySql.Data.Entity.EFMySqlCommand.ExecuteNonQuery()
+   at System.Data.Common.DbCommand.ExecuteNonQueryAsync(CancellationToken cancellationToken)
+--- End of stack trace from previous location where exception was thrown ---
+   at System.Runtime.CompilerServices.TaskAwaiter.ThrowForNonSuccess(Task task)
+   at System.Runtime.CompilerServices.TaskAwaiter.HandleNonSuccessAndDebuggerNotification(Task task)
+   at System.Data.Entity.Utilities.TaskExtensions.CultureAwaiter`1.GetResult()
+   at System.Data.Entity.Core.Mapping.Update.Internal.DynamicUpdateCommand.<ExecuteAsync>d__0.MoveNext()
+--- End of stack trace from previous location where exception was thrown ---
+   at System.Runtime.CompilerServices.TaskAwaiter.ThrowForNonSuccess(Task task)
+   at System.Runtime.CompilerServices.TaskAwaiter.HandleNonSuccessAndDebuggerNotification(Task task)
+   at System.Data.Entity.Core.Mapping.Update.Internal.UpdateTranslator.<UpdateAsync>d__0.MoveNext()
+   --- End of inner exception stack trace ---
+   at System.Data.Entity.Core.Mapping.Update.Internal.UpdateTranslator.<UpdateAsync>d__0.MoveNext()
+--- End of stack trace from previous location where exception was thrown ---
+   at System.Runtime.CompilerServices.TaskAwaiter.ThrowForNonSuccess(Task task)
+   at System.Runtime.CompilerServices.TaskAwaiter.HandleNonSuccessAndDebuggerNotification(Task task)
+   at System.Data.Entity.Core.Objects.ObjectContext.<ExecuteInTransactionAsync>d__3d`1.MoveNext()
+--- End of stack trace from previous location where exception was thrown ---
+   at System.Runtime.CompilerServices.TaskAwaiter.ThrowForNonSuccess(Task task)
+   at System.Runtime.CompilerServices.TaskAwaiter.HandleNonSuccessAndDebuggerNotification(Task task)
+   at System.Data.Entity.Core.Objects.ObjectContext.<SaveChangesToStoreAsync>d__39.MoveNext()
+--- End of stack trace from previous location where exception was thrown ---
+   at System.Runtime.CompilerServices.TaskAwaiter.ThrowForNonSuccess(Task task)
+   at System.Runtime.CompilerServices.TaskAwaiter.HandleNonSuccessAndDebuggerNotification(Task task)
+   at System.Data.Entity.Core.Objects.ObjectContext.<SaveChangesInternalAsync>d__31.MoveNext()
+   --- End of inner exception stack trace ---
+   at System.Runtime.CompilerServices.TaskAwaiter.ThrowForNonSuccess(Task task)
+   at System.Runtime.CompilerServices.TaskAwaiter.HandleNonSuccessAndDebuggerNotification(Task task)
+   at System.Runtime.CompilerServices.TaskAwaiter`1.GetResult()
+   at AMS.Controllers.EmployeeController.<DeleteConfirmed>d__10.MoveNext() in D:\CODE\WEB\Weelo-Admin\AMS\Controllers\EmployeeController.cs:line 180
+
+Data: {"Message":"Cannot Delete Employee","id":10}
+*****ERROR*****
+Time: 2017-10-26 17:59:20,822 
+Thread: 147 
+Identity: admin@weelo.com.eg
+Message: An error occurred while updating the entries. See the inner exception for details.
+StackTrace: System.Data.Entity.Infrastructure.DbUpdateException: An error occurred while updating the entries. See the inner exception for details. ---> System.Data.Entity.Core.UpdateException: An error occurred while updating the entries. See the inner exception for details. ---> MySql.Data.MySqlClient.MySqlException: Cannot delete or update a parent row: a foreign key constraint fails (`weelo-local`.`merchant`, CONSTRAINT `CurrencyM_Id` FOREIGN KEY (`CurrencyId`) REFERENCES `Currency` (`Id`) ON DELETE NO ACTION ON UPDATE NO ACTION)
+   at MySql.Data.MySqlClient.MySqlStream.ReadPacket()
+   at MySql.Data.MySqlClient.NativeDriver.GetResult(Int32& affectedRow, Int64& insertedId)
+   at MySql.Data.MySqlClient.Driver.GetResult(Int32 statementId, Int32& affectedRows, Int64& insertedId)
+   at MySql.Data.MySqlClient.Driver.NextResult(Int32 statementId, Boolean force)
+   at MySql.Data.MySqlClient.MySqlDataReader.NextResult()
+   at MySql.Data.MySqlClient.MySqlCommand.ExecuteReader(CommandBehavior behavior)
+   at MySql.Data.MySqlClient.MySqlCommand.ExecuteNonQuery()
+   at MySql.Data.Entity.EFMySqlCommand.ExecuteNonQuery()
+   at System.Data.Entity.Infrastructure.Interception.DbCommandDispatcher.<NonQuery>b__0(DbCommand t, DbCommandInterceptionContext`1 c)
+   at System.Data.Entity.Infrastructure.Interception.InternalDispatcher`1.Dispatch[TTarget,TInterceptionContext,TResult](TTarget target, Func`3 operation, TInterceptionContext interceptionContext, Action`3 executing, Action`3 executed)
+   at System.Data.Entity.Infrastructure.Interception.DbCommandDispatcher.NonQuery(DbCommand command, DbCommandInterceptionContext interceptionContext)
+   at System.Data.Entity.Internal.InterceptableDbCommand.ExecuteNonQuery()
+   at System.Data.Entity.Core.Mapping.Update.Internal.DynamicUpdateCommand.Execute(Dictionary`2 identifierValues, List`1 generatedValues)
+   at System.Data.Entity.Core.Mapping.Update.Internal.UpdateTranslator.Update()
+   --- End of inner exception stack trace ---
+   at System.Data.Entity.Core.Mapping.Update.Internal.UpdateTranslator.Update()
+   at System.Data.Entity.Core.EntityClient.Internal.EntityAdapter.<Update>b__2(UpdateTranslator ut)
+   at System.Data.Entity.Core.EntityClient.Internal.EntityAdapter.Update[T](T noChangesResult, Func`2 updateFunction)
+   at System.Data.Entity.Core.EntityClient.Internal.EntityAdapter.Update()
+   at System.Data.Entity.Core.Objects.ObjectContext.<SaveChangesToStore>b__35()
+   at System.Data.Entity.Core.Objects.ObjectContext.ExecuteInTransaction[T](Func`1 func, IDbExecutionStrategy executionStrategy, Boolean startLocalTransaction, Boolean releaseConnectionOnSuccess)
+   at System.Data.Entity.Core.Objects.ObjectContext.SaveChangesToStore(SaveOptions options, IDbExecutionStrategy executionStrategy, Boolean startLocalTransaction)
+   at System.Data.Entity.Core.Objects.ObjectContext.<>c__DisplayClass2a.<SaveChangesInternal>b__27()
+   at System.Data.Entity.Infrastructure.DefaultExecutionStrategy.Execute[TResult](Func`1 operation)
+   at System.Data.Entity.Core.Objects.ObjectContext.SaveChangesInternal(SaveOptions options, Boolean executeInExistingTransaction)
+   at System.Data.Entity.Core.Objects.ObjectContext.SaveChanges(SaveOptions options)
+   at System.Data.Entity.Internal.InternalContext.SaveChanges()
+   --- End of inner exception stack trace ---
+   at System.Data.Entity.Internal.InternalContext.SaveChanges()
+   at System.Data.Entity.Internal.LazyInternalContext.SaveChanges()
+   at System.Data.Entity.DbContext.SaveChanges()
+   at AMS.Controllers.CurrencyController.<DeleteConfirmed>d__9.MoveNext() in D:\CODE\WEB\Weelo-Admin\AMS\Controllers\CurrencyController.cs:line 176
+
+Data: {"id":6}
+*****ERROR*****
+Time: 2017-10-26 17:59:25,713 
+Thread: 124 
+Identity: admin@weelo.com.eg
+Message: An error occurred while updating the entries. See the inner exception for details.
+StackTrace: System.Data.Entity.Infrastructure.DbUpdateException: An error occurred while updating the entries. See the inner exception for details. ---> System.Data.Entity.Core.UpdateException: An error occurred while updating the entries. See the inner exception for details. ---> MySql.Data.MySqlClient.MySqlException: Cannot delete or update a parent row: a foreign key constraint fails (`weelo-local`.`merchant`, CONSTRAINT `CurrencyM_Id` FOREIGN KEY (`CurrencyId`) REFERENCES `Currency` (`Id`) ON DELETE NO ACTION ON UPDATE NO ACTION)
+   at MySql.Data.MySqlClient.MySqlStream.ReadPacket()
+   at MySql.Data.MySqlClient.NativeDriver.GetResult(Int32& affectedRow, Int64& insertedId)
+   at MySql.Data.MySqlClient.Driver.GetResult(Int32 statementId, Int32& affectedRows, Int64& insertedId)
+   at MySql.Data.MySqlClient.Driver.NextResult(Int32 statementId, Boolean force)
+   at MySql.Data.MySqlClient.MySqlDataReader.NextResult()
+   at MySql.Data.MySqlClient.MySqlCommand.ExecuteReader(CommandBehavior behavior)
+   at MySql.Data.MySqlClient.MySqlCommand.ExecuteNonQuery()
+   at MySql.Data.Entity.EFMySqlCommand.ExecuteNonQuery()
+   at System.Data.Entity.Infrastructure.Interception.DbCommandDispatcher.<NonQuery>b__0(DbCommand t, DbCommandInterceptionContext`1 c)
+   at System.Data.Entity.Infrastructure.Interception.InternalDispatcher`1.Dispatch[TTarget,TInterceptionContext,TResult](TTarget target, Func`3 operation, TInterceptionContext interceptionContext, Action`3 executing, Action`3 executed)
+   at System.Data.Entity.Infrastructure.Interception.DbCommandDispatcher.NonQuery(DbCommand command, DbCommandInterceptionContext interceptionContext)
+   at System.Data.Entity.Internal.InterceptableDbCommand.ExecuteNonQuery()
+   at System.Data.Entity.Core.Mapping.Update.Internal.DynamicUpdateCommand.Execute(Dictionary`2 identifierValues, List`1 generatedValues)
+   at System.Data.Entity.Core.Mapping.Update.Internal.UpdateTranslator.Update()
+   --- End of inner exception stack trace ---
+   at System.Data.Entity.Core.Mapping.Update.Internal.UpdateTranslator.Update()
+   at System.Data.Entity.Core.EntityClient.Internal.EntityAdapter.<Update>b__2(UpdateTranslator ut)
+   at System.Data.Entity.Core.EntityClient.Internal.EntityAdapter.Update[T](T noChangesResult, Func`2 updateFunction)
+   at System.Data.Entity.Core.EntityClient.Internal.EntityAdapter.Update()
+   at System.Data.Entity.Core.Objects.ObjectContext.<SaveChangesToStore>b__35()
+   at System.Data.Entity.Core.Objects.ObjectContext.ExecuteInTransaction[T](Func`1 func, IDbExecutionStrategy executionStrategy, Boolean startLocalTransaction, Boolean releaseConnectionOnSuccess)
+   at System.Data.Entity.Core.Objects.ObjectContext.SaveChangesToStore(SaveOptions options, IDbExecutionStrategy executionStrategy, Boolean startLocalTransaction)
+   at System.Data.Entity.Core.Objects.ObjectContext.<>c__DisplayClass2a.<SaveChangesInternal>b__27()
+   at System.Data.Entity.Infrastructure.DefaultExecutionStrategy.Execute[TResult](Func`1 operation)
+   at System.Data.Entity.Core.Objects.ObjectContext.SaveChangesInternal(SaveOptions options, Boolean executeInExistingTransaction)
+   at System.Data.Entity.Core.Objects.ObjectContext.SaveChanges(SaveOptions options)
+   at System.Data.Entity.Internal.InternalContext.SaveChanges()
+   --- End of inner exception stack trace ---
+   at System.Data.Entity.Internal.InternalContext.SaveChanges()
+   at System.Data.Entity.Internal.LazyInternalContext.SaveChanges()
+   at System.Data.Entity.DbContext.SaveChanges()
+   at AMS.Controllers.CurrencyController.<DeleteConfirmed>d__9.MoveNext() in D:\CODE\WEB\Weelo-Admin\AMS\Controllers\CurrencyController.cs:line 176
+
+Data: {"id":3}
+*****ERROR*****
+Time: 2017-10-26 17:59:53,014 
+Thread: 39 
+Identity: admin@weelo.com.eg
+Message: An error occurred while updating the entries. See the inner exception for details.
+StackTrace: System.Data.Entity.Infrastructure.DbUpdateException: An error occurred while updating the entries. See the inner exception for details. ---> System.Data.Entity.Core.UpdateException: An error occurred while updating the entries. See the inner exception for details. ---> MySql.Data.MySqlClient.MySqlException: Cannot delete or update a parent row: a foreign key constraint fails ("weelo-local"."merchant", CONSTRAINT "CurrencyM_Id" FOREIGN KEY ("CurrencyId") REFERENCES "Currency" ("Id") ON DELETE NO ACTION ON UPDATE NO ACTION)
+   at MySql.Data.MySqlClient.MySqlStream.ReadPacket()
+   at MySql.Data.MySqlClient.NativeDriver.GetResult(Int32& affectedRow, Int64& insertedId)
+   at MySql.Data.MySqlClient.Driver.GetResult(Int32 statementId, Int32& affectedRows, Int64& insertedId)
+   at MySql.Data.MySqlClient.Driver.NextResult(Int32 statementId, Boolean force)
+   at MySql.Data.MySqlClient.MySqlDataReader.NextResult()
+   at MySql.Data.MySqlClient.MySqlCommand.ExecuteReader(CommandBehavior behavior)
+   at MySql.Data.MySqlClient.MySqlCommand.ExecuteNonQuery()
+   at MySql.Data.Entity.EFMySqlCommand.ExecuteNonQuery()
+   at System.Data.Entity.Infrastructure.Interception.DbCommandDispatcher.<NonQuery>b__0(DbCommand t, DbCommandInterceptionContext`1 c)
+   at System.Data.Entity.Infrastructure.Interception.InternalDispatcher`1.Dispatch[TTarget,TInterceptionContext,TResult](TTarget target, Func`3 operation, TInterceptionContext interceptionContext, Action`3 executing, Action`3 executed)
+   at System.Data.Entity.Infrastructure.Interception.DbCommandDispatcher.NonQuery(DbCommand command, DbCommandInterceptionContext interceptionContext)
+   at System.Data.Entity.Internal.InterceptableDbCommand.ExecuteNonQuery()
+   at System.Data.Entity.Core.Mapping.Update.Internal.DynamicUpdateCommand.Execute(Dictionary`2 identifierValues, List`1 generatedValues)
+   at System.Data.Entity.Core.Mapping.Update.Internal.UpdateTranslator.Update()
+   --- End of inner exception stack trace ---
+   at System.Data.Entity.Core.Mapping.Update.Internal.UpdateTranslator.Update()
+   at System.Data.Entity.Core.EntityClient.Internal.EntityAdapter.<Update>b__2(UpdateTranslator ut)
+   at System.Data.Entity.Core.EntityClient.Internal.EntityAdapter.Update[T](T noChangesResult, Func`2 updateFunction)
+   at System.Data.Entity.Core.EntityClient.Internal.EntityAdapter.Update()
+   at System.Data.Entity.Core.Objects.ObjectContext.<SaveChangesToStore>b__35()
+   at System.Data.Entity.Core.Objects.ObjectContext.ExecuteInTransaction[T](Func`1 func, IDbExecutionStrategy executionStrategy, Boolean startLocalTransaction, Boolean releaseConnectionOnSuccess)
+   at System.Data.Entity.Core.Objects.ObjectContext.SaveChangesToStore(SaveOptions options, IDbExecutionStrategy executionStrategy, Boolean startLocalTransaction)
+   at System.Data.Entity.Core.Objects.ObjectContext.<>c__DisplayClass2a.<SaveChangesInternal>b__27()
+   at System.Data.Entity.Infrastructure.DefaultExecutionStrategy.Execute[TResult](Func`1 operation)
+   at System.Data.Entity.Core.Objects.ObjectContext.SaveChangesInternal(SaveOptions options, Boolean executeInExistingTransaction)
+   at System.Data.Entity.Core.Objects.ObjectContext.SaveChanges(SaveOptions options)
+   at System.Data.Entity.Internal.InternalContext.SaveChanges()
+   --- End of inner exception stack trace ---
+   at System.Data.Entity.Internal.InternalContext.SaveChanges()
+   at System.Data.Entity.Internal.LazyInternalContext.SaveChanges()
+   at System.Data.Entity.DbContext.SaveChanges()
+   at AMS.Controllers.CurrencyController.<DeleteConfirmed>d__9.MoveNext() in D:\CODE\WEB\Weelo-Admin\AMS\Controllers\CurrencyController.cs:line 176
+
+Data: {"id":2}
+*****ERROR*****
+Time: 2017-10-26 18:07:53,776 
+Thread: 151 
+Identity: admin@weelo.com.eg
+Message: An error occurred while updating the entries. See the inner exception for details.
+StackTrace: System.Data.Entity.Infrastructure.DbUpdateException: An error occurred while updating the entries. See the inner exception for details. ---> System.Data.Entity.Core.UpdateException: An error occurred while updating the entries. See the inner exception for details. ---> MySql.Data.MySqlClient.MySqlException: Cannot delete or update a parent row: a foreign key constraint fails ("weelo-local"."employeerole", CONSTRAINT "emp_em_ID" FOREIGN KEY ("EmpId") REFERENCES "Employee" ("Id") ON DELETE NO ACTION ON UPDATE NO ACTION)
+   at MySql.Data.MySqlClient.MySqlStream.ReadPacket()
+   at MySql.Data.MySqlClient.NativeDriver.GetResult(Int32& affectedRow, Int64& insertedId)
+   at MySql.Data.MySqlClient.Driver.GetResult(Int32 statementId, Int32& affectedRows, Int64& insertedId)
+   at MySql.Data.MySqlClient.Driver.NextResult(Int32 statementId, Boolean force)
+   at MySql.Data.MySqlClient.MySqlDataReader.NextResult()
+   at MySql.Data.MySqlClient.MySqlCommand.ExecuteReader(CommandBehavior behavior)
+   at MySql.Data.MySqlClient.MySqlCommand.ExecuteNonQuery()
+   at MySql.Data.Entity.EFMySqlCommand.ExecuteNonQuery()
+   at System.Data.Common.DbCommand.ExecuteNonQueryAsync(CancellationToken cancellationToken)
+--- End of stack trace from previous location where exception was thrown ---
+   at System.Runtime.CompilerServices.TaskAwaiter.ThrowForNonSuccess(Task task)
+   at System.Runtime.CompilerServices.TaskAwaiter.HandleNonSuccessAndDebuggerNotification(Task task)
+   at System.Data.Entity.Utilities.TaskExtensions.CultureAwaiter`1.GetResult()
+   at System.Data.Entity.Core.Mapping.Update.Internal.DynamicUpdateCommand.<ExecuteAsync>d__0.MoveNext()
+--- End of stack trace from previous location where exception was thrown ---
+   at System.Runtime.CompilerServices.TaskAwaiter.ThrowForNonSuccess(Task task)
+   at System.Runtime.CompilerServices.TaskAwaiter.HandleNonSuccessAndDebuggerNotification(Task task)
+   at System.Data.Entity.Core.Mapping.Update.Internal.UpdateTranslator.<UpdateAsync>d__0.MoveNext()
+   --- End of inner exception stack trace ---
+   at System.Data.Entity.Core.Mapping.Update.Internal.UpdateTranslator.<UpdateAsync>d__0.MoveNext()
+--- End of stack trace from previous location where exception was thrown ---
+   at System.Runtime.CompilerServices.TaskAwaiter.ThrowForNonSuccess(Task task)
+   at System.Runtime.CompilerServices.TaskAwaiter.HandleNonSuccessAndDebuggerNotification(Task task)
+   at System.Data.Entity.Core.Objects.ObjectContext.<ExecuteInTransactionAsync>d__3d`1.MoveNext()
+--- End of stack trace from previous location where exception was thrown ---
+   at System.Runtime.CompilerServices.TaskAwaiter.ThrowForNonSuccess(Task task)
+   at System.Runtime.CompilerServices.TaskAwaiter.HandleNonSuccessAndDebuggerNotification(Task task)
+   at System.Data.Entity.Core.Objects.ObjectContext.<SaveChangesToStoreAsync>d__39.MoveNext()
+--- End of stack trace from previous location where exception was thrown ---
+   at System.Runtime.CompilerServices.TaskAwaiter.ThrowForNonSuccess(Task task)
+   at System.Runtime.CompilerServices.TaskAwaiter.HandleNonSuccessAndDebuggerNotification(Task task)
+   at System.Data.Entity.Core.Objects.ObjectContext.<SaveChangesInternalAsync>d__31.MoveNext()
+   --- End of inner exception stack trace ---
+   at System.Runtime.CompilerServices.TaskAwaiter.ThrowForNonSuccess(Task task)
+   at System.Runtime.CompilerServices.TaskAwaiter.HandleNonSuccessAndDebuggerNotification(Task task)
+   at System.Runtime.CompilerServices.TaskAwaiter`1.GetResult()
+   at AMS.Controllers.EmployeeController.<DeleteConfirmed>d__10.MoveNext() in D:\CODE\WEB\Weelo-Admin\AMS\Controllers\EmployeeController.cs:line 180
+
+Data: {"Message":"Cannot Delete Employee","id":14}
+*****ERROR*****
+Time: 2017-10-26 18:08:01,645 
+Thread: 167 
+Identity: admin@weelo.com.eg
+Message: An error occurred while updating the entries. See the inner exception for details.
+StackTrace: System.Data.Entity.Infrastructure.DbUpdateException: An error occurred while updating the entries. See the inner exception for details. ---> System.Data.Entity.Core.UpdateException: An error occurred while updating the entries. See the inner exception for details. ---> MySql.Data.MySqlClient.MySqlException: Cannot delete or update a parent row: a foreign key constraint fails ("weelo-local"."employeerole", CONSTRAINT "emp_em_ID" FOREIGN KEY ("EmpId") REFERENCES "Employee" ("Id") ON DELETE NO ACTION ON UPDATE NO ACTION)
+   at MySql.Data.MySqlClient.MySqlStream.ReadPacket()
+   at MySql.Data.MySqlClient.NativeDriver.GetResult(Int32& affectedRow, Int64& insertedId)
+   at MySql.Data.MySqlClient.Driver.GetResult(Int32 statementId, Int32& affectedRows, Int64& insertedId)
+   at MySql.Data.MySqlClient.Driver.NextResult(Int32 statementId, Boolean force)
+   at MySql.Data.MySqlClient.MySqlDataReader.NextResult()
+   at MySql.Data.MySqlClient.MySqlCommand.ExecuteReader(CommandBehavior behavior)
+   at MySql.Data.MySqlClient.MySqlCommand.ExecuteNonQuery()
+   at MySql.Data.Entity.EFMySqlCommand.ExecuteNonQuery()
+   at System.Data.Common.DbCommand.ExecuteNonQueryAsync(CancellationToken cancellationToken)
+--- End of stack trace from previous location where exception was thrown ---
+   at System.Runtime.CompilerServices.TaskAwaiter.ThrowForNonSuccess(Task task)
+   at System.Runtime.CompilerServices.TaskAwaiter.HandleNonSuccessAndDebuggerNotification(Task task)
+   at System.Data.Entity.Utilities.TaskExtensions.CultureAwaiter`1.GetResult()
+   at System.Data.Entity.Core.Mapping.Update.Internal.DynamicUpdateCommand.<ExecuteAsync>d__0.MoveNext()
+--- End of stack trace from previous location where exception was thrown ---
+   at System.Runtime.CompilerServices.TaskAwaiter.ThrowForNonSuccess(Task task)
+   at System.Runtime.CompilerServices.TaskAwaiter.HandleNonSuccessAndDebuggerNotification(Task task)
+   at System.Data.Entity.Core.Mapping.Update.Internal.UpdateTranslator.<UpdateAsync>d__0.MoveNext()
+   --- End of inner exception stack trace ---
+   at System.Data.Entity.Core.Mapping.Update.Internal.UpdateTranslator.<UpdateAsync>d__0.MoveNext()
+--- End of stack trace from previous location where exception was thrown ---
+   at System.Runtime.CompilerServices.TaskAwaiter.ThrowForNonSuccess(Task task)
+   at System.Runtime.CompilerServices.TaskAwaiter.HandleNonSuccessAndDebuggerNotification(Task task)
+   at System.Data.Entity.Core.Objects.ObjectContext.<ExecuteInTransactionAsync>d__3d`1.MoveNext()
+--- End of stack trace from previous location where exception was thrown ---
+   at System.Runtime.CompilerServices.TaskAwaiter.ThrowForNonSuccess(Task task)
+   at System.Runtime.CompilerServices.TaskAwaiter.HandleNonSuccessAndDebuggerNotification(Task task)
+   at System.Data.Entity.Core.Objects.ObjectContext.<SaveChangesToStoreAsync>d__39.MoveNext()
+--- End of stack trace from previous location where exception was thrown ---
+   at System.Runtime.CompilerServices.TaskAwaiter.ThrowForNonSuccess(Task task)
+   at System.Runtime.CompilerServices.TaskAwaiter.HandleNonSuccessAndDebuggerNotification(Task task)
+   at System.Data.Entity.Core.Objects.ObjectContext.<SaveChangesInternalAsync>d__31.MoveNext()
+   --- End of inner exception stack trace ---
+   at System.Runtime.CompilerServices.TaskAwaiter.ThrowForNonSuccess(Task task)
+   at System.Runtime.CompilerServices.TaskAwaiter.HandleNonSuccessAndDebuggerNotification(Task task)
+   at System.Runtime.CompilerServices.TaskAwaiter`1.GetResult()
+   at AMS.Controllers.EmployeeController.<DeleteConfirmed>d__10.MoveNext() in D:\CODE\WEB\Weelo-Admin\AMS\Controllers\EmployeeController.cs:line 180
+
+Data: {"Message":"Cannot Delete Employee","id":12}

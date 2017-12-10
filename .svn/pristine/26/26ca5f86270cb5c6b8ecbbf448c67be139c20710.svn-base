@@ -1,0 +1,117 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>@ViewBag.Title - </title>
+    @Styles.Render("~/Content/bootstrap")
+    @Styles.Render("~/Content/css")
+  @*  <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">*@
+</head>
+<body>
+
+    @{
+        var serializer = new System.Web.Script.Serialization.JavaScriptSerializer();
+        var userData = serializer.Deserialize<AMS.Models.LoginViewModel>(((System.Web.Security.FormsIdentity)(Context.User.Identity)).Ticket.UserData);
+    }
+
+    <div id="wrapper">
+        <div class="navbar navbar-inverse">
+            <div>
+                <div class="navbar-header">
+                    <a type="button" class="navbar-toggle mdx" data-target=".navbar-collapse" href="#menu-toggle" id="menu-toggle">
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                    </a>
+                </div>
+                @if (HttpContext.Current.User.Identity.Name != "")
+                {
+                    <div class="navbar-collapse collapse">
+                        @Html.Partial("_LoginPartial")
+                    </div>
+                }
+
+            </div>
+        </div>
+        <!-- Sidebar -->
+        @Html.Partial("_LeftMenu")
+        <!-- /#sidebar-wrapper -->
+        <!-- Page Content -->
+        <div id="page-content-wrapper" style="padding-top: 5px;">
+            @Html.Partial("_PageLoader")
+            <div class="container-fluid">
+                <div class="row">
+                    <div class="col-lg-12" style="width:100%">
+                        <div id="alertDiv"></div>
+                        @RenderBody()
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- /#page-content-wrapper -->
+    </div>
+    <script>
+        var isWebsiteLive = @System.Configuration.ConfigurationManager.AppSettings["LiveMode"], WeeloApi = getHostUrl();
+        function getHostUrl() {
+            if (isWebsiteLive)
+                return 'https://www.weelo.com.eg/api/v1/';
+            else
+                return '/api/v1/';
+        }
+    </script>
+    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyD3sx1AU2F_bMY__EzVjmRfVDvNzh0cuhc&libraries=places&language=ar&region=EG"></script>
+
+    @Scripts.Render("~/bundles/jquery")
+    @Scripts.Render("~/bundles/jqueryval")
+    @Scripts.Render("~/bundles/bootstrap")
+    @Scripts.Render("~/bundles/extra")
+    @Scripts.Render("~/bundles/manage")
+    @Scripts.Render("~/Scripts/adminScripts")
+    @Scripts.Render("~/Scripts/signalR")
+    <script src="@System.Configuration.ConfigurationManager.AppSettings["WebHubURL"]"></script>
+    <script>
+        var hub = new SignalREntry();
+        var notificationHub = hub.getConnectionHub();
+        var startHub = hub.getHubStarted();
+        var glob_connectionId;
+
+        startHub.done(function () {
+            notificationHub.server.connectEmployee('@User.Identity.Name');
+            glob_connectionId=hub.getConnectionId()
+        });
+        notificationHub.client.sendToEmployee = function (msg) {
+            alert(msg, 4000);
+        }
+        notificationHub.client.alertMerchant = function (msg) {
+            $('#alertDiv').empty().append(`
+                    <div class ="alert alert-danger" role="alert">
+                        <strong>Oh snap!</strong> `+ msg + `
+                    </div>
+                    `);
+        }
+        window.onload = function () {
+            $('#ploader').hide();
+            $('.container-fluid').show();
+            loadMapsAPI();
+            $('.sidebar-nav li').on('click', function () {
+                $(this).find('ul.submenu').toggleClass("menu-ul");
+            });
+            $("#accordion" ).accordion();
+            $('.ui-accordion .ui-accordion-content').css('height','100%');
+        }
+        $('.sidebar-nav li a,a.btn').click(function () { $('#ploader').show(); $('.container-fluid').hide(); });
+        function addScript(url, callback) {
+            var script = document.createElement('script');
+            if (callback) script.onload = callback;
+            script.type = 'text/javascript';
+            script.src = url;
+            document.body.appendChild(script);
+        }
+        function mapsApiReady() {
+            addScript('infobox.js', initialize);
+        }
+    </script>
+    @RenderSection("scripts", required: false)
+</body>
+</html>

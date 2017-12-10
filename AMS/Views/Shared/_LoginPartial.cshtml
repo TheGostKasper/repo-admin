@@ -1,0 +1,95 @@
+﻿@using Microsoft.AspNet.Identity
+@if (Request.IsAuthenticated)
+{
+    using (Html.BeginForm("LogOff", "Account", FormMethod.Post, new { id = "logoutForm", @class = "navbar-right" }))
+    {
+        @Html.AntiForgeryToken()
+
+        <ul class="nav navbar-nav navbar-right">
+            <li class="dropdown">
+                <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                    <i class="glyphicon glyphicon-user usr-ico" aria-hidden="true"></i>
+                    @*<b class="caret"></b>*@
+                </a>
+                <ul class="dropdown-menu">
+                    <li class="overlay"></li>
+                    <li>
+                        <div class="navbar-content">
+                            <div class="row">
+                                <div class="col-md-5">
+                                    <img src="~/Content/images/avatar.jpg" alt="Alternate Text" class="img-responsive" />
+                                    <p class="text-center small">
+                                        <a href="#">Change Photo</a>
+                                    </p>
+                                </div>
+                                <div class="col-md-7">
+                                    <span>@User.Identity.GetUserName()</span>
+                                    <p class="text-muted small">
+                                        @{
+                                            var serializer = new System.Web.Script.Serialization.JavaScriptSerializer();
+                                            var userData = serializer.Deserialize<AMS.Models.PM_User>(((System.Web.Security.FormsIdentity)(Context.User.Identity)).Ticket.UserData);
+                                        }
+                                        
+                                    </p>
+                                    <div class="divider">
+                                    </div>
+                                    <a href="#" class="btn btn-primary btn-sm active">View Profile</a>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="navbar-footer">
+                            <div class="navbar-footer-content">
+                                <div class="row">
+                                    <div class="col-md-6">
+                                        <a href="~/Account/ChangePassword" class="btn btn-default btn-sm">Change Passowrd</a>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <button id="SignOut" class="btn btn-default btn-sm pull-right">Sign Out</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </li>
+                    @*<div class="btn-group">
+                            <div class="avatar-holder" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                <span class="glyphicon glyphicon-user"></span>
+                            </div>
+
+                            <ul class="dropdown-menu">
+                                <li>
+                                    @Html.ActionLink("Hello " + User.Identity.GetUserName() + "!", "Index", "Manage", routeValues: null, htmlAttributes: new { title = "Manage" })
+                                </li>
+                                <li role="separator" class="divider"></li>
+                                <li><a href="javascript:document.getElementById('logoutForm').submit()">Log off</a></li>
+                            </ul>
+                        </div>*@
+                </ul>
+            </li>
+        </ul>
+
+                                            }
+                                            <form class="navbar-form" role="search">
+                                                <div class="input-group">
+                                                    <input type="text" id="txtSearch2" class="form-control" placeholder="Search">
+                                                    <span class="input-group-btn">
+                                                        <button type="reset" class="btn btn-default">
+                                                            <span class="glyphicon glyphicon-remove">
+                                                                <span class="sr-only">Close</span>
+                                                            </span>
+                                                        </button>
+                                                        <button type="submit" class="btn btn-default">
+                                                            <span class="glyphicon glyphicon-search">
+                                                                <span class="sr-only">Search</span>
+                                                            </span>
+                                                        </button>
+                                                    </span>
+                                                </div>
+                                            </form>
+                                            }
+                                            else
+                                            {
+                                                <ul class="nav navbar-nav navbar-right">
+                                                    @*<li>@Html.ActionLink("Register", "Register", "Account", routeValues: null, htmlAttributes: new { id = "registerLink" })</li>*@
+                                                    <li>@Html.ActionLink("Log in", "Login", "Account", routeValues: null, htmlAttributes: new { id = "loginLink" })</li>
+                                                </ul>
+                                            }

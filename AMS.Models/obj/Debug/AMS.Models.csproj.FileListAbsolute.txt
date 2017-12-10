@@ -1,0 +1,10 @@
+D:\CODE\WEB\Weelo-Admin\AMS.Models\bin\Debug\AMS.Models.dll.config
+D:\CODE\WEB\Weelo-Admin\AMS.Models\bin\Debug\AMS.Models.dll
+D:\CODE\WEB\Weelo-Admin\AMS.Models\bin\Debug\AMS.Models.pdb
+D:\CODE\WEB\Weelo-Admin\AMS.Models\bin\Debug\ClosedXML.dll
+D:\CODE\WEB\Weelo-Admin\AMS.Models\bin\Debug\DocumentFormat.OpenXml.dll
+D:\CODE\WEB\Weelo-Admin\AMS.Models\bin\Debug\ClosedXML.pdb
+D:\CODE\WEB\Weelo-Admin\AMS.Models\bin\Debug\ClosedXML.xml
+D:\CODE\WEB\Weelo-Admin\AMS.Models\obj\Debug\AMS.Models.dll
+D:\CODE\WEB\Weelo-Admin\AMS.Models\obj\Debug\AMS.Models.pdb
+D:\CODE\WEB\Weelo-Admin\AMS.Models\obj\Debug\AMS.Models.csprojResolveAssemblyReference.cache

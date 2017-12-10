@@ -1,0 +1,342 @@
+
+*****ERROR*****
+Time: 2017-11-06 09:47:40,937 
+Thread: 9 
+Identity: admin@weelo.com.eg
+Message: eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJyb2xlIjpbIkFkbWluIiwiVXNlciJdLCJ1bmlxdWVfbmFtZSI6ImFkbWluQHdlZWxvLmNvbS5lZyIsInN1YiI6ImFkbWluQHdlZWxvLmNvbS5lZyIsImlzcyI6Imh0dHA6Ly8xOTIuMTY4LjEuMTAwIiwiYXVkIjoiYXVkaWVuY2UiLCJleHAiOjE1NDE0OTA0NTgsIm5iZiI6MTUwOTk1NDQ1OH0.32WTuQDef9qeo1uowsoP2j2Mr86nLPehK2oF0ZOnBP8
+StackTrace: 
+Data: "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJyb2xlIjpbIkFkbWluIiwiVXNlciJdLCJ1bmlxdWVfbmFtZSI6ImFkbWluQHdlZWxvLmNvbS5lZyIsInN1YiI6ImFkbWluQHdlZWxvLmNvbS5lZyIsImlzcyI6Imh0dHA6Ly8xOTIuMTY4LjEuMTAwIiwiYXVkIjoiYXVkaWVuY2UiLCJleHAiOjE1NDE0OTA0NTgsIm5iZiI6MTUwOTk1NDQ1OH0.32WTuQDef9qeo1uowsoP2j2Mr86nLPehK2oF0ZOnBP8"
+*****ERROR*****
+Time: 2017-11-06 09:47:40,953 
+Thread: 9 
+Identity: admin@weelo.com.eg
+Message: C5DE1FF7D466FAB8F53A0298171932952F6E007EA5B955A58464FED4CBB54A13934D88ACC56C40216CE8B6D144E11EC184AC046A9E66F7ACFBB978AB9C6CE337C7EEC43CDE688755669B520BD4005FE35B13FAB3819CB65AFD0390D7B7E8500CF11F84829C99678E53F49F2B44AD72D365925FB0A5F9BC495E4CDB4177EF13183DDE77F3343E919068036E1B5A9CEF943E21B2059220F964B2401A5A4AA74A34B4CF8EC672F0C631D9EC533197067FBE209FEDE81BDD961919872CACB6FA7319405AF93460C0A1DAA37275C38AD44A8BE5EBE571C815C951859C75075ABBBE9FE575D308C072DFD396CC8438753538CCE98559B531612FA3B429213F87BC95D986C250464138CD666DAB151E0B123D83D7E1C41719A88B07D534861630B00C1CCC0517113B2A8FD1382E4ABB5287E1D0F059288F8A374F1629AD66A58B9EDC1105343CC5DE2C16F7A730AF37A5A66C86EE9BFF4980F54DE24BE77522E3E0FCA88419451C68396B4B258EE413E5D2B7C98C25ED7B885B03156CEFB698CBF307F8364BBE4D9B53FD7D0887338C22AFECF1B40374CEEB979962599BEF747A49661414F687A805DE53FC7AC2007CCD902846BAF592C6C4735011104A35562FCC0545DD1EDE4B8D712C9D0E756A5C3366B5539C8306E2759A0F9D782A8BF0E4A761D46C94DA7F69FC362FA446F1DF7679FE4F8C13D30547B4C89C25C0F7E5BFDBB83CEDC353A1AC657FB92428F35B9257F9512CE6A02322FBD5EA6BFDF3653F1AA9DA5D2FB21B1198F170D55E1048F9515EBCF2A0B4FAB5CAD8B4285F38CF35D33A11B6FAB8ACAD13E29D39C12B088E46B6A1
+StackTrace: 
+Data: "C5DE1FF7D466FAB8F53A0298171932952F6E007EA5B955A58464FED4CBB54A13934D88ACC56C40216CE8B6D144E11EC184AC046A9E66F7ACFBB978AB9C6CE337C7EEC43CDE688755669B520BD4005FE35B13FAB3819CB65AFD0390D7B7E8500CF11F84829C99678E53F49F2B44AD72D365925FB0A5F9BC495E4CDB4177EF13183DDE77F3343E919068036E1B5A9CEF943E21B2059220F964B2401A5A4AA74A34B4CF8EC672F0C631D9EC533197067FBE209FEDE81BDD961919872CACB6FA7319405AF93460C0A1DAA37275C38AD44A8BE5EBE571C815C951859C75075ABBBE9FE575D308C072DFD396CC8438753538CCE98559B531612FA3B429213F87BC95D986C250464138CD666DAB151E0B123D83D7E1C41719A88B07D534861630B00C1CCC0517113B2A8FD1382E4ABB5287E1D0F059288F8A374F1629AD66A58B9EDC1105343CC5DE2C16F7A730AF37A5A66C86EE9BFF4980F54DE24BE77522E3E0FCA88419451C68396B4B258EE413E5D2B7C98C25ED7B885B03156CEFB698CBF307F8364BBE4D9B53FD7D0887338C22AFECF1B40374CEEB979962599BEF747A49661414F687A805DE53FC7AC2007CCD902846BAF592C6C4735011104A35562FCC0545DD1EDE4B8D712C9D0E756A5C3366B5539C8306E2759A0F9D782A8BF0E4A761D46C94DA7F69FC362FA446F1DF7679FE4F8C13D30547B4C89C25C0F7E5BFDBB83CEDC353A1AC657FB92428F35B9257F9512CE6A02322FBD5EA6BFDF3653F1AA9DA5D2FB21B1198F170D55E1048F9515EBCF2A0B4FAB5CAD8B4285F38CF35D33A11B6FAB8ACAD13E29D39C12B088E46B6A1"
+*****ERROR*****
+Time: 2017-11-06 10:38:56,072 
+Thread: 69 
+Identity: admin@weelo.com.eg
+Message: eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJyb2xlIjpbIkFkbWluIiwiVXNlciJdLCJ1bmlxdWVfbmFtZSI6ImFkbWluQHdlZWxvLmNvbS5lZyIsInN1YiI6ImFkbWluQHdlZWxvLmNvbS5lZyIsImlzcyI6Imh0dHA6Ly8xOTIuMTY4LjEuMTAwIiwiYXVkIjoiYXVkaWVuY2UiLCJleHAiOjE1NDE0OTM1MzUsIm5iZiI6MTUwOTk1NzUzNX0.2Kl7fV_B20h5ISkZHeHw2Uzw6qJTxCuXU65tM88cFrI
+StackTrace: 
+Data: "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJyb2xlIjpbIkFkbWluIiwiVXNlciJdLCJ1bmlxdWVfbmFtZSI6ImFkbWluQHdlZWxvLmNvbS5lZyIsInN1YiI6ImFkbWluQHdlZWxvLmNvbS5lZyIsImlzcyI6Imh0dHA6Ly8xOTIuMTY4LjEuMTAwIiwiYXVkIjoiYXVkaWVuY2UiLCJleHAiOjE1NDE0OTM1MzUsIm5iZiI6MTUwOTk1NzUzNX0.2Kl7fV_B20h5ISkZHeHw2Uzw6qJTxCuXU65tM88cFrI"
+*****ERROR*****
+Time: 2017-11-06 10:38:56,088 
+Thread: 69 
+Identity: admin@weelo.com.eg
+Message: 20ACCB936A72D961FDB104E93A8C1899CCAB221A01495466DB5376C01042E647B527D710546BB3AE126AFAED694C2630ED1F6514266D1B28627EFF8930EB828EE222D54CF8FF6B660D47038A5C8EE5F5FD5B4B94627EA860DCF0E588264EDBA7F9F63EEE1627C746394CCE38A60A0EE4E30D19681D7D0E9154C22AC69AD1101B3D2916748E7579A45421A39CF5812675DFDA6772892B0A8F8B4A97FF4B719A80EFE3AFA085756A164092A29DE03E213493D61D0D86DAB7EE74F5EB297578459AD6457AAF052EAAAF8F87EF148A51191AE7A0F1C940AFBC047A0F579816F7FD1DC5234AFCAD4D8BF0BAEBB4C01F0A1AD832D058FF3D8187383EEC2589A87E1C4906092022DD58B2173571FC36F8DCE89BC4F42F667DAE374378A27F1D088C7CE14DA0C683B176FF2DAD71FDD2D59FEAA6EA9AF57CE35F510DAC31044C1588A839D6E0D042CF70A39E01CC578DC77DF0049DDA2EEB92E770EB7D87C312977A6404661BD22E86305407658AE4AFED2D416278B693A4B7C8C648C91E2504BCBF3F6EA2928CC38225EA40D5D83A4B6B6B6EB1768709BF59656AD96E938C37997AB46C0BE2AAA27D63051555EC038B20E403DA1E980CCF941B3EDDF3CCF540B09044F3D19E5D48CF4ED30060A1F8C5132B42A11F9E135C6CA10B788AC9C8393064DFE95FE8325B18245452155694CD1928527C760E744C2CD624CAB2DA579E3F10229DAEE5928C69ECE1928E5B43E4FB97E7FC8CBE953A621B4AF1683E7A477427777E065AB91EAC59FA095FA91CCBB6F357AFE899844C76B0B2877D0C892238A0B68A92E201B1DF5A06C0B0B970142FAEEE50
+StackTrace: 
+Data: "20ACCB936A72D961FDB104E93A8C1899CCAB221A01495466DB5376C01042E647B527D710546BB3AE126AFAED694C2630ED1F6514266D1B28627EFF8930EB828EE222D54CF8FF6B660D47038A5C8EE5F5FD5B4B94627EA860DCF0E588264EDBA7F9F63EEE1627C746394CCE38A60A0EE4E30D19681D7D0E9154C22AC69AD1101B3D2916748E7579A45421A39CF5812675DFDA6772892B0A8F8B4A97FF4B719A80EFE3AFA085756A164092A29DE03E213493D61D0D86DAB7EE74F5EB297578459AD6457AAF052EAAAF8F87EF148A51191AE7A0F1C940AFBC047A0F579816F7FD1DC5234AFCAD4D8BF0BAEBB4C01F0A1AD832D058FF3D8187383EEC2589A87E1C4906092022DD58B2173571FC36F8DCE89BC4F42F667DAE374378A27F1D088C7CE14DA0C683B176FF2DAD71FDD2D59FEAA6EA9AF57CE35F510DAC31044C1588A839D6E0D042CF70A39E01CC578DC77DF0049DDA2EEB92E770EB7D87C312977A6404661BD22E86305407658AE4AFED2D416278B693A4B7C8C648C91E2504BCBF3F6EA2928CC38225EA40D5D83A4B6B6B6EB1768709BF59656AD96E938C37997AB46C0BE2AAA27D63051555EC038B20E403DA1E980CCF941B3EDDF3CCF540B09044F3D19E5D48CF4ED30060A1F8C5132B42A11F9E135C6CA10B788AC9C8393064DFE95FE8325B18245452155694CD1928527C760E744C2CD624CAB2DA579E3F10229DAEE5928C69ECE1928E5B43E4FB97E7FC8CBE953A621B4AF1683E7A477427777E065AB91EAC59FA095FA91CCBB6F357AFE899844C76B0B2877D0C892238A0B68A92E201B1DF5A06C0B0B970142FAEEE50"
+*****ERROR*****
+Time: 2017-11-06 10:46:54,964 
+Thread: 53 
+Identity: admin@weelo.com.eg
+Message: The underlying provider failed on Open.
+StackTrace: System.Data.Entity.Core.EntityException: The underlying provider failed on Open. ---> MySql.Data.MySqlClient.MySqlException: Unable to connect to any of the specified MySQL hosts.
+   at MySql.Data.MySqlClient.NativeDriver.Open()
+   at MySql.Data.MySqlClient.Driver.Open()
+   at MySql.Data.MySqlClient.Driver.Create(MySqlConnectionStringBuilder settings)
+   at MySql.Data.MySqlClient.MySqlPool.CreateNewPooledConnection()
+   at MySql.Data.MySqlClient.MySqlPool.GetPooledConnection()
+   at MySql.Data.MySqlClient.MySqlPool.TryToGetDriver()
+   at MySql.Data.MySqlClient.MySqlPool.GetConnection()
+   at MySql.Data.MySqlClient.MySqlConnection.Open()
+   at System.Data.Common.DbConnection.OpenAsync(CancellationToken cancellationToken)
+--- End of stack trace from previous location where exception was thrown ---
+   at System.Runtime.CompilerServices.TaskAwaiter.ThrowForNonSuccess(Task task)
+   at System.Runtime.CompilerServices.TaskAwaiter.HandleNonSuccessAndDebuggerNotification(Task task)
+   at System.Data.Entity.Core.EntityClient.EntityConnection.<OpenAsync>d__8.MoveNext()
+   --- End of inner exception stack trace ---
+   at System.Data.Entity.Core.EntityClient.EntityConnection.<OpenAsync>d__8.MoveNext()
+--- End of stack trace from previous location where exception was thrown ---
+   at System.Runtime.CompilerServices.TaskAwaiter.ThrowForNonSuccess(Task task)
+   at System.Runtime.CompilerServices.TaskAwaiter.HandleNonSuccessAndDebuggerNotification(Task task)
+   at System.Data.Entity.Core.Objects.ObjectContext.<EnsureConnectionAsync>d__9.MoveNext()
+--- End of stack trace from previous location where exception was thrown ---
+   at System.Runtime.CompilerServices.TaskAwaiter.ThrowForNonSuccess(Task task)
+   at System.Runtime.CompilerServices.TaskAwaiter.HandleNonSuccessAndDebuggerNotification(Task task)
+   at System.Data.Entity.Core.Objects.ObjectContext.<ExecuteInTransactionAsync>d__3d`1.MoveNext()
+--- End of stack trace from previous location where exception was thrown ---
+   at System.Runtime.CompilerServices.TaskAwaiter.ThrowForNonSuccess(Task task)
+   at System.Runtime.CompilerServices.TaskAwaiter.HandleNonSuccessAndDebuggerNotification(Task task)
+   at System.Data.Entity.Utilities.TaskExtensions.CultureAwaiter`1.GetResult()
+   at System.Data.Entity.Core.Objects.ObjectQuery`1.<GetResultsAsync>d__e.MoveNext()
+--- End of stack trace from previous location where exception was thrown ---
+   at System.Runtime.CompilerServices.TaskAwaiter.ThrowForNonSuccess(Task task)
+   at System.Runtime.CompilerServices.TaskAwaiter.HandleNonSuccessAndDebuggerNotification(Task task)
+   at System.Data.Entity.Utilities.TaskExtensions.CultureAwaiter`1.GetResult()
+   at System.Data.Entity.Internal.LazyAsyncEnumerator`1.<FirstMoveNextAsync>d__0.MoveNext()
+--- End of stack trace from previous location where exception was thrown ---
+   at System.Runtime.CompilerServices.TaskAwaiter.ThrowForNonSuccess(Task task)
+   at System.Runtime.CompilerServices.TaskAwaiter.HandleNonSuccessAndDebuggerNotification(Task task)
+   at System.Data.Entity.Infrastructure.IDbAsyncEnumerableExtensions.<ForEachAsync>d__5`1.MoveNext()
+--- End of stack trace from previous location where exception was thrown ---
+   at System.Runtime.CompilerServices.TaskAwaiter.ThrowForNonSuccess(Task task)
+   at System.Runtime.CompilerServices.TaskAwaiter.HandleNonSuccessAndDebuggerNotification(Task task)
+   at System.Runtime.CompilerServices.TaskAwaiter`1.GetResult()
+   at AMS.Controllers.CurrencyController.<Index>d__2.MoveNext() in D:\CODE\WEB\Weelo-Admin\AMS\Controllers\CurrencyController.cs:line 23
+
+Data: {}
+*****ERROR*****
+Time: 2017-11-06 10:46:56,486 
+Thread: 57 
+Identity: admin@weelo.com.eg
+Message: The underlying provider failed on Open.
+StackTrace: System.Data.Entity.Core.EntityException: The underlying provider failed on Open. ---> MySql.Data.MySqlClient.MySqlException: Unable to connect to any of the specified MySQL hosts.
+   at MySql.Data.MySqlClient.NativeDriver.Open()
+   at MySql.Data.MySqlClient.Driver.Open()
+   at MySql.Data.MySqlClient.Driver.Create(MySqlConnectionStringBuilder settings)
+   at MySql.Data.MySqlClient.MySqlPool.CreateNewPooledConnection()
+   at MySql.Data.MySqlClient.MySqlPool.GetPooledConnection()
+   at MySql.Data.MySqlClient.MySqlPool.TryToGetDriver()
+   at MySql.Data.MySqlClient.MySqlPool.GetConnection()
+   at MySql.Data.MySqlClient.MySqlConnection.Open()
+   at System.Data.Common.DbConnection.OpenAsync(CancellationToken cancellationToken)
+--- End of stack trace from previous location where exception was thrown ---
+   at System.Runtime.CompilerServices.TaskAwaiter.ThrowForNonSuccess(Task task)
+   at System.Runtime.CompilerServices.TaskAwaiter.HandleNonSuccessAndDebuggerNotification(Task task)
+   at System.Data.Entity.Core.EntityClient.EntityConnection.<OpenAsync>d__8.MoveNext()
+   --- End of inner exception stack trace ---
+   at System.Data.Entity.Core.EntityClient.EntityConnection.<OpenAsync>d__8.MoveNext()
+--- End of stack trace from previous location where exception was thrown ---
+   at System.Runtime.CompilerServices.TaskAwaiter.ThrowForNonSuccess(Task task)
+   at System.Runtime.CompilerServices.TaskAwaiter.HandleNonSuccessAndDebuggerNotification(Task task)
+   at System.Data.Entity.Core.Objects.ObjectContext.<EnsureConnectionAsync>d__9.MoveNext()
+--- End of stack trace from previous location where exception was thrown ---
+   at System.Runtime.CompilerServices.TaskAwaiter.ThrowForNonSuccess(Task task)
+   at System.Runtime.CompilerServices.TaskAwaiter.HandleNonSuccessAndDebuggerNotification(Task task)
+   at System.Data.Entity.Core.Objects.ObjectContext.<ExecuteInTransactionAsync>d__3d`1.MoveNext()
+--- End of stack trace from previous location where exception was thrown ---
+   at System.Runtime.CompilerServices.TaskAwaiter.ThrowForNonSuccess(Task task)
+   at System.Runtime.CompilerServices.TaskAwaiter.HandleNonSuccessAndDebuggerNotification(Task task)
+   at System.Data.Entity.Utilities.TaskExtensions.CultureAwaiter`1.GetResult()
+   at System.Data.Entity.Core.Objects.ObjectQuery`1.<GetResultsAsync>d__e.MoveNext()
+--- End of stack trace from previous location where exception was thrown ---
+   at System.Runtime.CompilerServices.TaskAwaiter.ThrowForNonSuccess(Task task)
+   at System.Runtime.CompilerServices.TaskAwaiter.HandleNonSuccessAndDebuggerNotification(Task task)
+   at System.Data.Entity.Utilities.TaskExtensions.CultureAwaiter`1.GetResult()
+   at System.Data.Entity.Internal.LazyAsyncEnumerator`1.<FirstMoveNextAsync>d__0.MoveNext()
+--- End of stack trace from previous location where exception was thrown ---
+   at System.Runtime.CompilerServices.TaskAwaiter.ThrowForNonSuccess(Task task)
+   at System.Runtime.CompilerServices.TaskAwaiter.HandleNonSuccessAndDebuggerNotification(Task task)
+   at System.Data.Entity.Infrastructure.IDbAsyncEnumerableExtensions.<ForEachAsync>d__5`1.MoveNext()
+--- End of stack trace from previous location where exception was thrown ---
+   at System.Runtime.CompilerServices.TaskAwaiter.ThrowForNonSuccess(Task task)
+   at System.Runtime.CompilerServices.TaskAwaiter.HandleNonSuccessAndDebuggerNotification(Task task)
+   at System.Runtime.CompilerServices.TaskAwaiter`1.GetResult()
+   at AMS.Controllers.AccountStateController.<Index>d__2.MoveNext() in D:\CODE\WEB\Weelo-Admin\AMS\Controllers\AccountStateController.cs:line 22
+
+Data: ""
+*****ERROR*****
+Time: 2017-11-06 10:47:43,114 
+Thread: 60 
+Identity: admin@weelo.com.eg
+Message: The underlying provider failed on Open.
+StackTrace: System.Data.Entity.Core.EntityException: The underlying provider failed on Open. ---> MySql.Data.MySqlClient.MySqlException: Unable to connect to any of the specified MySQL hosts.
+   at MySql.Data.MySqlClient.NativeDriver.Open()
+   at MySql.Data.MySqlClient.Driver.Open()
+   at MySql.Data.MySqlClient.Driver.Create(MySqlConnectionStringBuilder settings)
+   at MySql.Data.MySqlClient.MySqlPool.CreateNewPooledConnection()
+   at MySql.Data.MySqlClient.MySqlPool.GetPooledConnection()
+   at MySql.Data.MySqlClient.MySqlPool.TryToGetDriver()
+   at MySql.Data.MySqlClient.MySqlPool.GetConnection()
+   at MySql.Data.MySqlClient.MySqlConnection.Open()
+   at System.Data.Common.DbConnection.OpenAsync(CancellationToken cancellationToken)
+--- End of stack trace from previous location where exception was thrown ---
+   at System.Runtime.CompilerServices.TaskAwaiter.ThrowForNonSuccess(Task task)
+   at System.Runtime.CompilerServices.TaskAwaiter.HandleNonSuccessAndDebuggerNotification(Task task)
+   at System.Data.Entity.Core.EntityClient.EntityConnection.<OpenAsync>d__8.MoveNext()
+   --- End of inner exception stack trace ---
+   at System.Data.Entity.Core.EntityClient.EntityConnection.<OpenAsync>d__8.MoveNext()
+--- End of stack trace from previous location where exception was thrown ---
+   at System.Runtime.CompilerServices.TaskAwaiter.ThrowForNonSuccess(Task task)
+   at System.Runtime.CompilerServices.TaskAwaiter.HandleNonSuccessAndDebuggerNotification(Task task)
+   at System.Data.Entity.Core.Objects.ObjectContext.<EnsureConnectionAsync>d__9.MoveNext()
+--- End of stack trace from previous location where exception was thrown ---
+   at System.Runtime.CompilerServices.TaskAwaiter.ThrowForNonSuccess(Task task)
+   at System.Runtime.CompilerServices.TaskAwaiter.HandleNonSuccessAndDebuggerNotification(Task task)
+   at System.Data.Entity.Core.Objects.ObjectContext.<ExecuteInTransactionAsync>d__3d`1.MoveNext()
+--- End of stack trace from previous location where exception was thrown ---
+   at System.Runtime.CompilerServices.TaskAwaiter.ThrowForNonSuccess(Task task)
+   at System.Runtime.CompilerServices.TaskAwaiter.HandleNonSuccessAndDebuggerNotification(Task task)
+   at System.Data.Entity.Utilities.TaskExtensions.CultureAwaiter`1.GetResult()
+   at System.Data.Entity.Core.Objects.ObjectQuery`1.<GetResultsAsync>d__e.MoveNext()
+--- End of stack trace from previous location where exception was thrown ---
+   at System.Runtime.CompilerServices.TaskAwaiter.ThrowForNonSuccess(Task task)
+   at System.Runtime.CompilerServices.TaskAwaiter.HandleNonSuccessAndDebuggerNotification(Task task)
+   at System.Data.Entity.Utilities.TaskExtensions.CultureAwaiter`1.GetResult()
+   at System.Data.Entity.Internal.LazyAsyncEnumerator`1.<FirstMoveNextAsync>d__0.MoveNext()
+--- End of stack trace from previous location where exception was thrown ---
+   at System.Runtime.CompilerServices.TaskAwaiter.ThrowForNonSuccess(Task task)
+   at System.Runtime.CompilerServices.TaskAwaiter.HandleNonSuccessAndDebuggerNotification(Task task)
+   at System.Data.Entity.Infrastructure.IDbAsyncEnumerableExtensions.<ForEachAsync>d__5`1.MoveNext()
+--- End of stack trace from previous location where exception was thrown ---
+   at System.Runtime.CompilerServices.TaskAwaiter.ThrowForNonSuccess(Task task)
+   at System.Runtime.CompilerServices.TaskAwaiter.HandleNonSuccessAndDebuggerNotification(Task task)
+   at System.Runtime.CompilerServices.TaskAwaiter`1.GetResult()
+   at AMS.Controllers.AccountStateController.<Index>d__2.MoveNext() in D:\CODE\WEB\Weelo-Admin\AMS\Controllers\AccountStateController.cs:line 22
+
+Data: ""
+*****ERROR*****
+Time: 2017-11-06 11:26:20,943 
+Thread: 98 
+Identity: admin@weelo.com.eg
+Message: An error occurred while updating the entries. See the inner exception for details.
+StackTrace: System.Data.Entity.Infrastructure.DbUpdateException: An error occurred while updating the entries. See the inner exception for details. ---> System.Data.Entity.Core.UpdateException: An error occurred while updating the entries. See the inner exception for details. ---> MySql.Data.MySqlClient.MySqlException: Cannot delete or update a parent row: a foreign key constraint fails (`weelo-local`.`employeerole`, CONSTRAINT `emp_em_ID` FOREIGN KEY (`EmpId`) REFERENCES `Employee` (`Id`) ON DELETE NO ACTION ON UPDATE NO ACTION)
+   at MySql.Data.MySqlClient.MySqlStream.ReadPacket()
+   at MySql.Data.MySqlClient.NativeDriver.GetResult(Int32& affectedRow, Int64& insertedId)
+   at MySql.Data.MySqlClient.Driver.GetResult(Int32 statementId, Int32& affectedRows, Int64& insertedId)
+   at MySql.Data.MySqlClient.Driver.NextResult(Int32 statementId, Boolean force)
+   at MySql.Data.MySqlClient.MySqlDataReader.NextResult()
+   at MySql.Data.MySqlClient.MySqlCommand.ExecuteReader(CommandBehavior behavior)
+   at MySql.Data.MySqlClient.MySqlCommand.ExecuteNonQuery()
+   at MySql.Data.Entity.EFMySqlCommand.ExecuteNonQuery()
+   at System.Data.Common.DbCommand.ExecuteNonQueryAsync(CancellationToken cancellationToken)
+--- End of stack trace from previous location where exception was thrown ---
+   at System.Runtime.CompilerServices.TaskAwaiter.ThrowForNonSuccess(Task task)
+   at System.Runtime.CompilerServices.TaskAwaiter.HandleNonSuccessAndDebuggerNotification(Task task)
+   at System.Data.Entity.Utilities.TaskExtensions.CultureAwaiter`1.GetResult()
+   at System.Data.Entity.Core.Mapping.Update.Internal.DynamicUpdateCommand.<ExecuteAsync>d__0.MoveNext()
+--- End of stack trace from previous location where exception was thrown ---
+   at System.Runtime.CompilerServices.TaskAwaiter.ThrowForNonSuccess(Task task)
+   at System.Runtime.CompilerServices.TaskAwaiter.HandleNonSuccessAndDebuggerNotification(Task task)
+   at System.Data.Entity.Core.Mapping.Update.Internal.UpdateTranslator.<UpdateAsync>d__0.MoveNext()
+   --- End of inner exception stack trace ---
+   at System.Data.Entity.Core.Mapping.Update.Internal.UpdateTranslator.<UpdateAsync>d__0.MoveNext()
+--- End of stack trace from previous location where exception was thrown ---
+   at System.Runtime.CompilerServices.TaskAwaiter.ThrowForNonSuccess(Task task)
+   at System.Runtime.CompilerServices.TaskAwaiter.HandleNonSuccessAndDebuggerNotification(Task task)
+   at System.Data.Entity.Core.Objects.ObjectContext.<ExecuteInTransactionAsync>d__3d`1.MoveNext()
+--- End of stack trace from previous location where exception was thrown ---
+   at System.Runtime.CompilerServices.TaskAwaiter.ThrowForNonSuccess(Task task)
+   at System.Runtime.CompilerServices.TaskAwaiter.HandleNonSuccessAndDebuggerNotification(Task task)
+   at System.Data.Entity.Core.Objects.ObjectContext.<SaveChangesToStoreAsync>d__39.MoveNext()
+--- End of stack trace from previous location where exception was thrown ---
+   at System.Runtime.CompilerServices.TaskAwaiter.ThrowForNonSuccess(Task task)
+   at System.Runtime.CompilerServices.TaskAwaiter.HandleNonSuccessAndDebuggerNotification(Task task)
+   at System.Data.Entity.Core.Objects.ObjectContext.<SaveChangesInternalAsync>d__31.MoveNext()
+   --- End of inner exception stack trace ---
+   at System.Runtime.CompilerServices.TaskAwaiter.ThrowForNonSuccess(Task task)
+   at System.Runtime.CompilerServices.TaskAwaiter.HandleNonSuccessAndDebuggerNotification(Task task)
+   at System.Runtime.CompilerServices.TaskAwaiter`1.GetResult()
+   at AMS.Controllers.EmployeeController.<DeleteConfirmed>d__10.MoveNext() in D:\CODE\WEB\Weelo-Admin\AMS\Controllers\EmployeeController.cs:line 182
+
+Data: {"Message":"Cannot Delete Employee","id":4}
+*****ERROR*****
+Time: 2017-11-06 11:26:26,500 
+Thread: 99 
+Identity: admin@weelo.com.eg
+Message: An error occurred while updating the entries. See the inner exception for details.
+StackTrace: System.Data.Entity.Infrastructure.DbUpdateException: An error occurred while updating the entries. See the inner exception for details. ---> System.Data.Entity.Core.UpdateException: An error occurred while updating the entries. See the inner exception for details. ---> MySql.Data.MySqlClient.MySqlException: Cannot delete or update a parent row: a foreign key constraint fails (`weelo-local`.`employeerole`, CONSTRAINT `emp_em_ID` FOREIGN KEY (`EmpId`) REFERENCES `Employee` (`Id`) ON DELETE NO ACTION ON UPDATE NO ACTION)
+   at MySql.Data.MySqlClient.MySqlStream.ReadPacket()
+   at MySql.Data.MySqlClient.NativeDriver.GetResult(Int32& affectedRow, Int64& insertedId)
+   at MySql.Data.MySqlClient.Driver.GetResult(Int32 statementId, Int32& affectedRows, Int64& insertedId)
+   at MySql.Data.MySqlClient.Driver.NextResult(Int32 statementId, Boolean force)
+   at MySql.Data.MySqlClient.MySqlDataReader.NextResult()
+   at MySql.Data.MySqlClient.MySqlCommand.ExecuteReader(CommandBehavior behavior)
+   at MySql.Data.MySqlClient.MySqlCommand.ExecuteNonQuery()
+   at MySql.Data.Entity.EFMySqlCommand.ExecuteNonQuery()
+   at System.Data.Common.DbCommand.ExecuteNonQueryAsync(CancellationToken cancellationToken)
+--- End of stack trace from previous location where exception was thrown ---
+   at System.Runtime.CompilerServices.TaskAwaiter.ThrowForNonSuccess(Task task)
+   at System.Runtime.CompilerServices.TaskAwaiter.HandleNonSuccessAndDebuggerNotification(Task task)
+   at System.Data.Entity.Utilities.TaskExtensions.CultureAwaiter`1.GetResult()
+   at System.Data.Entity.Core.Mapping.Update.Internal.DynamicUpdateCommand.<ExecuteAsync>d__0.MoveNext()
+--- End of stack trace from previous location where exception was thrown ---
+   at System.Runtime.CompilerServices.TaskAwaiter.ThrowForNonSuccess(Task task)
+   at System.Runtime.CompilerServices.TaskAwaiter.HandleNonSuccessAndDebuggerNotification(Task task)
+   at System.Data.Entity.Core.Mapping.Update.Internal.UpdateTranslator.<UpdateAsync>d__0.MoveNext()
+   --- End of inner exception stack trace ---
+   at System.Data.Entity.Core.Mapping.Update.Internal.UpdateTranslator.<UpdateAsync>d__0.MoveNext()
+--- End of stack trace from previous location where exception was thrown ---
+   at System.Runtime.CompilerServices.TaskAwaiter.ThrowForNonSuccess(Task task)
+   at System.Runtime.CompilerServices.TaskAwaiter.HandleNonSuccessAndDebuggerNotification(Task task)
+   at System.Data.Entity.Core.Objects.ObjectContext.<ExecuteInTransactionAsync>d__3d`1.MoveNext()
+--- End of stack trace from previous location where exception was thrown ---
+   at System.Runtime.CompilerServices.TaskAwaiter.ThrowForNonSuccess(Task task)
+   at System.Runtime.CompilerServices.TaskAwaiter.HandleNonSuccessAndDebuggerNotification(Task task)
+   at System.Data.Entity.Core.Objects.ObjectContext.<SaveChangesToStoreAsync>d__39.MoveNext()
+--- End of stack trace from previous location where exception was thrown ---
+   at System.Runtime.CompilerServices.TaskAwaiter.ThrowForNonSuccess(Task task)
+   at System.Runtime.CompilerServices.TaskAwaiter.HandleNonSuccessAndDebuggerNotification(Task task)
+   at System.Data.Entity.Core.Objects.ObjectContext.<SaveChangesInternalAsync>d__31.MoveNext()
+   --- End of inner exception stack trace ---
+   at System.Runtime.CompilerServices.TaskAwaiter.ThrowForNonSuccess(Task task)
+   at System.Runtime.CompilerServices.TaskAwaiter.HandleNonSuccessAndDebuggerNotification(Task task)
+   at System.Runtime.CompilerServices.TaskAwaiter`1.GetResult()
+   at AMS.Controllers.EmployeeController.<DeleteConfirmed>d__10.MoveNext() in D:\CODE\WEB\Weelo-Admin\AMS\Controllers\EmployeeController.cs:line 182
+
+Data: {"Message":"Cannot Delete Employee","id":26}
+*****ERROR*****
+Time: 2017-11-06 14:43:54,189 
+Thread: 54 
+Identity: admin@weelo.com.eg
+Message: An error occurred while updating the entries. See the inner exception for details.
+StackTrace: System.Data.Entity.Infrastructure.DbUpdateException: An error occurred while updating the entries. See the inner exception for details. ---> System.Data.Entity.Core.UpdateException: An error occurred while updating the entries. See the inner exception for details. ---> MySql.Data.MySqlClient.MySqlException: Cannot delete or update a parent row: a foreign key constraint fails ("weelo-local"."employeerole", CONSTRAINT "emp_em_ID" FOREIGN KEY ("EmpId") REFERENCES "Employee" ("Id") ON DELETE NO ACTION ON UPDATE NO ACTION)
+   at MySql.Data.MySqlClient.MySqlStream.ReadPacket()
+   at MySql.Data.MySqlClient.NativeDriver.GetResult(Int32& affectedRow, Int64& insertedId)
+   at MySql.Data.MySqlClient.Driver.GetResult(Int32 statementId, Int32& affectedRows, Int64& insertedId)
+   at MySql.Data.MySqlClient.Driver.NextResult(Int32 statementId, Boolean force)
+   at MySql.Data.MySqlClient.MySqlDataReader.NextResult()
+   at MySql.Data.MySqlClient.MySqlCommand.ExecuteReader(CommandBehavior behavior)
+   at MySql.Data.MySqlClient.MySqlCommand.ExecuteNonQuery()
+   at MySql.Data.Entity.EFMySqlCommand.ExecuteNonQuery()
+   at System.Data.Common.DbCommand.ExecuteNonQueryAsync(CancellationToken cancellationToken)
+--- End of stack trace from previous location where exception was thrown ---
+   at System.Runtime.CompilerServices.TaskAwaiter.ThrowForNonSuccess(Task task)
+   at System.Runtime.CompilerServices.TaskAwaiter.HandleNonSuccessAndDebuggerNotification(Task task)
+   at System.Data.Entity.Utilities.TaskExtensions.CultureAwaiter`1.GetResult()
+   at System.Data.Entity.Core.Mapping.Update.Internal.DynamicUpdateCommand.<ExecuteAsync>d__0.MoveNext()
+--- End of stack trace from previous location where exception was thrown ---
+   at System.Runtime.CompilerServices.TaskAwaiter.ThrowForNonSuccess(Task task)
+   at System.Runtime.CompilerServices.TaskAwaiter.HandleNonSuccessAndDebuggerNotification(Task task)
+   at System.Data.Entity.Core.Mapping.Update.Internal.UpdateTranslator.<UpdateAsync>d__0.MoveNext()
+   --- End of inner exception stack trace ---
+   at System.Data.Entity.Core.Mapping.Update.Internal.UpdateTranslator.<UpdateAsync>d__0.MoveNext()
+--- End of stack trace from previous location where exception was thrown ---
+   at System.Runtime.CompilerServices.TaskAwaiter.ThrowForNonSuccess(Task task)
+   at System.Runtime.CompilerServices.TaskAwaiter.HandleNonSuccessAndDebuggerNotification(Task task)
+   at System.Data.Entity.Core.Objects.ObjectContext.<ExecuteInTransactionAsync>d__3d`1.MoveNext()
+--- End of stack trace from previous location where exception was thrown ---
+   at System.Runtime.CompilerServices.TaskAwaiter.ThrowForNonSuccess(Task task)
+   at System.Runtime.CompilerServices.TaskAwaiter.HandleNonSuccessAndDebuggerNotification(Task task)
+   at System.Data.Entity.Core.Objects.ObjectContext.<SaveChangesToStoreAsync>d__39.MoveNext()
+--- End of stack trace from previous location where exception was thrown ---
+   at System.Runtime.CompilerServices.TaskAwaiter.ThrowForNonSuccess(Task task)
+   at System.Runtime.CompilerServices.TaskAwaiter.HandleNonSuccessAndDebuggerNotification(Task task)
+   at System.Data.Entity.Core.Objects.ObjectContext.<SaveChangesInternalAsync>d__31.MoveNext()
+   --- End of inner exception stack trace ---
+   at System.Runtime.CompilerServices.TaskAwaiter.ThrowForNonSuccess(Task task)
+   at System.Runtime.CompilerServices.TaskAwaiter.HandleNonSuccessAndDebuggerNotification(Task task)
+   at System.Runtime.CompilerServices.TaskAwaiter`1.GetResult()
+   at AMS.Controllers.EmployeeController.<DeleteConfirmed>d__10.MoveNext() in D:\CODE\WEB\Weelo-Admin\AMS\Controllers\EmployeeController.cs:line 182
+
+Data: {"Message":"Cannot Delete Employee","id":27}
+*****ERROR*****
+Time: 2017-11-06 15:30:27,632 
+Thread: 88 
+Identity: 
+Message: eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJyb2xlIjoiQWRtaW4iLCJ1bmlxdWVfbmFtZSI6ImFkbWluQHdlZWxvLmNvbS5lZyIsInN1YiI6ImFkbWluQHdlZWxvLmNvbS5lZyIsImlzcyI6Imh0dHA6Ly8xOTIuMTY4LjEuMTAwIiwiYXVkIjoiYXVkaWVuY2UiLCJleHAiOjE1NDE1MTEwMjcsIm5iZiI6MTUwOTk3NTAyN30.UN0-ROhse_hQ-10YEySDdqhi2gmYnzEx7AfrjZtmTHs
+StackTrace: 
+Data: "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJyb2xlIjoiQWRtaW4iLCJ1bmlxdWVfbmFtZSI6ImFkbWluQHdlZWxvLmNvbS5lZyIsInN1YiI6ImFkbWluQHdlZWxvLmNvbS5lZyIsImlzcyI6Imh0dHA6Ly8xOTIuMTY4LjEuMTAwIiwiYXVkIjoiYXVkaWVuY2UiLCJleHAiOjE1NDE1MTEwMjcsIm5iZiI6MTUwOTk3NTAyN30.UN0-ROhse_hQ-10YEySDdqhi2gmYnzEx7AfrjZtmTHs"
+*****ERROR*****
+Time: 2017-11-06 15:30:27,649 
+Thread: 88 
+Identity: 
+Message: C7752236C962F9391497B3303240F15182B7E1E576DBC365071DDFC355796907586822AA7E8155BD9519278D9BCDAE22A8ABC63E9A4DAEFE7C741851EA639B2D7B7C615222ADD484E5E5683C90B1E2DF67D66D59C116C5D8CD9857BDD9002B5573C79A3C2518F6AD846647C58F09097B58CA24C594EB8CCF0635D89895F3E7DA31F028EEE33743D105C1122828B0FF90C6FD8B0306A026428C3ECD2566D1C54D7D4B698270A816DCF661378A5DCF1AC21CBFC12DC659BA66BE12284D0F71FA8CB480D6F40309283685BDB5C5B568912D5A6454B8BB786E651B5F9A866B42BC137BD5999489C4A36660C515F2EE89AB5198AFBC5E080AF7E38012FC972F479D465C30CB625C690479172262A0A8019349E75E25ED8CF8B0EAF637E9058A44A6C87DD2F21B6C9DC1AFBFFBA133B8E873E628FCB85173D3FFAB8D0ECFC7940ECB43CED3467A10C273267DE1FC0CB03503D33D20281F0FEE306B558B9EB91F4D0892435DE448594A7FA0F16B460BD62080BE5433C14ADD1429CE71B4F7C298CB11C8E6B4BC989893F65B780078DE37778E6AB1219BA13CA891B5E2C2B4B22F1EE5C1F749A05CBF71F45C41F75577C5202F41B177029777A2DFA8EC4BE422DA5496A9FB4252C330EB6A746330B3AF49086FF8EE6DEFED2B1BD86196F09C2FBE6F6A19339349D0FFD545B1F77F405E99C5564250D37701D7058BAEA4A5ED382A385E1318944B74324EE6D1DF0E038AD2D5C249DE32A19316F58D482BF2207BAFC4E689
+StackTrace: 
+Data: "C7752236C962F9391497B3303240F15182B7E1E576DBC365071DDFC355796907586822AA7E8155BD9519278D9BCDAE22A8ABC63E9A4DAEFE7C741851EA639B2D7B7C615222ADD484E5E5683C90B1E2DF67D66D59C116C5D8CD9857BDD9002B5573C79A3C2518F6AD846647C58F09097B58CA24C594EB8CCF0635D89895F3E7DA31F028EEE33743D105C1122828B0FF90C6FD8B0306A026428C3ECD2566D1C54D7D4B698270A816DCF661378A5DCF1AC21CBFC12DC659BA66BE12284D0F71FA8CB480D6F40309283685BDB5C5B568912D5A6454B8BB786E651B5F9A866B42BC137BD5999489C4A36660C515F2EE89AB5198AFBC5E080AF7E38012FC972F479D465C30CB625C690479172262A0A8019349E75E25ED8CF8B0EAF637E9058A44A6C87DD2F21B6C9DC1AFBFFBA133B8E873E628FCB85173D3FFAB8D0ECFC7940ECB43CED3467A10C273267DE1FC0CB03503D33D20281F0FEE306B558B9EB91F4D0892435DE448594A7FA0F16B460BD62080BE5433C14ADD1429CE71B4F7C298CB11C8E6B4BC989893F65B780078DE37778E6AB1219BA13CA891B5E2C2B4B22F1EE5C1F749A05CBF71F45C41F75577C5202F41B177029777A2DFA8EC4BE422DA5496A9FB4252C330EB6A746330B3AF49086FF8EE6DEFED2B1BD86196F09C2FBE6F6A19339349D0FFD545B1F77F405E99C5564250D37701D7058BAEA4A5ED382A385E1318944B74324EE6D1DF0E038AD2D5C249DE32A19316F58D482BF2207BAFC4E689"
+*****ERROR*****
+Time: 2017-11-06 17:01:12,127 
+Thread: 57 
+Identity: admin@weelo.com.eg
+Message: eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJyb2xlIjoiQWRtaW4iLCJ1bmlxdWVfbmFtZSI6ImFkbWluQHdlZWxvLmNvbS5lZyIsInN1YiI6ImFkbWluQHdlZWxvLmNvbS5lZyIsImlzcyI6Imh0dHA6Ly8xOTIuMTY4LjEuMTAwIiwiYXVkIjoiYXVkaWVuY2UiLCJleHAiOjE1NDE1MTY0NzEsIm5iZiI6MTUwOTk4MDQ3MX0.Edt5-efwt63b9BJbhDG5rkOdabPXtc4khakBA9_cS5c
+StackTrace: 
+Data: "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJyb2xlIjoiQWRtaW4iLCJ1bmlxdWVfbmFtZSI6ImFkbWluQHdlZWxvLmNvbS5lZyIsInN1YiI6ImFkbWluQHdlZWxvLmNvbS5lZyIsImlzcyI6Imh0dHA6Ly8xOTIuMTY4LjEuMTAwIiwiYXVkIjoiYXVkaWVuY2UiLCJleHAiOjE1NDE1MTY0NzEsIm5iZiI6MTUwOTk4MDQ3MX0.Edt5-efwt63b9BJbhDG5rkOdabPXtc4khakBA9_cS5c"
+*****ERROR*****
+Time: 2017-11-06 17:01:12,129 
+Thread: 57 
+Identity: admin@weelo.com.eg
+Message: 4D27062B7216D03125E66C6C6646B3FC119140AB310B5D6715E4FF11861B9D07D18EC16902F80C0535164502E40933E955573AEC8CBE480CB5662A16C197FEB371EE2C7EBAA6E6460D24F3D5C71120269A66F57DCB624CDC87DC82C9FE4A4C9439C0B58B99F4CEB59956A49CEE8727186D0DC38A6B82337BD744B67639AE2969D0764490D5C57994A13BFF259A299F5DCBD4EA8B6340FC3E6B69E762955109F20BC860EB1BD2B4EEC2844CC7468BEA6CCAD765E0283BB0E762EA7E12F98ADF49B45092B34CBB6A3960F4DE83971AA7608981C20C7CEFC4AC47AE00209B1834FC587BC6A06CA5DA37DC8AFFAEDC53255DB6F766636FB7B1113DED7464BFC7219E124827BDB6DE7933FC7594A96F9BEECD7A09DD0BC879AEEB016140A12452312E27A8E845E11EAD701DE5CAAEBE9994F0309F8A144D87DE2FB77E1CA9182BE0DD551184A0C81A2F62CEDE75D3A124A3770436E68CCC243EBCE3A795484B73042B4B1964A9473CDEADB5432ADFBB28D4195A3FF2A92BBEAEF1949297B2F307955DF878DAFF08184F0283205AE9190362CA60489E4238AFBAEC56B5010C8AAB441FF2340563D550D0A858475E1E1D7A2CE34D19F71CDD88CB3F119DE05EB03E4AA72027E8365C144D4302D55F5C3E48C6740FCDE3029E11366F312D8C66AFA8EF4B7F8D2EA348E627A45C10805179B827B3C49ADEF6C315E55C7242667331AF0ADFB15231B389437CD777B4ACE2F0DD434B7682C4187EA0DD8ED1B97ED5057950F3
+StackTrace: 
+Data: "4D27062B7216D03125E66C6C6646B3FC119140AB310B5D6715E4FF11861B9D07D18EC16902F80C0535164502E40933E955573AEC8CBE480CB5662A16C197FEB371EE2C7EBAA6E6460D24F3D5C71120269A66F57DCB624CDC87DC82C9FE4A4C9439C0B58B99F4CEB59956A49CEE8727186D0DC38A6B82337BD744B67639AE2969D0764490D5C57994A13BFF259A299F5DCBD4EA8B6340FC3E6B69E762955109F20BC860EB1BD2B4EEC2844CC7468BEA6CCAD765E0283BB0E762EA7E12F98ADF49B45092B34CBB6A3960F4DE83971AA7608981C20C7CEFC4AC47AE00209B1834FC587BC6A06CA5DA37DC8AFFAEDC53255DB6F766636FB7B1113DED7464BFC7219E124827BDB6DE7933FC7594A96F9BEECD7A09DD0BC879AEEB016140A12452312E27A8E845E11EAD701DE5CAAEBE9994F0309F8A144D87DE2FB77E1CA9182BE0DD551184A0C81A2F62CEDE75D3A124A3770436E68CCC243EBCE3A795484B73042B4B1964A9473CDEADB5432ADFBB28D4195A3FF2A92BBEAEF1949297B2F307955DF878DAFF08184F0283205AE9190362CA60489E4238AFBAEC56B5010C8AAB441FF2340563D550D0A858475E1E1D7A2CE34D19F71CDD88CB3F119DE05EB03E4AA72027E8365C144D4302D55F5C3E48C6740FCDE3029E11366F312D8C66AFA8EF4B7F8D2EA348E627A45C10805179B827B3C49ADEF6C315E55C7242667331AF0ADFB15231B389437CD777B4ACE2F0DD434B7682C4187EA0DD8ED1B97ED5057950F3"

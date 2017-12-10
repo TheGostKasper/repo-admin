@@ -1,0 +1,800 @@
+﻿
+@{
+    ViewBag.Title = "Items";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<style>
+    /*.sidebar:not(.toggled) {
+        opacity: 0;
+        transform: translate3d(-100%,0,0);
+    }
+
+    .content:not(.content--boxed):not(.content--full) {
+        padding: 76px 0px 0px 0px;
+    }*/
+    .select2 {
+        width: 100% !important;
+    }
+
+    .text-left {
+        padding: 6px;
+    }
+
+    .status {
+        color: white;
+        border-radius: 3px;
+        padding: 2px;
+        font-size: smaller;
+    }
+
+    .Active {
+        background: #298613;
+    }
+
+    .Pending {
+        background: #ff6a00;
+    }
+
+    .Suspended {
+        background: #000000;
+    }
+
+    .Deleted {
+        background: #ff0000;
+    }
+</style>
+
+
+<header class="m-header">
+    <h2 class="m-title"></h2>
+</header>
+<div class="row todo" style="margin: 0;">
+    <div class="col-md-4 col-sm-6">
+        <div class="card">
+            <div class="card-block">
+                @Html.Partial("_Loader")
+                <div>
+                    <div class="text-left merchant-menu-select">
+                        <select class="select merchants-list-select form-control"></select>
+                    </div>
+                    <div class="text-left Item-menu-select">
+                        <select class="select Item-sub-cat-select form-control"></select>
+                    </div>
+                </div>
+                <div id="plist">
+                    <table class="table table-responsive" id="ptable">
+                        <thead>
+                            <tr>
+                                <th>EN</th>
+                                <th>AR</th>
+                                <th>Size</th>
+                                <th>Status</th>
+                                <th>Img</th>
+                            </tr>
+                        </thead>
+                        <tbody></tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-8 col-sm-6">
+        <div class="card card-block">
+            <div class="row">
+                <div class="col-md-9 col-sm-7 ">
+                    <label><span class="glyphicon glyphicon-barcode"></span> Barcode</label>
+                    <div style="position:relative">
+                        @*<img src="~/Content/loader.gif" class="b-input-loader" />*@
+                        <input id="new_barcode" type="text" name="new_Barcode" class="form-control text-center" value="" />
+                        <span id="resultcount"></span>
+                    </div>
+                    <br />
+                </div>
+                <div class="col-md-3 col-sm-5">
+                    <div class="profile">
+                        <div class="profile__img">
+                            <img id="image_view" src="~/Content/images/placeholder.gif" alt="" style="width:100%;">
+                            <form id="upload" method="post" enctype="multipart/form-data">
+                                <label for="f_upload">
+                                    <span class="zmdi zmdi-camera profile__img__edit ctv" style="cursor:pointer;"></span>
+                                </label>
+                                <label style="display: none">
+                                    <input id="f_upload" type="file" class="btn btn-secondary" name="file_upload[]" multiple="multiple" />
+                                    <input type="submit" id="submit" class="btn btn-default btn-sm file-upload" value="Upload" style="visibility:hidden" />
+                                </label>
+                            </form>
+                            <div class="img-u-loader" style="display:none;"><img src="~/Content/loader.gif" style="position: absolute;top: 38%;left: 39%;height: 35px;border-radius: 50%;" /></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-sm-6 col-md-6">
+                    <div class="form-group">
+                        <label>Choose Category</label>
+                        <select class="select merchant-cat-select form-control"></select>
+                        <i class="form-group__bar"></i>
+                    </div>
+                </div>
+                <div class="col-sm-6 col-md-6">
+                    <div class="form-group">
+                        <label>Choose SubCategory</label>
+                        <select class="select merchant-sub-cat-select form-control"></select>
+                        <i class="form-group__bar"></i>
+                    </div>
+                </div>
+                <div class="col-sm-6 col-md-6">
+                    <div class="form-group">
+                        <label>Product Name (English)</label>
+                        <input id="new_nameEN" type="text" name="new_nameEN" class="form-control" value="" />
+                        <i class="form-group__bar"></i>
+                    </div>
+                </div>
+                <div class="col-sm-6 col-md-6">
+                    <div class="form-group">
+                        <label>Product Name (Arabic)</label>
+                        <input id="new_nameAR" type="text" name="new_nameAR" class="form-control" value="" />
+                        <i class="form-group__bar"></i>
+                    </div>
+                </div>
+                <div class="col-sm-6 col-md-6">
+                    <div class="form-group">
+                        <label>Volume</label>
+                        <input id="new_volume" type="text" name="new_volume" class="form-control" value="" />
+                        <i class="form-group__bar"></i>
+                    </div>
+                </div>
+                <div class="col-sm-6 col-md-6">
+                    <div class="form-group">
+                        <label>Unit</label>
+                        <select class="product-unit-select form-control"></select>
+                        <i class="form-group__bar"></i>
+                    </div>
+                </div>
+                <div class="col-sm-6 col-md-6">
+                    <div class="form-group">
+                        <label>Type</label>
+                        <select class="product-type-select form-control"></select>
+                        <i class="form-group__bar"></i>
+                    </div>
+                </div>
+                <div class="col-sm-6 col-md-6">
+                    <div class="form-group">
+                        <label>Packaging</label>
+                        <select class="product-packaging-select form-control"></select>
+                        <i class="form-group__bar"></i>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-sm-3">
+                    <div class="form-group">
+                        <input type="checkbox" class="filled-in" id="Pending" value="2" />
+                        <label for="Pending">Pending</label>
+                        <i class="form-group__bar"></i>
+                    </div>
+                </div>
+                <div class="col-sm-3">
+                    <div class="form-group">
+                        <input type="checkbox" class="filled-in" id="Active" value="1" />
+                        <label for="Active">Active</label>
+                        <i class="form-group__bar"></i>
+                    </div>
+                </div>
+                <div class="col-sm-3">
+                    <div class="form-group">
+                        <input type="checkbox" class="filled-in" id="Suspended" value="3" />
+                        <label for="Suspended">Suspended</label>
+                        <i class="form-group__bar"></i>
+                    </div>
+                </div>
+                <div class="col-sm-3">
+                    <div class="form-group">
+                        <input type="checkbox" class="filled-in" id="Deleted" value="4" />
+                        <label for="Deleted">Deleted</label>
+                        <i class="form-group__bar"></i>
+                    </div>
+                </div>
+            </div>
+            <center>
+                <button class="btn btn-primary" id="btnSave">Update</button>
+            </center>
+        </div>
+    </div>
+</div>
+<div class="overlay">
+    <div class="wrapper"></div>
+    <div class="table">
+        <div class="cell">
+            <div class="msg"><img src="~/content/loader.gif" /> Loading... Please wait</div>
+        </div>
+    </div>
+</div>
+<script>
+    window.onload = function () {
+        /** Start:: Barcode Detection **/
+        var keyupFiredCount = 0;
+        function DelayExecution(f, delay) {
+            var timer = null;
+            return function () {
+                var context = this, args = arguments;
+
+                clearTimeout(timer);
+                timer = window.setTimeout(function () {
+                    f.apply(context, args);
+                },
+                delay || 300);
+            };
+        }
+        $.fn.ConvertToBarcodeTextbox = function () {
+            $(this).keydown(function (event) {
+                var keycode = (event.keyCode ? event.keyCode : event.which);
+
+                if ($(this).val() == '') {
+                    keyupFiredCount = 0;
+                }
+                if (keycode == 13) {//enter key
+                    $("#new_barcode").blur();
+                    return false;
+                    event.stopPropagation();
+                }
+            });
+
+            $(this).keyup(DelayExecution(function (event) {
+                var keycode = (event.keyCode ? event.keyCode : event.which);
+                keyupFiredCount = keyupFiredCount + 1;
+            }));
+
+            $(this).blur(function (event) {
+                if ($(this).val() == '')
+                    return false;
+
+                if (keyupFiredCount <= 1) {
+                    $("#new_barcode-msg").html("<span style='color:green'>Its Scanner!</span>");
+                }
+                else {
+                    $("#new_barcode-msg").html("<span style='color:red'>Its Manually Typed!</span>");
+                }
+
+                keyupFiredCount = 0;
+            });
+        };
+        try {
+            $("#new_barcode").ConvertToBarcodeTextbox();
+            if ($("#new_barcode").val() == '') {
+                $("#new_barcode").focus();
+            }
+            else {
+                $("#new_barcode").blur();
+            }
+        } catch (e) { }
+        /** End:: Barcode Detection **/
+    };
+</script>
+
+@section scripts{
+
+    <script>
+        (function () {
+            var currObj = null, g_pList;
+            var globProductsList = [];
+            var unitList = [];
+            var typeList = [];
+            var categoryList = [];
+            var subCatList = [], merchSubCatList = [], packagingList=[];
+            var itemSubCatList = [], merchantsList = [], selectedMerchant = 0;
+            var currIndex = 0;
+            var statusObj = ["Active", "Pending", "Suspended", "Deleted"];
+            var apiURL = WeeloApi;
+            $('#new_bgd').removeClass('imageLoader');
+            $('#new_savebtn').hide();
+            $('#btnSave').on('click', function () {
+                submitChanges(currObj);
+            });
+
+            ajaxCall(apiURL + "product/units", "GET").done(function (response) {
+                $.each(response.data, function (index, item) {
+                    unitList.push({ id: item.id, text: item.description, desc: item.name });
+                });
+            });
+            ajaxCall(apiURL + "category/list", "GET").done(function (response) {
+                $.each(response.data, function (index, item) {
+                    categoryList.push({ id: item.id, text: item.nameEN });
+                });
+            });
+            ajaxCall(apiURL + "subcategory/list", "GET").done(function (response) {
+                itemSubCatList.push({ id: 0, text: '-- Select Subcategory --' });
+                $.each(response.data, function (index, item) {
+                    subCatList.push({ id: item.id, text: item.nameEN, categoryId: item.categoryId });
+                    itemSubCatList.push({ id: item.id, text: item.nameEN, categoryId: item.categoryId });
+                });
+                $('.Item-sub-cat-select').select2({
+                    data: itemSubCatList.sort(function (a, b) {
+                        if (a.text < b.text) return -1;
+                        if (a.text > b.text) return 1;
+                        return 0;
+                    })
+                });
+            });
+            ajaxCall(apiURL + "product/list", "GET").done(function (response) {
+                globProductsList = response.data;
+                if (!globProductsList) { $('#new_imageLoader').attr('disabled', 'disabled'); $('#btnNext').attr('disabled', 'disabled'); $('#btnPrevious').attr('disabled', 'disabled') }
+            });
+            ajaxCall(apiURL + "merchant/list", "GET").done(function (response) {
+                merchantsList.push({ id: 0, text: '-- Select Merchant --' });
+                $.each(response.data, function (index, item) {
+                    merchantsList.push({ id: item.id, text: item.nameEN });
+                });
+                $('.merchants-list-select').select2({
+                    data: merchantsList.sort(function (a, b) {
+                        if (a.text < b.text) return -1;
+                        if (a.text > b.text) return 1;
+                        return 0;
+                    })
+                });
+
+            });
+
+            ajaxCall(apiURL + "product/types", "GET").done(function (response) {
+                typeList.push({ id: 0, text: '-- Select Typ --' });
+                $.each(response.data, function (index, item) {
+                    typeList.push({ id: item.id, text: item.name, desc: item.description });
+                });
+            });
+
+
+            ajaxCall(apiURL + "product/packaging", "GET").done(function (response) {
+                packagingList.push({ id: 0, text: '-- Select Packaging --' });
+                $.each(response.data, function (index, item) {
+                    packagingList.push({ id: item.id, text: item.name, desc: item.description });
+                });
+            });
+
+
+            function getGlobalItem(id) {
+                return $.grep(globProductsList, function (e) { return e.id == id; });
+            }
+            function UpdateProduct(item) {
+                if (item) {
+                    clearForm();
+                    currObj = item;
+                    getCurrObjCateId(item);
+                    var cSubCatList = $.grep(subCatList, function (e) { return e.categoryId == currObj.categoryId; });
+                    var unitId = parseInt(currObj.unit);
+                    if (isNaN(currObj.unit)) {
+                        unitId = $.grep(unitList, function (e) { return e.desc == currObj.unit })[0].id;
+                    }
+                    $('.product-unit-select').select2({
+                        data: unitList.sort(function (a, b) {
+                            if (a.text < b.text) return -1;
+                            if (a.text > b.text) return 1;
+                            return 0;
+                        })
+                    }).val(parseInt(unitId)).trigger('change.select2');
+                    $('.merchant-cat-select').select2({
+                        data: categoryList.sort(function (a, b) {
+                            if (a.text < b.text) return -1;
+                            if (a.text > b.text) return 1;
+                            return 0;
+                        })
+                    }).val(parseInt(currObj.categoryId)).trigger('change.select2');
+                    $('.merchant-sub-cat-select').select2({
+                        data: cSubCatList.sort(function (a, b) {
+                            if (a.text < b.text) return -1;
+                            if (a.text > b.text) return 1;
+                            return 0;
+                        })
+                    }).val(parseInt(currObj.subCategoryId)).trigger('change.select2');
+                    $('.product-packaging-select').select2({
+                        data: packagingList.sort(function (a, b) {
+                            if (a.text < b.text) return -1;
+                            if (a.text > b.text) return 1;
+                            return 0;
+                        })
+                    }).val(parseInt(currObj.packagingId)).trigger('change.select2');
+                    $('.product-type-select').select2({
+                        data: typeList.sort(function (a, b) {
+                            if (a.text < b.text) return -1;
+                            if (a.text > b.text) return 1;
+                            return 0;
+                        })
+                    }).val(parseInt(currObj.typeId)).trigger('change.select2');
+                    
+
+                    $(":checkbox[value=" + item.status + "]").prop("checked", "true");
+                    $('#new_nameAR').val(item.nameAR);
+                    $('#new_nameEN').val(item.nameEN);
+                    $('#new_volume').val(item.volume);
+                    $('#new_barcode').val(item.barcode);
+
+                    fillImage(item.imageUrl);
+                }
+            }
+            $(':checkbox').on('change', function () {
+                $(':checkbox').not(this).prop('checked', false);
+            });
+            //Submit Changes whithin update Item
+            function submitChanges(itemToSave) {
+                if (itemToSave != null) {
+                    if (confirm("Are you sure to UPDATE this Product information!")) {
+                        var prod = globProductsList.findIndex(e=>e.id == itemToSave.id);
+                        var _imgUrl = ($('#image_view').attr('src')) ? $('#image_view').attr('src') : "";
+                        var data = {
+                            id: itemToSave.id,
+                            nameEN: $('#new_nameEN').val(),
+                            nameAR: $('#new_nameAR').val(),
+                            subCategoryId: $('.merchant-sub-cat-select').val(),
+                            volume: $('#new_volume').val(),
+                            unit: $('.product-unit-select').val(),
+                            imageUrl: _imgUrl.includes("http") ? $('#image_view').attr('src') : "",
+                            barcode: $('#new_barcode').val(),
+                            categoryId: $('.merchant-cat-select').val(),
+                            status: $('input:checked').val(),
+                            typeId: $('.product-type-select').val(),
+                            packagingId: $('.product-packaging-select').val(),
+                        };
+                        //console.log(data.packagingId);
+                        if (validateForm(data)) {
+                            ajaxCall(apiURL + "product/update", "POST", data)
+                              .done(function (response) {
+                                  ListSync(data);
+                                  showMessage('This barcode:' + $('#new_barcode').val() + ' updated successfully!');
+                                  itemToSave = null;
+                                  currObj = null;
+                                  clearForm();
+                              });
+                        }
+                    }
+
+                }
+
+
+            }
+            //  Get Item By barcode When Focusout Barcode Input
+            $('#new_barcode').focusout(function (e) {
+                if ($(this).val() != "") {
+                    if (/^\d+$/.test($(this).val())) {
+                        getProdByBarcode($(this).val());
+                    }
+                    else {
+                        getProdByName($(this).val());
+                    }
+                }
+                else {
+                    // $('#new_barcode').focus();
+                }
+            });
+            function getProdByBarcode(val) {
+                if (val) {
+                    ajaxCall(apiURL + "product/barcode/" + val, "GET")
+                        .done(function (response) {
+                            var data = response.data;
+                            if (data != null) {
+                                currObj = data[0];
+                                UpdateProduct(currObj);
+                            } else {
+                                showMessage("This barcode doesn't exist in our database");
+                                $('#new_barcode').val('').focus();
+                                clearForm();
+                            }
+                        });
+                }
+            }
+            function getProdByName(val) {
+                $('#sidebar-wrapper .wloader').show();
+                if (val) {
+                    ajaxCall(apiURL + "product/search/", "POST", { text: val })
+                        .done(function (response) {
+                            var data = response.data;
+                            FillSideBar(data, true);
+                        });
+                }
+            }
+            function FillSideBar(data, isScroll) {
+                $('#sidebar-wrapper .wloader').hide();
+                if (data != null) {
+                    if (data.length >= 1) {
+                        g_pList = data;
+                        var list;
+                        for (var i = 0; i < data.length; i++) {
+                            var st = statusObj[parseInt(data[i].status) - 1];
+                            var img = (data[i].imageUrl) ? data[i].imageUrl : '/store/content/images/no-image-icon-15.png';
+                            list += '<tr id="' + data[i].id + '">' +
+                                    '<td>' + data[i].nameEN + '</td>' +
+                                    '<td>' + data[i].nameAR + '</td>' +
+                                    '<td>' + data[i].volume + '</td>' +
+                                    '<td><span class="status ' + st + '">' + st + '</span></td>' +
+                                    '<td><img style="height:70px" src="' + img + '"></td>' +
+                                    '</tr>'
+                        }
+                        $('#ptable tbody').empty().append(list);
+                        if (isScroll)
+                            $('#sidebar-wrapper').stop().animate({ scrollTop: 0 }, 500, 'swing');
+
+                        $('#resultcount').text('About ' + data.length + ' results');
+                    } else {
+                        showMessage("This item doesn't exist in our database");
+                        $('#ptable tbody').empty();
+                        $('#new_barcode').val('').focus();
+                    }
+                }
+                else {
+                    showMessage("This item doesn't exist in our database");
+                    $('#ptable tbody').empty();
+                }
+            }
+
+            function getCurrObjCateId(item) {
+                var catObj = subCatList.find(function (e) {
+                    return e.id === parseInt(item.subCategoryId);
+                });
+                currObj.categoryId = catObj.categoryId;
+            }
+            $(document).on('click', '#ptable tbody tr', function () {
+                var id = $(this).attr("id");
+                var result = $.grep(g_pList, function (e) { return e.id == id; });
+                UpdateProduct(result[0]);
+                $('#plist').modal('hide');
+                $("#price").focus();
+            });
+            // Show SubCategory when Category Changes
+            $('.merchant-cat-select').change(function () {
+                var catId = $(this).val();
+                $(".merchant-sub-cat-select").select2({
+                    minimumResultsForSearch: Infinity,
+                    sorter: function (data) {
+                        return data.sort(function (a, b) {
+                            return a.text < b.text ? -1 : a.text > b.text ? 1 : 0;
+                        });
+                    },
+                    ajax: {
+                        url: function () {
+                            return apiURL + "subcategory/list/" + catId;
+                        },
+                        cache: true,
+                        headers: requestHeaders(),
+                        placeholder: "Select Product Sub-Category",
+                        allowClear: true,
+                        processResults: function (response) {
+                            var data = response.data;
+                            var list = [];
+                            for (var i = 0; i < data.length; i++) {
+                                list.push({
+                                    id: data[i].id,
+                                    text: data[i].nameEN
+                                });
+                            }
+                            return {
+
+                                results: list.sort(function (a, b) {
+                                    if (a.text < b.text) return -1;
+                                    if (a.text > b.text) return 1;
+                                    return 0;
+                                })
+                            };
+                        }
+                    }
+                });
+            });
+            $('.merchants-list-select').change(function () {
+                selectedMerchant = $(this).val();
+                $('.Item-sub-cat-select').empty().select2();
+                merchSubCatList = [];
+                ajaxCall(apiURL + "merchant/subcategory/" + selectedMerchant, "GET").done(function (response) {
+                    //console.log(response);
+                    merchSubCatList.push({ id: 0, text: '-- Select Subcategory --' });
+                    $.each(response.data, function (index, item) {
+                        //subCatList.push({ id: item.id, text: item.nameEN, categoryId: item.categoryId });
+                        merchSubCatList.push({ id: item.id, text: item.nameEN, categoryId: item.categoryId });
+                    });
+                    $('.Item-sub-cat-select').select2({
+                        data: merchSubCatList.sort(function (a, b) {
+                            if (a.text < b.text) return -1;
+                            if (a.text > b.text) return 1;
+                            return 0;
+                        })
+                    });
+                });
+
+                $('.Item-sub-cat-select').select2({
+                    data: merchSubCatList.sort(function (a, b) {
+                        if (a.text < b.text) return -1;
+                        if (a.text > b.text) return 1;
+                        return 0;
+                    })
+                });
+                setTimeout(function () { $('#ptable tbody').empty(); }, 100);
+            });
+            $('.Item-sub-cat-select').change(function () {
+                var subCatId = $(this).val();
+                $('#sidebar-wrapper .wloader').show();
+                //console.log(subCatId);
+                if (selectedMerchant > 0) {
+                    ajaxCall(apiURL + "merchant/products", "POST", { MerchantId: selectedMerchant, subCategoryId: subCatId })
+                         .done(function (response) {
+                             var data = response.data;
+                             FillSideBar(data, true);
+                         });
+                }
+                else {
+                    ajaxCall(apiURL + "products/" + subCatId, "GET")
+                              .done(function (response) {
+                                  var data = response.data;
+                                  FillSideBar(data, true);
+                              });
+                }
+
+
+            });
+            function ListSync(item) {
+
+                if (g_pList != undefined && g_pList) {
+                    var g_item = $.grep(g_pList, function (e) { return e.id == item.id; });
+                    if (g_item.length > 0) {
+                        g_item[0].nameAR = item.nameAR;
+                        g_item[0].nameEN = item.nameEN;
+                        g_item[0].subCategoryId = item.subCategoryId;
+                        g_item[0].unit = item.unit;
+                        g_item[0].volume = item.volume;
+                        g_item[0].status = item.status;
+                        g_item[0].imageUrl = item.imageUrl;
+                        g_item[0].categoryId = item.categoryId;
+                        g_item[0].typeId = item.typeId;
+                        g_item[0].packagingId = item.packagingId;
+                        g_item[0].barcode = item.barcode;
+                        FillSideBar(g_pList, false);
+                    }
+                }
+            }
+            // Append Image to DOM
+            function fillImage(src) {
+                $('.img-u-loader').show();
+                if (src) {
+                    $('#image_view').attr('src', src)
+                    //$("#image_view").empty().append('<img id="image_view" src="' + src + '" style="height: 100%;width:100%">').find('img').hide();
+                } else {
+                    $('#image_view').attr('src', '/store/content/images/no-image-icon-15.png')
+                    //$("#image_view").empty().append('<img id="image_view" src="/store/content/images/no-image-icon-15.png" style="height: 100%;width:100%">');
+                    //$('#image_view').attr('src', '/content/images/no-image-icon-15.png')
+                }
+                $('#image_view').on("load", function () {
+                    $('.img-u-loader').hide();
+                    $(this).show()
+                });
+            }
+
+            //Upload Image To Amazon
+            $('#f_upload').on('change', function (e) { $('form#upload').submit() });
+            $("form#upload").submit(function () {
+                $('.img-u-loader').show();
+                var files = this.f_upload.files.length
+                if (files == 0) {
+                    alert('Please Choose files first');
+                    return false;
+                }
+                if (this.f_upload.files[0].size > 81920) {
+                    alert('Please Choose file its size lower than 80k first');
+                    $('.img-u-loader').css('display', '');
+                    return false;
+                }
+                var formData = new FormData(this);
+                $.ajax({
+                    url: apiURL + 'upload/product/image',
+                    type: 'POST',
+                    headers: requestHeaders(),
+                    data: formData,
+                    async: false,
+                    success: function (res) {
+                        var list, vType;
+                        var types = ['png', 'jpg', 'jpeg'];
+                        for (var i = 0; i < res.data.length; i++) {
+                            if (res.data[i].status == 200) {
+                                //console.log(res.data[i].url);
+                                $("#image_view").attr('src', res.data[i].url);
+                                $('#LogoUrl').val(res.data[i].url);
+                                //var img = new Image();
+                                //img.id = "image_view";
+                                //img.style.height = "100%";
+                                //img.src = res.data[i].url;
+                                //$("#new_bgd").empty().append(img);
+                            }
+                            else {
+                                alert(res.data[i].Message);
+                            }
+                            $("#new_imageLoader").val('');
+                        }
+                        $('.img-u-loader').hide();
+                    },
+                    xhr: function () {
+                        var xhr = $.ajaxSettings.xhr();
+                        xhr.upload.onprogress = function (evt) { };
+                        xhr.upload.onload = function () { console.log('DONE!') };
+                        return xhr;
+                    },
+                    cache: false,
+                    contentType: false,
+                    processData: false,
+                    async: true
+                });
+                return false;
+            });
+
+            //AJAX shortHand call
+            function ajaxCall(url, type, data, error) {
+                $('.b-input-loader').show();
+                return $.ajax({
+                    url: url,
+                    type: type,
+                    cache: true,
+                    data: data,
+                    crossDomain: true,
+                    headers: requestHeaders(),
+                    allowClear: true,
+                    error: error
+                }).done(function () { $('.b-input-loader').hide(); });
+            }
+            function validateForm(data, msg) {
+                if (!data.id.toString().trim()) {
+                    showMessage("Item Id not found");
+                    return false;
+                }
+                else if (!data.nameEN.trim()) {
+                    showMessage("nameEN not found");
+                    return false;
+                }
+                else if (!data.nameAR.trim()) {
+                    showMessage("nameAR not found");
+                    return false;
+                }
+                else if (!data.subCategoryId.trim()) {
+                    showMessage("subCategoryId not found");
+                    return false;
+                }
+                else if (!data.volume.trim()) {
+                    showMessage("volume not found");
+                    return false;
+                }
+                else if (!data.unit.trim()) {
+                    showMessage("unit not found");
+                    return false;
+                }
+                else if (!data.barcode.trim()) {
+                    showMessage("barcode not found");
+                    return false;
+                }
+                else if (!data.categoryId.trim()) {
+                    showMessage("categoryId not found");
+                    return false;
+                }
+                return true;
+            }
+            function showMessage(msg) {
+                $('.s-msg').empty().html(msg).stop().animate({ top: 11 }, 500, function () {
+                    setTimeout(function () { $('.s-msg').stop().animate({ top: -100 }, 100); }, 2500)
+                });
+            }
+            function clearForm() {
+                $("input[type=text]").val('');
+                $("#bgd,#new_bgd").empty().append('<span class="glyphicon glyphicon-picture" style="color: #b8b8b8;font-size: 59px;padding-top: 40px;"></span>');
+                $("#barcode").focus();
+                $('#savebtn,#new_savebtn').removeAttr('disabled');
+                $('.b-input-loader').hide();
+                $('#catId,#subCatId,#new_imageUrl,#new_unit').val('');
+                $('.merchant-sub-cat-select,.product-unit-select,.product-type-select,.product-packaging-select,.merchant-cat-select').empty().select2();
+                $("input[type=checkbox]").prop("checked", "");
+                $('#image_view').attr('src', '/store/content/images/no-image-icon-15.png');
+            }
+        }());
+        var url = window.location.pathname
+        var barcode = url.substring(url.lastIndexOf('/') + 1);
+        if (!isNaN(barcode)) {
+            $('#new_barcode').val(barcode).focusout();
+        }
+
+        $(window).on('load', function () {
+            $('.overlay').hide();
+
+        })
+    </script>
+
+}

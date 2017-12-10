@@ -1,0 +1,50 @@
+﻿<style>
+    .wloader {
+        position: absolute;
+        width: 100%;
+        height: 100%;
+        top: 0;
+        left:0;
+        z-index: 99;
+        display:none;
+    }
+
+        .wloader .wrapper {
+            background: #fff;
+            opacity: 0.65;
+            position: absolute;
+            width: 100%;
+            height: 100%;
+        }
+
+        .wloader .table {
+            display: table;
+            width: 100%;
+            height: 100%;
+            position: relative;
+        }
+
+            .wloader .table .cell {
+                display: table-cell;
+                vertical-align: middle;
+            }
+
+                .wloader .table .cell .msg {
+                    background: #fff;
+                    padding: 20px;
+                    max-width: 300px;
+                    margin: auto;
+                    text-align: center;
+                    border-radius: 5px;
+                    font-size: 20px;
+                }
+</style>
+
+<div class="wloader">
+    <div class="wrapper"></div>
+    <div class="table">
+        <div class="cell">
+            <div class="msg"><img src="~/content/images/loader.gif" /> Loading... Please wait</div>
+        </div>
+    </div>
+</div>

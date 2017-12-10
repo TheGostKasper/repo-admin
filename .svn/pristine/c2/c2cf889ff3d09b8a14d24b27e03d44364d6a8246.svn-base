@@ -1,0 +1,930 @@
+﻿@model AMS.Models.Merchant
+
+@{
+    ViewBag.Title = "Create";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+
+    #region ListItems
+    var daysList = new List<System.Web.UI.WebControls.ListItem>
+                    {
+                  new System.Web.UI.WebControls.ListItem { Text = "Sunday", Value="1" },
+                  new System.Web.UI.WebControls.ListItem { Text = "Monday", Value="2" },
+                  new System.Web.UI.WebControls.ListItem { Text = "Tuesday", Value="3" },
+                  new System.Web.UI.WebControls.ListItem { Text = "Wednesday", Value="4" },
+                  new System.Web.UI.WebControls.ListItem { Text = "Thursday", Value="5" },
+                  new System.Web.UI.WebControls.ListItem { Text = "Friday", Value="6" },
+                  new System.Web.UI.WebControls.ListItem { Text = "Saturday", Value="7" },
+            };
+
+    var listItems = new List<System.Web.UI.WebControls.ListItem>();
+    foreach (var item in ViewData["CountriesLookup"] as IEnumerable<AMS.Models.Country>)
+    {
+        var i = new System.Web.UI.WebControls.ListItem();
+        i.Text = item.Name;
+        i.Value = item.Id.ToString();
+        listItems.Add(i);
+    }
+
+    var languageLookup = new List<System.Web.UI.WebControls.ListItem>();
+    foreach (var item in ViewData["LanguageLookup"] as IEnumerable<AMS.Models.Language>)
+    {
+        var i = new System.Web.UI.WebControls.ListItem();
+        i.Text = item.Name;
+        i.Value = item.Id.ToString();
+        languageLookup.Add(i);
+    }
+
+    var listItems3 = new List<System.Web.UI.WebControls.ListItem>();
+    foreach (var item in ViewData["AccountStateLookup"] as IEnumerable<AMS.Models.AccountState>)
+    {
+        var i = new System.Web.UI.WebControls.ListItem();
+        i.Text = item.State;
+        i.Value = item.Id.ToString();
+        listItems3.Add(i);
+    }
+    var listItems4 = new List<System.Web.UI.WebControls.ListItem>();
+    foreach (var item in ViewData["CurrenciesLookup"] as IEnumerable<AMS.Models.Currency>)
+    {
+        var i = new System.Web.UI.WebControls.ListItem();
+        i.Text = item.Name;
+        i.Value = item.Id.ToString();
+        listItems4.Add(i);
+    }
+    var mainSubM = new List<System.Web.UI.WebControls.ListItem>();
+    foreach (var item in ViewData["mainSubMLookup"] as IEnumerable<AMS.Models.Merchant>)
+    {
+        var i = new System.Web.UI.WebControls.ListItem();
+        i.Text = item.NameEN;
+        i.Value = item.Id.ToString();
+        mainSubM.Add(i);
+    }
+    #endregion
+}
+<style>
+    .file-caption-name {
+        width: 100%;
+        /* margin: 0; */
+        /* padding: 0; */
+        /* box-shadow: none; */
+        border: none;
+        background: 0 0;
+        /* outline: 0; */
+    }
+
+    .btn-file {
+        position: relative;
+        overflow: hidden;
+    }
+
+        .btn-file input[type=file] {
+            position: absolute;
+            top: 0;
+            right: 0;
+            min-width: 100%;
+            min-height: 100%;
+            font-size: 100px;
+            text-align: right;
+            filter: alpha(opacity=0);
+            opacity: 0;
+            outline: none;
+            background: white;
+            cursor: inherit;
+            display: block;
+        }
+
+    .span-input {
+        display: inline-block;
+        /* margin-top: 1px; */
+        font-weight: 400;
+        text-align: center;
+        vertical-align: middle;
+        cursor: pointer;
+        background-image: none;
+        border: 1px solid transparent;
+        /* white-space: nowrap; */
+        padding: 10px 11px;
+        font-size: 14px;
+        line-height: 1.5;
+        border-radius: 4px;
+    }
+
+    .pload-file {
+        max-width: 500px;
+    }
+
+    #file-name {
+        height: 23px;
+        padding-left: 10px;
+        font-size: 15px;
+    }
+    .waves-button-input{
+            background-color: rgba(0,0,0,0);
+    color: white;
+    padding-top: 5px;
+    }
+    label.input-group-btn{
+        background: #32c787;
+    }
+    #upload-file {
+        width: 100%;
+        display: inline-flex;
+    }
+</style>
+@*<a class="btn btn-secondary btn--icon waves-effect" href="~/merchant"><span><i class="zmdi zmdi-arrow-back"></i></span></a>*@
+
+<!-- Slider container -->
+<div class="swiper-container">
+    <!-- Slides wrapper -->
+    <div class="swiper-wrapper">
+        <!-- Slides -->
+        
+        <div class="swiper-slide">
+            <div style="margin:auto">
+                <div class="form-horizontal">
+                    <div class="card-block">
+                        <div class="row" style="width:230px;margin:auto">
+                            <div class="card profile">
+                                <div class="profile__img">
+                                    <img id="image_view" src="~/Content/images/placeholder.gif" alt="">
+                                    <form id="upload" method="post" enctype="multipart/form-data">
+                                        <label for="f_upload">
+                                            <span class="zmdi zmdi-camera profile__img__edit ctv" style="cursor:pointer;"></span>
+                                        </label>
+                                        <label style="display: none">
+                                            <input id="f_upload" type="file" class="btn btn-secondary" name="file_upload[]" multiple="multiple" />
+                                            <input type="submit" class="btn btn-default btn-sm file-upload" value="Upload" style="visibility:hidden" />
+                                        </label>
+                                    </form>
+                                    <div class="img-u-loader" style="display:none;"><img src="~/Content/loader.gif" style="position: absolute;top: 38%;left: 39%;height: 35px;border-radius: 50%;" /></div>
+
+                                </div>
+
+                            </div>
+                        </div>
+                    </div>
+                    @using (Html.BeginForm("Create", "Merchant", FormMethod.Post, new { @id = "merchant" }))
+                    {
+                        @*@Html.AntiForgeryToken()*@
+                        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+                        <div class="card-block">
+                            <div class="row">
+                                <div class="col-sm-3">
+                                    <div class="form-group">
+                                        @Html.LabelFor(model => model.NameEN, htmlAttributes: new { @class = "" })
+                                        @Html.EditorFor(model => model.NameEN, new { htmlAttributes = new { @class = "form-control input-mask" } })
+                                        <i class="form-group__bar"></i>
+                                    </div>
+                                    @Html.ValidationMessageFor(model => model.NameEN, "", new { @class = "text-danger form-control-danger" })
+                                </div>
+                                <div class="col-sm-3">
+                                    <div class="form-group">
+                                        @Html.LabelFor(model => model.NameAR, htmlAttributes: new { @class = "" })
+                                        @Html.EditorFor(model => model.NameAR, new { htmlAttributes = new { @class = "form-control input-mask" } })
+                                        <i class="form-group__bar"></i>
+                                    </div>
+                                    @Html.ValidationMessageFor(model => model.NameAR, "", new { @class = "text-danger form-control-danger" })
+                                </div>
+                                <div class="col-sm-3">
+                                    <div class="form-group">
+                                        @Html.LabelFor(model => model.Email, htmlAttributes: new { @class = "control-label input-mask" })
+                                        @Html.EditorFor(model => model.Email, new { htmlAttributes = new { @class = "form-control " } })
+                                        <i class="form-group__bar"></i>
+                                    </div>
+                                    @Html.ValidationMessageFor(model => model.Email, "", new { @class = "text-danger form-control-danger" })
+                                </div>
+                                <div class="col-sm-3">
+                                    <div class="form-group">
+                                        @Html.LabelFor(model => model.Password, htmlAttributes: new { @class = "control-label input-mask" })
+                                        @Html.EditorFor(model => model.Password, new { htmlAttributes = new { @type = "Password", @class = "form-control", @id = "pass-txt" } })
+                                        <i class="form-group__bar"></i>
+                                    </div>
+                                    @Html.ValidationMessageFor(model => model.Password, "", new { @class = "text-danger form-control-danger" })
+                                </div>
+                                <div class="col-sm-3">
+                                    <div class="form-group">
+                                        @Html.LabelFor(model => model.ShortPassword, htmlAttributes: new { @class = "control-label input-mask" }) <a id="generate-shrtpass" style="cursor:pointer; color:blue;">Generate</a>
+                                        @Html.EditorFor(model => model.ShortPassword, new { htmlAttributes = new { @type = "text", @class = "form-control ", @readonly = "readonly", @id = "shrt-pass" } })
+                                        <i class="form-group__bar"></i>
+                                    </div>
+                                    @Html.ValidationMessageFor(model => model.ShortPassword, "", new { @class = "text-danger form-control-danger" })
+                                </div>
+
+                                <div class="col-sm-3">
+                                    <div class="form-group">
+                                        @Html.LabelFor(model => model.SmsCode, htmlAttributes: new { @class = "" }) <a id="generate-smscode" style="cursor:pointer; color:blue;">Generate</a>
+                                        @Html.EditorFor(model => model.SmsCode, new { htmlAttributes = new { @class = "form-control", @id = "sms-txt", @readonly = "readonly" } })
+                                        <i class="form-group__bar"></i>
+                                    </div>
+                                    @Html.ValidationMessageFor(model => model.SmsCode, "", new { @class = "text-danger" })
+                                </div>
+                                <div class="col-sm-3">
+                                    <div class="form-group">
+                                        @Html.LabelFor(model => model.Phone, htmlAttributes: new { @class = "control-label input-mask" })
+                                        @Html.EditorFor(model => model.Phone, new { htmlAttributes = new { @class = "form-control " } })
+                                        <i class="form-group__bar"></i>
+                                    </div>
+                                    @Html.ValidationMessageFor(model => model.Phone, "", new { @class = "text-danger form-control-danger" })
+                                </div>
+                                <div class="col-md-3 col-sm-3 col-xs-3">
+                                    <div class="form-group">
+                                        @Html.LabelFor(model => model.CountryId, htmlAttributes: new { @class = "control-label input-mask" })
+                                        @Html.DropDownListFor(model => model.CountryId, new SelectList(listItems, "Value", "Text"), "--Select--", new { @class = "form-control" })
+                                        <i class="form-group__bar"></i>
+                                    </div>
+                                    @Html.ValidationMessageFor(model => model.CountryId, "", new { @class = "text-danger" })
+                                </div>
+                                <div class="col-md-3 col-sm-3 col-xs-3">
+                                    <div class="form-group">
+                                        @Html.LabelFor(model => model.LangId, htmlAttributes: new { @class = "control-label" })
+                                        @Html.DropDownListFor(model => model.LangId, new SelectList(languageLookup, "Value", "Text"), "--Select--", new { @class = "form-control" })
+                                        <i class="form-group__bar"></i>
+                                    </div>
+                                    @Html.ValidationMessageFor(model => model.LangId, "", new { @class = "text-danger" })
+                                </div>
+                                <div class="col-md-3 col-sm-3">
+                                    <div class="form-group">
+                                        @Html.LabelFor(model => model.AccountStateId, htmlAttributes: new { @class = "control-label" })
+                                        @Html.DropDownListFor(model => model.AccountStateId, new SelectList(listItems3, "Value", "Text"), "--Select--", new { @class = "form-control" })
+                                        <i class="form-group__bar"></i>
+                                    </div>
+                                    @Html.ValidationMessageFor(model => model.AccountStateId, "", new { @class = "text-danger" })
+                                </div>
+                                <div class="col-md-3 col-sm-3">
+                                    <div class="form-group">
+                                        @Html.LabelFor(model => model.CurrencyId, htmlAttributes: new { @class = "control-label" })
+                                        @Html.DropDownListFor(model => model.CurrencyId, new SelectList(listItems4, "Value", "Text"), "--Select--", new { @class = "form-control" })
+                                        <i class="form-group__bar"></i>
+                                    </div>
+                                    @Html.ValidationMessageFor(model => model.CurrencyId, "", new { @class = "text-danger" })
+                                </div>
+                                <div class="col-sm-3">
+                                    <div class="form-group">
+                                        @Html.LabelFor(model => model.Notes, htmlAttributes: new { @class = "control-label" })
+                                        @Html.EditorFor(model => model.Notes, new { htmlAttributes = new { @class = "form-control" } })
+                                        <i class="form-group__bar"></i>
+                                    </div>
+                                    @Html.ValidationMessageFor(model => model.Notes, "", new { @class = "text-danger" })
+                                </div>
+                                <div class="col-sm-3">
+                                    <div class="form-group">
+                                        @Html.Label("Location Name", htmlAttributes: new { @class = "control-label" })
+                                        @Html.Editor("Location Name", new { htmlAttributes = new { @class = "form-control input-mask", @id = "buildingName" } })
+                                        <i class="form-group__bar"></i>
+                                    </div>
+                                    @Html.ValidationMessage("Location Name", new { @class = "text-danger" })
+                                </div>
+                                <div class="col-sm-3">
+                                    <div class="form-group">
+                                        @Html.LabelFor(model => model.DeliveryTime, htmlAttributes: new { @class = "control-label" })
+                                        @Html.EditorFor(model => model.DeliveryTime, new { htmlAttributes = new { @class = "form-control" } })
+                                        <i class="form-group__bar"></i>
+                                    </div>
+                                    @Html.ValidationMessageFor(model => model.DeliveryTime, "", new { @class = "text-danger" })
+                                </div>
+                                <div class="col-sm-3">
+                                    <div class="form-group">
+                                        @Html.LabelFor(model => model.ServiceFees, htmlAttributes: new { @class = "control-label" })
+                                        @Html.EditorFor(model => model.ServiceFees, new { htmlAttributes = new { @class = "form-control", @Value = "0" } })
+                                        <i class="form-group__bar"></i>
+                                    </div>
+                                    @Html.ValidationMessageFor(model => model.ServiceFees, "", new { @class = "text-danger" })
+                                </div>
+                                <div class="col-sm-3">
+                                    <div class="form-group">
+                                        @Html.LabelFor(model => model.Tax, htmlAttributes: new { @class = "control-label" })
+                                        @Html.EditorFor(model => model.Tax, new { htmlAttributes = new { @class = "form-control", @Value = "0" } })
+                                        <i class="form-group__bar"></i>
+                                    </div>
+                                    @Html.ValidationMessageFor(model => model.Tax, "", new { @class = "text-danger" })
+                                </div>
+                                <div class="col-sm-3">
+                                    <div class="form-group">
+                                        @Html.LabelFor(model => model.MinOrder, htmlAttributes: new { @class = "control-label" })
+                                        @Html.EditorFor(model => model.MinOrder, new { htmlAttributes = new { @class = "form-control", @Value = "0" } })
+                                        <i class="form-group__bar"></i>
+                                    </div>
+                                    @Html.ValidationMessageFor(model => model.MinOrder, "", new { @class = "text-danger" })
+                                </div>
+                                <div class="col-sm-3">
+                                    <div class="form-group">
+                                        @Html.LabelFor(model => model.Latitude, htmlAttributes: new { @class = "control-label" })
+                                        @Html.EditorFor(model => model.Latitude, new { htmlAttributes = new { @class = "form-control", id = "Latitude", @readonly = "readonly" } })
+                                        <i class="form-group__bar"></i>
+                                    </div>
+                                    @Html.ValidationMessageFor(model => model.Latitude, "", new { @class = "text-danger" })
+                                </div>
+                                <div class="col-sm-3">
+                                    <div class="form-group">
+                                        @Html.LabelFor(model => model.Longitude, htmlAttributes: new { @class = "control-label" })
+                                        @Html.EditorFor(model => model.Longitude, new { htmlAttributes = new { @class = "form-control", id = "Longitude", @readonly = "readonly" } })
+                                        <i class="form-group__bar"></i>
+                                    </div>
+                                    @Html.ValidationMessageFor(model => model.Longitude, "", new { @class = "text-danger" })
+                                </div>
+                                <div class="col-sm-3">
+                                    <div class="form-group">
+                                        @Html.LabelFor(model => model.Percentage, htmlAttributes: new { @class = "control-label" })
+                                        @Html.EditorFor(model => model.Percentage, new { htmlAttributes = new { @class = "form-control" } })
+                                        <i class="form-group__bar"></i>
+                                    </div>
+                                    @Html.ValidationMessageFor(model => model.Percentage, "", new { @class = "text-danger" })
+                                </div>
+                                <div class="col-sm-3" style="visibility:hidden">
+                                    <div class="form-group">
+                                        @Html.EditorFor(model => model.LogoUrl, new { @class = "form-control m-logoUrl", style = "visibility:hidden" })
+                                        <i class="form-group__bar"></i>
+                                    </div>
+                                    @Html.ValidationMessageFor(model => model.LogoUrl, "", new { @class = "text-danger" })
+                                </div>
+
+
+
+                            </div>
+                            <div class="row">
+                                <div class="col-sm-3">
+                                    <label class="custom-control custom-radio">
+                                        <input type="radio" value="Branch" name="radio-inline" class="custom-control-input Branch">
+                                        <span class="custom-control-indicator"></span>
+                                        <span class="custom-control-description">Branch</span>
+                                    </label>
+                                </div>
+                                <div class="col-sm-3">
+                                    <label class="custom-control custom-radio">
+                                        <input type="radio" name="radio-inline" class="custom-control-input">
+                                        <span class="custom-control-indicator"></span>
+                                        <span class="custom-control-description">Main</span>
+                                    </label>
+                                </div>
+                                <div class="col-sm-3 isBranch" style="display:none;">
+                                    <div class="form-group">
+                                        @Html.LabelFor(model => model.IsBranch, htmlAttributes: new { @class = "control-label" })
+                                        @Html.DropDownListFor(model => model.IsBranch, new SelectList(mainSubM, "Value", "Text"), "--Select--", new { @class = "form-control" })
+                                        <i class="form-group__bar"></i>
+                                    </div>
+                                    @Html.ValidationMessageFor(model => model.IsBranch, "", new { @class = "text-danger" })
+                                </div>
+                            </div>
+                        </div>
+                        <div>
+                            <center>
+                                <button type="submit" id="submitMerchant" class="btn btn-outline-primary waves-effect">Create</button>
+                            </center>
+                        </div>
+                    }
+                </div>
+            </div>
+
+        </div>
+        <div class="swiper-slide">
+            <div class="card">
+                <div class="card-block">
+                    <div class="form-horizontal">
+                        @using (Html.BeginForm("Create", "BusinessHours", FormMethod.Post, new { @id = "b-form" }))
+                        {
+                        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+                        <div class="card-block">
+                            <div class="row">
+                                <div class="col-sm-8">
+                                    <div class="form-group">
+                                        <label>Sunday</label>
+                                        <div id="Sunday-slider-range" data-day="1" class="noUi-target noUi-ltr noUi-horizontal">
+                                        </div>
+                                        <i class="form-group__bar"></i>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-sm-8">
+                                    <div class="form-group">
+                                        <label>Monday</label>
+                                        <div id="Monday-slider-range" data-day="2" class="noUi-target noUi-ltr noUi-horizontal">
+                                        </div>
+                                        <i class="form-group__bar"></i>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-sm-8">
+                                    <div class="form-group">
+                                        <label>Tuseday</label>
+                                        <div id="Tuseday-slider-range" data-day="3" class="noUi-target noUi-ltr noUi-horizontal">
+                                        </div>
+                                        <i class="form-group__bar"></i>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-sm-8">
+                                    <div class="form-group">
+                                        <label>Wednesday</label>
+                                        <div id="Wednesday-slider-range" data-day="4" class="noUi-target noUi-ltr noUi-horizontal">
+                                        </div>
+                                        <i class="form-group__bar"></i>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-sm-8">
+                                    <div class="form-group">
+                                        <label>Thursday</label>
+                                        <div id="Thursday-slider-range" data-day="5" class="noUi-target noUi-ltr noUi-horizontal">
+                                        </div>
+                                        <i class="form-group__bar"></i>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-sm-8">
+                                    <div class="form-group">
+                                        <label>Friday</label>
+                                        <div id="Friday-slider-range" data-day="6" class="noUi-target noUi-ltr noUi-horizontal">
+                                        </div>
+                                        <i class="form-group__bar"></i>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-sm-8">
+                                    <div class="form-group">
+                                        <label>Saturday</label>
+                                        <div id="Saturday-slider-range" data-day="7" class="noUi-target noUi-ltr noUi-horizontal">
+                                        </div>
+                                        <i class="form-group__bar"></i>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-offset-2 col-md-10">
+                                <center>
+                                    <div class="form-group">
+                                        <button type="submit" class="btn btn-outline-primary waves-effect">Create</button>
+                                    </div>
+                                </center>
+
+                            </div>
+                            <div class="col-sm-3" style="visibility:hidden">
+                                @Html.DropDownList("Day", new SelectList(daysList, "Value", "Text"), "--Select--", new { @class = "form-control input-mask" })
+                                @Html.Editor("OpenTime", new { htmlAttributes = new { @class = "form-control timepicker" } })
+                                @Html.Editor("CloseTime", new { htmlAttributes = new { @class = "form-control timepicker" } })
+                            </div>
+                        </div>
+                        }
+                    </div>
+                </div>
+
+            </div>
+
+        </div>
+        <div class="swiper-slide">
+            <center>
+                <div class="card-block pload-file">
+                    <div class="input-group">
+                        <form id="upload-file2" action="@Url.Action("GetFile")" method="post" style="display:inline-flex" enctype="multipart/form-data">
+                            <label class="input-group-btn">
+                                <span class="btn btn-primary span-input">
+                                    Browse&hellip; <input type="file" id="prod-file" style="display: none;" name="file">
+                                </span>
+                            </label>
+                            <input type="text" class="form-control" id="file-name" readonly style="">
+                            <label class="input-group-btn">
+                                <input type="submit" class="submi btn btn-success" value="Upload" />
+                            </label>
+
+                        </form>
+                       
+                    </div>
+                </div>
+            </center>
+            <div class="progress">
+                <div class="progress-bar" role="progressbar" aria-valuemin="0" aria-valuemax="100"></div>
+            </div>
+            <div class="card-block">
+                <div class="tab-container">
+                    <ul class="nav nav-tabs" role="tablist">
+                        <li class="nav-item">
+                            <a class="nav-link active" data-toggle="tab" href="#matched" role="tab">Matched</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" data-toggle="tab" href="#Un-matech" role="tab">Un-Matched</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" data-toggle="tab" href="#insert" role="tab">Upload Products</a>
+                        </li>
+                    </ul>
+                    <div class="tab-content">
+                        <div class="card tab-pane active fade show" id="matched" role="tabpanel">
+                            <div class="card-block">
+                                <div class="tab-content">
+                                    <table class="table table-bordered" id="matchedItems" cellspacing="0" width="100%">
+                                        <thead>
+                                            <tr>
+                                                <th>NameEN</th>
+                                                <th>NameAR</th>
+                                                <th>Barcode</th>
+                                                <th>Price</th>
+                                                <th>Quantity</th>
+                                            </tr>
+                                        </thead>
+                                        <tfoot>
+
+                                        </tfoot>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="card tab-pane fade" id="Un-matech" role="tabpanel">
+                            <div class="card-block">
+                                <div class="tab-content">
+                                    <table class="table table-bordered" id="Un-matechItems" cellspacing="0" width="100%">
+                                        <thead>
+                                            <tr>
+                                                <th>NameEN</th>
+                                                <th>NameAR</th>
+                                                <th>Barcode</th>
+                                                <th>Price</th>
+                                                <th>Quantity</th>
+                                            </tr>
+                                        </thead>
+                                        <tfoot></tfoot>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+                        <div id="insert" class="card tab-pane fade">
+                            <div class="card-block">
+                                <div class="tab-content">
+                                    <button class="btn btn-default" id="insertProducts">Insert</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+    <!-- Pagination, if required -->
+    <div class="swiper-pagination"></div>
+</div>
+
+
+
+
+@*<button id="next1">Next</button>*@
+@section scripts{
+   
+    <script>
+        window.onload = function () {
+            var glob_merchantId;
+            var mLocation = new ManageLocation();
+            var mySwiper = new Swiper('.swiper-container', {
+                scrollbarHide: false,
+                centeredSlides: false,
+                spaceBetween: 10,
+                grabCursor: true,
+                loop: false,
+                simulateTouch: false,
+                setWrapperSize: true,
+            });
+            var mySwiper = $('.swiper-container')[0].swiper;
+            $('#submitMerchant').on('click', function (e) {
+                $('form#merchant').validate();
+            })
+            $('#next1').on('click', function () {
+                mySwiper.slideNext();
+            });
+
+            $('#prod-file').on('change', function () {
+                var name = $(this).val().substr($(this).val().lastIndexOf('\\') + 1);
+                $('#file-name').val(name)
+            })
+            $('#ploader').hide();
+            var mLocation = new ManageLocation();
+            var placeSearch, autocomplete;
+
+            window.onload = function () {
+                mLocation.initAutocomplete('buildingName', 'Latitude', 'Longitude');
+
+            }
+            $(':radio').on('change', function () {
+                var display = ($(this).checked) ? 'none' : '';
+                if ($(this).val() != "Branch") {
+                    $('#IsBranch').val(0);
+                    $('.isBranch').hide();
+                }
+                else
+                    $('.isBranch').show();
+            });
+            $("#generate-pass").click(function () {
+                $("#pass-txt").val(guid())
+            });
+            $("#generate-smscode").click(function () {
+                $("#sms-txt").val(Math.floor(1000 + Math.random() * 9000))
+            });
+            $("#generate-shrtpass").on('click', function () {
+                console.log(Math.floor(1000 + Math.random() * 9000));
+                $("#shrt-pass").val(Math.floor(1000 + Math.random() * 9000))
+            });
+            $('#f_upload').on('change', prepareUpload);
+            function prepareUpload(event) {
+                var files = event.target.files;
+                if (files.length > 0) {
+                    $("form#upload").submit();
+                }
+            }
+
+            $("form#upload").submit(function () {
+                $('.img-u-loader').show();
+                var files = this.f_upload.files.length
+                if (files == 0) {
+                    alert('Please Choose files first');
+                    return false;
+                }
+                if (this.f_upload.files[0].size > 81920) {
+                    alert('Please Choose file its size lower than 80k first');
+                    $('.img-u-loader').css('display', '');
+                    return false;
+                }
+                var formData = new FormData(this);
+                $.ajax({
+                    url: WeeloApi + 'upload/product/image',
+                    type: 'POST',
+                    headers: requestHeaders(),
+                    data: formData,
+                    async: false,
+                    success: function (res) {
+                        var list, vType;
+                        var types = ['png', 'jpg', 'jpeg'];
+                        for (var i = 0; i < res.data.length; i++) {
+                            if (res.data[i].status == 200) {
+                                console.log(res.data[i].url);
+                                $("#image_view").attr('src', res.data[i].url);
+                                $('#LogoUrl').val(res.data[i].url);
+                                //var img = new Image();
+                                //img.id = "itemPic";
+                                //img.style.height = "100%";
+                                //img.src = res.data[i].url;
+                                //$("#new_bgd").empty().append(img);
+                            }
+                            else {
+                                alert(res.data[i].Message);
+                            }
+                            $("#new_imageLoader").val('');
+                        }
+                        $('.img-u-loader').hide();
+                    },
+                    xhr: function () {
+                        var xhr = $.ajaxSettings.xhr();
+                        xhr.upload.onprogress = function (evt) { };
+                        xhr.upload.onload = function () { console.log('DONE!') };
+                        return xhr;
+                    },
+                    cache: false,
+                    contentType: false,
+                    processData: false,
+                    async: true
+                });
+                return false;
+            });
+
+
+            $("form#merchant").submit(function (e) {
+                var isValid = $("#merchant").valid();
+                var formData = $('#merchant').serialize();
+                if (isValid) {
+                    e.preventDefault();
+                    var data = {
+                        NameEN: $("#NameEN").val(),
+                        NameAR: $("#NameAR").val(),
+                        Email: $("#Email").val(),
+                        Password: $("#pass-txt").val(),
+                        SmsCode: $("#shrt-pass").val(),
+                        Phone: $("#Phone").val(),
+                        CountryId: $("#CountryId").val(),
+                        //CityId: $("#CityId").val(),
+                        //AreaId: $("#AreaId").val(),
+                        Notes: $("#Notes").val(),
+                        AccountStateId: $("#AccountStateId").val(),
+                        CurrencyId: $("#CurrencyId").val(),
+                        LogoUrl: $("#LogoUrl").val(),
+                        DeliveryTime: $("#DeliveryTime").val(),
+                        ServiceFees: $("#ServiceFees").val(),
+                        Tax: $("#Tax").val(), MinOrder: $("#MinOrder").val(),
+                        CreationDate: $("#CreationDate").val(),
+                        LangId: $("#LangId").val(),
+                        Latitude: $("#Latitude").val(),
+                        Longitude: $("#Longitude").val(),
+                        Percentage: $("#Percentage").val(),
+                        ShortPassword:$("#shrt-pass").val()
+                    }
+
+                    //var data =JSON.parse('{ "NameEN": "the script", "NameAR": "juhhu", "Email": "script@weelo.com.eg", "Password": "123456", "SmsCode": "9578", "Phone": "01022222222", "CountryId": "1", "Notes": "sdsda", "AccountStateId": "1", "CurrencyId": "1", "LogoUrl": "", "DeliveryTime": "50", "ServiceFees": "01", "Tax": "01", "MinOrder": "01", "LangId": "1", "Latitude": "29.9660593", "Longitude": "31.2493228", "Percentage": "1", "ShortPassword": "9578" }')
+
+                    $.post("@Url.Action("CreateMerchant", "Merchant")", data).then(function (data) {
+                        if (data > 0) {
+                            glob_merchantId = data;
+                            mySwiper.slideNext();
+                        } else {
+                            alert('Something Went Wrong')
+                        }
+                    }, function (err) {
+                        console.log(err);
+                    });
+                }
+            })
+
+
+            function guid() {
+                function s4() {
+                    return Math.floor((1 + Math.random()) * 0x10000)
+                      .toString(16)
+                      .substring(1);
+                }
+                return s4() + s4() + s4() + s4() + s4();
+            }
+
+
+
+            /*Merchant Bussiness Hours*/
+
+            
+            var dayarr = ["Sunday", "Monday", "Tuseday", "Wednesday", "Thursday", "Friday", "Saturday"]
+            bindNoUiSlider(dayarr);
+
+            function bindNoUiSlider(dayArr) {
+                for (var i = 0; i < dayArr.length; i++) {
+                    noUiSlider.create($("#" + dayArr[i] + "-slider-range")[0], {
+                        start: [8, 22],
+                        connect: true,
+                        tooltips: true,
+                        step: 1,
+                        margin: 8,
+                        range: {
+                            'min': 0,
+                            'max': 24
+                        }
+                    });
+                }
+            }
+            function applyChange(day) {
+                if (parseInt($('#' + day + '-slider-range .noUi-handle-lower').children('.noUi-tooltip').html()) < 12)
+                    $("#OpenTime").val(parseInt($('#' + day + '-slider-range .noUi-handle-lower').children('.noUi-tooltip').html()) + ':00am');
+
+                if (parseInt($('#' + day + '-slider-range .noUi-handle-upper > .noUi-tooltip').html()) >= 12)
+                    $('#CloseTime').val(parseInt($('#' + day + '-slider-range .noUi-handle-upper > .noUi-tooltip').html()) - 12 + ':00pm');
+                else {
+                    $('#CloseTime').val(parseInt($('#' + day + '-slider-range .noUi-handle-upper > .noUi-tooltip').html()) + ':00am');
+                }
+                var __day = $('#' + day + '-slider-range').data('day');
+                $('#Day').val(parseInt(__day));
+
+            }
+
+            $('#b-form').on('submit', function (e) {
+                e.preventDefault();
+                if ($('#MerchantId').val() != 0) {
+                    var result = PostBHours(dayarr);
+                    if (result) {
+                        mySwiper.slideNext();
+                    } else {
+                        alert('something went Wrong');
+                    }
+                }
+
+
+            });
+            function PostBHours(dayarr) {
+                try {
+                    for (var i = 0; i < dayarr.length; i++) {
+                        applyChange(dayarr[i]);
+                        var data = "MerchantId=" + glob_merchantId + "&";
+                        data += $('#b-form').serialize();
+                        $.post("@Url.Action("Create", "BusinessHours")", data).then(function (data) {
+                            console.log(data);
+                        }, function (err) {
+                            console.log(err);
+                        });
+                    }
+                    return true;
+                } catch (e) {
+                    return false;
+                }
+            }
+
+
+            /*Merchant product tab*/
+
+            var apiURL = getHostUrl();
+            var itemsObjs = [];
+            var Objs_on = [];
+            var Objs_off = [];
+            var totItems, currItmIndx = 1;
+            $('.progress').hide();
+            var mDt = $('#matchedItems').DataTable();
+            var unmDt = $('#Un-matechItems').DataTable();
+            $('#upload-file2').submit(function (e) {
+                e.preventDefault();
+                $('#ploader').show();
+                $.ajax({
+                    url: this.action,
+                    type: this.method,
+                    data: new FormData(this),
+                    cache: false,
+                    contentType: false,
+                    processData: false,
+                    success: function (data) {
+                        $('.progress').show();
+                        //$('#ploader').hide();
+                        itemsObjs = data;
+                        totItems = data.length;
+                        compareItems(itemsObjs);
+                    },
+                    error: function (xhr, error, status) {
+                    }
+                });
+            })
+
+            function compareItems(items) {
+
+                for (var i = 0; i < items.length; i++) {
+                    checkItem(items[i]);
+                }
+            }
+            function drawRow(item) {
+                return `
+                    <tr>
+                        <td> `+ item.NameAR + ` </td>
+                        <td> `+ item.NameEN + ` </td>
+                        <td> `+ item.Barcode + ` </td>
+                        <td> `+ item.Price + ` </td>
+                        <td> `+ item.Quantity + ` </td>
+                    </tr>
+                    `;
+            }
+            function checkItem(item) {
+                return CallAjax('product/barcode/' + item.Barcode, 'GET', {}).then(function (result) {
+                    if (result.data) {
+                        item.ProductId = result.data[0].id;
+                        Objs_on.push(item);
+                        mDt.row.add([item.NameAR, item.NameEN, item.Barcode, item.Price, item.Quantity]).draw(false)
+                        //$('#matchedItems tbody').append(drawRow(item));
+                    }
+                    else {
+                        Objs_off.push(item);
+                        //$('#Un-matechItems tbody').append(drawRow(item));
+                        unmDt.row.add([item.NameAR, item.NameEN, item.Barcode, item.Price, item.Quantity]).draw(false)
+                    }
+                    var perc = (currItmIndx++ / totItems) * 100;
+                    $('.progress-bar').css('width', perc + '%');
+                }, function (xhr, error, status) {
+                });
+            }
+
+            $('#insertProducts').on('click', function (e) {
+                var indx = 1;
+                for (var i = 0; i < Objs_on.length; i++) {
+                    insertItem(Objs_on[i]);
+                }
+            })
+            function insertItem(item) {
+                CallAjax('merchant/product', 'POST',
+                    { merchantId: glob_merchantId, productId: item.ProductId, price: item.Price, quantity: item.Quantity })
+                .then(function (response) {
+                    var perc = (indx++ / Objs_on.length) * 100;
+                    $('.progress-bar').css('width', perc + '%');
+                }, function (error) { });
+            }
+            function CallAjax(endPoint, type, data) {
+                return $.ajax({
+                    url: apiURL + endPoint,
+                    type: type,
+                    data: data,
+                    headers: requestHeaders(),
+                    dataType: "json",
+                });
+            }
+            function getHostUrl() {
+                var _href = document.location.href;
+                if (isWebsiteLive)
+                    return 'https://www.weelo.com.eg/api/v1/';
+                else
+                    return (_href.includes('weelo.com')) ? 'https://www.weelo.com.eg/api/v1/' : '/api/v1/'
+            }
+            function getToken() {
+                var nameEQ = "_adminToken=";
+                var ca = document.cookie.split(';');
+                for (var i = 0; i < ca.length; i++) {
+                    var c = ca[i];
+                    while (c.charAt(0) == ' ') c = c.substring(1, c.length);
+                    if (c.indexOf(nameEQ) == 0) return c.substring(nameEQ.length, c.length);
+                }
+                return null;
+            }
+            function requestHeaders() {
+                var headers = {};
+                headers.Authorization = 'Bearer ' + getToken();
+                return headers;
+            }
+        }
+</script>
+
+}

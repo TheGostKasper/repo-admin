@@ -1,0 +1,63 @@
+﻿@model AMS.Models.MerchantSupervisor
+
+@{
+    ViewBag.Title = "Create";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    var listItems = new List<System.Web.UI.WebControls.ListItem>();
+    foreach (var item in ViewData["MerchantsLookup"] as IEnumerable<AMS.Models.Merchant>)
+    {
+        var i = new System.Web.UI.WebControls.ListItem();
+        i.Text = item.NameEN;
+        i.Value = item.Id.ToString();
+        listItems.Add(i);
+    }
+}
+<header class="m-header">
+    <a class="btn btn-secondary btn--icon waves-effect" href="~/MerchantSupervisor"><span><i class="zmdi zmdi-arrow-back"></i></span></a>
+    <h2 class="m-title">Create</h2>
+</header>
+<div class="content_inner">
+    <div class="card">
+        <div class="card-block">
+            @using (Html.BeginForm())
+            {
+                @Html.AntiForgeryToken()
+                <div class="form-horizontal">
+                    @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+                    <div class="row">
+                        <div class="col-sm-4">
+                            <div class="form-group">
+                                @Html.LabelFor(model => model.MerchantId, htmlAttributes: new { @class = "" })
+                                @Html.DropDownListFor(model => model.MerchantId, new SelectList(listItems, "Value", "Text"), "--Select--", new { @class = "form-control" })
+                                <i class="form-group__bar"></i>
+                            </div>
+                            @Html.ValidationMessageFor(model => model.MerchantId, "", new { @class = "text-danger form-control-danger" })
+                        </div>
+                        <div class="col-sm-4">
+                            <div class="form-group">
+                                @Html.LabelFor(model => model.Name, htmlAttributes: new { @class = "" })
+                                @Html.EditorFor(model => model.Name, new { htmlAttributes = new { @class = "form-control input-mask" } })
+                                <i class="form-group__bar"></i>
+                            </div>
+                            @Html.ValidationMessageFor(model => model.Name, "", new { @class = "text-danger form-control-danger" })
+                        </div>
+                        <div class="col-sm-4">
+                            <div class="form-group">
+                                @Html.LabelFor(model => model.Mobile, htmlAttributes: new { @class = "" })
+                                @Html.EditorFor(model => model.Mobile, new { htmlAttributes = new { @class = "form-control input-mask" } })
+                                <i class="form-group__bar"></i>
+                            </div>
+                            @Html.ValidationMessageFor(model => model.Mobile, "", new { @class = "text-danger form-control-danger" })
+                        </div>
+
+
+                    </div>
+                    <center>
+                        <button type="submit" class="btn btn-outline-primary waves-effect">Create</button>
+                    </center>
+                </div>
+            }
+
+        </div>
+    </div>
+</div>

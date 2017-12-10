@@ -1,0 +1,49 @@
+﻿@model IEnumerable<AMS.Models.MerchantServingAreaDetails>
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<h2 class="title">
+    Merchant Serving Area <span class="label label-default">View</span>
+</h2>
+<p>
+    <a href="~/MerchantServingArea/create" class="btn btn-primary waves-effect pull-right" aria-label="Left Align">
+        <span class="glyphicon glyphicon-plus-sign" aria-hidden="true"></span> Create New
+    </a>
+    <div class="clearfix"></div>
+</p>
+
+<table class="table  dataTable" id="list">
+    <thead class="thead-default">
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.BuildingName)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.MerchantName)
+            </th>
+            <th class="nosorting"></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.BuildingName)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.MerchantName)
+                </td> <td>
+                    <div class="pull-right">
+                            <a class="btn btn-secondary btn--icon-text" href="~/merchant/Edit/@item.Id"><span><i class="zmdi zmdi-edit zmdi-hc-fw"></i></span></a>
+                            <a class="btn btn-secondary btn--icon-text" href="~/merchant/Details/@item.Id"><span><i class="zmdi zmdi-more zmdi-hc-fw"></i></span></a>
+                            <a class="btn btn-danger btn--icon-text" href="~/merchant/Delete/@item.Id"><span><i class="zmdi zmdi-delete zmdi-hc-fw"></i></span></a>
+                </div>
+                        </td>
+            </tr>
+        }
+    </tbody>
+</table>
+

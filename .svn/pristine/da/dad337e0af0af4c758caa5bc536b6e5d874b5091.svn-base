@@ -1,0 +1,10 @@
+
+*****ERROR*****
+Time: 2017-10-17 13:50:05,184 
+Thread: 59 
+Identity: admin@weelo.com.eg
+Message: Object reference not set to an instance of an object.
+StackTrace: System.NullReferenceException: Object reference not set to an instance of an object.
+   at AMS.Controllers.BusinessHoursController.<Index>d__2.MoveNext() in D:\CODE\WEB\Weelo-Admin\AMS\Controllers\BusinessHoursController.cs:line 33
+
+Data: {}

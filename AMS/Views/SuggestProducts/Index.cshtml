@@ -1,0 +1,68 @@
+﻿
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<header class="m-header">
+    <h2 class="m-title">Suggest Product</h2>
+</header>
+
+<div class="content_inner">
+    <div class="card">
+        <div class="card-block">
+            @*<a href="~/suggestProducts/create" class="btn btn--action btn--fixed btn-danger waves-effect"><i class="zmdi zmdi-plus"></i></a>*@
+            <table id="suggestproducts" class="table table-bordered" cellspacing="0">
+                <thead class="thead-default">
+                    <tr>
+                        <th class="nosorting">Id</th>
+                        <th class="nosorting">Product</th>
+                        <th class="nosorting">User Phone</th>
+                        <th class="nosorting">Category </th>
+                        <th class="nosorting">Merchant</th>
+                        <th class="nosorting">CreationDate </th>
+                    </tr>
+                </thead>
+                <tfoot>
+
+                </tfoot>
+            </table>
+        </div>
+    </div>
+</div>
+
+@section scripts{
+    <script>
+        $(document).ready(function () {
+            var _dt = new DataTableEntry();
+            var datatable;
+                if (datatable) datatable.destroy();
+                datatable = _dt.bindDataTable('#suggestproducts', [0, 1, 2, 3, 4, 5],
+                    function (data, a, b, c) {
+                        if (c.col == 5) {
+                            var orderTime = moment.utc(data).toDate();
+                            return moment(orderTime).format('DD/MM/YYYY hh:mm:ss A');
+                        }
+                        //if (c.col == 6)
+                        //    return `<div class="btn-group btn-group-sm btn-group-right pull-right" role="group" aria-label="...">
+                        //                <div class="btn-group" role="group">
+                        //                    <a class ="btn btn-sm btn-default" href= "/admin/SuggestProducts/Details/`+ b.id + `" >Details</a>
+                        //                </div>
+                        //            </div>`
+                        else
+                            return data;
+                    }, 'merchant/suggestProduct/list', 'POST', {},
+                    [
+                        { "data": "id" },
+                        { "data": "productName" },
+                        { "data": "userPhone" },
+                        { "data": "category" },
+                        { "data": "merchant" },
+                        { "data": "creationDate" }
+                    ]);
+            
+
+        });
+    </script>
+
+}

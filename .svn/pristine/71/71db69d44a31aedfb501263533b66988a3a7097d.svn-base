@@ -1,0 +1,90 @@
+﻿
+@{
+    ViewBag.Title = "OrderDetails";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="content__inner">
+    <div class="not-found-lay" style="display:none;">
+        <p> No products found </p>
+    </div>
+   <div class="invoice">
+       <div class="invoice__header">
+           <span class="badge badge-default x-right or-status"></span>
+           <center><span class="or-ordernumber"></span></center>
+       </div>
+       <div class="row invoice__address">
+           <div class="col-6">
+               <div class="text-right">
+                   <p>Invoice from</p>
+                   <p class="or-m-name"></p>
+                   <small class="or-m-phone"></small>
+                   @*<br />
+                    <p>Accepted By: <span class="or-acceptedBy"></span></p>
+                    <p>Handeled By: <span class="or-handeledBy"></span></p>*@
+               </div>
+           </div>
+           <div class="col-6">
+               <div class="text-left">
+                   <p>Invoice to</p>
+                   <ul class="icon-list">
+                       <li><i class="zmdi zmdi-account"></i><span class="or-c-name"></span></li>
+                       <li><i class="zmdi zmdi-phone"></i><span class="or-c-mobile"></span></li>
+                       <li><i class="zmdi zmdi-pin"></i><span class="or-c-address"></span></li>
+                       <li><i class="zmdi zmdi-my-location"></i><span class="or-c-apt"></span></li>
+                   </ul>
+                   <p class="or-c-notes"></p>
+               </div>
+           </div>
+       </div>
+       <div class="row invoice__attrs">
+           <div class="col-3">
+               <div class="invoice__attrs__item">
+                   <small>Invoice#</small>
+                   <h3 class="or-ordernumber"></h3>
+               </div>
+           </div>
+           <div class="col-3">
+               <div class="invoice__attrs__item">
+                   <small>Accepted By</small>
+                   <span class="or-acceptedBy"></span>
+               </div>
+           </div>
+           <div class="col-3">
+               <div class="invoice__attrs__item">
+                   <small>Delivery man</small>
+                   <h3 class="or-handeledBy"></h3>
+               </div>
+           </div>
+           <div class="col-3">
+               <div class="invoice__attrs__item">
+                   <small>Grand Total</small>
+                   <h3 class="or-grandTotal"></h3>
+               </div>
+           </div>
+       </div>
+       <table class="table table-bordered invoice__table">
+           <thead class="thead-default">
+               <tr>
+                   <td style="width:60%">Item</td>
+                   <td style="width:10%">Price</td>
+                   <td style="width:15%">Qty</td>
+                   <td style="width:15%">Total</td>
+               </tr>
+           </thead>
+           <tbody id="productsList"></tbody>
+       </table>
+       <footer class="invoice__footer">
+           <p>Thank You!</p>
+          <p class="or-creationDate"></p>
+       </footer>
+   </div>
+</div>
+
+
+
+@section scripts{
+
+<script src="~/Scripts/admin.order.details.js"></script>
+
+}

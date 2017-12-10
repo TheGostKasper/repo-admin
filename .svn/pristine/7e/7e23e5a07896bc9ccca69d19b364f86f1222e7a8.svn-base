@@ -1,0 +1,39 @@
+﻿
+@{
+    ViewBag.Title = "Admin";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2 class="title">
+    Admin <span class="label label-default">View</span>
+</h2>
+
+<div>
+    <div class="row">
+        <div class="col-xs-6 col-md-3">
+            <a href="~/User/Create" class="thumbnail card">
+                <div class="glyphicon glyphicon-user" style="color: cadetblue"></div>
+                <p>Create User</p><span class="label label-success"></span>
+            </a>
+        </div>
+        <div class="col-xs-6 col-md-3">
+            <a href="~/User" class="thumbnail card">
+                <div class="glyphicon glyphicon-align-justify cadetblue"></div>
+                <p>User Manage</p><span class="label label-default"></span>
+            </a>
+        </div>
+        <div class="col-xs-6 col-md-3">
+            <a href="~/ApplicationRole" class="thumbnail card">
+                <div class="glyphicon glyphicon-check cadetblue"></div>
+                <p>Manage Roles</p><span class="label label-default"></span>
+            </a>
+        </div>
+        <div class="col-xs-6 col-md-3">
+            <a href="~/UserRole/Index" class="thumbnail card">
+                <div class="glyphicon glyphicon-cog cadetblue"></div>
+                <p>User Application Roles</p><span class="label label-default"></span>
+            </a>
+        </div>
+
+    </div>
+</div>

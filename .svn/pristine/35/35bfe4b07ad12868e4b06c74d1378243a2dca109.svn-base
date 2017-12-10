@@ -1,0 +1,59 @@
+﻿@model AMS.Models.Models.SuggestProductDetails
+
+@{
+    ViewBag.Title = "Details";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<header class="m-header">
+    <h2 class="m-title">Details</h2>
+</header>
+<h2 class="title"><a class="btn btn-secondary btn--icon-text waves-effect" href="~/SuggestProducts/"><span><i class="zmdi zmdi-arrow-back"></i> Back</span></a></h2>
+
+<div class="card-block">
+    <dl class="row">
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.UserPhone)
+        </dt>
+
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.UserPhone)
+        </dd>
+
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Category)
+        </dt>
+
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Category)
+        </dd>
+
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.ProductName)
+        </dt>
+
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.ProductName)
+        </dd>
+
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Merchant)
+        </dt>
+
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Merchant)
+        </dd>
+
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.CreationDate)
+        </dt>
+
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.CreationDate)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    <a class="btn btn-secondary btn--icon-text" href="~/SuggestProducts/Edit/@Model.Id"><span><i class="zmdi zmdi-edit zmdi-hc-fw"></i>Edit</span></a>
+   
+</p>

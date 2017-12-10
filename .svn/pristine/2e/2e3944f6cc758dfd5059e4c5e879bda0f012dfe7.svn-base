@@ -1,0 +1,265 @@
+﻿
+@{
+    ViewBag.Title = "MerchantTransactions";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<style>
+    tr.group-start > td {
+        padding: 11px;
+        font-size: 20px;
+        background: #f5f5f5;
+    }
+
+    tr.group-end > td {
+        padding: 6px 6px;
+        font-weight: 700;
+        border-top: 1px solid #aaa;
+        padding-bottom: 25px;
+        margin-bottom: 26px;
+    }
+    #OrderFilteredTransaction_filter{
+        display:none;
+    }
+        display:none;
+    }
+</style>
+<section class="content__inner">
+    <div class="card card-block p-t-0">
+        <div class="row gheader">
+            <div class="col-md-3">
+                <select id="merchantList" style="width:100%"></select>
+            </div>
+            <div class="col-md-2 offset-md-5">
+                <select id="MonthList" style="width:100%">
+                    <option value='1'>Janaury</option>
+                    <option value='2'>February</option>
+                    <option value='3'>March</option>
+                    <option value='4'>April</option>
+                    <option value='5'>May</option>
+                    <option value='6'>June</option>
+                    <option value='7'>July</option>
+                    <option value='8'>August</option>
+                    <option value='9'>September</option>
+                    <option value='10'>October</option>
+                    <option value='11'>November</option>
+                    <option value='12'>December</option>
+                </select>
+            </div>
+            <div class="col-md-2">
+                <select id="YearList" style="width:100%"></select>
+            </div>
+
+        </div>
+
+        <br />
+        <div class="">
+            <div class="row">
+                <div class="col-md-12"><input type="search" class="search-table" name="name" value="" placeholder="Search for records..." /></div>
+            </div>
+            <table id="OrderFilteredTransaction" class="table table-bordered" cellspacing="0" style="width:100%">
+                <thead>
+                    <tr>
+                        <th class="nosorting"> #</th>
+                        <th class="nosorting"> Handled By</th>
+                        <th class="nosorting"> Delivered By</th>
+                        <th class="nosorting"> Due Date</th>
+                        <th class="nosorting"> Collected</th>
+                        <th class="nosorting"> Category</th>
+                        <th class="nosorting"> Creation Date</th>
+                        <th class="nosorting"> Total</th>
+                        <th class="nosorting"> Due Amount</th>
+                        <th class="nosorting"> </th>
+                    </tr>
+                </thead>
+                <tfoot>
+                </tfoot>
+            </table>
+        </div>
+    </div>
+</section>
+
+<div id="collectModal" class="modal fade">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title">Update</h4>
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+            </div>
+            <div class="modal-body">
+                <p>Update Colelction Date ?</p>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
+                <button type="button" class="btn btn-primary" id="order-collect">Collect</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+@section scripts{
+    <script>
+        (function () {
+
+            var datatable;
+            var cuurItemId;
+            var merchantId;
+            var _data;
+            var _dt = new DataTableEntry();
+            var _merchant = new Merchant();
+            var oDetails = new OrderDetails();
+
+            _merchant.bindMerchantsToSelect('merchantList');
+            fillYears('#YearList');
+
+
+            fillDataTable($('#merchantList').val(), $('#YearList').val(), $('#MonthList').val());
+
+
+
+
+            $('select').on('change', function () {
+                if ($('#merchantList').val() != 0)
+                    fillDataTable($('#merchantList').val(), $('#YearList').val(), $('#MonthList').val())
+            });
+
+            function fillDataTable(merchantId, year, month) {
+                if (datatable) datatable.destroy();
+                var odNum;
+                datatable = _dt.bindGroupDataTable('#OrderFilteredTransaction', 9,
+                    {
+                        startRender: function (rows, group) {
+                    //        var data = '<table class="table" cellspacing="0" style="width:100%"><tr><td colspan="9" class="inner-header">' + moment(group).format('DD/MM/YYYY') + '<span class="badge badge-pill badge-danger td">' + rows.count() + '</span></td></tr>' +
+                    //            '<thead><tr class="inner-header">' +
+                    //    '<th class ="nosorting"> #</th>' +
+                    //    '<th class ="nosorting"> Handled By</th>' +
+                    //    '<th class ="nosorting"> Delivered By</th>' +
+                    //    '<th class="nosorting"> Due Date</th>' +
+                    //    '<th class="nosorting"> Collected</th>' +
+                    //    '<th class="nosorting"> Category</th>' +
+                    //    '<th class="nosorting"> Creation Date</th>' +
+                    //    '<th class="nosorting"> Total</th>' +
+                    //    '<th class="nosorting"> Due Amount</th>' +
+                    //    '<th class="nosorting"> </th>' +
+                    //'</tr></thead></table>';
+                            return moment(group).format('DD/MM/YYYY') + '<span class="badge badge-pill badge-danger td">' + rows.count() + '</span>';
+                        },
+                        endRender: function (rows, group) {
+                            var _total = 0;
+                            var dAmount = 0.000;
+                            for (var i = 0; i < rows.data().length; i++) {
+                                var _data = rows.data()[i];
+                                _total += _data.grandTotal;
+                                dAmount += parseFloat(_data.percentage);
+                            }
+                            return $('<tr/>')
+                                .append('<td colspan="7">Total</td>')
+                                .append('<td>' + _total.toFixed(2) + '</td>')
+                                .append('<td>' + dAmount.toFixed(2) + '</td>')
+                            .append('<td/>');
+                        },
+                        dataSrc: 'creationDate'
+                    }
+                    , [0, 1, 2, 3, 4, 5, 6, 7, 8, 9],
+                    function (data, a, b, c) {
+                        if (c.col == 0) {
+                            odNum = data;
+                            return data;//orderNumberFormat(data);
+                        }
+                        if (c.col == 3) {
+                            var orderTime = moment.utc(data).toDate();
+                            if (orderTime != "Invalid Date")
+                                return moment(data).format('DD/MM/YYYY');
+                            else return "--";
+                        }
+
+                        if (c.col == 4) {
+                            if (data == true)
+                                return '<a class="btn green"><i class ="material-icons">Yes</i></a>'
+                            else
+                                return '<i class ="material-icons">Not Yet</i>'
+                        }
+                        if (c.col == 6) {
+                            var orderTime = moment.utc(data).toDate();
+                            if (orderTime != "Invalid Date")
+                                return moment(data).format("hh:mm:ss a")
+                            else return "--";
+                        }
+                        if (c.col == 9)
+                            return '<button class="btn btn-primary btnCollect"  data-id=' + odNum + '>Collect</button>'
+                        else
+                            return data;
+                    },
+                    'merchant/filtered/transaction', 'POST', { merchantId: merchantId, year: year, month: month }, [
+                        { "data": "orderNumber" },
+                        { "data": "name" },
+                        { "data": "nameEN" },
+                        { "data": "collectionDueDate" },
+                        { "data": "isCollected" },
+                        { "data": "category" },
+                        { "data": "collectionDate" },
+                        { "data": "grandTotal" },
+                        { "data": "percentage" },
+                        { "data": "creationDate" },
+                    ], function (settings, json) {
+                        _data = $('#OrderFilteredTransaction tbody tr');
+                    });
+
+            }
+            $(document).on('keyup', 'input[type=search]', function (e) {
+                e.preventDefault();
+                var searchVal = $(this).val();
+                console.log(searchVal);
+                var objArr = [];
+                for (var i = 0; i < _data.length; i++) {
+                    if (_data[i].cells[0].innerText.includes(searchVal)) objArr.push(_data[i]);
+                }
+                if (objArr.length == 0) objArr.push('<tr><td colspan="9" class="dataTables_empty">No Match</td></tr>')
+                $('#OrderFilteredTransaction tbody').empty();
+                for (var i = 0; i < objArr.length; i++) {
+                    $('#OrderFilteredTransaction tbody').append(objArr[i]);
+                }
+                $('#OrderFilteredTransaction tbody').html(objArr);
+            });
+            $(document).on('click', '.btnCollect', function () {
+                _orderId = $(this).data('id');
+                $('#collectModal').modal('show');
+            });
+
+            $('#order-collect').on('click', function () {
+                oDetails.getOnlyData("merchant/transaction/update/" + _orderId, {}, "GET").then(function (data) {
+                    if (data.data != null) {
+                        var _data = data.data;
+                        $('#collectModal').modal('hide');
+
+                        $('.btnCollect[data-id="' + _orderId + '"]').parent().parent().css('background-color', '#fff3d2');
+                        $('.btnCollect[data-id="' + _orderId + '"]').hide();
+                        // datatable.draw();
+                    } else {
+                        alert("something went wrong");
+                    }
+
+                }, function (err) {
+                    alert("something went wrong");
+                });
+
+
+
+            })
+
+
+            function fillYears(selectId) {
+                var fixYear = new Date().getFullYear() - 5;
+                for (var i = 0; i < 10; i++) {
+                    var year = fixYear + i;
+                    $(selectId).append('<option value="' + year + '">' + year + '</option>');
+                }
+                $('option[value="' + new Date().getFullYear() + '"').prop('selected', 'true');
+                $('#MonthList>option[value="' + (new Date().getMonth() + 1) + '"').prop('selected', 'true');
+            }
+
+
+        }());
+    </script>
+
+}

@@ -1,0 +1,56 @@
+﻿@model IEnumerable<AMS.Models.Country>
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+
+<header class="m-header">
+    <h2 class="m-title">Countries</h2>
+</header>
+<div class="content_inner">
+    <div class="card">
+        <div class="card-block">
+            <a href="~/countries/create" class="btn btn--action btn--fixed btn-danger waves-effect"><i class="zmdi zmdi-plus"></i></a>
+            <table class="table table-bordered" id="list">
+                <thead class="thead-default">
+                    <tr>
+                        <th>
+                            @Html.DisplayNameFor(model => model.Name)
+                        </th>
+                        <th>
+                            @Html.DisplayNameFor(model => model.NameAR)
+                        </th>
+                        <th class="nosorting"></th>
+                    </tr>
+                </thead>
+
+                <tbody>
+                    @foreach (var item in Model)
+                    {
+                    <tr>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Name)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.NameAR)
+                        </td>
+
+                        <td>
+                            <div class="pull-right">
+
+                                <a class="btn btn-secondary btn--icon-text" href="~/Countries/Edit/@item.Id"><span><i class="zmdi zmdi-edit zmdi-hc-fw"></i></span></a>
+                               @* <a class="btn btn-secondary btn--icon-text" href="~/Countries/Details/@item.Id"><span><i class="zmdi zmdi-more zmdi-hc-fw"></i></span></a>*@
+                                <a class="btn btn-danger btn--icon-text" data-did="@item.Id" href="~/Countries/Delete/@item.Id"><span><i class="zmdi zmdi-delete zmdi-hc-fw"></i></span></a>
+                            </div>
+                        </td>
+                    </tr>
+                    }
+
+                </tbody>
+
+            </table>
+        </div>
+    </div>
+</div>

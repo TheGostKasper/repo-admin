@@ -1,0 +1,103 @@
+﻿
+@{
+    ViewBag.Title = "OrderSupport";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<style>
+    #orderTextSearch {
+        text-align: center;
+    }
+</style>
+
+<div class="toolbar">
+    <div class="input-group input-group-lg">
+        <input type="text" class="form-control" placeholder="000 - 00000" id="orderTextSearch" maxlength="9" required autofocus>
+        <i class="form-group__bar"></i>
+    </div>
+</div>
+<div class="not-found" style="display:none;">
+    <p> No products found </p>
+</div>
+<div class="invoice" id="or-card" style="display:none;">
+    <div class="invoice__header">
+        <span class="badge badge-default x-right or-status"></span>
+        @*<center><span id="or-ordernumber"></span></center>*@
+    </div>
+    <div class="row invoice__address">
+        <div class="col-6">
+            <div class="text-right">
+                <p>Invoice from</p>
+                <p id="or-m-name"></p>
+                <small id="or-m-phone"></small>
+                @*<br />
+                    <p>Accepted By: <span id="or-acceptedBy"></span></p>
+                    <p>Handeled By: <span id="or-handeledBy"></span></p>*@
+            </div>
+        </div>
+        <div class="col-6">
+            <div class="text-left">
+                <p>Invoice to</p>
+                <ul class="icon-list">
+                    <li><i class="zmdi zmdi-account"></i><span id="or-c-name"></span></li>
+                    <li><i class="zmdi zmdi-phone"></i><span id="or-c-mobile"></span></li>
+                    <li><i class="zmdi zmdi-pin"></i><span id="or-c-address"></span></li>
+                    <li><i class="zmdi zmdi-my-location"></i><span id="or-c-apt"></span></li>
+                </ul>
+                <p id="or-c-notes"></p>
+            </div>
+        </div>
+    </div>
+    <div class="row invoice__attrs">
+        <div class="col-3">
+            <div class="invoice__attrs__item">
+                <small>Invoice#</small>
+                <h3 id="or-ordernumber"></h3>
+            </div>
+        </div>
+        <div class="col-3">
+            <div class="invoice__attrs__item">
+                <small>Accepted By</small>
+                <span id="or-acceptedBy"></span>
+            </div>
+        </div>
+        <div class="col-3">
+            <div class="invoice__attrs__item">
+                <small>Delivery man</small>
+                <h3 id="or-handeledBy"></h3>
+            </div>
+        </div>
+        <div class="col-3">
+            <div class="invoice__attrs__item">
+                <small>Grand Total</small>
+                <h3 id="or-grandTotal"></h3>
+            </div>
+        </div>
+    </div>
+
+    <div class="row">
+        <table class="table table-bordered table-striped invoice__table">
+            <thead class="thead-default">
+                <tr class="text-uppercase">
+                    <td style="width:50%">Item</td>
+                    <td style="width:25%">Qty</td>
+                    <td style="width:25%">Price</td>
+                </tr>
+            </thead>
+            <tbody id="productsList"></tbody>
+        </table>
+    </div>
+
+
+    <div style="display:none;">
+        <canvas id="bar-chart" height="300"></canvas>
+
+    </div>
+
+</div>
+
+
+@section scripts{
+    <script src="~/Scripts/admin.order.support.js"></script>
+}
+
+

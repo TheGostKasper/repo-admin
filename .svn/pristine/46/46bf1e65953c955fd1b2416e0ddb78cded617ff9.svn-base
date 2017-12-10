@@ -1,0 +1,162 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+  For more information on how to configure your ASP.NET application, please visit
+  http://go.microsoft.com/fwlink/?LinkId=301880
+  -->
+<configuration>
+  <configSections>
+    <!-- For more information on Entity Framework configuration, visit http://go.microsoft.com/fwlink/?LinkID=237468 -->
+    <section name="entityFramework" type="System.Data.Entity.Internal.ConfigFile.EntityFrameworkSection, EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" requirePermission="false" />
+    <section name="log4net" type="log4net.Config.Log4NetConfigurationSectionHandler, log4net" />
+  </configSections>
+  <connectionStrings>
+    <!--<add name="DefaultConnection" connectionString="server=192.168.1.100;Port=3306;Database=weelo;uid= root;password=$$root$$;CharSet=utf8;Convert Zero Datetime=True" providerName="MySql.Data.MySqlClient" />-->
+    <!--<add name="DefaultConnection" connectionString="server=192.168.1.100;Port=3306;Database=weelo-local;uid= root;password=root;CharSet=utf8;Convert Zero Datetime=True" providerName="MySql.Data.MySqlClient" />-->
+  <add name="DefaultConnection" connectionString="server=weelo.cczj5t1icgeq.us-west-2.rds.amazonaws.com;Port=3306;Database=weelo ;User Id= root;Password=$$root$$;CharSet=utf8;" providerName="MySql.Data.MySqlClient" />
+  </connectionStrings>
+  <appSettings>
+    <remove key="webpages:Version" />
+    <remove key="webpages:Enabled" />
+    <remove key="ClientValidationEnabled" />
+    <remove key="ClientValidationEnabled" />
+    <remove key="UnobtrusiveJavaScriptEnabled" />
+    <remove key="LiveMode" />
+    <remove key="GSKey" />
+    <remove key="TestServerUrl" />
+    <remove key="LiveServerUrl" />
+    <remove key="WebHubURL" />
+    <remove key="WebSignalR" />
+    
+    <add key="webpages:Version" value="3.0.0.0" />
+    <add key="webpages:Enabled" value="false" />
+    <add key="ClientValidationEnabled" value="true" />
+    <add key="UnobtrusiveJavaScriptEnabled" value="true" />
+    <add key="LiveMode" value="true" />
+    <add key="GSKey" value="-GSD*X--" />
+    <add key="TestServerUrl" value="http://127.0.0.1:60/" />
+    <add key="LiveServerUrl" value="https://www.weelo.com.eg/" />
+    <add key="WebHubURL" value="/api/signalr/hubs" />
+    <add key="WebSignalR" value="/api/signalr" />
+  </appSettings>
+  <log4net>
+    <root>
+      <level value="ALL" />
+      <appender-ref ref="RollingLogFileAppender" />
+      <appender-ref ref="SmtpAppender" />
+    </root>
+    <appender name="RollingLogFileAppender" type="log4net.Appender.RollingFileAppender">
+      <file value="Log\\logger.txt" />
+      <appendToFile value="true" />
+      <rollingStyle value="Date" />
+      <datePattern value="'_'yyyyMMdd'.log'" />
+      <lockingModel type="log4net.Appender.FileAppender+MinimalLock" />
+      <layout type="log4net.Layout.PatternLayout">
+        <conversionPattern value="%newline*****%level*****%newlineTime: %date %newlineThread: %thread %newlineIdentity: %identity%newlineMessage: %message%newlineStackTrace: %exception%newlineData: %property{data}" />
+      </layout>
+    </appender>
+
+  </log4net>
+
+
+
+
+  <system.web>
+    <authentication mode="Forms">
+      <forms loginUrl="/login" defaultUrl="/login" protection="All" timeout="100000" path="/" name="_adminAUTH" />
+    </authentication>
+    <compilation debug="true" targetFramework="4.5" />
+    <httpRuntime targetFramework="4.5" maxRequestLength="52428800" />
+
+  </system.web>
+
+  <system.webServer>
+    <staticContent>
+      <clientCache cacheControlMode="UseMaxAge" cacheControlMaxAge="1.00:00:00"/>
+    </staticContent>
+    <modules>
+      <remove name="FormsAuthentication" />
+    </modules>
+    <handlers>
+      <remove name="ExtensionlessUrlHandler-Integrated-4.0" />
+      <remove name="OPTIONSVerbHandler" />
+      <remove name="TRACEVerbHandler" />
+      <add name="ExtensionlessUrlHandler-Integrated-4.0" path="*." verb="*" type="System.Web.Handlers.TransferRequestHandler" preCondition="integratedMode,runtimeVersionv4.0" />
+    </handlers>
+    <directoryBrowse enabled="false" />
+        <caching maxCacheSize="1000">
+            <profiles>
+                <remove extension=".js" />
+                <remove extension=".css" />
+            </profiles>
+        </caching>
+  </system.webServer>
+  <runtime>
+    <assemblyBinding xmlns="urn:schemas-microsoft-com:asm.v1">
+      <dependentAssembly>
+        <assemblyIdentity name="Microsoft.Owin.Security" publicKeyToken="31bf3856ad364e35" />
+        <bindingRedirect oldVersion="0.0.0.0-3.0.1.0" newVersion="3.0.1.0" />
+      </dependentAssembly>
+      <dependentAssembly>
+        <assemblyIdentity name="Microsoft.Owin.Security.OAuth" publicKeyToken="31bf3856ad364e35" />
+        <bindingRedirect oldVersion="0.0.0.0-3.0.1.0" newVersion="3.0.1.0" />
+      </dependentAssembly>
+      <dependentAssembly>
+        <assemblyIdentity name="Microsoft.Owin.Security.Cookies" publicKeyToken="31bf3856ad364e35" />
+        <bindingRedirect oldVersion="0.0.0.0-3.0.1.0" newVersion="3.0.1.0" />
+      </dependentAssembly>
+      <dependentAssembly>
+        <assemblyIdentity name="Microsoft.Owin" publicKeyToken="31bf3856ad364e35" />
+        <bindingRedirect oldVersion="0.0.0.0-3.0.1.0" newVersion="3.0.1.0" />
+      </dependentAssembly>
+      <dependentAssembly>
+        <assemblyIdentity name="Newtonsoft.Json" culture="neutral" publicKeyToken="30ad4fe6b2a6aeed" />
+        <bindingRedirect oldVersion="0.0.0.0-9.0.0.0" newVersion="9.0.0.0" />
+      </dependentAssembly>
+      <dependentAssembly>
+        <assemblyIdentity name="System.Web.Optimization" publicKeyToken="31bf3856ad364e35" />
+        <bindingRedirect oldVersion="1.0.0.0-1.1.0.0" newVersion="1.1.0.0" />
+      </dependentAssembly>
+      <dependentAssembly>
+        <assemblyIdentity name="WebGrease" publicKeyToken="31bf3856ad364e35" />
+        <bindingRedirect oldVersion="0.0.0.0-1.5.2.14234" newVersion="1.5.2.14234" />
+      </dependentAssembly>
+      <dependentAssembly>
+        <assemblyIdentity name="System.Web.Helpers" publicKeyToken="31bf3856ad364e35" />
+        <bindingRedirect oldVersion="1.0.0.0-3.0.0.0" newVersion="3.0.0.0" />
+      </dependentAssembly>
+      <dependentAssembly>
+        <assemblyIdentity name="System.Web.Mvc" publicKeyToken="31bf3856ad364e35" />
+        <bindingRedirect oldVersion="0.0.0.0-5.2.3.0" newVersion="5.2.3.0" />
+      </dependentAssembly>
+      <dependentAssembly>
+        <assemblyIdentity name="System.Web.WebPages" publicKeyToken="31bf3856ad364e35" />
+        <bindingRedirect oldVersion="0.0.0.0-3.0.0.0" newVersion="3.0.0.0" />
+      </dependentAssembly>
+    </assemblyBinding>
+  </runtime>
+  <entityFramework>
+    <defaultConnectionFactory type="System.Data.Entity.Infrastructure.LocalDbConnectionFactory, EntityFramework">
+      <parameters>
+        <parameter value="mssqllocaldb" />
+      </parameters>
+    </defaultConnectionFactory>
+    <providers>
+      <provider invariantName="System.Data.SqlClient" type="System.Data.Entity.SqlServer.SqlProviderServices, EntityFramework.SqlServer" />
+      <provider invariantName="MySql.Data.MySqlClient" type="MySql.Data.MySqlClient.MySqlProviderServices, MySql.Data.Entity.EF6, Version=6.9.9.0, Culture=neutral, PublicKeyToken=c5687fc88969c44d"></provider>
+    </providers>
+  </entityFramework>
+  <system.data>
+    <DbProviderFactories>
+      <remove invariant="MySql.Data.MySqlClient" />
+      <add name="MySQL Data Provider" invariant="MySql.Data.MySqlClient" description=".Net Framework Data Provider for MySQL" type="MySql.Data.MySqlClient.MySqlClientFactory, MySql.Data, Version=6.9.9.0, Culture=neutral, PublicKeyToken=c5687fc88969c44d" />
+    </DbProviderFactories>
+  </system.data>
+
+  <system.web.extensions>
+    <scripting>
+      <webServices>
+        <jsonSerialization maxJsonLength="999999999" />
+      </webServices>
+    </scripting>
+  </system.web.extensions>
+</configuration>

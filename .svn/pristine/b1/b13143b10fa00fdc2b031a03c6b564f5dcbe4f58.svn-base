@@ -1,0 +1,224 @@
+﻿@model List<SelectListItem>
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+
+<div class="row">
+    <div class="x-right">
+        @Html.DropDownList("MerchantDetails", Model, "Select Merchant", new { @class = "form-control", id = "MerchantDetails" })
+    </div>
+</div>
+<div class="row">
+    <div class="hidden" id="conDiv">
+        @using (Html.BeginForm("Upload", "MerchantProduct", FormMethod.Post, new { @class = "form-horizontal", id = "fileForm", enctype = "multipart/form-data" }))
+        {
+            <div class="form-group">
+                <div class="input-group">
+                    <label class="input-group-btn">
+                        <span class="btn bt btn-success span">
+                            Browse
+                            <input type="file" id="fileToPass" name="file" style="display:none" accept="text/plain" />
+                            @*accept=".csv, application/vnd.openxmlformats-officedocument.spreadsheetml.sheet, application/vnd.ms-excel"*@ 
+                        </span>
+                    </label>
+                    <input type="text" class="form-control inputFile" id="inputFile" readonly>
+                    <input type="submit" name="Submit" id="Submit" style="margin-bottom: 2px;" class="btn btn-success span form-contro" value="Upload" disabled="disabled" />
+                    <br />
+                </div>
+            </div>
+            <br />
+            <div class="progress">
+                <div id="progressBar" class="progress-bar" role="progressbar" aria-valuenow="50" aria-valuemin="0" aria-valuemax="100" style="width:0%">
+                    <span class="sr-only">70% Complete</span>
+                </div>
+            </div>
+        }
+
+        <div>
+            <img src="~/Content/loader.gif" id="loaderGif" />
+        </div>
+        <div id="myProgress" class="hidden">
+            <div id="myBar"></div>
+        </div>
+
+        <div id="tabs" class="hidden">
+            <ul>
+                <li><a href="#tabs-4">Original Product</a></li>
+                <li><a href="#tabs-1" id="matchProduct">Matched Product</a></li>
+                <li><a href="#tabs-2" id="umnatchedProduct">Unmatched Product</a></li>
+                <li><a href="#tabs-3">Insert Items</a></li>
+            </ul>
+            <div id="tabs-4">
+                <table id="originalData2" class="mdl-data-table responsive-table" cellspacing="0">
+                    <thead class="thead-default">
+                        <tr>
+                            <th class="nosorting">Price</th>
+                            <th class="nosorting">Barcode</th>
+                            <th class="nosorting">Name</th>
+                        </tr>
+                    </thead>
+                    <tfoot>
+
+                    </tfoot>
+                </table>
+            </div>
+            <div id="tabs-1">
+                <table id="Matched" class="mdl-data-table responsive-table" cellspacing="0">
+                    <thead class="thead-default">
+                        <tr>
+                            <th class="nosorting">Price</th>
+                            <th class="nosorting">Barcode</th>
+                            <th class="nosorting">Name</th>
+                            <th class="nosorting">Image</th>
+                        </tr>
+                    </thead>
+                    <tfoot>
+
+                    </tfoot>
+                </table>
+            </div>
+            <div id="tabs-2">
+                <table id="UnMatched" class="mdl-data-table responsive-table" cellspacing="0">
+                    <thead class="thead-default">
+                        <tr>
+                            <th class="nosorting">Price</th>
+                            <th class="nosorting">Barcode</th>
+                            <th class="nosorting">Name</th>
+                        </tr>
+                    </thead>
+                    <tfoot>
+
+                    </tfoot>
+                </table>
+            </div>
+            <div id="tabs-3">
+                <div class="insertion">
+                    <button class="btn btn-danger" id="ReadyToInsert">Insert Un-Matched</button>
+                </div>
+                <div class="insertion">
+                    <button class="btn btn-success" id="rdMatced">Insert Matched</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+@section scripts {
+    @*<script src="~/Scripts/admin.merchant.product.js"></script>*@
+    <script>
+        (function () {
+            var path = "";
+            var files, id, img_src, merchantDataTable, datatable; var merchantId = 0;
+
+            var _dt = new DataTableEntry();
+            if (datatable) datatable.destroy();
+
+            $("#tabs").tabs();
+
+            $('input[type=file]').on('change', prepareUpload);
+            function prepareUpload(event) {
+                files = event.target.files;
+                $('#inputFile').val(event.target.files[0].name);
+            }
+
+            $('#MerchantDetails').on('change', function () {
+                $('.progress').hide();
+                $('#Submit').removeAttr("disabled");
+                merchantId = $(this).val();
+                if ($(this).val() != '') {
+                    $.get("MerchantProduct/Merchant", { id: merchantId },
+                        function (data) {
+                            $('#conDiv').removeClass('hidden');
+                            $('#loaderGif').addClass('hidden');
+                        });
+                } else {
+                    $('#conDiv').addClass('hidden');
+                }
+            });
+            $('#fileForm').on('submit', uploadFiles);
+
+
+
+            $('#matchProduct').on('click', function () {
+                getMatchedProds();
+            });
+            $('#umnatchedProduct').on('click', function () {
+                getUnMatchedProds();
+            })
+
+
+            function uploadFiles(event) {
+                event.stopPropagation();
+                event.preventDefault();
+                NProgress.start();
+                var formElement = document.querySelector("#fileForm");
+                var formData = new FormData(formElement);
+                $.ajax({
+                    url: "MerchantProduct/Upload",
+                    data: formData,
+                    processData: false,
+                    type: 'POST',
+                    contentType: false,
+                    processData: false,
+                    success: function (data) {
+                        path = data;
+                        if (datatable) datatable.destroy();
+                         getData();
+                        NProgress.done();
+                        $('#loaderGif').addClass('hidden');
+                    }
+                });
+                status = true;
+            }
+            function getData() {
+                $('#loaderGif').removeClass('hidden');
+                datatable = _dt.bindDataTableAction('#originalData2', [],
+                    function (data, a, b, c) {
+                        return data;
+                    }, 'MerchantProduct/GetItems', 'POST', { Path: path, }, [
+                        { "data": "Price" },
+                        { "data": "Barcode" },
+                        { "data": "NameAR" },
+                    ]);
+                $('#tabs').removeClass('hidden');
+                $('#loaderGif').addClass('hidden');
+            }
+
+            function getMatchedProds() {
+                if (datatable) datatable.destroy();
+                datatable = _dt.bindDataTableAction('#Matched', [],
+                    function (data, a, b, c) {
+                        if (c.col == 3) {
+                            data = (data != "") ? data : "/Content/images/placeholder.gif";
+                            return '<div ><img class="imageContainer" src="' + data + '" style="width:90px; height:90px;"/></div>'
+                        }
+                        return data;
+                    }, 'MerchantProduct/GetMatchedItems', 'POST', { Path: path, }, [
+                        { "data": "Price" },
+                        { "data": "Barcode" },
+                        { "data": "NameAR" },
+                        { "data": "Image" },
+                    ]);
+            }
+            function getUnMatchedProds() {
+
+                datatable = _dt.bindDataTableAction('#UnMatched', [],
+                    function (data, a, b, c) {
+                        return data;
+                    }, 'MerchantProduct/GetUnMatchedItems', 'POST', { Path: path, }, [
+                        { "data": "Price" },
+                        { "data": "Barcode" },
+                        { "data": "NameAR" },
+                    ]);
+            }
+            function saveToken() {
+                $.get("MerchantProduct/SaveToken", { token: getToken() }, function (data) { });
+            }
+            saveToken();
+        }());
+    </script>
+}

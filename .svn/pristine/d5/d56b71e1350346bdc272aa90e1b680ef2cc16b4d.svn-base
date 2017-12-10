@@ -1,0 +1,35 @@
+﻿
+@{
+    ViewBag.Title = "MobileVersion";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<style>
+
+</style>
+
+<div class="selectDataTable">
+    <select id="merchantList">
+        <option>Select ...</option>
+    </select>
+</div>
+
+
+<div class="wrapper">
+    <div class="iphone-portrait">
+        <img class="iphone-pic" src="~/Content/images/iphone.png" alt="img">
+        <div class="hide-scroll"></div>
+        <iframe class="iphone" src="~/mobile.html" name="iframe" width="337" height="484" />
+    </div>
+</div>
+
+
+@section scripts{
+    <script>
+        (function () {
+            var _merchant = new Merchant();
+            _merchant.bindMerchantsToSelect('merchantList');
+
+
+       }());
+</script>
+}

@@ -1,0 +1,41 @@
+﻿
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<div class="content_inner">
+    <div class="card">
+        <a href="~/MerchantCourier/create" class="btn btn--action btn--fixed btn-danger waves-effect"><i class="zmdi zmdi-plus"></i></a>
+
+        <div class="card-block">
+            <div class="row">
+                <div class="col-md-10"><input type="search" class="search-table" name="name" value="" placeholder="Search for records..." /></div>
+                <div class="col-md-2">
+                    <div class="selectDiv">
+                        <select id="merchantList" class="select2"></select>
+                    </div>
+                </div>
+            </div>
+            <table id="courierList" class="table table-bordered">
+                <thead class="thead-default">
+                    <tr>
+                        @*<th class="nosorting">Id</th>*@
+                        <th class="nosorting">Name</th>
+                        <th class="nosorting">Mobile</th>
+                        <th class="nosorting">Merchant </th>
+                        <th class="nosorting"></th>
+                    </tr>
+                </thead>
+                <tfoot>
+
+                </tfoot>
+            </table>
+
+        </div>
+    </div>
+</div>
+
+
+@section scripts{
+    <script src="~/Scripts/admin.merchant.courier.js"></script>
+}

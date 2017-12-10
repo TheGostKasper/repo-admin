@@ -1,0 +1,67 @@
+﻿@model AMS.Models.Models.MerchantCoupon
+
+@{
+    ViewBag.Title = "Details";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>MerchantCoupon</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.CouponId)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.CouponId)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Amount)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Amount)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.MerchantCouponTypeId)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.MerchantCouponTypeId)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.MerchantId)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.MerchantId)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.CreationDate)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.CreationDate)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.ExpiryDate)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.ExpiryDate)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.Id }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

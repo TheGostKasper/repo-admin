@@ -1,0 +1,54 @@
+﻿@model IEnumerable<AMS.Models.Role>
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<header class="m-header">
+    <h2 class="m-title">Roles</h2>
+</header>
+<div class="content_inner">
+    <div class="card">
+        <div class="card-block">
+            <a href="~/role/create" class="btn btn--action btn--fixed btn-danger waves-effect"><i class="zmdi zmdi-plus"></i></a>
+            <table class="table table-bordered" id="list">
+                <thead class="thead-default">
+                    <tr>
+                        <th>
+                            @Html.DisplayNameFor(model => model.Id)
+                        </th>
+                        <th>
+                            @Html.DisplayNameFor(model => model.Name)
+                        </th>
+                        <th class="nosorting"></th>
+                    </tr>
+                </thead>
+
+                <tbody>
+                    @foreach (var item in Model)
+                    {
+                        <tr>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.Id)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.Name)
+                            </td>
+
+                            <td>
+                                <div class="pull-right">
+                                    <a class="btn btn-secondary btn--icon-text" href="~/Role/Edit/@item.Id"><span><i class="zmdi zmdi-edit zmdi-hc-fw"></i></span></a>
+                                     @*<a class="btn btn-secondary btn--icon-text" href="~/Role/Details/@item.Id"><span><i class="zmdi zmdi-more zmdi-hc-fw"></i></span></a>*@
+                                    <a class="btn btn-danger btn--icon-text" data-did="@item.Id" href="~/Role/Delete/@item.Id"><span><i class="zmdi zmdi-delete zmdi-hc-fw"></i></span></a>
+                                </div>
+                            </td>
+                        </tr>
+                    }
+
+                </tbody>
+
+            </table>
+        </div>
+    </div>
+</div>

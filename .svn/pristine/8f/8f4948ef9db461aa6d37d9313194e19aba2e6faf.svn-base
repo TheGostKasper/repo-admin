@@ -1,0 +1,382 @@
+﻿using AMS.Context;
+using AMS.Helper;
+using AMS.Models;
+using log4net;
+using Newtonsoft.Json;
+using RestSharp;
+using System;
+using System.Collections.Generic;
+using System.IO;
+using System.Linq;
+using System.Net;
+using System.Text.RegularExpressions;
+using System.Web;
+using System.Web.Mvc;
+using System.Web.Script.Serialization;
+using System.Web.Security;
+
+namespace AMS.Controllers
+{
+    [Authorize(Roles = "Admin,Operation")]
+    public class HomeController : Controller
+    {
+        private ApplicationDbContext db = new ApplicationDbContext();
+        private AMS.Helper.ExcelEntry _excelEntry = new Helper.ExcelEntry();
+        private static readonly ILog Log = LogManager.GetLogger(System.Reflection.MethodBase.GetCurrentMethod().DeclaringType);
+        public ActionResult Index()
+        {
+            if (Request.IsAuthenticated)
+            {
+                return View();
+            }
+            return Redirect("/account/login");
+        }
+        [Authorize]
+        public ActionResult ManageLookup()
+        {
+            ViewBag.Message = "Manage Lookup";
+            return View();
+        }
+        [Authorize(Roles = "Admin")]
+        public ActionResult Admin()
+        {
+            ViewBag.Message = "Admin";
+            return View();
+        }
+        public ActionResult General()
+        {
+            ViewBag.Message = "Admin";
+            return View();
+        }
+        public ActionResult About()
+        {
+            ViewBag.Message = "Your application description page.";
+
+            return View();
+        }
+
+        public ActionResult Contact()
+        {
+            ViewBag.Message = "Your contact page.";
+
+            return View();
+        }
+        public ActionResult Search()
+        {
+            ViewBag.Message = "Your contact page.";
+
+            return View();
+        }
+        public ActionResult OutOfStock()
+        {
+            return View();
+        }
+        public ActionResult Dashboard()
+        {
+            return View();
+        }
+        public ActionResult Items()
+        {
+            //var data = db.Items.ToList();
+            //_excelEntry.CreateExcel<Item>(@"D:\Tasks\Excel\weelo-backup2.xlsx", "Items", data);
+            return View();
+        }
+
+        public ActionResult MerchantServingAreaMap()
+        {
+            return View();
+        }
+        public ActionResult OrderSupport()
+        {
+            return View();
+        }
+        public ActionResult MobileVersion()
+        {
+            return View();
+        }
+        public ActionResult MerchantSupport()
+        {
+            return View();
+        }
+        public ActionResult MerchantProduct()
+        {
+            return View();
+        }
+        public ActionResult Transactions()
+        {
+            return View();
+        }
+        public ActionResult Orders()
+        {
+            return View();
+        }
+
+        public ActionResult OrderDetails(string orderNumber)
+        {
+            return View();
+        }
+
+        public ActionResult Categorize()
+        {
+            return View();
+        }
+
+        public ActionResult ManageCookies()
+        {
+            return View();
+        }
+
+        public ActionResult Push()
+        {
+            return View();
+        }
+
+        public ActionResult MerchantTransactions()
+        {
+            return View();
+        }
+        public ActionResult Blog()
+        {
+            return View();
+        }
+        public ActionResult Preview(string title)
+        {
+            return View();
+        }
+        public ActionResult Translate()
+        {
+            //var filePath = CreateFile();
+            //try
+            //{
+              
+            //    var results =db.Items.ToList().Where(e =>e.NameEN == null);
+            //    foreach (var item in results)
+            //    {
+            //        var en = TranslateByApiKey(item.NameAR);
+            //        if (en != "")
+            //        {
+            //            var obj = results.FirstOrDefault(e => e.Id == item.Id);
+            //            obj.NameEN = en;
+            //            obj.CreationDate = DateTime.Now;
+            //            db.SaveChanges();
+            //            WriteToFile(filePath, new List<string> { string.Format("{2} :  {0} translated to {1}", item.NameAR, en, item.Id) });
+            //        }else
+            //        {
+            //            WriteToFile(filePath, new List<string> { "","********* Skipped**********", string.Format("{2} :  {0} translated to {1}", item.NameAR, en, item.Id) ,""});
+            //        }
+            //    }
+            //}
+            //catch (Exception ex)
+            //{
+            //    WriteToFile(filePath, new List<string> { "********* Start Exception **********", ex.Message, "********* End Exception ************" });
+                
+            //}
+           
+            return View();
+        }
+
+        public ActionResult UpdateImage()
+        {
+            //var lstObj=Directory.GetFiles(@"D:\Tasks\UpdateImages").Select(e=>e.Substring(e.LastIndexOf('\\')+1)).ToList();
+            //_excelEntry.UpdateImagePath(lstObj, Server.MapPath("~/Log/weelo-UpdateImages.txt"));
+
+            _excelEntry.UpdateItems(Server.MapPath("~/Log/weelo-UpdateNames.txt"));
+
+
+            return View();
+        }
+
+
+        public ActionResult Excel()
+        {
+            return View();
+        }
+
+        public string CreateFile()
+        {
+            if (!System.IO.File.Exists(Server.MapPath("~/Log/translation.txt")))
+                System.IO.File.Create(Server.MapPath("~/Log/translation.txt"));
+            return Server.MapPath("~/Log/translation.txt");
+        }
+        public void WriteToFile(string path, List<string> lines)
+        {
+            using (StreamWriter sw = System.IO.File.AppendText(path))
+            {
+                foreach (var line in lines)
+                {
+                    sw.WriteLine(line);
+                }
+                
+            }
+        }
+           
+        
+       
+        [HttpPost]
+        public string ValidateUser(Merchant mrch)
+        {
+            try
+            {
+                var serializer = new JavaScriptSerializer();
+                string userData = serializer.Serialize(mrch);
+                FormsAuthenticationTicket ticket = new FormsAuthenticationTicket(1,
+                        mrch.NameEN,
+                        DateTime.Now,
+                        DateTime.Now.AddDays(365),
+                        true,
+                        userData,
+                        FormsAuthentication.FormsCookiePath);
+                string encTicket = FormsAuthentication.Encrypt(ticket);
+                return encTicket;
+            }
+            catch (Exception ex)
+            {
+                ThreadContext.Properties["data"] = VXConverter.ObjectToJson(mrch);
+                Log.Error(ex.Message, ex);
+                return "";
+            }
+
+        }
+
+
+        //public string TranslateByApiKey(List<Item> list)
+        //{
+        //    try
+        //    {
+        //        var result = "";
+        //        var q = "";
+        //        foreach (var item in list)
+        //        {
+        //            q += "&q=" + Server.UrlEncode(item.NameAR);
+        //        }
+        //        //text = text.Replace("&", " and ").Replace("\\", "");
+        //        string url = string.Format("https://translation.googleapis.com/language/translate/v2?key={0}&source={1}&target={2}{3}",
+        //            "AIzaSyAUhsDhNPjRlOEdezOcVyze8Lt1qjhumvk", "ar", "en", q);
+
+        //        using (WebClient client = new WebClient())
+        //        {
+        //            string json = client.DownloadString(url);
+        //            JsonData jsonData = (new JavaScriptSerializer()).Deserialize<JsonData>(json);
+        //            foreach (var item in jsonData.Data.Translations)
+        //            {
+        //                var obj = list.FirstOrDefault(e => e.Id == item.Id);
+        //                obj.NameEN = item.TranslatedText;
+        //                obj.CreationDate = DateTime.Now;
+        //                db.SaveChanges();
+        //            }
+        //        }
+        //        return result;
+        //    }
+        //    catch (Exception ex)
+        //    {
+        //        var filePath = Server.MapPath("~/Log/translation.txt");
+        //        WriteToFile(filePath, new List<string> { "********* Start Exception **********", ex.Message, "********* End Exception ************" });
+        //        return "";
+        //    }
+
+
+        //}
+        public string TranslateByApiKey(string text)
+        {
+            try
+            {
+                var result = "";
+                //text = text.Replace("&", " and ").Replace("\\", "");
+                string url = string.Format("https://translation.googleapis.com/language/translate/v2?key={0}&source={1}&target={2}&q={3}",
+                    "AIzaSyAUhsDhNPjRlOEdezOcVyze8Lt1qjhumvk", "ar", "en", Server.UrlEncode(text));
+                using (WebClient client = new WebClient())
+                {
+                    string json = client.DownloadString(url);
+                    JsonData jsonData = (new JavaScriptSerializer()).Deserialize<JsonData>(json);
+                    result = jsonData.Data.Translations[0].TranslatedText;
+                }
+
+                return result;
+            }
+            catch (Exception ex)
+            {
+                var filePath = Server.MapPath("~/Log/translation.txt");
+                WriteToFile(filePath, new List<string> { "********* Start Exception **********", ex.Message, "********* End Exception ************" });
+                return "";
+            }
+        }
+        [HttpPost]
+        public int UpdateOrderDisplay(DisplayOrderChanges changes)
+        {
+            try
+            {
+                foreach (var item in changes.Ctgs)
+                {
+                    var _cate = db.Categories.FirstOrDefault(e => e.Id == item.Id);
+                    _cate.DisplayOrder = item.Index + 1;
+                    db.SaveChanges();
+                }
+                return 1;
+            }
+            catch (System.Exception ex)
+            {
+                ThreadContext.Properties["data"] = VXConverter.ObjectToJson(changes);
+                Log.Error(ex.Message, ex);
+                return 0;
+            }
+
+        }
+
+        [HttpGet]
+        public void CreateExcel()
+        {
+            var items = db.Items.ToList();
+            var packItems = new List<Item>();
+            var collectionItems = new List<Item>();
+            try
+            {
+                foreach (var item in items)
+                {
+                    if (item.Volume != null && (item.Volume.ToLower().ToString().Contains("x") || item.Volume.ToLower().ToString().Contains("*") || item.Volume.ToString().Contains(" ")))
+                        packItems.Add(item);
+                    else collectionItems.Add(item);
+                }
+
+                _excelEntry.CreateExcel<Item>(@"D:\Tasks\Excel\collectionItmes.xlsx", "Items", collectionItems);
+                _excelEntry.CreateExcel<Item>(@"D:\Tasks\Excel\packItems.xlsx", "Items", packItems);
+
+            }
+            catch (System.Exception ex)
+            {
+                ThreadContext.Properties["data"] = VXConverter.ObjectToJson(new { });
+                Log.Error(ex.Message, ex);
+            }
+
+
+        }
+        [HttpPost]
+        public void ItemsSeperation(HttpPostedFileBase file)
+        {
+            try
+            {
+                _excelEntry.SeperateItemsFromExcel(file, Server.MapPath("~/Excel_Files/"));
+                RedirectToAction("Items");
+            }
+            catch (Exception ex)
+            {
+                ThreadContext.Properties["data"] = VXConverter.ObjectToJson(new { });
+                Log.Error(ex.Message, ex);
+            }
+
+        }
+    }
+
+
+    public class JsonData
+    {
+        public Data Data { get; set; }
+    }
+    public class Data
+    {
+        public List<Translation> Translations { get; set; }
+    }
+    public class Translation
+    {
+        public string TranslatedText { get; set; }
+    }
+}

@@ -1,0 +1,107 @@
+﻿
+@{
+    ViewBag.Title = "Watcher";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<style>
+    #ShopperMap {
+        height: 700px;
+        width: 100%;
+    }
+</style>
+
+<div id="ShopperMap"> </div>
+
+<button id="updateShopper" class="btn btn-success">Update Shopper</button>
+
+@section scripts {
+    <script>
+        (function () {
+            var shopperApi = getShopperHostUrl(), lnth = 0;
+            var coords = { lat: 29.96966536642111, lng: 31.25405146301273 };
+            var map = new google.maps.Map(document.getElementById('ShopperMap'), {
+                zoom: 18,
+                center: coords,
+                mapTypeId: google.maps.MapTypeId.ROADMAP,
+                mapTypeControl: false,
+                streetViewControl: false
+            });
+
+            var marker, marker1, merchMarker, custMarker, shopCoords = [];
+            marker = new google.maps.Marker({
+                position: coords,
+                draggable: true,
+                icon:{
+                    path:google.maps.SymbolPath.FORWARD_CLOSED_ARROW,
+                    strokeColor: 'red',
+                    strokeWeight: 3,
+                    scale: 6,
+                },
+                map: map,
+                duration: 1000
+            });
+
+            google.maps.event.addListener(marker, 'dragend', function (event) {
+                coords = { latitude: this.getPosition().lat(), longitude: this.getPosition().lng() };
+                shopCoords.push({ lat: coords.latitude, lng: coords.longitude });
+                console.log(coords);
+            });
+            var hub = new SignalREntry();
+            var notificationHub = hub.getConnectionHub();
+            var startHub = hub.getHubStarted();
+            var glob_connectionId;
+            
+            var __i = 1;
+            $('#updateShopper').on('click', function (e) {
+               
+
+                startHub.done(function () {
+                    notificationHub.server.send('admin', __i++);
+                });
+
+
+                //var interv = setInterval(function () {
+                //    if (lnth < shopCoords.length) {
+                //        callAjax('coordinates', 'POST', {
+                //            shopperId: 2,
+                //            latitude: shopCoords[lnth].lat,
+                //            longitude: shopCoords[lnth].lng
+                //        }).done(function (response) {
+                //            console.log(response);
+                //        }).fail(function (err) {
+                //        });
+                //        lnth++;
+                //        marker.setIcon({
+                //            path:google.maps.SymbolPath.FORWARD_CLOSED_ARROW,
+                //           // url: '/admin/content/images/delivery-icon.png',
+                //            strokeColor: 'red',
+                //            strokeWeight: 3,
+                //            scale: 6,
+                //            rotation: google.maps.geometry.spherical.computeHeading(marker.getPosition(), new google.maps.LatLng(shopCoords[lnth].lat, shopCoords[lnth].lng))
+                //        });
+                //        console.log(map);
+                //        //map.animateCamera(CameraUpdateFactory.newLatLngZoom(new google.maps.LatLng(shopCoords[lnth].lat, shopCoords[lnth].lng), 12));
+                //        marker.setPosition(new google.maps.LatLng(shopCoords[lnth].lat, shopCoords[lnth].lng));
+                //    } else {
+                //        clearInterval(interv);
+                //    }
+                //}, 1000);
+            });
+            function callAjax(endPoint, type, data) {
+                return $.ajax({
+                    url: shopperApi + endPoint,
+                    type: type,
+                    data: data,
+                    headers: requestHeaders(),
+                    dataType: "json",
+                });
+            }
+
+            function getShopperHostUrl() {
+                if (isWebsiteLive) return 'https://www.weelo.com.eg/api/shopper/';
+                else
+                    return '/api/shopper/';
+            }
+        }()) </script>;
+}

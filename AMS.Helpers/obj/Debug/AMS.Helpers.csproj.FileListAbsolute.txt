@@ -1,0 +1,8 @@
+D:\CODE\WEB\Weelo-Admin\AMS.Helpers\bin\Debug\AMS.Helpers.dll.config
+D:\CODE\WEB\Weelo-Admin\AMS.Helpers\bin\Debug\AMS.Helpers.dll
+D:\CODE\WEB\Weelo-Admin\AMS.Helpers\bin\Debug\AMS.Helpers.pdb
+D:\CODE\WEB\Weelo-Admin\AMS.Helpers\bin\Debug\AMS.Models.dll
+D:\CODE\WEB\Weelo-Admin\AMS.Helpers\bin\Debug\AMS.Models.pdb
+D:\CODE\WEB\Weelo-Admin\AMS.Helpers\obj\Debug\AMS.Helpers.csprojResolveAssemblyReference.cache
+D:\CODE\WEB\Weelo-Admin\AMS.Helpers\obj\Debug\AMS.Helpers.dll
+D:\CODE\WEB\Weelo-Admin\AMS.Helpers\obj\Debug\AMS.Helpers.pdb

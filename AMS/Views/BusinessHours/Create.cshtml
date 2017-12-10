@@ -1,0 +1,211 @@
+﻿@model AMS.Models.BusinessHours
+
+@{
+    ViewBag.Title = "Create";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+
+    var listItems = new List<System.Web.UI.WebControls.ListItem>();
+    foreach (var item in ViewData["MerchantsLookup"] as IEnumerable<AMS.Models.Merchant>)
+    {
+        var i = new System.Web.UI.WebControls.ListItem();
+        i.Text = item.NameEN;
+        i.Value = item.Id.ToString();
+        listItems.Add(i);
+    }
+
+    var daysList = new List<System.Web.UI.WebControls.ListItem>
+                    {
+                  new System.Web.UI.WebControls.ListItem { Text = "Sunday", Value="1" },
+                  new System.Web.UI.WebControls.ListItem { Text = "Monday", Value="2" },
+                  new System.Web.UI.WebControls.ListItem { Text = "Tuesday", Value="3" },
+                  new System.Web.UI.WebControls.ListItem { Text = "Wednesday", Value="4" },
+                  new System.Web.UI.WebControls.ListItem { Text = "Thursday", Value="5" },
+                  new System.Web.UI.WebControls.ListItem { Text = "Friday", Value="6" },
+                  new System.Web.UI.WebControls.ListItem { Text = "Saturday", Value="7" },
+            };
+}
+<header class="m-header">
+    <a class="btn btn-secondary btn--icon waves-effect" href="~/BusinessHours"><span><i class="zmdi zmdi-arrow-back"></i></span></a>
+    <h2 class="m-title">Create</h2>
+</header>
+<div class="col-md-8">
+    <div class="content_inner">
+        <div class="card">
+            <div class="card-block">
+                <div class="form-horizontal">
+                    @using (Html.BeginForm("Create", "BusinessHours", FormMethod.Post, new { @id = "b-form" }))
+                    {
+                        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+                        <div class="card-block">
+                            <div class="row">
+                                <div class="col-sm-8">
+                                    <div class="form-group">
+                                        @Html.LabelFor(model => model.MerchantId, htmlAttributes: new { @class = "" })
+                                        @Html.DropDownListFor(model => model.MerchantId, new SelectList(listItems, "Value", "Text"), "--Select--", new { @class = "form-control input-mask" })
+                                        <i class="form-group__bar"></i>
+                                    </div>
+                                    @Html.ValidationMessageFor(model => model.MerchantId, "", new { @class = "text-danger" })
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-sm-8">
+                                    <div class="form-group">
+                                        <label>Sunday</label>
+                                        <div id="Sunday-slider-range" data-day="1" class="noUi-target noUi-ltr noUi-horizontal">
+                                        </div>
+                                        <i class="form-group__bar"></i>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-sm-8">
+                                    <div class="form-group">
+                                        <label>Monday</label>
+                                        <div id="Monday-slider-range" data-day="2" class="noUi-target noUi-ltr noUi-horizontal">
+                                        </div>
+                                        <i class="form-group__bar"></i>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-sm-8">
+                                    <div class="form-group">
+                                        <label>Tuseday</label>
+                                        <div id="Tuseday-slider-range" data-day="3" class="noUi-target noUi-ltr noUi-horizontal">
+                                        </div>
+                                        <i class="form-group__bar"></i>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-sm-8">
+                                    <div class="form-group">
+                                        <label>Wednesday</label>
+                                        <div id="Wednesday-slider-range" data-day="4" class="noUi-target noUi-ltr noUi-horizontal">
+                                        </div>
+                                        <i class="form-group__bar"></i>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-sm-8">
+                                    <div class="form-group">
+                                        <label>Thursday</label>
+                                        <div id="Thursday-slider-range" data-day="5" class="noUi-target noUi-ltr noUi-horizontal">
+                                        </div>
+                                        <i class="form-group__bar"></i>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-sm-8">
+                                    <div class="form-group">
+                                        <label>Friday</label>
+                                        <div id="Friday-slider-range" data-day="6" class="noUi-target noUi-ltr noUi-horizontal">
+                                        </div>
+                                        <i class="form-group__bar"></i>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-sm-8">
+                                    <div class="form-group">
+                                        <label>Saturday</label>
+                                        <div id="Saturday-slider-range" data-day="7" class="noUi-target noUi-ltr noUi-horizontal">
+                                        </div>
+                                        <i class="form-group__bar"></i>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-offset-2 col-md-10">
+                                <center>
+                                    <div class="form-group">
+                                        <button type="submit" class="btn btn-outline-primary waves-effect">Create</button>
+                                    </div>
+                                </center>
+
+                            </div>
+                            <div class="col-sm-3" style="visibility:hidden">
+                                @Html.DropDownListFor(model => model.Day, new SelectList(daysList, "Value", "Text"), "--Select--", new { @class = "form-control input-mask" })
+                                @Html.EditorFor(model => model.OpenTime, new { htmlAttributes = new { @class = "form-control timepicker" } })
+                                @Html.EditorFor(model => model.CloseTime, new { htmlAttributes = new { @class = "form-control timepicker" } })
+                            </div>
+                        </div>
+                    }
+                </div>
+            </div>
+
+        </div>
+    </div>
+</div>
+
+
+@section scripts{
+    <script>
+        $(function () {
+            var dayarr = ["Sunday", "Monday", "Tuseday", "Wednesday", "Thursday", "Friday", "Saturday"]
+            bindNoUiSlider(dayarr);
+
+            function bindNoUiSlider(dayArr) {
+                for (var i = 0; i < dayArr.length; i++) {
+                    noUiSlider.create($("#" + dayArr[i] + "-slider-range")[0], {
+                        start: [8, 22],
+                        connect: true,
+                        tooltips: true,
+                        step: 1,
+                        margin: 8,
+                        range: {
+                            'min': 0,
+                            'max': 24
+                        }
+                    });
+                }
+            }
+            function applyChange(day) {
+                if (parseInt($('#' + day + '-slider-range .noUi-handle-lower').children('.noUi-tooltip').html()) < 12)
+                    $("#OpenTime").val(parseInt($('#' + day + '-slider-range .noUi-handle-lower').children('.noUi-tooltip').html()) + ':00am');
+
+                if (parseInt($('#' + day + '-slider-range .noUi-handle-upper > .noUi-tooltip').html()) >= 12)
+                    $('#CloseTime').val(parseInt($('#' + day + '-slider-range .noUi-handle-upper > .noUi-tooltip').html()) - 12 + ':00pm');
+                else {
+                    $('#CloseTime').val(parseInt($('#' + day + '-slider-range .noUi-handle-upper > .noUi-tooltip').html()) + ':00am');
+                }
+                var __day = $('#' + day + '-slider-range').data('day');
+                $('#Day').val(parseInt(__day));
+
+            }
+
+            $('#b-form').on('submit', function (e) {
+                e.preventDefault();
+                if ($('#MerchantId').val() != 0) {
+                    var result = PostBHours(dayarr);
+                    if (result) {
+                        location.href = '@Url.Action("Index")'
+                    } else {
+                        alert('something went Wrong');
+                    }
+                }
+
+
+            });
+            function PostBHours(dayarr) {
+                try {
+                    for (var i = 0; i < dayarr.length; i++) {
+                        applyChange(dayarr[i]);
+                        console.log(dayarr[i], $('#Day').val());
+                        var data = $('#b-form').serialize();
+                        $.post("@Url.Action("Create")", data).then(function (data) {
+                        }, function (err) {
+
+                        });
+                    }
+                    return true;
+                } catch (e) {
+                    return false;
+                }
+            }
+        }());
+
+
+    </script>
+}

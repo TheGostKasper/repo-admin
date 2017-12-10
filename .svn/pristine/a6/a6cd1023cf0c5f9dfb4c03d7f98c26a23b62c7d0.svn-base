@@ -1,0 +1,67 @@
+﻿
+@{
+    ViewBag.Title = "General";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<style>
+   .thumbnail {
+            text-align: center;
+    color: white;
+    background: #32c787;
+    padding: 20px;
+    margin: 3px;
+    }
+</style>
+<h2 class="title">
+    General Settings <span class="label label-default">View</span>
+</h2>
+
+<div>
+    <div class="row">
+        <div class="col-xs-6 col-md-6">
+            <div class="card-demo">
+                <div class="card">
+                    <div class="card-header">
+                    </div>
+                    <div class="card-block">
+                        <a href="~/accountstate" class="thumbnail card">
+                            <div class="glyphicon glyphicon-user cadetblue"></div>
+                            <p>Account State</p><span class="label label-success"></span>
+                        </a>
+                    </div>
+                </div>
+            </div>
+
+           
+        </div>
+        <div class="col-xs-6 col-md-6">
+            <div class="card-demo">
+                <div class="card">
+                    <div class="card-header">
+                    </div>
+                    <div class="card-block">
+                        <a href="~/currency" class="thumbnail card">
+                            <div class="glyphicon glyphicon-usd cadetblue"></div>
+                            <p>Manage Currency</p><span class="label label-default"></span>
+                        </a>
+                    </div>
+                </div>
+            </div>
+           
+        </div>
+        @*<div class="col-xs-6 col-md-3">
+            <a href="~/ApplicationRole" class="thumbnail card">
+                <div class="glyphicon glyphicon-check" style="color: cadetblue;"></div>
+                <p>Manage Roles</p><span class="label label-default"></span>
+            </a>
+        </div>
+        <div class="col-xs-6 col-md-3">
+            <a href="~/UserRole/Index" class="thumbnail card">
+                <div class="glyphicon glyphicon-cog" style="color: cadetblue;"></div>
+                <p>User Application Roles</p><span class="label label-default"></span>
+            </a>
+        </div>*@
+
+    </div>
+</div>
+

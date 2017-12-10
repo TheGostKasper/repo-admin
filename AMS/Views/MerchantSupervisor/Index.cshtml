@@ -1,0 +1,120 @@
+﻿
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<header class="m-header">
+    <h2 class="m-title">Supervisors</h2>
+</header>
+<div class="content_inner">
+    <div class="card">
+        <a href="~/merchantsupervisor/create" class="btn btn--action btn--fixed btn-danger waves-effect"><i class="zmdi zmdi-plus"></i></a>
+
+        <div class="card-block">
+            <div class="row">
+                <div class="col-md-10">
+                    <input type="search" class="search-table" name="name" value="" />
+                    <i class="zmdi zmdi-search m-search"></i>
+                </div>
+                <div class="col-md-2">
+                    <div class="selectDiv">
+                        <select id="merchantList" class="select2"></select>
+                    </div>
+                </div>
+            </div>
+            <table id="merchantsupervisor" class="table table-bordered">
+                <thead class="thead-default">
+                    <tr>
+                        @*<th class="nosorting">Id</th>*@
+                        <th class="nosorting">Name</th>
+                        <th class="nosorting">Mobile</th>
+                        <th class="nosorting">Merchant </th>
+                        <th class="nosorting"></th>
+                    </tr>
+                </thead>
+                <tfoot>
+
+                </tfoot>
+            </table>
+
+        </div>
+    </div>
+</div>
+
+@section scripts{
+    <script>
+        $(document).ready(function () {
+            var datatable;
+            var _dt = new DataTableEntry();
+            var _merchant = new Merchant();
+            var mrCid = localStorage.getItem('merchantSuperVisorId')
+            var merchArr = [];
+            _merchant.bindMerchantsToSelect('merchantList').then(function (response) {
+                merchArr = response;
+                if (mrCid) {
+                    fillDataTable(mrCid);
+                    $('#merchantList').select2({
+                        data: merchArr.sort(function (a, b) {
+                            if (a.text < b.text) return -1;
+                            if (a.text > b.text) return 1;
+                            return 0;
+                        })
+                    }).val(parseInt(mrCid)).trigger('change.select2');
+                } else {
+                    fillDataTable($('#merchantList').val());
+                }
+            });
+
+            $('#merchantList').on('change', function (e) {
+                var merchantId = $(this).val();
+                if (merchantId) {
+                    $('#courierList').show();
+                    fillDataTable(merchantId);
+                    localStorage.setItem('merchantSuperVisorId', merchantId);
+
+                }
+            });
+           
+            function fillDataTable(merchantId) {
+                if (datatable) datatable.destroy();
+                datatable = _dt.bindDataTable('#merchantsupervisor', [0, 1, 2, 3],
+                    function (data, a, b, c) {
+                        if (c.col == 3)
+                            return `
+                                <div class ="pull-right">
+                                 <a class ="btn btn-secondary btn--icon-text" href= "merchantsupervisor/Edit/`+ b.id+`" ><span><i class ="zmdi zmdi-edit zmdi-hc-fw"></i></span></a>
+                                <a class ="btn btn-danger btn--icon-text" data-did="`+b.id+`" href="merchantsupervisor/Delete/`+ b.id+`"><span><i class ="zmdi zmdi-delete zmdi-hc-fw"></i></span></a>
+                                </div>
+                                `
+                        else
+                            return data;
+                    }, 'merchant/supervisor/list', 'POST', { merchantId: merchantId },[
+                        //{ "data": "id" },
+                        { "data": "name" },
+                        { "data": "mobile" },
+                        { "data": "merchant" }
+                    ]);
+                setTimeout(function () {
+                    data = $('#merchantsupervisor tbody tr');
+                }, 1500)
+            }
+            $('input').on('keyup', function (e) {
+                var searchVal = $(this).val();
+                var objArr = [];
+                for (var i = 0; i < data.length; i++) {
+                    if (data[i].cells[0].innerText.toLocaleLowerCase().includes(searchVal.toLocaleLowerCase())) objArr.push(data[i]);
+                }
+                if (objArr.length == 0) objArr.push('<tr><td colspan="9" class="dataTables_empty">No Match</td></tr>')
+                $('#merchantsupervisor tbody').empty();
+                for (var i = 0; i < objArr.length; i++) {
+                    $('#merchantsupervisor tbody').append(objArr[i]);
+                }
+                $('#merchantsupervisor tbody').html(objArr);
+            });
+            $('.select2').css('width', '100%');
+        });
+        //<a class="btn btn-secondary btn--icon-text" href="merchantsupervisor/Details/`+ b.id+`"><span><i class="zmdi zmdi-more zmdi-hc-fw"></i></span></a>
+    </script>
+
+}

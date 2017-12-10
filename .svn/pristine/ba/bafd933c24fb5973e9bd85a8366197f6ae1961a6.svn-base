@@ -1,0 +1,72 @@
+﻿
+@{
+    ViewBag.Title = "OutOfStock";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<style>
+    tbody tr{
+        /*background-color:rgba(255, 193, 7, 0.44);*/
+    }
+    .progress {
+            padding:1px;
+        }
+</style>
+<div >
+      
+    </div>
+<div class="content_inner">
+    <div class="card">
+        <div class="card-block">
+            <div class="row">
+                <div class="col-md-10"><input type="search" class="search-table" name="name" value="" placeholder="Search for records..." /></div>
+                <div class="col-md-2">
+                    <select id="merchantList" style="width:100%"></select>
+                </div>
+            </div>
+            <table id="outOfStock" class="table table-bordered" cellspacing="0">
+                <thead class="thead-default">
+                    <tr role="row">
+                        <th class="nosorting"> Barcode</th>
+                        <th class="nosorting"> NameAR</th>
+                        <th class="nosorting"> NameEN</th>
+                        <th class="nosorting"> Image</th>
+                        <th class="nosorting"> Volume</th>
+                        <th class="nosorting"> Price</th>
+                        <th class="nosorting"> SubCategory</th>
+                        <th class="nosorting"></th>
+                    </tr>
+                </thead>
+                <tfoot>
+                </tfoot>
+            </table>
+        </div>
+    </div>
+</div>
+
+
+
+<!-- Modal -->
+<div class="modal fade" id="outOfStockModal" role="dialog">
+    <div class="modal-dialog">
+
+        <!-- Modal content-->
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title">Add To Stock</h4>
+            </div>
+            <div class="modal-body">
+               Are you sure ?
+            </div>
+            <div class="modal-footer">
+                <button class="btn btn-default" id="addQuantityToStock" data-dismiss="modal">Add</button>
+                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+            </div>
+        </div>
+
+    </div>
+</div>
+
+@section scripts{
+    <script src="~/Scripts/admin.outofstock.js"></script>
+
+}

@@ -1,0 +1,160 @@
+﻿<style>
+    .logincart {
+        width: 110px;
+    }
+
+    .sidebar-nav, .submenu {
+        list-style: none;
+        padding: 0;
+        margin: 0;
+    }
+
+        .sidebar-nav a {
+            /*display: block;*/
+            background-color: #f5f5f5;
+            /*text-decoration: none;
+    padding: 10px;*/
+            color: white;
+        }
+
+        .sidebar-nav li:hover .submenu {
+            /*display: block;
+    max-height: 100%;*/
+        }
+
+        .submenu a {
+            background-color: #1abb9c;
+        }
+
+            .submenu a:hover {
+                background-color: #9e9a9a;
+                color: white;
+            }
+
+    .submenu {
+        overflow: hidden;
+        max-height: 0;
+        -webkit-transition: all 0.5s ease-out;
+    }
+
+    .sidebar-nav ul li:first-child a {
+        /*background-color: #1abb9c;*/
+        color: white;
+    }
+    .li-head{
+        background-color:whitesmoke;
+    }
+    .head-ul {
+        cursor: pointer;
+        font-size: inherit;
+        /* padding-bottom: 7px; */
+        height: 28px;
+        margin-top: 0px;
+        padding-top: 7%;
+        height: 42px;
+        background-color: whitesmoke;
+    }
+
+    .menu-ul {
+        display: block;
+        max-height: 100%;
+    }
+    .ui-state-active{
+            border: 1px solid #f5f5f5;
+    background: #f5f5f5;
+    font-weight: normal;
+    color: #9e7777;
+    }
+</style>
+
+@if (Request.IsAuthenticated)
+{
+    <div id="sidebar-wrapper">
+        <div class="overlay"></div>
+        <ul class="sidebar-nav" id="accordion">
+            <li>
+                <a href="~/" class="blogo" style="font-family: 'Varela Round', sans-serif;font-size:30px !important">
+                    <img class="logincart" src="~/Content/images/Logo_PNG_200.png" alt="Cart" />
+                </a>
+            </li>
+            @if (HttpContext.Current.User.IsInRole("admin"))
+            {
+                <li>
+                    <h3>Merchant</h3>
+                    <div>
+                        <ul>
+                            <li><a href="~/merchant" class="list-group-item">Index</a></li>
+                            <li> <a href="~/BusinessHours" class="list-group-item">Business Hours</a> </li>
+                            <li> <a href="~/merchantcourier" class="list-group-item">Couriers</a> </li>
+                            <li><a href="~/merchantsupervisor" class="list-group-item">Supervisors</a> </li>
+                            <li><a href="~/home/MerchantSupport" class="list-group-item">Support</a></li>
+                        </ul>
+                    </div>
+                </li>
+                <li>
+                    <h3>Weelo</h3>
+                    <div>
+                        <ul>
+                            <li><a href="~/countries">Countries</a></li>
+                            <li><a href="~/general">General Settings</a></li>
+                            <li><a href="~/category">Category</a></li>
+                            <li> <a href="~/subcategory" class="list-group-item">SubCategory</a> </li>
+                        </ul>
+                    </div>
+                </li>
+                <li>
+                    <h3>Order</h3>
+                    <div>
+                        <ul>
+                            <li><a href="~/home/Orders">Index</a></li>
+                            <li> <a href="~/home/OrderSupport" class="list-group-item">Order Support</a></li>
+                        </ul>
+                    </div>
+                </li>
+                <li>
+                    <h3>Dashboard</h3>
+                    <div>
+                        <ul>
+                            <li><a href="~/home/dashboard">Dashboard</a></li>
+                            <li><a href="~/home/manageCookies">Manage Merchants</a></li>
+                            <li><a href="~/home/push">Notification</a></li>
+                            <li><a href="~/ReportingIssues">Reporting Issues</a></li>
+                            @*<li><a href="~/merchantProduct">Excel</a></li>*@
+                            <li><a href="~/role">Roles</a></li>
+                            <li><a href="~/employee">Employees</a></li>
+                        </ul>
+                    </div>
+                </li>
+                <li>
+                    <h3>Items</h3>
+                    <div>
+                        <ul>
+                            <li><a href="~/item">Index</a></li>
+                            <li><a href="~/itemunit">Item Units</a></li>
+                            <li><a href="~/home/outOfStock">Out Of Stock</a></li>
+                            <li><a href="~/home/Transactions">Transactions</a></li>
+                            <li><a href="~/SuggestProducts">Suggest Product</a></li>
+                        </ul>
+                    </div>
+                </li>
+               
+               
+            }
+        </ul>
+    </div>
+}
+
+
+@*
+    <li class="li-head">
+                       <h3 class="head-ul">Merchant <i class="fa fa-plus-circle" aria-hidden="true"></i></h3>
+                       <ul class="submenu">
+                           <li><a href="~/merchant" class="list-group-item">Merchant</a></li>
+                           <li> <a href="~/subcategory" class="list-group-item">Weelo SubCategory</a> </li>
+                           <li> <a href="~/BusinessHours" class="list-group-item">Merchant Business Hours</a> </li>
+                           <li> <a href="~/merchantcourier" class="list-group-item">Merchant Couriers</a> </li>
+                           <li><a href="~/merchantsupervisor" class="list-group-item">Merchant Supervisors</a> </li>
+                           <li><a href="~/home/MerchantSupport" class="list-group-item">Merchant Support</a></li>
+                       </ul>
+                   </li>
+*@

@@ -1,0 +1,43 @@
+﻿@model AMS.Models.Country
+
+@{
+    ViewBag.Title = "Create";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<header class="m-header">
+    <a class="btn btn-secondary btn--icon waves-effect" href="~/Countries"><span><i class="zmdi zmdi-arrow-back"></i></span></a>
+    <h2 class="m-title">Edit</h2>
+</header>
+<div class="content_inner">
+    <div class="card">
+        <div class="card-block">
+            @using (Html.BeginForm())
+            {
+                @Html.AntiForgeryToken()
+                @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+                <div class="row">
+                    <div class="col-md-4">
+                        <div class="form-group">
+                            @Html.LabelFor(model => model.Name, htmlAttributes: new { @class = "" })
+                            @Html.EditorFor(model => model.Name, new { htmlAttributes = new { @class = "form-control" } })
+                            <i class="form-group__bar"></i>
+                        </div>
+                        @Html.ValidationMessageFor(model => model.Name, "", new { @class = "text-danger form-control-danger" })
+                    </div>
+                    <div class="col-md-4">
+                        <div class="form-group">
+                            @Html.LabelFor(model => model.NameAR, htmlAttributes: new { @class = "" })
+                            @Html.EditorFor(model => model.NameAR, new { htmlAttributes = new { @class = "form-control input-mask", } })
+                            <i class="form-group__bar"></i>
+                        </div>
+                        @Html.ValidationMessageFor(model => model.NameAR, "", new { @class = "text-danger form-control-danger" })
+                    </div>
+                </div>
+                <center>
+                    <button type="submit" class="btn btn-outline-primary waves-effect">Save</button>
+                </center>
+
+            }
+        </div>
+    </div>
+</div>

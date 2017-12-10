@@ -1,0 +1,196 @@
+﻿using System.Data.Entity;
+using System.Threading.Tasks;
+using System.Net;
+using System.Web.Mvc;
+using AMS.Context;
+using AMS.Models;
+using log4net;
+using AMS.Helper;
+
+namespace AMS.Controllers
+{
+    [Authorize]
+    public class CurrencyController : Controller
+    {
+        private ApplicationDbContext db = new ApplicationDbContext();
+        private static readonly ILog Log = LogManager.GetLogger(System.Reflection.MethodBase.GetCurrentMethod().DeclaringType);
+
+        // GET: Currency
+        public async Task<ActionResult> Index()
+        {
+            try
+            {
+                var results = await db.Currencies.ToListAsync();
+                return View(results);
+            }
+            catch (System.Exception ex)
+            {
+                ThreadContext.Properties["data"] = VXConverter.ObjectToJson(new { });
+                Log.Error(ex.Message, ex);
+                throw;
+            }
+
+        }
+
+        // GET: Currency/Details/5
+        public async Task<ActionResult> Details(int? id)
+        {
+            try
+            {
+                if (id == null)
+                {
+                    return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+                }
+                var currency = await db.Currencies.FindAsync(id);
+                if (currency == null)
+                {
+                    return HttpNotFound();
+                }
+                return View(currency);
+            }
+            catch (System.Exception ex)
+            {
+                ThreadContext.Properties["data"] = VXConverter.ObjectToJson(new { Details = "Object not found", Id = id });
+                Log.Error(ex.Message, ex);
+                return HttpNotFound();
+            }
+
+        }
+
+        // GET: Currency/Create
+        public ActionResult Create()
+        {
+            return View();
+        }
+
+        // POST: Currency/Create
+        // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
+        // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public async Task<ActionResult> Create([Bind(Include = "Id,Name")] Currency currency)
+        {
+            try
+            {
+                if (ModelState.IsValid)
+                {
+                    db.Currencies.Add(currency);
+                    await db.SaveChangesAsync();
+                    return RedirectToAction("Index");
+                }
+                return View(currency);
+            }
+            catch (System.Exception ex)
+            {
+                ThreadContext.Properties["data"] = VXConverter.ObjectToJson(currency);
+                Log.Error(ex.Message, ex);
+                return View(currency);
+            }
+        }
+
+        // GET: Currency/Edit/5
+        public async Task<ActionResult> Edit(int? id)
+        {
+            try
+            {
+                if (id == null)
+                {
+                    return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+                }
+                var currency = await db.Currencies.FindAsync(id);
+                if (currency == null)
+                {
+                    return HttpNotFound();
+                }
+                return View(currency);
+            }
+            catch (System.Exception ex)
+            {
+                ThreadContext.Properties["data"] = VXConverter.ObjectToJson(new { });
+                Log.Error(ex.Message, ex);
+                return RedirectToAction("Edit", new { id = id });
+            }
+
+        }
+
+        // POST: Currency/Edit/5
+        // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
+        // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public async Task<ActionResult> Edit([Bind(Include = "Id,Name")] Currency currency)
+        {
+            try
+            {
+                if (ModelState.IsValid)
+                {
+                    db.Entry(currency).State = EntityState.Modified;
+                    await db.SaveChangesAsync();
+                    return RedirectToAction("Index");
+                }
+                return View(currency);
+            }
+            catch (System.Exception ex)
+            {
+                ThreadContext.Properties["data"] = VXConverter.ObjectToJson(currency);
+                Log.Error(ex.Message, ex);
+                return View(currency);
+            }
+
+        }
+
+        // GET: Currency/Delete/5
+        public async Task<ActionResult> Delete(int? id)
+        {
+            try
+            {
+                if (id == null)
+                {
+                    return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+                }
+                var currency = await db.Currencies.FindAsync(id);
+                if (currency == null)
+                {
+                    return HttpNotFound();
+                }
+                return View(currency);
+            }
+            catch (System.Exception ex)
+            {
+                ThreadContext.Properties["data"] = VXConverter.ObjectToJson(new { id = id });
+                Log.Error(ex.Message, ex);
+                return RedirectToAction("Index");
+            }
+        }
+
+        // POST: Currency/Delete/5
+        [Authorize(Roles = "Admin")]
+        [HttpPost, ActionName("Delete")]
+       // [ValidateAntiForgeryToken]
+        public async Task<ActionResult> DeleteConfirmed(int id)
+        {
+            try
+            {
+                var currency = await db.Currencies.FindAsync(id);
+                db.Currencies.Remove(currency);
+                 db.SaveChanges();
+                return RedirectToAction("Index");
+            }
+            catch (System.Exception ex)
+            {
+                ThreadContext.Properties["data"] = VXConverter.ObjectToJson(new { id = id });
+                Log.Error(ex.Message, ex);
+                return RedirectToAction("Delete", new { id = id });
+            }
+        }
+
+        protected override void Dispose(bool disposing)
+        {
+            if (disposing)
+            {
+                db.Dispose();
+            }
+            base.Dispose(disposing);
+        }
+    }
+}

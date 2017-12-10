@@ -1,0 +1,76 @@
+﻿@model AMS.Models.BusinessHours
+
+@{
+    ViewBag.Title = "Edit";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+
+    var listItems = new List<System.Web.UI.WebControls.ListItem>();
+    foreach (var item in ViewData["MerchantsLookup"] as IEnumerable<AMS.Models.Merchant>)
+    {
+        var i = new System.Web.UI.WebControls.ListItem();
+        i.Text = item.NameEN;
+        i.Value = item.Id.ToString();
+        listItems.Add(i);
+    }
+
+    var daysList = new List<System.Web.UI.WebControls.ListItem>
+                    {
+                  new System.Web.UI.WebControls.ListItem { Text = "Sunday", Value="1" },
+                  new System.Web.UI.WebControls.ListItem { Text = "Monday", Value="2" },
+                  new System.Web.UI.WebControls.ListItem { Text = "Tuesday", Value="3" },
+                  new System.Web.UI.WebControls.ListItem { Text = "Wednesday", Value="4" },
+                  new System.Web.UI.WebControls.ListItem { Text = "Thursday", Value="5" },
+                  new System.Web.UI.WebControls.ListItem { Text = "Friday", Value="6" },
+                  new System.Web.UI.WebControls.ListItem { Text = "Saturday", Value="7" },
+            };
+}
+<header class="m-header">
+    <h2 class="m-title">Details</h2>
+</header>
+<div class="content_inner">
+    <header class="content__title">
+        <a class="btn btn-secondary btn--icon waves-effect" href="~/BusinessHours"><span><i class="zmdi zmdi-arrow-back"></i></span></a>
+    </header>
+    <div class="card">
+        <div class="card-block tbl">
+            <div class="form-horizontal">
+                    <div class="card-block">
+                        <div class="row">
+                            <div class="col-md-4">
+                                <div class="form-group">
+                                    @Html.LabelFor(model => model.MerchantId, htmlAttributes: new { @class = "" })
+                                    @Html.DropDownListFor(model => model.MerchantId, new SelectList(listItems, "Value", "Text"), "--Select--", new { @class = "form-control" })
+                                    <i class="form-group__bar"></i>
+                                </div>
+                                @Html.ValidationMessageFor(model => model.MerchantId, "", new { @class = "text-danger" })
+                            </div>
+                            <div class="col-md-4">
+                                <div class="form-group">
+                                    @Html.LabelFor(model => model.Day, htmlAttributes: new { @class = "" })
+                                    @Html.DropDownListFor(model => model.Day, new SelectList(daysList, "Value", "Text"), "--Select--", new { @class = "form-control" })
+                                    <i class="form-group__bar"></i>
+                                </div>
+                                @Html.ValidationMessageFor(model => model.Day, "", new { @class = "text-danger form-control-danger" })
+                            </div>
+                            <div class="col-md-4">
+                                <div class="form-group">
+                                    @Html.LabelFor(model => model.OpenTime, htmlAttributes: new { @class = "control-label input-mask" })
+                                    @Html.EditorFor(model => model.OpenTime, new { htmlAttributes = new { @class = "form-control " } })
+                                    <i class="form-group__bar"></i>
+                                </div>
+                                @Html.ValidationMessageFor(model => model.OpenTime, "", new { @class = "text-danger form-control-danger" })
+                            </div>
+                            <div class="col-md-4">
+                                <div class="form-group">
+                                    @Html.LabelFor(model => model.CloseTime, htmlAttributes: new { @class = "control-label input-mask" })
+                                    @Html.EditorFor(model => model.CloseTime, new { htmlAttributes = new { @class = "form-control" } })
+                                    <i class="form-group__bar"></i>
+                                </div>
+                                @Html.ValidationMessageFor(model => model.CloseTime, "", new { @class = "text-danger form-control-danger" })
+                            </div>
+                        </div>
+                    </div>
+            </div>
+        </div>
+    </div>
+</div>

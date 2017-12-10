@@ -1,0 +1,48 @@
+﻿@model IEnumerable<AMS.Models.EmployeeRole>
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Index</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table class="table  dataTable" id="list">
+    <thead class="thead-default">
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.EmpId)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.RoleId)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.EmpId)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.RoleId)
+                </td> <td>
+                    <div class="pull-right">
+
+                        <a class="btn btn-secondary btn--icon-text" href="~/EmployeeRole/Edit/@item.Id"><span><i class="zmdi zmdi-edit zmdi-hc-fw"></i></span></a>
+                        <a class="btn btn-secondary btn--icon-text" href="~/EmployeeRole/Details/@item.Id"><span><i class="zmdi zmdi-more zmdi-hc-fw"></i></span></a>
+                        <a class="btn btn-danger btn--icon-text" href="~/EmployeeRole/Delete/@item.Id"><span><i class="zmdi zmdi-delete zmdi-hc-fw"></i></span></a>
+</div>
+</td>
+            </tr>
+        }
+    </tbody>
+
+
+</table>

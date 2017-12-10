@@ -1,0 +1,76 @@
+﻿@model AMS.Models.Models.SuggestProductDetails
+
+@{
+    ViewBag.Title = "Create";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+
+    var listItems = new List<System.Web.UI.WebControls.ListItem>();
+    foreach (var item in ViewData["MerchantsLookup"] as IEnumerable<AMS.Models.Merchant>)
+    {
+        var i = new System.Web.UI.WebControls.ListItem();
+        i.Text = item.NameEN;
+        i.Value = item.Id.ToString();
+        listItems.Add(i);
+    }
+    var listCategories = new List<System.Web.UI.WebControls.ListItem>();
+    foreach (var item in ViewData["CategoriesLookup"] as IEnumerable<AMS.Models.Category>)
+    {
+        var i = new System.Web.UI.WebControls.ListItem();
+        i.Text = item.NameEN;
+        i.Value = item.Id.ToString();
+        listCategories.Add(i);
+    }
+}
+<header class="m-header">
+    <a class="btn btn-secondary btn--icon waves-effect" href="~/SuggestProducts"><span><i class="zmdi zmdi-arrow-back"></i></span></a>
+    <h2 class="m-title">Create</h2>
+</header>
+<div class="content_inner">
+    <div class="card">
+        <div class="card-block">
+            @using (Html.BeginForm())
+            {
+                @Html.AntiForgeryToken()
+                @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+                <div class="row">
+                    <div class="col-md-4">
+                        <div class="form-group">
+                            @Html.Label("Merchant", htmlAttributes: new { @class = "control-label " })
+                            @Html.DropDownListFor(model => model.MerchantId, new SelectList(listItems, "Value", "Text"), "--Select--", new { @class = "form-control" })
+                            <i class="form-group__bar"></i>
+                            @Html.ValidationMessageFor(model => model.MerchantId, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+                    <div class="col-md-4">
+                        <div class="form-group">
+                            @Html.LabelFor(model => model.CategoryId, htmlAttributes: new { @class = "control-label " })
+                            @Html.DropDownListFor(model => model.CategoryId, new SelectList(listCategories, "Value", "Text"), "--Select--", new { @class = "form-control" })
+                            <i class="form-group__bar"></i>
+                            @Html.ValidationMessageFor(model => model.CategoryId, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+                    <div class="col-md-4">
+                        <div class="form-group">
+                            @Html.Label("User Phone", htmlAttributes: new { @class = "control-label " })
+                            @Html.EditorFor(model => model.UserPhone, new { htmlAttributes = new { @class = "form-control" } })
+                            <i class="form-group__bar"></i>
+                            @Html.ValidationMessageFor(model => model.UserPhone, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+                    <div class="col-md-4">
+                        <div class="form-group">
+                            @Html.LabelFor(model => model.ProductName, htmlAttributes: new { @class = "control-label " })
+                            @Html.EditorFor(model => model.ProductName, new { htmlAttributes = new { @class = "form-control" } })
+                            <i class="form-group__bar"></i>
+                            @Html.ValidationMessageFor(model => model.ProductName, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+                </div>
+                <center>
+                    <button type="submit" class="btn btn-outline-primary waves-effect">Create</button>
+                </center>
+            }
+
+        </div>
+    </div>
+</div>

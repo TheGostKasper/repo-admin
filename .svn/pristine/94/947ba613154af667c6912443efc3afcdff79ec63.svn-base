@@ -1,0 +1,173 @@
+﻿@model AMS.Models.MerchantServingArea
+
+@{
+    ViewBag.Title = "Edit";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+
+    var CountriesLookup = new List<System.Web.UI.WebControls.ListItem>();
+    foreach (var item in ViewData["CountriesLookup"] as IEnumerable<AMS.Models.Country>)
+    {
+        var i = new System.Web.UI.WebControls.ListItem();
+        i.Text = item.Name;
+        i.Value = item.Id.ToString();
+        CountriesLookup.Add(i);
+    }
+    var listItems1 = new List<System.Web.UI.WebControls.ListItem>();
+    foreach (var item in ViewData["MerchantsLookup"] as IEnumerable<AMS.Models.Merchant>)
+    {
+        var i = new System.Web.UI.WebControls.ListItem();
+        i.Text = item.NameEN;
+        i.Value = item.Id.ToString();
+        listItems1.Add(i);
+    }
+}
+
+<header class="m-header">
+    <h2 class="title"><a class="btn btn-secondary btn--icon-text waves-effect" href="~/MerchantServingArea/"><span><i class="zmdi zmdi-arrow-back"></i> Back</span></a></h2>
+    <h2 class="m-title">Edit</h2>
+</header>
+
+
+@using (Html.BeginForm("Edit", "MerchantServingArea", FormMethod.Post, htmlAttributes: new { id = "editForm" }))
+{
+    @Html.AntiForgeryToken()
+
+    <div class="form-horizontal">
+        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+        @Html.HiddenFor(model => model.Id)
+
+        <div class="form-group">
+            @Html.Label("Country", htmlAttributes: new { @class = "control-label" })
+            <div>
+                @Html.DropDownList("CountriesLookup", new SelectList(CountriesLookup, "Value", "Text"), "--Select--", new { @class = "form-control js-example-basic-single", id = "countrySelect" })
+            </div>
+        </div>
+
+
+        <div class="form-group city hide">
+            @Html.Label("City", htmlAttributes: new { @class = "control-label" })
+            <div>
+                <select class="js-example-data-array js-example-basic-single form-control">
+                    <option value="0" selected="selected">--Select-</option>
+                </select>
+            </div>
+        </div>
+        <div class="form-group area hide">
+            @Html.Label("Area", htmlAttributes: new { @class = "control-label" })
+            <div>
+                <select class="js-area-data-array js-example-basic-single form-control">
+                    <option value="0" selected="selected">--Select-</option>
+                </select>
+            </div>
+        </div>
+        <div class="form-group building hide">
+            @Html.Label("Building", htmlAttributes: new { @class = "control-label" })
+            <div>
+                <select class="js-building-data-array js-example-basic-single form-control">
+                    <option value="0" selected="selected">--Select-</option>
+                </select>
+            </div>
+        </div>
+
+
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.MerchantId, htmlAttributes: new { @class = "control-label" })
+            <div>
+                @Html.DropDownListFor(model => model.MerchantId, new SelectList(listItems1, "Value", "Text"), "--Select--", new { @class = "form-control merchant-basic js-example-basic-single", disabled = "disabled" })
+                @Html.ValidationMessageFor(model => model.MerchantId, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+
+
+        <div class="form-group">
+            <div class="col-md-offset-2 col-md-10">
+                <input type="submit" value="Save" class="btn btn-default" id="btnSubmit" disabled="disabled" />
+            </div>
+        </div>
+    </div>
+}
+
+<div>
+
+</div>
+
+
+@section scripts{
+
+    <script>
+        (function () {
+
+            //$(".js-example-basic-single").select2();
+            $("#countrySelect").change(function () {
+                bindDataArraySelect2($(this), 'country/' + $(this).val() + '/city', {}, 'GET', ".js-example-data-array", ".city");
+            });
+            $(".js-example-data-array").change(function () {
+                bindDataArraySelect2($(this), 'city/' + $(this).val() + '/area', {}, 'GET', ".js-area-data-array", ".area");
+            })
+            $(".js-area-data-array").change(function () {
+                bindDataArraySelect2($(this), 'area/' + $(this).val() + '/building', {}, 'GET', ".js-building-data-array", ".building");
+
+            });
+            $('.js-building-data-array').change(function () {
+                $('#btnSubmit').prop("disabled", false);
+                $('.merchant-basic').prop("disabled", false);
+            })
+            function bindDataArraySelect2($this, endPoint, data, type, remote, hidClass) {
+                var _id = $this.val();
+                if (_id > 0)
+                    getListById(endPoint, data, type)
+                    .then(function (data) {
+                        $(hidClass).removeClass('hide');
+                        var _building = $(remote);
+
+                        _building.html('').select2({ data: { id: null, text: null } });
+                        _building.select2({
+                            data: getSelect2Objs(data.data)
+                        });
+                    }, function (err) { });
+            }
+
+            function getListById(endPoint, data, type) {
+                return $.ajax({
+                    url: WeeloApi + endPoint,
+                    data: data,
+                    type: type,
+                    headers: requestHeaders(),
+                    dataType: "json",
+                });
+            }
+
+            function getSelect2Objs(_data) {
+                var _List = [];
+                _List.push({ id: 0, text: "--Select--" });
+                if (_data)
+                    for (var i = 0; i < _data.length; i++) {
+                        _List.push({ id: _data[i].id, text: _data[i].name });
+                    }
+                return _List;
+            }
+
+            $('#editForm').on('submit', function (e) {
+                e.preventDefault();
+                var id = document.location.href.split('/');
+                var _id = id[id.length - 1];
+
+                var data = { Id: _id, BuildingId: $(".js-building-data-array").val(), MerchantId: $('#MerchantId').val() };
+
+                $.ajax({
+                    url: "@Url.Action("Edit2")",
+                    data: data,
+                    type: "POST",
+                    headers: requestHeaders(),
+                    dataType: "json",
+                    success: function () {
+                        document.location.href = "@Url.Action("Index")";
+                    }
+                });
+
+            })
+        }());
+    </script>
+}

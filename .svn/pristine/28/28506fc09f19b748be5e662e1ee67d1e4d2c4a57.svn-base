@@ -1,0 +1,59 @@
+﻿@model AMS.Models.Employee
+
+@{
+    ViewBag.Title = "Details";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<header class="m-header">
+    <h2 class="m-title">Details</h2>
+</header>
+<h2 class="title"><a class="btn btn-secondary btn--icon-text waves-effect" href="~/Employee/"><span><i class="zmdi zmdi-arrow-back"></i> Back</span></a></h2>
+
+<div class="card-block">
+    <dl class="row">
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Name)
+        </dt>
+
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Name)
+        </dd>
+
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Mobile)
+        </dt>
+
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Mobile)
+        </dd>
+
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Email)
+        </dt>
+
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Email)
+        </dd>
+
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Address)
+        </dt>
+
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Address)
+        </dd>
+
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.CreationDate)
+        </dt>
+
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.CreationDate)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    <a class="btn btn-secondary btn--icon-text" href="~/employee/Edit/@Model.Id"><span><i class="zmdi zmdi-edit zmdi-hc-fw"></i>Edit</span></a>
+   
+</p>

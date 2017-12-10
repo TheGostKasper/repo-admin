@@ -1,0 +1,97 @@
+﻿
+@{
+    ViewBag.Title = "MerchantSupport";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<header class="m-header">
+    <h2 class="m-title">Reporting Issues</h2>
+</header>
+
+<div class="content_inner">
+    <div class="card">
+        <div class="card-block">
+            <div class="selectDiv">
+                <select id="merchantList" style="width:100%"></select>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- /.modal -->
+
+<div id="container-hide" class="content_inner">
+    <div class="card profile">
+        <div class="profile__img">
+            <img src="~/Content/images/placeholder.gif" id="m-logoUrl" alt="">
+        </div>
+        <div class="profile__info">
+            <h1 id="m-nameEN"></h1>
+
+            <ul class="icon-list">
+                <li><i class="zmdi zmdi-phone"></i><span id="m-phone"></span></li>
+                <li><i class="zmdi zmdi-email"></i><span id="m-email"></span></li>
+                <li><i class="zmdi zmdi-pin"></i> <span id="m-location"></span></li>
+            </ul>
+        </div>
+    </div>
+
+    <div class="toolbar">
+        <ul class="nav nav-tabs nav-fill noborder" role="tablist">
+            <li class="nav-item">
+                <a class="nav-link active" data-toggle="tab" href="#About-3" role="tab" aria-expanded="true">Orders</a>
+            </li>
+        </ul>
+    </div>
+    <div class="card">
+        <div class="card-block">
+            <div class="tab-content">
+                <div class="tab-pane active show" id="About-3" role="tabpanel" aria-expanded="true">
+                    <div class="selectDiv">
+                        <select class="selectDataTable" id="durationSelectDataTable">
+                            <option value="1">Today</option>
+                            <option value="7">Week</option>
+                            <option value="30">Month</option>
+                            <option value="-1">Range</option>
+                        </select>
+                    </div>
+                    <table id="OrderReport" class="table table-bordered">
+                        <thead class="thead-default">
+                            <tr>
+                                <th class="nosorting">Id</th>
+                                @*<th class="nosorting">OrderNumber</th>*@
+                                <th class="nosorting">Courier</th>
+                                <th class="nosorting">Phone</th>
+                                <th class="nosorting">Notes</th>
+                                <th class="nosorting">User</th>
+                                <th class="nosorting">Supervisor</th>
+                                <th class="nosorting">Total</th>
+                                <th class="nosorting">Payment</th>
+                                <th class="nosorting">Tip</th>
+                                <th class="nosorting">Accepted</th>
+                                @*<th class="nosorting">Assigned</th>
+                                    <th class="nosorting">Delivered</th>*@
+                                <th class="nosorting">Schedule</th>
+                            </tr>
+                        </thead>
+                        <tfoot>
+
+                        </tfoot>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</div>
+
+
+<div>
+
+
+</div>
+
+
+
+@section scripts{
+    <script src="~/Scripts/admin.merchant.support.js"> </script>
+}

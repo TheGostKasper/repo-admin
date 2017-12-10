@@ -1,0 +1,662 @@
+﻿@{
+    var serializer = new System.Web.Script.Serialization.JavaScriptSerializer();
+    var userData = serializer.Deserialize<AMS.Models.Admin>(((System.Web.Security.FormsIdentity)(Context.User.Identity)).Ticket.UserData);
+}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta Accept-encoding="gzip, deflate" />
+    <meta name="expires" content="tue, 01 Jun 2050">
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <!-- Vendor styles -->
+    <link rel="stylesheet" href="~/Admin-Content/vendors/material-design-iconic-font/dist/css/material-design-iconic-font.min.css">
+    <link rel="stylesheet" href="~/Admin-Content/vendors/css/animate.min.css">
+    <link rel="stylesheet" href="~/Admin-Content/vendors/css/jquery.scrollbar.css">
+    <link rel="stylesheet" href="~/Admin-Content/vendors/css/select2.min.css">
+    <link rel="stylesheet" href="~/Admin-Content/vendors/css/sweetalert2.min.css">
+    <link rel="stylesheet" href="~/Admin-Content/vendors/css/nouislider.min.css">
+    <link rel="stylesheet" href="~/Admin-Content/vendors/trumbowyg/dist/ui/trumbowyg.min.css">
+    <!-- App styles -->
+    <link href="~/Admin-Content/css/app.min.css" rel="stylesheet" />
+    <link href="~/Admin-Content/css/style.css" rel="stylesheet" />
+    <link href="~/Admin-Content/css/swiper.min.css" rel="stylesheet" />
+    @*<link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">*@
+
+</head>
+<body data-ma-theme="green">
+    <main class="main">
+        <div class="page-loader">
+            <div class="page-loader__spinner">
+                <svg viewBox="25 25 50 50">
+                    <circle cx="50" cy="50" r="20" fill="none" stroke-width="2" stroke-miterlimit="10" />
+                </svg>
+            </div>
+        </div>
+        <header class="header">
+            <div class="navigation-trigger hidden-xl-up" data-ma-action="aside-open" data-ma-target=".sidebar">
+                <div class="navigation-trigger__inner">
+                    <i class="navigation-trigger__line"></i>
+                    <i class="navigation-trigger__line"></i>
+                    <i class="navigation-trigger__line"></i>
+                </div>
+            </div>
+            <div class="header__logo hidden-sm-down">
+                <h1><a href="index.html"><img class="logincart" src="~/Content/images/Logo_PNG_200.png" alt="Cart" /></a></h1>
+            </div>
+            <div class="search">
+                <div class="search__inner">
+                    <input type="text" class="search__text" placeholder="Search for orders.." id="search-ord" maxlength="9">
+                    <i class="zmdi zmdi-search search__helper" data-ma-action="search-close"></i>
+                </div>
+            </div>
+            <ul class="top-nav">
+                <li class="hidden-xl-up"><a href="" data-ma-action="search-open"><i class="zmdi zmdi-search"></i></a></li>
+                <li class="dropdown top-nav__notifications">
+                    <a href="" data-toggle="dropdown" class="top-nav__notify">
+                        <i class="zmdi zmdi-notifications"></i>
+                    </a>
+                    <div class="dropdown-menu dropdown-menu-right dropdown-menu--block">
+                        <div class="listview listview--hover">
+                            <div class="listview__header">
+                                Notifications
+                                <div class="actions">
+                                    <a href="" class="actions__item zmdi zmdi-check-all" data-ma-action="notifications-clear"></a>
+                                </div>
+                            </div>
+                            <div class="listview__scroll scrollbar-inner">
+                                <a href="" class="listview__item">
+                                    <img src="~/admin-content/img/profile-pics/1.jpg" class="listview__img" alt="">
+                                    <div class="listview__content">
+                                        <div class="listview__heading">David Belle</div>
+                                        <p>Cum sociis natoque penatibus et magnis dis parturient montes</p>
+                                    </div>
+                                </a>
+                                <a href="" class="listview__item">
+                                    <img src="~/admin-content/img/profile-pics/2.jpg" class="listview__img" alt="">
+                                    <div class="listview__content">
+                                        <div class="listview__heading">Jonathan Morris</div>
+                                        <p>Nunc quis diam diamurabitur at dolor elementum, dictum turpis vel</p>
+                                    </div>
+                                </a>
+                                <a href="" class="listview__item">
+                                    <img src="~/admin-content/img/profile-pics/3.jpg" class="listview__img" alt="">
+                                    <div class="listview__content">
+                                        <div class="listview__heading">Fredric Mitchell Jr.</div>
+                                        <p>Phasellus a ante et est ornare accumsan at vel magnauis blandit turpis at augue ultricies</p>
+                                    </div>
+                                </a>
+                                <a href="" class="listview__item">
+                                    <img src="~/admin-content/img/profile-pics/4.jpg" class="listview__img" alt="">
+                                    <div class="listview__content">
+                                        <div class="listview__heading">Glenn Jecobs</div>
+                                        <p>Ut vitae lacus sem ellentesque maximus, nunc sit amet varius dignissim, dui est consectetur neque</p>
+                                    </div>
+                                </a>
+                                <a href="" class="listview__item">
+                                    <img src="~/admin-content/img/profile-pics/5.jpg" class="listview__img" alt="">
+                                    <div class="listview__content">
+                                        <div class="listview__heading">Bill Phillips</div>
+                                        <p>Proin laoreet commodo eros id faucibus. Donec ligula quam, imperdiet vel ante placerat</p>
+                                    </div>
+                                </a>
+                                <a href="" class="listview__item">
+                                    <img src="~/admin-content/img/profile-pics/1.jpg" class="listview__img" alt="">
+                                    <div class="listview__content">
+                                        <div class="listview__heading">David Belle</div>
+                                        <p>Cum sociis natoque penatibus et magnis dis parturient montes</p>
+                                    </div>
+                                </a>
+                                <a href="" class="listview__item">
+                                    <img src="~/admin-content/img/profile-pics/2.jpg" class="listview__img" alt="">
+                                    <div class="listview__content">
+                                        <div class="listview__heading">Jonathan Morris</div>
+                                        <p>Nunc quis diam diamurabitur at dolor elementum, dictum turpis vel</p>
+                                    </div>
+                                </a>
+                                <a href="" class="listview__item">
+                                    <img src="~/admin-content/img/profile-pics/3.jpg" class="listview__img" alt="">
+                                    <div class="listview__content">
+                                        <div class="listview__heading">Fredric Mitchell Jr.</div>
+                                        <p>Phasellus a ante et est ornare accumsan at vel magnauis blandit turpis at augue ultricies</p>
+                                    </div>
+                                </a>
+                            </div>
+                            <div class="p-1"></div>
+                        </div>
+                    </div>
+                </li>
+                <li class="hidden-xs-down">
+                    <a href="" data-ma-action="aside-open" data-ma-target=".chat">
+                        <i class="zmdi zmdi-comment-alt-text"></i>
+                    </a>
+                </li>
+            </ul>
+        </header>
+        <aside class="sidebar">
+            <div class="scrollbar-inner">
+                <div class="user">
+                    <div class="user__info" data-toggle="dropdown">
+                        <img class="user__img" src="~/admin-content/img/profile-pics/avatar.png" alt="">
+                        <div>
+                            <div class="user__name" data-id="@userData.Id">@userData.Name</div>
+                            <div class="user__email">@userData.Email</div>
+                        </div>
+                    </div>
+                    <div class="dropdown-menu">
+                        <a class="dropdown-item" href="#">View Profile</a>
+                        <a class="dropdown-item" href="#">Settings</a>
+
+                        @{
+                            using (Html.BeginForm("LogOff", "Account", FormMethod.Post, new { id = "logoutForm", @class = "navbar-right" }))
+                            {
+                                @Html.AntiForgeryToken()
+                                <button id="SignOut" class="dropdown-item">Logout</button>
+                            }
+                        }
+                    </div>
+                </div>
+                <ul class="navigation">
+                    @if (HttpContext.Current.User.IsInRole("admin"))
+                    {
+                        <li><a href="~/home/dashboard"><i class="zmdi zmdi-trending-up"></i> Dashboard</a></li>
+                        <li><a href="~/home/ShopperMap"><i class="zmdi zmdi-map"></i> Track Orders</a></li>
+                        @*<li><a href="~/"><i class="zmdi zmdi-home"></i> Home</a></li>*@
+                        <li class="navigation__sub">
+                            <a href=""><i class="zmdi zmdi-store"></i> Merchant</a>
+                            <ul>
+                                <li><a href="~/merchant">Merchants List</a></li>
+                                <li><a href="~/home/items">Items</a></li>
+                                <li><a href="~/merchantcoupons">Merchant Coupons</a></li>
+                                <li><a href="~/merchantcoupontypes">Coupones Types</a></li>
+                                <li><a href="~/home/merchantproduct">Merchant Product</a></li>
+                                @*<li> <a href="~/businesshours">Business Hours</a> </li>*@
+                                <li> <a href="~/merchantcourier">Couriers</a> </li>
+                                <li><a href="~/merchantsupervisor">Supervisors</a> </li>
+                                <li><a href="~/home/merchantsupport">Support</a></li>
+                            </ul>
+                        </li>
+                        <li class="navigation__sub">
+                            <a href=""><i class="zmdi zmdi-shopping-cart"></i> Orders</a>
+                            <ul>
+                                <li><a href="~/home/orders">Order Index</a></li>
+                                @*<li> <a href="~/home/ordersupport" class="list-group-item">Order Support</a></li>*@
+                                <li><a href="~/home/merchanttransactions" class="list-group-item">Merchant Transactions</a></li>
+                            </ul>
+                        </li>
+                        <li class="navigation__sub">
+                            <a href=""><i class="zmdi zmdi-shopping-cart-plus"></i> Products </a>
+                            <ul>
+                                <li><a href="~/item">Products List</a></li>
+                                <li><a href="~/itemunit">Product Units</a></li>
+                                <li><a href="~/itembrands">Product Brands</a></li>
+                                <li><a href="~/itemtypes">Product Types</a></li>
+                                <li><a href="~/itempackagings">Product Packaging</a></li>
+                                @*<li><a href="~/home/transactions">Transactions</a></li>*@
+                                <li><a href="~/home/outofstock">Out Of Stock</a></li>
+                                <li><a href="~/suggestproducts">Suggest Product</a></li>
+                            </ul>
+                        </li>
+                        <li class="navigation__sub">
+                            <a href=""><i class="zmdi zmdi-settings"></i> Settings</a>
+                            <ul>
+                                <li><a href="~/countries">Countries</a></li>
+                                @* <li><a href="~/general">General Settings</a></li>*@
+                                <li><a href="~/accountstate">Accountstate</a></li>
+                                <li><a href="~/currency">Manage Currency</a></li>
+                                <li><a href="~/category">Category</a></li>
+                                <li> <a href="~/subcategory" class="list-group-item">SubCategory</a> </li>
+                                <li><a href="~/reportingissues">Reporting Issues</a></li>
+                                <li><a href="~/role">Roles</a></li>
+                            </ul>
+                        </li>
+                        <li class="navigation__sub">
+                            <a href=""><i class="zmdi zmdi-accounts-alt"></i> Employees</a>
+                            <ul>
+                                <li><a href="~/employee">Employees List</a></li>
+                            </ul>
+
+                        </li>
+                        <li class="navigation__sub">
+                            <a href=""><i class="zmdi zmdi-notifications"></i> Notification</a>
+                            <ul>
+                                <li><a href="~/home/managecookies">Manage Merchants</a></li>
+                                <li><a href="~/home/push">Messages</a></li>
+
+                            </ul>
+                        </li>
+                       
+                    }
+                    @if (HttpContext.Current.User.IsInRole("Operation") || HttpContext.Current.User.IsInRole("admin"))
+                    {
+                        <li><a href="~/home/blog"><i class="zmdi zmdi-blogger"></i> Blog</a></li>
+                    }
+
+                </ul>
+            </div>
+        </aside>
+        <section class="content">
+            @RenderBody()
+            <footer class="footer hidden-xs-down">
+                <p>© Weelo LLC. All rights reserved.</p>
+                <ul class="nav footer__nav">
+                    <li><a class="nav-link" href="~/">Homepage</a></li>
+                    <li><a class="nav-link" href="http://www.weelo.com.eg">Company</a>  </li>
+                </ul>
+            </footer>
+        </section>
+    </main>
+
+    <!-- Backdrop disabled -->
+    <div class="modal fade" id="modal-ord-dt" tabindex="-1">
+        <div class="modal-dialog modal-lg">
+            <div class="modal-content">
+                <div class="modal-body">
+                    <div class="not-found-lay" style="display:none;">
+                        <p> No products found </p>
+                    </div>
+                    <div class="found-lay">
+                        <div class="invoice__header">
+                            <span class="badge badge-default x-right or-status"></span>
+                            <center><span class="or-ordernumber"></span></center>
+                        </div>
+                        <div class="row invoice__address">
+                            <div class="col-6">
+                                <div class="text-right">
+                                    <p>Invoice from</p>
+                                    <p class="or-m-name"></p>
+                                    <small class="or-m-phone"></small>
+                                    @*<br />
+                                        <p>Accepted By: <span class="or-acceptedBy"></span></p>
+                                        <p>Handeled By: <span class="or-handeledBy"></span></p>*@
+                                </div>
+                            </div>
+                            <div class="col-6">
+                                <div class="text-left">
+                                    <p>Invoice to</p>
+                                    <ul class="icon-list">
+                                        <li><i class="zmdi zmdi-account"></i><span class="or-c-name"></span></li>
+                                        <li><i class="zmdi zmdi-phone"></i><span class="or-c-mobile"></span></li>
+                                        <li><i class="zmdi zmdi-pin"></i><span class="or-c-address"></span></li>
+                                        <li><i class="zmdi zmdi-my-location"></i><span class="or-c-apt"></span></li>
+                                    </ul>
+                                    <p class="or-c-notes"></p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row invoice__attrs">
+                            <div class="col-3">
+                                <div class="invoice__attrs__item">
+                                    <small>Invoice#</small>
+                                    <h3 class="or-ordernumber"></h3>
+                                </div>
+                            </div>
+                            <div class="col-3">
+                                <div class="invoice__attrs__item">
+                                    <small>Accepted By</small>
+                                    <span class="or-acceptedBy"></span>
+                                </div>
+                            </div>
+                            <div class="col-3">
+                                <div class="invoice__attrs__item">
+                                    <small>Delivery man</small>
+                                    <h3 class="or-handeledBy"></h3>
+                                </div>
+                            </div>
+                            <div class="col-3">
+                                <div class="invoice__attrs__item">
+                                    <small>Grand Total</small>
+                                    <h3 class="or-grandTotal"></h3>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="or-card">
+                            <div class="card">
+                                <div class="card-block">
+                                    <div class="row">
+                                        <table class="table table-bordered table-striped invoice__table">
+                                            <thead class="thead-default">
+                                                <tr>
+                                                    <td style="width:50%">Item</td>
+                                                    <td style="width:25%">Qty</td>
+                                                    <td style="width:25%">Price</td>
+                                                </tr>
+                                            </thead>
+                                            <tbody id="productsList-lay"></tbody>
+                                        </table>
+                                    </div>
+
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-link" data-dismiss="modal">Close</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="modal fade" id="merchantModal" role="dialog">
+        <div class="modal-dialog">
+
+            <!-- Modal content-->
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h4 class="modal-title">Confirm Delete!</h4>
+                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                </div>
+                <div class="modal-body">
+                    Are you sure ?
+                </div>
+                <div class="modal-footer">
+                    <button class="btn btn-danger" id="delMerchant" data-dismiss="modal">Delete</button>
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+    <!-- Javascript -->
+    <!-- Vendors -->
+    @Scripts.Render("~/bundles/jquery")
+    @Scripts.Render("~/bundles/jqueryval")
+    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyD3sx1AU2F_bMY__EzVjmRfVDvNzh0cuhc&libraries=places,geometry&language=ar&region=EG"></script>
+
+    <script src="~/Admin-Content/vendors/js/jquery.min.js"></script>
+    <script src="~/Admin-Content/vendors/js/tether.min.js"></script>
+    <script src="~/Admin-Content/vendors/js/bootstrap.min.js"></script>
+    <script src="~/Admin-Content/vendors/js/waves.min.js"></script>
+    <script src="~/Admin-Content/vendors/js/jquery.scrollbar.min.js"></script>
+    <script src="~/Admin-Content/vendors/js/jquery-scrollLock.min.js"></script>
+
+
+    <script src="~/Admin-Content/vendors/js/select2.full.min.js"></script>
+    <script src="~/Admin-Content/vendors/js/bootstrap-notify.min.js"></script>
+    <script src="~/Admin-Content/vendors/js/sweetalert2.min.js"></script>
+    <script src="~/Admin-Content/vendors/js/nouislider.min.js"></script>
+    <script src="~/Admin-Content/vendors/js/clamp.js"></script>
+    <script src="~/Admin-Content/vendors/trumbowyg/dist/trumbowyg.min.js"></script>
+
+    <!-- App functions and actions -->
+    <script src="~/Admin-Content/js/app.min.js"></script>
+
+
+
+
+    @Scripts.Render("~/bundles/extra")
+    @Scripts.Render("~/bundles/manage")
+    @Scripts.Render("~/Scripts/adminScripts")
+    @Scripts.Render("~/Scripts/signalR")
+
+
+
+    <script src="~/Scripts/moment.min.js"></script>
+    <script src="~/Scripts/swiper.min.js"></script>
+    <script src="~/Scripts/jquery.validate.min.js"></script>
+
+    <script src="~/Scripts/JsBarcode.all.min.js"></script>
+
+    <script>
+        var isWebsiteLive = @System.Configuration.ConfigurationManager.AppSettings["LiveMode"], WeeloApi = getHostUrl(),globFData=[];
+        function getHostUrl() {
+            if (isWebsiteLive)
+                return 'https://www.weelo.com.eg/api/v1/';
+            else
+                return '/api/v1/';
+
+        }
+        function getToken() {
+            var nameEQ = "_adminToken=";
+            var ca = document.cookie.split(';');
+            for (var i = 0; i < ca.length; i++) {
+                var c = ca[i];
+                while (c.charAt(0) == ' ') c = c.substring(1, c.length);
+                if (c.indexOf(nameEQ) == 0) return c.substring(nameEQ.length, c.length);
+            }
+            return null;
+        }
+
+        function getCookie(cname) {
+            var name = cname + "=";
+            var decodedCookie = decodeURIComponent(document.cookie);
+            var ca = decodedCookie.split(';');
+            for (var i = 0; i < ca.length; i++) {
+                var c = ca[i];
+                while (c.charAt(0) == ' ') {
+                    c = c.substring(1);
+                }
+                if (c.indexOf(name) == 0) {
+                    return c.substring(name.length, c.length);
+                }
+            }
+            return "";
+        }
+        function requestHeaders() {
+            var headers = {};
+            headers.Authorization = 'Bearer ' + getToken();
+            return headers;
+        }
+    </script>
+    <script>
+        (function () {
+            'use strict';
+
+            var oDetails = new OrderDetails();
+
+            $('#search-ord').on('keypress', function (evt) {
+                var val = $(this).val();
+                if ((evt.which < 48 || evt.which > 57) ) {
+                    evt.preventDefault();
+                }
+                else if (val.toString().length === 3 &&evt.which != 8 && val.indexOf('-')<0) {
+                    $(this).val(val + '-');
+                }
+            });
+            $('#search-ord').keypress(function (event) {
+                if (event.which == 13) {
+                    $('#modal-ord-dt').modal('show');
+
+                    if ($(this).val().length>0)
+                        oDetails.getOrder("order/details/" + $(this).val(), {}).then(function (data) {
+                            var or = data.data;
+                            if (or != null) {
+                                oDetails.bindToHtml([
+                                    {key:'.or-m-name',value:or.merchantName},
+                                    {key:'.or-m-phone',value:or.merchantPhone},
+                                    {key:'.or-c-address',value:or.customer.address},
+                                    {key:'.or-c-apt',value:or.customer.apt},
+                                    {key:'.or-c-mobile',value:or.customer.mobile},
+                                    {key:'.or-c-name',value:or.customer.name},
+                                    {key:'.or-c-note',value:or.customer.notes},
+                                    {key:'.or-status',value:or.status},
+                                    {key:'.or-acceptedBy',value:or.acceptedBy},
+                                    {key:'.or-handeledBy',value:or.handeledBy},
+                                    {key:'.or-ordernumber', value:or.orderNumber},
+                                    {key:'.or-grandTotal',value:or.grandTotal+'EG'}]);
+                                var _data = data.data.products;
+                                var html = '';
+                                for (var i = 0; i < _data.length; i++) {
+                                    var name = (_data[i].nameEN == "") ? _data[i].nameAR : _data[i].nameEN
+                                    html += '<tr><td>' + name + ' ' + _data[i].size + _data[i].unit + '</td><td>' + _data[i].quantity + 'x</td><td> ' + _data[i].price * _data[i].quantity + ' </td></tr> '
+                                }
+                                //html += '<tr><td colspan="2"></td><td>Total: ' + data.data.grandTotal + ' <br/>Tip: ' + data.data.tip + '.00 <br/>Discount: ' + data.data.discount + ' %<br/>Tax: ' + data.data.tax + ' %<br/>Service: ' + data.data.serviceFees + ' </td></tr>';
+                                $('#productsList-lay').html(html);
+                                $('.products-search-Info').removeClass('hide');
+                                $('.pg-notfound').addClass('hide');
+                                $('.creationDate').html(moment.utc(data.data.creationDate).toDate().toLocaleDateString());
+                                getDate(data.data);
+                                $('.or-card').show();
+
+                            } else {
+                                $('.or-card').hide();
+                                $('.not-found-lay').show();
+                            }
+
+                        }, function(err) {
+                            $('.or-card').show();
+                        });
+                    else {
+                        console.log($(this).val()!='',$(this).val().length>0);
+                        $('.found-lay').hide();
+                        $('.not-found-lay').show();
+                    }
+                }
+            });
+        }());
+    </script>
+
+
+    <script src="@System.Configuration.ConfigurationManager.AppSettings["WebHubURL"]"></script>
+
+
+    <script>
+        var hub = new SignalREntry();
+        var notificationHub = hub.getConnectionHub();
+        var startHub = hub.getHubStarted();
+        var glob_connectionId='';
+        startHub.done(function () {
+            notificationHub.server.connectEmployee('@User.Identity.Name');
+            glob_connectionId=hub.getConnectionId();
+        });
+        notificationHub.client.sendToEmployee = function (msg) {
+            alert(msg, 4000);
+        }
+        notificationHub.client.alertMerchant = function (msg) {
+            $('#alertDiv').empty().append(`
+                    <div class ="alert alert-danger" role="alert">
+                        <strong>Oh snap!</strong> `+ msg + `
+                    </div>
+                    `);
+        }
+        window.onload = function () {
+            $('#ploader').hide();
+            $('.container-fluid').show();
+            loadMapsAPI();
+            //$('.sidebar-nav li').on('click', function () {
+            //    $(this).find('ul.submenu').toggleClass("menu-ul");
+            //});
+            //$("#accordion" ).accordion();
+            //$('.ui-accordion .ui-accordion-content').css('height','100%');
+        }
+        function loadMapsAPI(lang) {
+            var lng = (lang == "English") ? "en" : "ar";
+            //addScript('https://maps.googleapis.com/maps/api/js?key=AIzaSyAUhsDhNPjRlOEdezOcVyze8Lt1qjhumvk&libraries=places&language=' + lng);
+        }
+        // $('.sidebar-nav li a,a.btn').click(function () { $('#ploader').show(); $('.container-fluid').hide(); });
+        function addScript(url, callback) {
+            var script = document.createElement('script');
+            if (callback) script.onload = callback;
+            script.type = 'text/javascript';
+            script.src = url;
+            document.body.appendChild(script);
+        }
+        function mapsApiReady() {
+            addScript('infobox.js', initialize);
+        }
+    </script>
+    <script>
+        (function(){
+            var href=getHref(['[a-zA-Z]etails','[a-zA-Z]elete','[a-zA-Z]dit','[a-zA-Z]reate','[0-9]+']).toLowerCase();
+            var _this=$('a[href*="'+href+'"]').parent();
+            if(_this.length>0){
+                applyNavigation(_this[0])
+            }else{
+                _this=$('a[href*="'+href.toLowerCase()+'"]').parent();
+                applyNavigation(_this[0])
+            }
+            function getHref(obtArr){
+                var dom=location.href.split('//')[1]
+                var val=dom.replace(dom.substr(0,dom.indexOf('/')),'');
+                var href=val.substr(0,val.length);
+                var _retHref=detectSubHref(href,obtArr);
+                return _retHref;
+            }
+            function detectSubHref(href,obtArr){
+                for (var i = 0; i < obtArr.length; i++) {
+                    var mtc=href.match('/'+obtArr[i]);
+                    if(mtc!=null)
+                        return href.split(mtc[0])[0];
+                }
+                return href;
+            }
+            function applyNavigation(obj){
+                var cuOb=$(obj);
+                cuOb.addClass('navigation__active').parent().css('display','block');
+                if( cuOb.parent().parent())
+                    cuOb.parent().parent().addClass("navigation__active")
+            }
+        }());
+    </script>
+    <script>
+        var currId;
+        var errArr=[{
+            error:'Cannot delete or update a parent row',
+            displayError:'This Row in relation with other rows, cannot be deleted '
+        }]
+        $(document).on('click', 'a[href*=Delete]', function (e) {
+            e.preventDefault();
+            currId = $(this).data('did');
+            $('#merchantModal').modal('show');
+        });
+        $(document).on('click','#delMerchant', function () {
+            deleteRecord();
+        });
+        function deleteRecord() {
+            var _this = $('a[data-did=' + currId + ']');
+            $.post('@Url.Action("Delete")', { id: currId }).then(function (dt) {
+                notify('Successfully deleted','info');
+                _this.parent().parent().parent().hide()
+            }, function (err) {
+                var myRe = new RegExp('<title>(.*?):');
+                var myArray = myRe.exec(err.responseText);
+                notify(getErrorDisplay(myArray[1]),'danger')
+            })
+        }
+        function notify(message,type,title,icon,url){
+            $.notify({
+                icon: icon,
+                title: title,
+                message: message,
+                url: url
+            }, {
+                element: 'body',
+                type: type
+            });
+        }
+        function getErrorDisplay(error){
+            for (var i = 0; i < errArr.length; i++) {
+                if(errArr[i].error===error) return errArr[i].displayError;
+            }
+            return error;
+        }
+        function getUrlAction() {
+            var href=location.href.split('/');
+            var action=href[href.length-1];
+            var myRe = new RegExp('[a-zA-Z]+\/[0-9]+');
+            var myArray = myRe.exec(location.href);
+            if(action.toLowerCase()=="create") return "Create - ";
+            else if(myArray)
+                return myArray[0].split('/')[0] + ' - ' ;
+            else
+                return "";
+        }
+        function getHeaderTitle() {
+            var title=$('.navigation__sub.navigation__active li.navigation__active a').html();
+            if(title == undefined) title='';
+            $('.m-title').html(getUrlAction()+ title);
+        }
+
+        window.onload=function () {
+            getHeaderTitle();
+        }
+    </script>
+    @RenderSection("scripts", required: false)
+   
+</body>
+</html>

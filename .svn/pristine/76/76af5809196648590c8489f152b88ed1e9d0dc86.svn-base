@@ -1,0 +1,166 @@
+﻿@model AMS.Models.Category
+
+@{
+    ViewBag.Title = "Create";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    var listItems = new List<System.Web.UI.WebControls.ListItem>();
+    foreach (var item in ViewData["CountriesLookup"] as IEnumerable<AMS.Models.Country>)
+    {
+        var i = new System.Web.UI.WebControls.ListItem();
+        i.Text = item.Name;
+        i.Value = item.Id.ToString();
+        listItems.Add(i);
+    }
+}
+<header class="m-header">
+    <a class="btn btn-secondary btn--icon waves-effect" href="~/Category"><span><i class="zmdi zmdi-arrow-back"></i></span></a>
+    <h2 class="m-title">Create</h2>
+</header>
+<div class="content_inner">
+    <div>
+        <div class="pull-left category">
+            <div class="form-horizontal">
+                <div class="card-block">
+                    <div class="row" style="width:230px;margin:auto">
+                        <div class="card profile">
+                            <div class="profile__img">
+                                <img id="image_view" src="~/Content/images/placeholder.gif" alt="">
+                                <form id="upload" method="post" enctype="multipart/form-data">
+                                    <label for="f_upload">
+                                        <span class="zmdi zmdi-camera profile__img__edit ctv" style="cursor:pointer;"></span>
+                                    </label>
+                                    <label style="display: none">
+                                        <input id="f_upload" type="file" class="btn btn-secondary" name="file_upload[]" multiple="multiple" />
+                                        <input type="submit" class="btn btn-default btn-sm file-upload" value="Upload" style="visibility:hidden" />
+                                    </label>
+                                </form>
+                                @Html.ValidationMessageFor(model => model.ImageUrl, "", new { @class = "text-danger" })
+                                <div class="img-u-loader" style="display:none;"><img src="~/Content/loader.gif" style="position: absolute;top: 38%;left: 39%;height: 35px;border-radius: 50%;" /></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+    <div class="card">
+        <div class="card-block">
+            @using (Html.BeginForm())
+            {
+                @Html.AntiForgeryToken()
+
+                @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+                @Html.HiddenFor(model => model.Id)
+
+                <div class="row">
+                    <div class="col-md-4">
+                        <div class="form-group">
+                            @Html.LabelFor(model => model.NameEN, htmlAttributes: new { @class = "control-label" })
+                            @Html.EditorFor(model => model.NameEN, new { htmlAttributes = new { @class = "form-control" } })
+                            <i class="form-group__bar"></i>
+                        </div>
+                        @Html.ValidationMessageFor(model => model.NameEN, "", new { @class = "text-danger form-control-danger" })
+                    </div>
+
+                    <div class="col-md-4">
+                        <div class="form-group">
+                            @Html.LabelFor(model => model.NameAR, htmlAttributes: new { @class = "control-label" })
+                            @Html.EditorFor(model => model.NameAR, new { htmlAttributes = new { @class = "form-control" } })
+                            <i class="form-group__bar"></i>
+                        </div>
+                        @Html.ValidationMessageFor(model => model.NameAR, "", new { @class = "text-danger form-control-danger" })
+                    </div>
+                    <div class="col-md-4">
+                        <div class="form-group">
+                            @Html.LabelFor(model => model.CountryId, htmlAttributes: new { @class = "control-label" })
+                            @Html.DropDownListFor(model => model.CountryId, new SelectList(listItems, "Value", "Text"), "--Select--", new { @class = "form-control" })
+                            <i class="form-group__bar"></i>
+                        </div>
+                        @Html.ValidationMessageFor(model => model.CountryId, "", new { @class = "text-danger form-control-danger" })
+                    </div>
+                    <div class="col-sm-4" style="visibility:hidden">
+                        <div class="form-group">
+                            @Html.EditorFor(model => model.ImageUrl, new { @class = "form-control m-logoUrl", style = "visibility:hidden" })
+                            <i class="form-group__bar"></i>
+                        </div>
+                    </div>
+                    <center class="col-md-12">
+                        <button type="submit" class="btn btn-outline-primary waves-effect">Create</button>
+                    </center>
+                </div>
+                            }
+        </div>
+    </div>
+</div>
+
+<div>
+
+</div>
+
+
+
+
+@section scripts{
+    <script>
+        (function () {
+
+            $('#f_upload').on('change', prepareUpload);
+            function prepareUpload(event) {
+
+                var files = event.target.files;
+                if (files.length > 0) {
+                    $("form#upload").submit();
+                }
+            }
+            $("form#upload").submit(function () {
+                $('.img-u-loader').show();
+                var files = this.f_upload.files.length
+                if (files == 0) {
+                    alert('Please Choose files first');
+                    return false;
+                }
+                if (this.f_upload.files[0].size > 81920) {
+                    alert('Please Choose file its size lower than 80k first');
+                    $('.img-u-loader').css('display', '');
+                    return false;
+                }
+                var formData = new FormData(this);
+                $.ajax({
+                    url: WeeloApi + 'upload/product/image',
+                    type: 'POST',
+                    headers: requestHeaders(),
+                    data: formData,
+                    async: false,
+                    success: function (res) {
+                        var list, vType;
+                        var types = ['png', 'jpg', 'jpeg'];
+                        for (var i = 0; i < res.data.length; i++) {
+                            if (res.data[i].status == 200) {
+                                console.log(res.data[i].url);
+                                $("#image_view").attr('src', res.data[i].url);
+                                $('#ImageUrl').val(res.data[i].url);
+                            }
+                            else {
+                                alert(res.data[i].Message);
+                            }
+                            $("#new_imageLoader").val('');
+                        }
+                        $('.img-u-loader').hide();
+                    },
+                    xhr: function () {
+                        var xhr = $.ajaxSettings.xhr();
+                        xhr.upload.onprogress = function (evt) { };
+                        xhr.upload.onload = function () { console.log('DONE!') };
+                        return xhr;
+                    },
+                    cache: false,
+                    contentType: false,
+                    processData: false,
+                    async: true
+                });
+                return false;
+            });
+        }());
+    </script>
+}

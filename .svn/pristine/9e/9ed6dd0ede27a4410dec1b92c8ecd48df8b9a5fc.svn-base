@@ -1,0 +1,402 @@
+﻿
+@{
+    ViewBag.Title = "ShopperMap";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<style>
+    #ShopperMap {
+        height: 700px;
+        width: 100%;
+    }
+
+    .ovf {
+        max-height: 731px;
+        overflow-x: hidden;
+    }
+
+    .orderList {
+        list-style-type: none;
+        padding: 1px;
+    }
+
+        .orderList li {
+            padding: 10px;
+            color: white;
+            text-align: center;
+            font-size: 23px;
+            border-radius: 6px;
+            cursor: pointer;
+            margin: 2px;
+        }
+
+    .Accepted {
+        background: #6b7be3;
+    }
+
+    .Ready {
+        background: #32c787;
+    }
+
+    #sOrd {
+        width: 100%;
+        padding: 13px;
+        border-radius: 4px;
+        margin-bottom: 7px;
+        font-size: 15px;
+    }
+
+    .ord-hide {
+        display: none;
+    }
+
+    .ordh {
+        padding: 11px;
+        text-align: center;
+        font-size: 23px;
+        background: white;
+    }
+
+    .tit {
+        text-align: center;
+        font-size: 21px;
+    }
+</style>
+
+<div class="ordh">
+    Select order to track
+</div>
+<div class="row">
+    <div class="col col-lg-4">
+        <div class="card">
+            <div class="profile__info ord-hide" style="width:100%">
+                <div class="user__info" data-toggle="dropdown">
+                    <img class="user__img" src="demo/img/profile-pics/8.jpg" alt="">
+                    <div>
+                        <div class="">Customer Details</div>
+                    </div>
+                    <div class="actions listview__actions">
+                        <i class="actions__item zmdi zmdi-unfold-less"></i>
+                        <i class="actions__item zmdi zmdi-close-circle"></i>
+                    </div>
+                </div>
+                <ul class="icon-list">
+                    <li><i class="zmdi zmdi-pin-account"></i> <span class="c-name"></span></li>
+                    <li><i class="zmdi zmdi-phone"></i> <span class="c-phone"></span></li>
+                    <li><i class="zmdi zmdi-pin"></i> <span class="c-flat"></span></li>
+                    <li><i class="zmdi zmdi-pin-drop"></i> <span class="c-floor"></span></li>
+                    <li><i class="zmdi zmdi-my-location"></i> <span class="c-address"></span></li>
+                    <li><i class="zmdi zmdi-star"></i><span class="c-rate"></span></li>
+                </ul>
+            </div>
+        </div>
+    </div>
+    <div class="col col-lg-4">
+        <div class="card">
+            <div class="profile__info ord-hide" style="width:100%">
+                <div class="user__info" data-toggle="dropdown">
+                    <div class="actions" style="position: absolute;right: 0;">
+                        <i class="actions__item zmdi zmdi-unfold-less"></i>
+                        <i class="actions__item zmdi zmdi-close-circle"></i>
+                    </div>
+                    <div style="display: inline-flex;">
+                        <img class="user__img" src="demo/img/profile-pics/8.jpg" alt="">
+                        <div class="tit">Merchant Details</div>
+                    </div>
+                </div>
+                <ul class="icon-list">
+                    <li><i class="zmdi zmdi-pin-account"></i><span class="m-name"></span></li>
+                    <li><i class="zmdi zmdi-phone"></i> <span class="m-phone"></span></li>
+                    <li><i class="zmdi zmdi-my-location"></i> <span class="m-address"></span></li>
+                    <li><i class="zmdi zmdi-star"></i><span class="m-rate"></span></li>
+                </ul>
+            </div>
+        </div>
+    </div>
+    <div class="col col-lg-4">
+        <div class="card">
+            <div class="profile__info ord-hide" style="width:100%">
+                <div class="user__info" data-toggle="dropdown">
+                    <img class="user__img" src="demo/img/profile-pics/8.jpg" alt="">
+                    <div>
+                        <div class="">Order Details</div>
+                    </div>
+                    <div class="actions listview__actions">
+                        <i class="actions__item zmdi zmdi-unfold-less"></i>
+                        <i class="actions__item zmdi zmdi-close-circle"></i>
+                    </div>
+                </div>
+                <ul class="icon-list">
+                    <li>Order Time: <span class="otime"></span></li>
+                    <li>Store Time:  <span class="stime"></span></li>
+                    <li>Delivery Time:  <span class="dtime"></span></li>
+                    <li>Total Time: <span class="ttime"></span></li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="row">
+    <div class="col col-lg-8 col-md-8">
+        <div id="ShopperMap"></div>
+    </div>
+    <div class="col col-lg-4 col-md-4">
+        <div class="orderListContainer">
+            <div class="row">
+                <div class="col col-12">
+                    <input type="text" class="form-control text-center" name="name" value="" placeholder="Search Order" id="sOrd" />
+                </div>
+                <div class="col col-12">
+                    <div class="card ovf">
+                        <div class="card-block">
+                            <div class="listview listview--hover list-unstyled orderList">
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+
+        </div>
+    </div>
+</div>
+
+
+@section scripts{
+    <script>
+        (function () {
+
+            var shopperApi = getShopperHostUrl(), total = 0, shopCoords = [], originLatLng, destinationLatLng;
+            var coords = { lat: 29.964516199999995, lng: 31.2474425 }, ords = [];
+            var directionsService = new google.maps.DirectionsService;
+            var directionsDisplay = new google.maps.DirectionsRenderer;
+
+            var map = new google.maps.Map(document.getElementById('ShopperMap'), {
+                zoom: 18,
+                center: coords,
+                mapTypeId: google.maps.MapTypeId.ROADMAP,
+                mapTypeControl: false,
+                streetViewControl: false
+            });
+
+            var marker, merchMarker, custMarker;
+            marker = new google.maps.Marker({
+                draggable: true,
+                icon: {
+                    path: google.maps.SymbolPath.FORWARD_CLOSED_ARROW,
+                    strokeColor: 'red',
+                    strokeWeight: 3,
+                    scale: 6,
+                },
+                map: map,
+                duration: 1000
+            });
+            merchMarker = new google.maps.Marker({
+                //position: { lat: _coord.latitude, lng: _coord.longitude },
+                draggable: true,
+                icon: '/admin/content/images/supermarket-icon.png',
+                map: map
+            });
+            custMarker = new google.maps.Marker({
+                //position: { lat: _coord.latitude, lng: _coord.longitude },
+                icon: '/admin/content/images/Users.png',
+                draggable: true,
+                map: map
+            });
+
+            google.maps.event.addListener(marker, 'dragend', function (event) {
+                coords = { latitude: this.getPosition().lat(), longitude: this.getPosition().lng() };
+                shopCoords.push({ lat: coords.latitude, lng: coords.longitude });
+                console.log(coords);
+            });
+            notificationHub.client.trackShopper = function (lat, lng) {
+                if (marker) {
+                    marker.setIcon({
+                        path: google.maps.SymbolPath.FORWARD_CLOSED_ARROW,
+                        strokeColor: 'red',
+                        strokeWeight: 3,
+                        scale: 6,
+                        rotation: google.maps.geometry.spherical.computeHeading(marker.getPosition(), new google.maps.LatLng(lat, lng))
+                    });
+                    marker.setPosition(new google.maps.LatLng(lat, lng));
+                    originLatLng = new google.maps.LatLng(lat, lng);
+                    calculateAndDisplayRoute(directionsService, directionsDisplay);
+                }
+            }
+            directionsDisplay.setMap(map);
+            function calculateAndDisplayRoute(directionsService, directionsDisplay) {
+                console.log(originLatLng.lat(), destinationLatLng);
+                directionsService.route({
+                    origin: originLatLng,
+                    destination: destinationLatLng,
+                    travelMode: 'DRIVING'
+                }, function (response, status) {
+                    if (status === 'OK') {
+                        directionsDisplay.setDirections(response);
+                    } else {
+                        console.log('Directions request failed due to ' + status);
+                    }
+                });
+            }
+            $(document).on('click', '.listview__heading a', function () {
+                var _this = $(this);
+                $('.listview__heading a').parent().parent().css('background', '#fefefe');
+                _this.parent().parent().css('background', '#f2de9d');
+                var merchant = _this.data('merchant');
+
+                var state = _this.data('state');
+
+                addWatcher($(this).data('id'));
+
+                var cuOrd = getOrder($(this).data('id'));
+                var geocoder = new google.maps.Geocoder;
+                console.log(cuOrd);
+                if (cuOrd) {
+                    $('.c-phone').html(cuOrd.customer.mobile);
+                    $('.c-address').html(cuOrd.customer.address);
+                    $('.c-floor').html(cuOrd.customer.apt.split('/')[0]);
+                    $('.c-flat').html(cuOrd.customer.apt.split('/')[1]);
+                    $('.c-name').html(cuOrd.customer.name);
+                    if (state == "Ready") {
+                        merchMarker.setMap(null);
+                        custMarker.setMap(map);
+                        custMarker.setPosition(new google.maps.LatLng(cuOrd.customer.coords.latitude, cuOrd.customer.coords.longitude));
+                        destinationLatLng = new google.maps.LatLng(cuOrd.customer.coords.latitude, cuOrd.customer.coords.longitude);
+                    }
+                    else {
+                        custMarker.setMap(null);
+                        merchMarker.setMap(map);
+                        merchMarker.setPosition(new google.maps.LatLng(cuOrd.merchantCoords.latitude, cuOrd.merchantCoords.longitude));
+                        destinationLatLng = new google.maps.LatLng(cuOrd.merchantCoords.latitude, cuOrd.merchantCoords.longitude);
+                    }
+                    var latlng = { lat: cuOrd.merchantCoords.latitude, lng: cuOrd.merchantCoords.longitude };
+                    geocoder.geocode({ 'location': latlng }, function (results, status) {
+                        if (results[0]) {
+                            $('.m-address').html(results[0].formatted_address);
+                        }
+                    })
+                    $('.m-name').html(cuOrd.merchantName);
+                    $('.m-phone').html(cuOrd.merchantPhone);
+
+                    $('.otime').html(moment.utc(cuOrd.creationDate).toDate().toUTCString());
+                    $('.stime').html(moment.utc(cuOrd.acceptedDateTime).toDate().toUTCString());
+                    if (cuOrd.deliveredDateTime) $('.dtime').html(moment.utc(cuOrd.deliveredDateTime).toDate().toUTCString());
+
+                    //total (assignedToDriverDateTime,deliveredDateTime)
+                   // $('.ttime').html(cuOrd.);
+
+
+
+
+                }
+
+
+
+                $('.ordh').addClass('ord-hide');
+                $('.profile__info').removeClass('ord-hide');
+            });
+            function getOrder(id) {
+                return $.grep(ords, function (e) { return e.id == id; })[0];
+            }
+            function addWatcher(ordId) {
+                callAjax('order/tracking', 'POST', {
+                    orderId: ordId,
+                    connectionId: glob_connectionId
+                }).done(function (response) {
+                    if (response.data) {
+                        var _coord = response.data[0];
+                        originLatLng = new google.maps.LatLng(_coord.latitude, _coord.longitude);
+                        marker.setPosition(originLatLng);
+                        calculateAndDisplayRoute(directionsService, directionsDisplay);
+                    } else {
+                        alert('No coordinates available');
+                    }
+
+                }).fail(function (err) {
+                    alert('Error getting Coordinates');
+                })
+            }
+
+
+            $('#sOrd').on('keypress', function (evt) {
+                var val = $(this).val();
+                if ((evt.which < 48 || evt.which > 57)) {
+                    evt.preventDefault();
+                }
+                else if (val.toString().length === 3 && evt.which != 8 && val.indexOf('-') < 0) {
+                    $(this).val(val + '-');
+                }
+                if (evt.which == 13) {
+                    searchOrder($('#sOrd').val());
+                }
+            });
+            $('#sOrd').keydown(function (evt) {
+                if (evt.keyCode == 8) {
+                    if ($('#sOrd').val().length == 1) drawOrds(ords, $('.orderList'));
+                }
+            })
+            function searchOrder(orderNumber) {
+                callAjax('orders/search', 'POST', { orderNumber: orderNumber, PageNumber: 1, PageSize: 30 }).done(function (response) {
+                    if (response.data) {
+                        total = response.data.total;
+                        var ords = response.data.data;
+                        drawOrds(ords, $('.orderList'));
+                    } else {
+                        alert('No orders found')
+                    }
+                }).fail(function (err) {
+                    alert('No orders found')
+                });
+            }
+            function getOrders() {
+                callAjax('orders', 'POST', { PageNumber: 1, PageSize: 30 })
+                    .done(function (response) {
+                        if (response.data) {
+                            total = response.data.total;
+                            ords = response.data.data;
+                            drawOrds(ords, $('.orderList'));
+                        }
+                    })
+                    .fail(function (err) { console.log(err); });
+            }
+            function drawOrds(ords, container) {
+                if (ords.length > 0) {
+                    container.empty();
+                    for (var i = 0; i < ords.length; i++) {
+                        var ord = ords[i];
+                        container.append(
+                            '<div class= "listview__content oactivity "><div class="listview__heading title">' +
+                                   ' <a data-id=' + ord.id + ' data-state="' + ord.state + '" style="font-weight: 600;cursor: pointer; color: #3e95cd;font-size: 20px;"> ' + ord.orderNumber + ' </a>'
+                                    + '<span class ="status right label-warning ' + ord.state + '" > ' + ord.state + ' </span></div>' +
+                                '<p><span style="font-style:normal;"> ' + ord.merchantName + '</span></p></div> '
+                            );
+                    }
+                } else {
+                    alert('Order number doesn\'t exist')
+                }
+
+            }
+            function callAjax(endPoint, type, data) {
+                return $.ajax({
+                    url: shopperApi + endPoint,
+                    type: type,
+                    data: data,
+                    headers: requestHeaders(),
+                    dataType: "json",
+                });
+            }
+
+            function getShopperHostUrl() {
+                if (isWebsiteLive) return 'https://www.weelo.com.eg/api/shopper/';
+                else
+                    return '/api/shopper/';
+            }
+            function init() {
+                getOrders();
+            }
+            init();
+        }());
+    </script>
+}
+

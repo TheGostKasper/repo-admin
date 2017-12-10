@@ -1,0 +1,81 @@
+﻿@model AMS.Models.Item
+
+@{
+    ViewBag.Title = "Details";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2 class="title"><a class="btn btn-secondary btn--icon-text waves-effect" href="~/Item/"><span><i class="zmdi zmdi-arrow-back"></i> Back</span></a></h2>
+
+    <div class="content__inner content__inner--sm">
+        <div class="card profile"  style="background-color: rgba(230, 230, 230, 0.22);">
+           
+        </div>
+        <div class="card">
+            <center>
+                <div class="profile__img">
+                    <img src="@Model.ImageUrl" alt="">
+                </div>
+            </center>
+            <hr/>
+            <div class="card-block">
+                <dl class="row">
+                    <dt class="col-sm-4">
+                        @Html.DisplayNameFor(model => model.NameEN)
+                    </dt>
+
+                    <dd class="col-sm-8">
+                        @Html.DisplayFor(model => model.NameEN)
+                    </dd>
+
+                    <dt class="col-sm-4">
+                        @Html.DisplayNameFor(model => model.NameAR)
+                    </dt>
+
+                    <dd class="col-sm-8">
+                        @Html.DisplayFor(model => model.NameAR)
+                    </dd>
+
+                    <dt class="col-sm-4">
+                        @Html.DisplayNameFor(model => model.SubCategoryId)
+                    </dt>
+
+                    <dd class="col-sm-8">
+                        @Html.DisplayFor(model => model.SubCategoryId)
+                    </dd>
+
+                    <dt class="col-sm-4">
+                        @Html.DisplayNameFor(model => model.Volume)
+                    </dt>
+
+                    <dd class="col-sm-8">
+                        @Html.DisplayFor(model => model.Volume)
+                    </dd>
+
+                    <dt class="col-sm-4">
+                        @Html.DisplayNameFor(model => model.UnitId)
+                    </dt>
+
+                    <dd class="col-sm-8">
+                        @Html.DisplayFor(model => model.UnitId)
+                    </dd>
+                    <dt class="col-sm-4">
+                        @Html.DisplayNameFor(model => model.CreationDate)
+                    </dt>
+
+                    <dd class="col-sm-8">
+                        @Model.CreationDate.Value.ToLocalTime().ToString("dd/MM/yyyy hh:mm:ss tt")
+                    </dd>
+
+                </dl>
+            </div>
+        </div>
+    </div>
+
+
+<div>
+    
+</div>
+<p>
+    <a class="btn btn-secondary btn--icon-text" href="~/Item/Edit/@Model.Id"><span><i class="zmdi zmdi-edit zmdi-hc-fw"></i></span></a>
+</p>

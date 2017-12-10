@@ -1,0 +1,59 @@
+﻿@model IEnumerable<AMS.Models.Category>
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<header class="m-header">
+    <h2 class="m-title">Categories</h2>
+</header>
+<div class="content_inner">
+    <div class="card">
+        <div class="card-block">
+            <a href="~/category/create" class="btn btn--action btn--fixed btn-danger waves-effect"><i class="zmdi zmdi-plus"></i></a>
+            <table class="table table-bordered" id="list">
+                <thead class="thead-default">
+                    <tr>
+                        <th>
+                            @Html.DisplayNameFor(model => model.NameEN)
+                        </th>
+                        <th>
+                            @Html.DisplayNameFor(model => model.NameAR)
+                        </th>
+                        @*<th>
+                        @Html.DisplayNameFor(model => model.ImageUrl)
+                    </th>*@
+                        <th></th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var item in Model)
+                    {
+                        <tr>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.NameEN)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.NameAR)
+                            </td>
+                            @*<td>
+                            <div class="item_small_img_box">
+                                <img class="item_small_img" src="@item.ImageUrl" alt="" />
+                            </div>
+                        </td>*@
+                            <td>
+                                <div class="pull-right">
+                                    <a class="btn btn-secondary btn--icon-text" href="~/Category/Edit/@item.Id"><span><i class="zmdi zmdi-edit zmdi-hc-fw"></i></span></a>
+                                   @* <a class="btn btn-secondary btn--icon-text" href="~/Category/Details/@item.Id"><span><i class="zmdi zmdi-more zmdi-hc-fw"></i></span></a>*@
+                                    <a class="btn btn-danger btn--icon-text" data-did="@item.Id" href="~/Category/Delete/@item.Id"><span><i class="zmdi zmdi-delete zmdi-hc-fw"></i></span></a>
+                                </div>
+                            </td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+

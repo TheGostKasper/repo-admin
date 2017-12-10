@@ -1,0 +1,127 @@
+﻿@{
+    ViewBag.Title = "Dashboard";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+
+<div class="row quick-stats">
+    <div class="col-sm-6 col-md-3">
+        <div class="quick-stats__item bg-blue">
+            <div class="quick-stats__info">
+                <h2 id="totalUsers">0</h2>
+                <small>Total Users</small>
+            </div>
+            <div class="quick-stats__chart sparkline-bar-stats"><a href="~/users" class="totalDisplay">Users</a></div>
+        </div>
+    </div>
+    <div class="col-sm-6 col-md-3">
+        <div class="quick-stats__item bg-blue">
+            <div class="quick-stats__info">
+                <h2 id="totalMerchant">0</h2>
+                <small>Total Merchant</small>
+            </div>
+            <div class="quick-stats__chart sparkline-bar-stats"><a href="~/merchant" class="totalDisplay">Merchants</a></div>
+        </div>
+    </div>
+    <div class="col-sm-6 col-md-3">
+        <div class="quick-stats__item bg-blue">
+            <div class="quick-stats__info">
+                <h2 id="totalOrders">0</h2>
+                <small>Total Orders</small>
+            </div>
+            <div class="quick-stats__chart sparkline-bar-stats"><a href="~/home/orders" class="totalDisplay">Orders</a></div>
+        </div>
+    </div>
+    <div class="col-sm-6 col-md-3">
+        <div class="quick-stats__item bg-blue">
+            <div class="quick-stats__info">
+                <h2 id="sales">$0</h2>
+                <small>Sales</small>
+            </div>
+            <div class="quick-stats__chart sparkline-bar-stats"><a href="~/home/orders" class="totalDisplay">Sales</a></div>
+        </div>
+    </div>
+</div>
+<div class="dashboard" data-columns="2">
+    <div class="column size-1of2">
+        <div class="card">
+            <div class="card-header">
+                <h2 class="card-title">Order Activities</h2>
+            </div>
+            <div class="card-block ords_card">
+                <div class="card_last_update"><i class="zmdi zmdi-time zmdi-hc-fw"></i><span></span></div>
+                <div id="tooltip_action" style="width:100%; height:300px"></div>
+            </div>
+        </div>
+        <div class="card">
+            <div class="card-header">
+                <h2 class="card-title">Recent Orders Activities</h2>
+            </div>
+            <div class="card-block">
+                <div class="card_last_update"><i class="zmdi zmdi-time zmdi-hc-fw"></i><span></span></div>
+                <div class="listview listview--hover list-unstyled">
+                </div>
+            </div>
+        </div>
+
+    </div>
+    <div class="column size-1of2">
+        <div class="card widget-visitors">
+            <div class="card-header">
+                <h2 class="card-title">Users</h2>
+                <small class="card-subtitle">Find all users locations</small>
+            </div>
+            @*<div class="card-block pie">
+                    <div class="chart pie_g" id="areaChart">
+                    </div>
+                </div>*@
+            <div class="card-block pie">
+                @*<div class="chart pie_g" id="cityChart">
+                    </div>*@
+                <div class="widget-visitors__map map-visitors" style="position: relative; overflow: hidden; background-color: rgb(255, 255, 255);">
+                    <div id="map"></div>
+                </div>
+            </div>
+        </div>
+        <div class="card">
+            <div class="card-header">
+                <h2 class="card-title">Device Usage</h2>
+            </div>
+            @*<div class="card widget-visitors">
+                <div class="dev_g" id="chart_div"></div>
+                <div class="dev_g" id="lang_chart_div"></div>
+            </div>*@
+            <div class="card-block" style="height:inherit;height: 420px;">
+                    <div class="row">
+                        <div class="col-md-6 col-sm-12">
+                            <div id="chart_div"></div>
+                        </div>
+                        <div class="col-md-6 col-sm-12">
+                            <div id="lang_chart_div"></div>
+                        </div>
+                    </div>
+
+                </div>
+        </div>
+    </div>
+</div>
+<div class="dashboard" data-columns="3" style="padding: 14px;">
+    <div class="card widget-visitors">
+        <div class="card-header">
+            <h2 class="card-title">Users</h2>
+        </div>
+        <div class="card-block pie">
+            <div class="chart pie_g" id="areaChart"></div>
+            <div class="chart pie_g" id="cityChart"></div>
+            <div class="chart pie_g" id="merchantChart"></div>
+        </div>
+    </div>
+</div>
+<script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+@*<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAUhsDhNPjRlOEdezOcVyze8Lt1qjhumvk&libraries=places&language=ar&region=EG"></script>*@
+
+@section scripts{
+    <script src="~/Scripts/admin.dashboard.js"></script>
+}
+
+

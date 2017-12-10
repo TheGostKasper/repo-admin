@@ -1,0 +1,215 @@
+﻿
+@{
+    ViewBag.Title = "Blog";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<style>
+    .button {
+        padding: 9px !important;
+        margin: 2px;
+        border-radius: 18px !IMPORTANT;
+    }
+
+    .profile__img__edit {
+        position: absolute;
+        font-size: 2.2rem;
+        top: 45%;
+        left: 40%;
+        background-color: rgba(55, 149, 212, 0.88);
+        width: 50px;
+        height: 50px;
+        line-height: 50px;
+        border-radius: 50%;
+        text-align: center;
+        color: #FFF;
+    }
+
+    .profile__img {
+        position: unset;
+    }
+
+        .profile__img img {
+            max-width: 100%;
+        }
+</style>
+
+<header class="m-header">
+    <h2 class="sup_header">Blog</h2>
+</header>
+<div class="row todo">
+    <div class="col-md-8">
+        <div class="card">
+            <div class="card-block">
+                <h3 class="card-block__title">Titel</h3>
+                <div class="form-group">
+                    <input type="text" class="form-control b-title" name="name" value="" placeholder="Title" />
+                    <i class="form-group__bar"></i>
+                </div>
+                <h3 class="card-block__title">Short Description</h3>
+                <div class="form-group">
+                    <input type="text" class="form-control b-shortDescription" name="name" value="" placeholder="Short description" />
+                    <i class="form-group__bar"></i>
+                </div>
+                <h3 class="card-block__title">Content</h3>
+
+                <div class="form-group">
+                    <div id="editor"></div>
+                    <i class="form-group__bar"></i>
+                </div>
+                <div class="row" style="float:right;">
+                    <button class="btn btn-default button" style="" id="save">Save</button>
+                    <button class="btn btn-info button" style="" id="preview" disabled>Preview</button>
+                    <button class="btn btn-danger button" style="" id="clear">Clear</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-4">
+        <div class="card">
+            <div class="card-header">
+                <h2>Cover</h2>
+            </div>
+            <div class="card-block">
+                <div class="profile">
+                    <div class="profile__img">
+                        <img id="image_view" src="~/Content/images/placeholder.gif" alt="">
+                        <form id="upload" method="post" enctype="multipart/form-data">
+                            <label for="f_upload">
+                                <span class="zmdi zmdi-camera profile__img__edit ctv" style="cursor:pointer;"></span>
+                            </label>
+                            <label style="display:none;">
+                                <input id="f_upload" type="file" class="btn btn-secondary" name="file_upload[]" multiple="multiple" />
+                                <input type="submit" id="f_upload2" class="btn btn-default btn-sm file-upload" value="Upload" style="visibility:hidden" />
+                            </label>
+                        </form>
+                        <div class="img-u-loader" style="display:none;"><img src="~/Content/loader.gif" style="position: absolute;top: 38%;left: 39%;height: 35px;border-radius: 50%;" /></div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+
+@section scripts{
+    <script>
+        (function () {
+            var od = new OrderDetails();
+            var blogObj = { title: "", shortDescription: "", content: "", cover: "", author: "", type: "", visibile: true, publishDate: "" };
+            var arrBlog = [];
+            var currTitle = ''
+            $('#editor').trumbowyg();
+            $('#save').on('click', function () {
+                if ($('.b-title').val() != '' && $('#editor').html()!='') {
+                    $('#preview').removeAttr('disabled');
+                    var src = ($("#image_view").attr('src').includes('Content/images/placeholder.gif')) ? '' : $("#image_view").attr('src');
+                    blogObj = {
+                        employeeId: $('.user__name').data('id'),
+                        title: $('.b-title').val(),
+                        shortDescription: $('.b-shortDescription').val(),
+                        description: $('#editor').html(),
+                        imageUrl: src,
+                    }
+                    od.getOnlyData('admin/blog/add/articles', blogObj, 'POST').then(function (data) {
+                        notify('Data saved Succeffully', 'info');
+                        localStorage.setItem('article', JSON.stringify(blogObj));
+                    }, function (err) {
+                        notify('Please fill the form with right data', 'danger');
+                    });
+                    currTitle = $('.b-title').val().split(' ').join("-");
+                } else {
+                    notify('Please fill the form', 'danger');
+                }
+
+            });
+            $('#preview').on('click', function () {
+                window.open('/admin/home/preview/' + currTitle, '_blank');
+            });
+            $('#f_upload').on('change', prepareUpload);
+
+            $("form#upload").submit(function () {
+                $('.img-u-loader').show();
+                var files = this.f_upload.files.length
+                if (files == 0) {
+                    notify('Please Choose files first', 'danger');
+                    return false;
+                }
+                //if (this.f_upload.files[0].size > 81920) {
+                //    alert('Please Choose file its size lower than 80k first');
+                //    $('.img-u-loader').css('display', '');
+                //    return false;
+                //}
+                var formData = new FormData(this);
+                $.ajax({
+                    url: WeeloApi + 'upload/product/image',
+                    type: 'POST',
+                    headers: requestHeaders(),
+                    data: formData,
+                    async: false,
+                    success: function (res) {
+                        var list, vType;
+                        var types = ['png', 'jpg', 'jpeg'];
+                        for (var i = 0; i < res.data.length; i++) {
+                            if (res.data[i].status == 200) {
+                                $("#image_view").attr('src', res.data[i].url);
+                            }
+                            else {
+                                notify(res.data[i].Message,'danger');
+                            }
+                            $("#new_imageLoader").val('');
+                        }
+                        $('.img-u-loader').hide();
+                    },
+                    xhr: function () {
+                        var xhr = $.ajaxSettings.xhr();
+                        xhr.upload.onprogress = function (evt) { };
+                        xhr.upload.onload = function () {
+                            notify('Image Loaded!', 'info');
+
+                        };
+                        return xhr;
+                    },
+                    cache: false,
+                    contentType: false,
+                    processData: false,
+                    async: true
+                });
+                return false;
+            });
+            $('#clear').on('click', function () {
+                clearVal(['.b-title', '.b-shortDescription'])
+                clearHtmlOrSrc(['#editor', '#image_view'])
+            });
+            function prepareUpload(event) {
+                var files = event.target.files;
+                if (files.length > 0) {
+                    $("form#upload").submit();
+                }
+            }
+            function clearVal(arrEles) {
+                for (var i = 0; i < arrEles.length; i++) {
+                    $(arrEles[i]).val('');
+                }
+            }
+            function clearHtmlOrSrc(arrEles) {
+                for (var i = 0; i < arrEles.length; i++) {
+                    $(arrEles[i]).html('');
+                    $(arrEles[i]).attr('src', '/admin/Content/images/placeholder.gif');
+                }
+            }
+
+
+
+            if (location.href.includes('blog/edit')) {
+                var article = JSON.parse(localStorage.getItem('article'));
+                $('.b-title').val(article.title)
+                $('.b-shortDescription').val(article.shortDescription)
+                $('#editor').html(article.description)
+                $("#image_view").attr('src', article.imageUrl)
+            }
+        }());
+    </script>
+}

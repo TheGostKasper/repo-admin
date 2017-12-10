@@ -1,0 +1,185 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <title></title>
+    <meta charset="utf-8" />
+    <script src="Scripts/jquery-1.10.2.min.js"></script>
+    <style>
+        .li-container {
+            width: 75px;
+            height: 75px;
+            border: 1px solid #909090;
+            text-align: center;
+            background-color: #f3ee7f;
+        }
+
+
+
+        ul.display-inline-block-example {
+            padding: 6px;
+        }
+
+            ul.display-inline-block-example li {
+                display: inline-block;
+                min-height: 77px;
+                vertical-align: top;
+                width: 75px;
+                height: 75px;
+                border: 1px solid #909090;
+                text-align: center;
+                background-color: #f3ee7f;
+            }
+
+                ul.display-inline-block-example li p {
+                    margin-top: 30%;
+                    font-weight: 300;
+                    color: black;
+                }
+
+        .selectDataTable {
+            float: right;
+            margin-top: 2px;
+        }
+
+        #merchantList {
+            height: 30px;
+        }
+    </style>
+</head>
+<body style="background-color: #88b37d;">
+    <div class="container" style="width:300px;">
+        <button id="btn-back">Back</button>
+        <div class="selectDataTable">
+            <select id="merchantList">
+                <option value="0">Select ...</option>
+            </select>
+        </div>
+        <ul class="display-inline-block-example" id="categries"></ul>
+        <ul class="display-inline-block-example" id="subCategries"></ul>
+        <ul class="display-inline-block-example" id="products"></ul>
+    </div>
+
+    <script>
+        (function () {
+            var datatable;
+            var cuurItemId;
+            var merchantId;
+            //var pageToBack = 0;
+            var WeeloApi = "/api/v1/";
+
+            $('#merchantList').on('change', function (e) {
+                merchantId = $(this).val();
+                if (merchantId > 0) {
+                    $('#subCategries').empty();
+                    $('#products').empty();
+                    appendData('#categries', 'merchant/category/' + merchantId, "GET", {});
+                } else {
+                    $('#subCategries').empty();
+                    $('#products').empty();
+                }
+            });
+
+
+            $(document).on('click', '#categries li', function () {
+                appendData('#subCategries', 'subcategory/list/' + $(this).data("id"), "GET", {});
+                $(this).parent().toggle();
+                //$('#categries').toggle();
+                //pageToBack=1;
+            });
+
+            $(document).on('click', '#subCategries li', function () {
+                appendData('#products', 'products/' + $(this).data("id"), "GET", {});
+                $(this).parent().toggle();
+                //pageToBack=2;
+            });
+
+            //$('#btn-back').on('click', function () {
+            //    if (pageToBack == 1) {
+            //        $('#categries').toggle();
+            //        $('#subCategries').toggle();
+            //    } else if (pageToBack == 2) {
+            //        $('#subCategries').toggle();
+            //        $('#products').toggle();
+            //    }
+            //    pageToBack = (pageToBack <= 0) ? 0 : pageToBack--;
+            //});
+           
+            var getMerchant = function () {
+                var ele = $('#merchantList');
+                getData('merchant/list', "GET", {}).then(function (data) {
+                    var result = data.data;
+                    for (var i = 0; i < result.length; i++) {
+                        ele.append('<option value="' + result[i].id + '">' + result[i].nameEN + '</option> ')
+                    }
+                }, function (err) {
+                   
+                });
+            }();
+
+            function appendData(remote, endPoint, type, data) {
+               
+                var ele = $(remote);
+                getData(endPoint, type, data).then(function (data) {
+                    var result = data.data;
+                   
+                    ele.empty();
+                    if (result) {
+                        for (var i = 0; i < result.length; i++) {
+                            ele.append('<li data-id="' + result[i].id + '"><p>' + result[i].nameEN + '<p></li>')
+                        }
+                    } else {
+                        ele.append('<p> Could not found any results </p> ')
+                    }
+
+                }, function (err) {
+                   
+                })
+            }
+            function getData(endPoint, type, data) {
+                return $.ajax({
+                    url: WeeloApi + endPoint,
+                    type: type,
+                    data: data,
+                    headers: requestHeaders(),
+                    dataType: "json",
+                });
+            }
+
+
+            function getToken() {
+                var nameEQ = "_adminToken=";
+                var ca = document.cookie.split(';');
+                for (var i = 0; i < ca.length; i++) {
+                    var c = ca[i];
+                    while (c.charAt(0) == ' ') c = c.substring(1, c.length);
+                    if (c.indexOf(nameEQ) == 0) return c.substring(nameEQ.length, c.length);
+                }
+                return null;
+            }
+
+            function getCookie(cname) {
+                var name = cname + "=";
+                var decodedCookie = decodeURIComponent(document.cookie);
+                var ca = decodedCookie.split(';');
+                for (var i = 0; i < ca.length; i++) {
+                    var c = ca[i];
+                    while (c.charAt(0) == ' ') {
+                        c = c.substring(1);
+                    }
+                    if (c.indexOf(name) == 0) {
+                        return c.substring(name.length, c.length);
+                    }
+                }
+                return "";
+            }
+            function requestHeaders() {
+                var headers = {};
+                headers.Authorization = 'Bearer ' + getToken();
+                return headers;
+            }
+
+
+        }());
+    </script>
+</body>
+</html>

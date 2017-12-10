@@ -1,0 +1,54 @@
+﻿
+@{
+    ViewBag.Title = "Orders";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+
+<div class="card">
+    
+    <div class="card-block">
+            <div class="row">
+                <div class="col-md-10"><input type="search" class="search-table" name="name" value="" placeholder="Search for records..." /></div>
+                <div class="col-md-2">
+                    <div class="selectDiv">
+                        <select id="selectOrderstate" class="select2">
+                            <option>Select ...</option>
+                            <option value="1">Pending</option>
+                            <option value="2">Accepted</option>
+                            <option value="3">Ready</option>
+                            <option value="4">Canceled</option>
+                            <option value="5">Delivered</option>
+                        </select>
+                    </div>
+                </div>
+            </div>
+        <table id="ReadyOrders" class="table table-bordered">
+            <thead class="thead-default">
+                <tr role="row">
+                    <th class="nosorting">Order Number</th>
+                    <th class="nosorting">Total</th>
+                    <th class="nosorting">Payment</th>
+                    <th class="nosorting">Notes</th>
+                    <th class="nosorting">UserPhone</th>
+                    <th class="nosorting">CourierName</th>
+                    <th class="nosorting">SupervisorName</th>
+                    <th class="nosorting">Tip</th>
+                    <th class="nosorting">Delivered</th>
+                </tr>
+            </thead>
+            <tfoot>
+
+            </tfoot>
+        </table>
+    </div>
+    </div>
+    @*<div class="pg-notfound center-align red lighten-5">
+            <p> No Orders Found </p>
+        </div>*@
+    
+
+
+    @section scripts{
+        <script src="~/Scripts/admin.order.js"></script>
+    }

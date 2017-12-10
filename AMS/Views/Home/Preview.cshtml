@@ -1,0 +1,298 @@
+﻿
+@{
+    ViewBag.Title = "Preview";
+    Layout = "";
+}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+
+    <!-- Vendor styles -->
+    <link rel="stylesheet" href="~/Admin-Content/vendors/material-design-iconic-font/dist/css/material-design-iconic-font.min.css">
+    <!-- App styles -->
+    <link href="~/Admin-Content/css/app.min.css" rel="stylesheet" />
+    <link href="~/Admin-Content/css/style.css" rel="stylesheet" />
+    <style>
+        .container__preview {
+            padding: 15px;
+        }
+
+        .b-title {
+            font-size: 35px;
+            font-weight: bold;
+            padding-bottom: 10px;
+        }
+
+        .button {
+            padding: 9px !important;
+            margin: 2px;
+            border-radius: 18px !IMPORTANT;
+        }
+
+        .progress, [class*=card-img] {
+            width: auto;
+        }
+
+        .page-loadM {
+            width: 100%;
+            height: 100%;
+            position: fixed;
+            top: 0;
+            left: 0;
+            background-color: rgba(243, 243, 243, 0.26);
+            z-index: 999999999;
+            align-items: center;
+            justify-content: center;
+            display: flex;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="page-loader">
+        <div class="page-loader__spinner">
+            <svg viewBox="25 25 50 50">
+                <circle cx="50" cy="50" r="20" fill="none" stroke-width="2" stroke-miterlimit="10" />
+            </svg>
+        </div>
+    </div>
+
+    <section class="content__inner">
+        <header class="m-header">
+            <h2 class="sup_header">Blog</h2>
+        </header>
+        <div class="content__inner">
+            <div class="card">
+                <div class="row todo">
+                    <div class="col-md-9 col-sm-8 article">
+                        <div class="card-header">
+                            <div class="pull-right">
+                                <button class="btn btn-default button" style="" id="edit">Edit</button>
+                                <button class="btn btn-info button" style="" id="publish">Publish</button>
+                            </div>
+                            <h1 class="card-title b-title"></h1>
+                            <h2 class="card-title b-shortDescription"></h2>
+                            <div class="card-subtitle">
+                                <p>Posted by: <span class="b-author"></span> on <span class="b-published"></span></p>
+                            </div>
+                        </div>
+                        <center>
+                            <img class="card-img-top b-cover" src="" alt="">
+                        </center>
+                        <div class="card-block">
+                            <p class="b-content"></p>
+                        </div>
+                    </div>
+                    <div class="col-md-3 col-sm-4">
+                        <div class="listview listview--hover list-art">
+                        </div>
+                    </div>
+
+                    <div class="not-found" style="display:none; padding:50px;text-align:center;">
+                        <h2>Sorry not found</h2>
+                    </div>
+                </div>
+            </div>
+
+
+        </div>
+        <div class="footer_fixed" style="display:none;">
+            <a class="btn btn-secondary share-twitter"><span><i class="zmdi zmdi-twitter zmdi-hc-fw"></i></span></a>
+        </div>
+
+
+
+        <footer class="footer hidden-xs-down">
+            <p>© Weelo LLC. All rights reserved.</p>
+            <ul class="nav footer__nav">
+                <li><a class="nav-link" href="~/">Homepage</a></li>
+                <li><a class="nav-link" href="http://www.weelo.com.eg">Company</a>  </li>
+            </ul>
+        </footer>
+    </section>
+
+    <script src="~/Admin-Content/vendors/js/jquery.min.js"></script>
+    <script src="~/Scripts/moment.min.js"></script>
+    <script src="~/Admin-Content/vendors/js/bootstrap-notify.min.js"></script>
+
+    <script>
+            var isWebsiteLive = @System.Configuration.ConfigurationManager.AppSettings["LiveMode"], WeeloApi = getHostUrl(),globFData=[];
+            function getHostUrl() {
+                if (isWebsiteLive)
+                    return 'https://www.weelo.com.eg/api/v1/';
+                else
+                    return '/api/v1/';
+            }
+            function getToken() {
+                var nameEQ = "_adminToken=";
+                var ca = document.cookie.split(';');
+                for (var i = 0; i < ca.length; i++) {
+                    var c = ca[i];
+                    while (c.charAt(0) == ' ') c = c.substring(1, c.length);
+                    if (c.indexOf(nameEQ) == 0) return c.substring(nameEQ.length, c.length);
+                }
+                return null;
+            }
+
+            function getCookie(cname) {
+                var name = cname + "=";
+                var decodedCookie = decodeURIComponent(document.cookie);
+                var ca = decodedCookie.split(';');
+                for (var i = 0; i < ca.length; i++) {
+                    var c = ca[i];
+                    while (c.charAt(0) == ' ') {
+                        c = c.substring(1);
+                    }
+                    if (c.indexOf(name) == 0) {
+                        return c.substring(name.length, c.length);
+                    }
+                }
+                return "";
+            }
+            function requestHeaders() {
+                var headers = {};
+                headers.Authorization = 'Bearer ' + getToken();
+                return headers;
+            }
+
+    </script>
+    <script>
+        (function () {
+            var urlslaches = location.href.split('/');
+            var urlTitle = (urlslaches[urlslaches.length - 1]).toLocaleLowerCase().split('-').join(" ");
+            var currObj={};
+            getOnlyData('admin/blog', {article: urlTitle}, 'GET').then(function (response) {
+                var artObj =JSON.parse(response);
+                currObj=artObj.data;
+                fetchArticle(currObj);
+            },function(err){
+            notify('Cannot get this article !','danger')
+            });
+
+
+
+            $('#edit').on('click',function(){
+                editArticle();
+            })
+            $('#publish').on('click',function(){
+                debugger;
+                getOnlyData('admin/blog/updatestatus', {id: currObj.id}, 'GET').then(function (response) {
+                    notify('Blog updated successfully', 'info');
+                    $('a[data-id="'+currObj.id+'"]').css('background','yellow');
+                },function(err){ notify('cannot update blog, please try again later', 'danger');
+                });
+            });
+
+            function fetchArticle(retrievedBlog) {
+                if (retrievedBlog) {
+                    retrievedBlog = retrievedBlog;
+                    $('.b-title').html(retrievedBlog.title);
+                    $('.b-shortDescription').html(retrievedBlog.shortDescription);
+                    $('.b-content').html(displayVideos(retrievedBlog.description));
+                    $('.b-author').html(retrievedBlog.name);
+                    $('.b-published').html(moment.utc(retrievedBlog.creationDate).format('DD/MM/YYYY hh:mm:ss A'));
+                    $('.b-cover').attr('src', retrievedBlog.imageUrl);
+                    artMta(retrievedBlog)
+                } else {
+                    $('.not-found').show();
+                    $('.article').hide();
+                }
+
+                $('.page-loader').fadeOut(300);
+            }
+            function artMta(artObj) {
+                $('head').append(`
+                        <meta property="og:title" content="`+ artObj.title + `" />
+                        <meta property="og:url" content="http://localhost:60/admin/home/Preview/`+ artObj.title + `" />
+                        <meta property="og:image" content= "`+ artObj.imageUrl + `" />
+                        <meta property="og:description" content= "`+ artObj.shortDescription + `" />
+                        <meta property="og:site_name" content="Weelo" />
+                    `);
+                articles();
+            }
+            function articles () {
+                getOnlyData('admin/blog/articles', {status:2}, 'GET').then(function (response) {
+                    var res=JSON.parse(response);
+                    var articles = res.data;
+                    $('.list-art').append('<center><h2> No Pending articles</h2></center>');
+                    if(articles.length>0){
+                        $('.list-art').empty();
+                        for (var i = 0; i < articles.length; i++) {
+                            var art = articles[i];
+                            var src = (art.imageUrl != '') ? art.imageUrl : '/admin/Content/images/placeholder.gif';
+                            var title = art.title.split(' ').join("-");;
+                            html = `
+                            <a class ="listview__item" data-id="`+art.id+`" href= "/admin/home/preview/`+ title + `" >
+                                <img src= "`+ src + `" alt="" class ="listview__img">
+                                <div class ="listview__content">
+                                    <div class ="listview__heading"> `+ art.title + ` </div>
+                                    <p>Posted by: <span> `+ art.name + ` </span> on <span>` + moment.utc(art.creationDate).format('DD/MM/YYYY hh:mm:ss A')+ `</span></p>
+                                </div>
+                            </a>
+                            `;
+                            $('.list-art').append(html);
+                        };
+                    }
+                }, function (err) {
+                    notify('Cannot find any articles !', 'danger');
+                });
+            };
+            function displayVideos(content) {
+                var frame = ''; var res = content;
+                var srcs = $(content.match('<a(.*?)<\/a>'));
+                if (srcs) {
+                    for (var i = 0; i < srcs.length - 1; i++) {
+                        var href = $(srcs[i]).attr('href');
+                        if (href)
+                            if (href.includes('youtube.com')) {
+                                var vid = href.split('watch?v=')[1];
+                                frame = '<iframe width="420" height="315" src="//www.youtube.com/embed/' + vid + '" frameborder="0" allowfullscreen></iframe>'
+                                var a = srcs[i];
+                                res = content.replace(a, frame);
+                            }
+                    }
+                    return res;
+                }
+            }
+
+            $('.share-twitter').on('click', function (e) {
+                e.preventDefault();
+                var url = "https://www.weelo.com.eg";
+                var text = "Test"
+                window.open('http://twitter.com/share?url=' + encodeURIComponent(url) + '&text=' + encodeURIComponent(text), '', 'left=0,top=0,width=550,height=450,personalbar=0,toolbar=0,scrollbars=0,resizable=0');
+            });
+
+            function getOnlyData(endPoint, data, type) {
+                return $.ajax({
+                    url: WeeloApi + endPoint,
+                    type: type,
+                    headers: requestHeaders(),
+                    data: data,
+                    dataType: 'text'
+                });
+            }
+            function editArticle(){
+                localStorage.removeItem('article');
+                localStorage.setItem('article',JSON.stringify(currObj));
+                window.open('/admin/home/blog/edit/'+currObj.title.split(' ').join("-"),'_blank');
+            };
+            function notify(message,type,title,icon,url){
+                $.notify({
+                    icon: icon,
+                    title: title,
+                    message: message,
+                    url: url
+                }, {
+                    element: 'body',
+                    type: type
+                });
+            }
+
+        }());
+    </script>
+</body>
+</html>

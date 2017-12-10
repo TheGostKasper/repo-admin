@@ -1,0 +1,352 @@
+﻿@model AMS.Models.Shopper
+@{
+    ViewBag.Title = "Shopper";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+
+    var statusList = new List<System.Web.UI.WebControls.ListItem>
+                    {
+                  new System.Web.UI.WebControls.ListItem { Text = "Online", Value="1" },
+                  new System.Web.UI.WebControls.ListItem { Text = "Offline", Value="2" },
+                  new System.Web.UI.WebControls.ListItem { Text = "OnDuty", Value="3" },
+                  new System.Web.UI.WebControls.ListItem { Text = "Suspended", Value="4" },
+            };
+
+    var brandList = new List<System.Web.UI.WebControls.ListItem>();
+    foreach (var item in ViewData["BrandLookup"] as IEnumerable<AMS.Models.MotorBrand>)
+    {
+        var i = new System.Web.UI.WebControls.ListItem();
+        i.Text = item.Brand;
+        i.Value = item.Id.ToString();
+        brandList.Add(i);
+    }
+    var typeList = new List<System.Web.UI.WebControls.ListItem>();
+    foreach (var item in ViewData["TypeLookup"] as IEnumerable<AMS.Models.MotorType>)
+    {
+        var i = new System.Web.UI.WebControls.ListItem();
+        i.Text = item.Type;
+        i.Value = item.Id.ToString();
+        typeList.Add(i);
+    }
+    var yearList = new List<System.Web.UI.WebControls.ListItem>();
+    for (int i = 1992; i < 2019; i++)
+    {
+        var l = new System.Web.UI.WebControls.ListItem();
+        l.Text = l.Value = i.ToString();
+        yearList.Add(l);
+    }
+}
+
+<div class="">
+    <header class="m-header">
+        <a class="btn btn-secondary btn--icon waves-effect back_to" data-slide="0" data-step="start"><span><i class="zmdi zmdi-arrow-back"></i></span></a>
+        <h1 class="sup_header m-title">Add New Shopper</h1>
+    </header>
+    <div style="margin:auto">
+        <div class="form-horizontal">
+            <div class="card-block nopadding">
+                <div class="row" style="width:230px;margin:auto">
+                    <div class="card profile">
+                        <div class="profile__img">
+                            <img id="image_view" src="~/Content/images/placeholder.gif" alt="">
+                            <form id="upload" method="post" enctype="multipart/form-data">
+                                <label for="f_upload">
+                                    <span class="zmdi zmdi-camera profile__img__edit ctv" style="cursor:pointer;"></span>
+                                </label>
+                                <label style="display: none">
+                                    <input id="f_upload" type="file" class="btn btn-secondary" name="file_upload[]" multiple="multiple" />
+                                    <input type="submit" class="btn btn-default btn-sm file-upload" value="Upload" style="visibility:hidden" />
+                                </label>
+                            </form>
+                            <div class="img-u-loader" style="display:none;"><img src="~/Content/loader.gif" style="position: absolute;top: 38%;left: 39%;height: 35px;border-radius: 50%;" /></div>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+            @using (Html.BeginForm("CreateShopper", "Home", FormMethod.Post, new { @id = "shopper" }))
+            {
+                @*@Html.AntiForgeryToken()*@
+                @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+
+                <div class="row nomargin">
+                    <div class="col-sm-3">
+                        <div class="form-group">
+                            @Html.LabelFor(model => model.FirstName, htmlAttributes: new { @class = "" })
+                            @Html.EditorFor(model => model.FirstName, new { htmlAttributes = new { @class = "form-control input-mask" } })
+                            <i class="form-group__bar"></i>
+                        </div>
+                        @Html.ValidationMessageFor(model => model.LastName, "", new { @class = "text-danger form-control-danger" })
+                    </div>
+                    <div class="col-sm-3">
+                        <div class="form-group">
+                            @Html.LabelFor(model => model.LastName, htmlAttributes: new { @class = "" })
+                            @Html.EditorFor(model => model.LastName, new { htmlAttributes = new { @class = "form-control input-mask" } })
+                            <i class="form-group__bar"></i>
+                        </div>
+                        @Html.ValidationMessageFor(model => model.LastName, "", new { @class = "text-danger form-control-danger" })
+                    </div>
+                    <div class="col-sm-3">
+                        <div class="form-group">
+                            @Html.LabelFor(model => model.Email, htmlAttributes: new { @class = "control-label input-mask" })
+                            @Html.EditorFor(model => model.Email, new { htmlAttributes = new { @class = "form-control " } })
+                            <i class="form-group__bar"></i>
+                        </div>
+                        @Html.ValidationMessageFor(model => model.Email, "", new { @class = "text-danger form-control-danger" })
+                    </div>
+                    <div class="col-sm-3">
+                        <div class="form-group">
+                            @Html.LabelFor(model => model.Mobile, htmlAttributes: new { @class = "control-label input-mask" })
+                            @Html.EditorFor(model => model.Mobile, new { htmlAttributes = new { @class = "form-control " } })
+                            <i class="form-group__bar"></i>
+                        </div>
+                        @Html.ValidationMessageFor(model => model.Mobile, "", new { @class = "text-danger form-control-danger" })
+                    </div>
+
+
+                    <div class="col-sm-3">
+                        <div class="form-group">
+                            @Html.LabelFor(model => model.Country, htmlAttributes: new { @class = "control-label input-mask" })
+                            @Html.EditorFor(model => model.Country, new { htmlAttributes = new { @class = "form-control " } })
+                            <i class="form-group__bar"></i>
+                        </div>
+                        @Html.ValidationMessageFor(model => model.Country, "", new { @class = "text-danger form-control-danger" })
+                    </div>
+                    <div class="col-sm-3">
+                        <div class="form-group">
+                            @Html.LabelFor(model => model.City, htmlAttributes: new { @class = "control-label input-mask" })
+                            @Html.EditorFor(model => model.City, new { htmlAttributes = new { @class = "form-control " } })
+                            <i class="form-group__bar"></i>
+                        </div>
+                        @Html.ValidationMessageFor(model => model.City, "", new { @class = "text-danger form-control-danger" })
+                    </div>
+                    <div class="col-sm-3">
+                        <div class="form-group">
+                            @Html.LabelFor(model => model.Address, htmlAttributes: new { @class = "control-label input-mask" })
+                            @Html.EditorFor(model => model.Address, new { htmlAttributes = new { @class = "form-control " } })
+                            <i class="form-group__bar"></i>
+                        </div>
+                        @Html.ValidationMessageFor(model => model.Address, "", new { @class = "text-danger form-control-danger" })
+                    </div>
+
+
+                    <div class="col-sm-3">
+                        <div class="form-group">
+                            @Html.LabelFor(model => model.Rating, htmlAttributes: new { @class = "control-label" })
+                            @Html.EditorFor(model => model.Rating, new { htmlAttributes = new { @class = "form-control" } })
+                            <i class="form-group__bar"></i>
+                        </div>
+                        @Html.ValidationMessageFor(model => model.Rating, "", new { @class = "text-danger" })
+                    </div>
+                    <div class="col-sm-3">
+                        <div class="form-group">
+                            @Html.LabelFor(model => model.CurrentBudget, htmlAttributes: new { @class = "control-label" })
+                            @Html.EditorFor(model => model.CurrentBudget, new { htmlAttributes = new { @class = "form-control" } })
+                            <i class="form-group__bar"></i>
+                        </div>
+                        @Html.ValidationMessageFor(model => model.CurrentBudget, "", new { @class = "text-danger" })
+                    </div>
+                    <div class="col-sm-3">
+                        <div class="form-group">
+                            @Html.Label("Status", htmlAttributes: new { @class = "control -label" })
+                            @Html.DropDownList("Status", new SelectList(statusList, "Value", "Text"), "--Select status--", new { @class = "form-control input-mask" })
+                            <i class="form-group__bar"></i>
+                        </div>
+                        @Html.ValidationMessageFor(model => model.Status, "", new { @class = "text-danger" })
+                    </div>
+                    <div class="col-sm-3 isBranch">
+                        <div class="form-group">
+                            @Html.Label("Motor Brand", htmlAttributes: new { @class = "control -label" })
+                            @Html.DropDownListFor(model => model.MotorBrandId, new SelectList(brandList, "Value", "Text"), "--Select Brand--", new { @class = "form-control" })
+                            <i class="form-group__bar"></i>
+                        </div>
+                        @Html.ValidationMessageFor(model => model.MotorBrandId, "", new { @class = "text-danger" })
+                    </div>
+                    <div class="col-sm-3 isBranch">
+                        <div class="form-group">
+                            @Html.Label("Motor Type", htmlAttributes: new { @class = "control -label" })
+                            @Html.DropDownListFor(model => model.MotorTypeId, new SelectList(typeList, "Value", "Text"), "--Select Type--", new { @class = "form-control" })
+                            <i class="form-group__bar"></i>
+                        </div>
+                        @Html.ValidationMessageFor(model => model.MotorTypeId, "", new { @class = "text-danger" })
+                    </div>
+                    <div class="col-sm-3 isBranch">
+                        <div class="form-group">
+                            @Html.Label("Motor Year", htmlAttributes: new { @class = "control -label" })
+                            @Html.DropDownListFor(model => model.MotorYear, new SelectList(yearList, "Value", "Text"), "--Select Year--", new { @class = "form-control" })
+                            <i class="form-group__bar"></i>
+                        </div>
+                        @Html.ValidationMessageFor(model => model.MotorYear, "", new { @class = "text-danger" })
+                    </div>
+                    <div class="col-sm-3">
+                        <div class="form-group">
+                            @Html.Label("Location Name", htmlAttributes: new { @class = "control-label" })
+                            @Html.Editor("Location Name", new { htmlAttributes = new { @class = "form-control input-mask", @id = "buildingName" } })
+                            <i class="form-group__bar"></i>
+                        </div>
+                        @Html.ValidationMessage("Location Name", new { @class = "text-danger" })
+                    </div>
+                    <div class="col-sm-3">
+                        <div class="form-group">
+                            @Html.LabelFor(model => model.Latitude, htmlAttributes: new { @class = "control-label" })
+                            @Html.EditorFor(model => model.Latitude, new { htmlAttributes = new { @class = "form-control", id = "Latitude", @readonly = "readonly" } })
+                            <i class="form-group__bar"></i>
+                        </div>
+                        @Html.ValidationMessageFor(model => model.Latitude, "", new { @class = "text-danger" })
+                    </div>
+                    <div class="col-sm-3">
+                        <div class="form-group">
+                            @Html.LabelFor(model => model.Longitude, htmlAttributes: new { @class = "control-label" })
+                            @Html.EditorFor(model => model.Longitude, new { htmlAttributes = new { @class = "form-control", id = "Longitude", @readonly = "readonly" } })
+                            <i class="form-group__bar"></i>
+                        </div>
+                        @Html.ValidationMessageFor(model => model.Longitude, "", new { @class = "text-danger" })
+                    </div>
+
+                    <div class="col-sm-3" style="visibility:hidden">
+                        <div class="form-group">
+                            @Html.EditorFor(model => model.ImageUrl, new { @class = "form-control m-logoUrl", style = "visibility:hidden" })
+                            <i class="form-group__bar"></i>
+                        </div>
+                        @Html.ValidationMessageFor(model => model.ImageUrl, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+
+                <div>
+                    <center>
+                        <button type="submit" id="submitShopper" class="btn btn-primary waves-effect btn-lg">Save</button>
+                    </center>
+                </div>
+            }
+        </div>
+    </div>
+
+</div>
+
+
+
+@section scripts{
+
+    <script>
+        (function () {
+            var mLocation = new ManageLocation();
+            $('#f_upload').on('change', prepareUpload);
+            $("form#upload").submit(function () {
+                debugger;
+                $('.img-u-loader').show();
+                var files = this.f_upload.files.length
+                if (files == 0) {
+                    alert('Please Choose files first');
+                    return false;
+                }
+                if (this.f_upload.files[0].size > 81920) {
+                    alert('Please Choose file its size lower than 80k first');
+                    $('.img-u-loader').css('display', '');
+                    return false;
+                }
+                var formData = new FormData(this);
+                $.ajax({
+                    url: WeeloApi + 'upload/product/image',
+                    type: 'POST',
+                    headers: requestHeaders(),
+                    data: formData,
+                    async: false,
+                    success: function (res) {
+                        var list, vType;
+                        var types = ['png', 'jpg', 'jpeg'];
+                        for (var i = 0; i < res.data.length; i++) {
+                            if (res.data[i].status == 200) {
+                                console.log(res.data[i].url);
+                                $("#image_view").attr('src', res.data[i].url);
+                                $('#ImageUrl').val(res.data[i].url);
+                            }
+                            else {
+                                alert(res.data[i].Message);
+                            }
+                            $("#new_imageLoader").val('');
+                        }
+                        $('.img-u-loader').hide();
+                    },
+                    xhr: function () {
+                        var xhr = $.ajaxSettings.xhr();
+                        xhr.upload.onprogress = function (evt) { };
+                        xhr.upload.onload = function () { console.log('DONE!') };
+                        return xhr;
+                    },
+                    cache: false,
+                    contentType: false,
+                    processData: false,
+                    async: true
+                });
+                return false;
+            });
+            function prepareUpload(event) {
+                var files = event.target.files;
+                if (files.length > 0) {
+                    $("form#upload").submit();
+                }
+            }
+            $("form#shopper").submit(function (e) {
+                var isValid = $("#shopper").valid();
+                var formData = $('#shopper').serialize();
+                if (isValid) {
+                    e.preventDefault();
+                    var data = {
+                        Email: $("#Email").val(),
+                        FirstName: $("#FirstName").val(),
+                        LastName: $("#LastName").val(),
+                        Latitude:$("#Latitude").val(),
+                        Longitude: $("#Longitude").val(),
+                        Mobile: $("#Mobile").val(),
+                        Rating: $("#Rating").val(),
+                        Status: $("#Status").val(),
+                        CreationDate: $("#CreationDate").val(),
+                        CurrentBudget: $("#CurrentBudget").val(),
+                        LicenseFilePath: $("#LicenseFilePath").val(),
+                        MotorTypeId: $("#MotorTypeId").val(),
+                        MotorYear: $("#MotorYear").val(),
+                        MotorBrandId: $("#MotorBrandId").val(),
+                        Country: $("#Country").val(),
+                        City: $("#City").val(),
+                        Address: $("#Address").val()
+                    };
+                    //data = {
+                    //    "NameEN": "Mubo Obimung", "NameAR": "juhhu",
+                    //    "Email": "script@weelo.com.eg", "Password": "123456", "SmsCode": "9578",
+                    //    "Phone": "01022222222", "CountryId": 1,
+                    //    "Notes": "sdsda", "AccountStateId": 1, "CurrencyId": 1, "LogoUrl": "https://d1pfxkxr37t8n5.cloudfront.net/product/de19e262b7724457966e0a7331dc7914.jpg", "DeliveryTime": 50, "ServiceFees": 1, "Tax": "01", "MinOrder": 3, "LangId": 1, "Latitude": "29.9660593", "Longitude": "31.2493228", "Percentage": 1, "ShortPassword": "9578"
+                    //};
+                    if (validForm(data)) {
+                        $.post("@Url.Action("CreateShopper", "Home")", data).then(function (data) {
+                            if (data > 0) {
+                                alert('Shopper Added Successfully');
+                                clearForm();
+                            } else {
+                                alert('Something Went Wrong')
+                            }
+                        }, function (err) {
+                            console.log(err);
+                        });
+                    }
+                    else {
+                        $('form#shopper').validate();
+                    }
+                }
+            });
+            function clearForm(){
+                $('input').val('');
+                $('img').attr('src', '/admin/Content/images/placeholder.gif');
+            }
+            function validForm(data) {
+                for (var i in data) {
+                    if (i != "LicenseFilePath" && i != "Notes" && data[i] == "") return false;
+                }
+                return true;
+            }
+
+            function init() {
+                mLocation.initAutocomplete('buildingName', 'Latitude', 'Longitude');
+            };
+            init();
+        }())
+    </script>
+}

@@ -1,0 +1,1303 @@
+﻿@model AMS.Models.Merchant
+
+@{
+    ViewBag.Title = "Create";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+
+    #region ListItems
+    var daysList = new List<System.Web.UI.WebControls.ListItem>
+                    {
+                  new System.Web.UI.WebControls.ListItem { Text = "Sunday", Value="1" },
+                  new System.Web.UI.WebControls.ListItem { Text = "Monday", Value="2" },
+                  new System.Web.UI.WebControls.ListItem { Text = "Tuesday", Value="3" },
+                  new System.Web.UI.WebControls.ListItem { Text = "Wednesday", Value="4" },
+                  new System.Web.UI.WebControls.ListItem { Text = "Thursday", Value="5" },
+                  new System.Web.UI.WebControls.ListItem { Text = "Friday", Value="6" },
+                  new System.Web.UI.WebControls.ListItem { Text = "Saturday", Value="7" },
+            };
+
+    var listItems = new List<System.Web.UI.WebControls.ListItem>();
+    foreach (var item in ViewData["CountriesLookup"] as IEnumerable<AMS.Models.Country>)
+    {
+        var i = new System.Web.UI.WebControls.ListItem();
+        i.Text = item.Name;
+        i.Value = item.Id.ToString();
+        listItems.Add(i);
+    }
+
+    var languageLookup = new List<System.Web.UI.WebControls.ListItem>();
+    foreach (var item in ViewData["LanguageLookup"] as IEnumerable<AMS.Models.Language>)
+    {
+        var i = new System.Web.UI.WebControls.ListItem();
+        i.Text = item.Name;
+        i.Value = item.Id.ToString();
+        languageLookup.Add(i);
+    }
+
+    var listItems3 = new List<System.Web.UI.WebControls.ListItem>();
+    foreach (var item in ViewData["AccountStateLookup"] as IEnumerable<AMS.Models.AccountState>)
+    {
+        var i = new System.Web.UI.WebControls.ListItem();
+        i.Text = item.State;
+        i.Value = item.Id.ToString();
+        listItems3.Add(i);
+    }
+    var listItems4 = new List<System.Web.UI.WebControls.ListItem>();
+    foreach (var item in ViewData["CurrenciesLookup"] as IEnumerable<AMS.Models.Currency>)
+    {
+        var i = new System.Web.UI.WebControls.ListItem();
+        i.Text = item.Name;
+        i.Value = item.Id.ToString();
+        listItems4.Add(i);
+    }
+    var mainSubM = new List<System.Web.UI.WebControls.ListItem>();
+    foreach (var item in ViewData["mainSubMLookup"] as IEnumerable<AMS.Models.Merchant>)
+    {
+        var i = new System.Web.UI.WebControls.ListItem();
+        i.Text = item.NameEN;
+        i.Value = item.Id.ToString();
+        mainSubM.Add(i);
+    }
+    #endregion
+}
+<link href="https://cdn.datatables.net/buttons/1.4.2/css/buttons.dataTables.min.css" rel="stylesheet" />
+<style>
+    .file-caption-name {
+        width: 100%;
+        /* margin: 0; */
+        /* padding: 0; */
+        /* box-shadow: none; */
+        border: none;
+        background: 0 0;
+        /* outline: 0; */
+    }
+
+    .btn-file {
+        position: relative;
+        overflow: hidden;
+    }
+
+        .btn-file input[type=file] {
+            position: absolute;
+            top: 0;
+            right: 0;
+            min-width: 100%;
+            min-height: 100%;
+            font-size: 100px;
+            text-align: right;
+            filter: alpha(opacity=0);
+            opacity: 0;
+            outline: none;
+            background: white;
+            cursor: inherit;
+            display: block;
+        }
+
+    .span-input {
+        display: inline-block;
+        /* margin-top: 1px; */
+        font-weight: 400;
+        text-align: center;
+        vertical-align: middle;
+        cursor: pointer;
+        background-image: none;
+        border: 1px solid transparent;
+        /* white-space: nowrap; */
+        padding: 10px 11px;
+        font-size: 14px;
+        line-height: 1.5;
+        border-radius: 4px;
+    }
+
+    .pload-file {
+        max-width: 500px;
+    }
+
+    #file-name {
+        height: 23px;
+        padding-left: 10px;
+        font-size: 15px;
+    }
+
+    .waves-button-input {
+        background-color: rgba(0,0,0,0);
+        color: white;
+        padding-top: 5px;
+    }
+
+    label.input-group-btn {
+        background: #32c787;
+    }
+
+    #upload-file {
+        width: 100%;
+        display: inline-flex;
+    }
+
+    .pwat {
+        max-width: 500px;
+        margin: auto;
+        text-align: center;
+        font-size: 31px;
+        color: #ccc;
+        font-weight: 300;
+    }
+
+    .pins, .thanx {
+        max-width: 360px;
+        margin: auto;
+        text-align: center;
+        font-size: 22px;
+        color: #000;
+        font-weight: 200;
+    }
+
+    .data_table .nav.nav-tabs {
+        background: #fff;
+        border: 1px solid #dfdfdf;
+    }
+
+    .data_table .tab-content {
+        padding: 0;
+    }
+
+        .data_table .tab-content > .active {
+            border: 1px solid #dfdfdf;
+        }
+
+    #insertProducts {
+        position: absolute;
+        top: -36px;
+        right: 7px;
+    }
+    #updateProducts{
+         position: absolute;
+        top: -36px;
+        right: 7px;
+    }
+    .data_table .select2-container--default .select2-selection--single {
+        padding: 9px 12px;
+    }
+</style>
+@*<a class="btn btn-secondary btn--icon waves-effect" href="~/merchant"><span><i class="zmdi zmdi-arrow-back"></i></span></a>*@
+
+<!-- Slider container -->
+<div class="swiper-container">
+    <!-- Slides wrapper -->
+    <div class="swiper-wrapper">
+        <!-- Slides -->
+        <div class="swiper-slide step0">
+            <header class="content__title">
+                <h1>supermarket workflow</h1>
+                <small>choose the supermarket or create new one</small>
+            </header>
+            <div class="card">
+                <div class="card-block">
+                    <div>
+                        <div class="form-group">
+                            <select id="supermarkets" class="form-control"></select>
+                            @*@Html.DropDownList("Supermarkets", new SelectList(mainSubM, "Value", "Text"), "Choose your seupermarket", new { @class = "form-control",@Id="supermarkets" })*@
+                            <i class="form-group__bar"></i>
+                        </div>
+                        <p class="text-center" style="font-size: 23px;">OR</p>
+                        <div>
+                            <button id="new_sup" type="button" class="btn btn-primary" style="padding: 13px 0px;width: 100%;font-size: 22px;">New Supermarket</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="swiper-slide step1">
+            <header class="m-header">
+                <a class="btn btn-secondary btn--icon waves-effect back_to" data-slide="0" data-step="start"><span><i class="zmdi zmdi-arrow-back"></i></span></a>
+                <h1 class="sup_header m-title">Add New Supermarket</h1>
+            </header>
+            <div style="margin:auto">
+                <div class="form-horizontal">
+                    <div class="card-block nopadding">
+                        <div class="row" style="width:230px;margin:auto">
+                            <div class="card profile">
+                                <div class="profile__img">
+                                    <img id="image_view" src="~/Content/images/placeholder.gif" alt="">
+                                    <form id="upload" method="post" enctype="multipart/form-data">
+                                        <label for="f_upload">
+                                            <span class="zmdi zmdi-camera profile__img__edit ctv" style="cursor:pointer;"></span>
+                                        </label>
+                                        <label style="display: none">
+                                            <input id="f_upload" type="file" class="btn btn-secondary" name="file_upload[]" multiple="multiple" />
+                                            <input type="submit" class="btn btn-default btn-sm file-upload" value="Upload" style="visibility:hidden" />
+                                        </label>
+                                    </form>
+                                    <div class="img-u-loader" style="display:none;"><img src="~/Content/loader.gif" style="position: absolute;top: 38%;left: 39%;height: 35px;border-radius: 50%;" /></div>
+
+                                </div>
+
+                            </div>
+                        </div>
+                    </div>
+                    @using (Html.BeginForm("Create", "Merchant", FormMethod.Post, new { @id = "merchant" }))
+                    {
+                        @*@Html.AntiForgeryToken()*@
+                        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+
+                        <div class="row nomargin">
+                            <div class="col-sm-3">
+                                <div class="form-group">
+                                    @Html.LabelFor(model => model.NameEN, htmlAttributes: new { @class = "" })
+                                    @Html.EditorFor(model => model.NameEN, new { htmlAttributes = new { @class = "form-control input-mask" } })
+                                    <i class="form-group__bar"></i>
+                                </div>
+                                @Html.ValidationMessageFor(model => model.NameEN, "", new { @class = "text-danger form-control-danger" })
+                            </div>
+                            <div class="col-sm-3">
+                                <div class="form-group">
+                                    @Html.LabelFor(model => model.NameAR, htmlAttributes: new { @class = "" })
+                                    @Html.EditorFor(model => model.NameAR, new { htmlAttributes = new { @class = "form-control input-mask" } })
+                                    <i class="form-group__bar"></i>
+                                </div>
+                                @Html.ValidationMessageFor(model => model.NameAR, "", new { @class = "text-danger form-control-danger" })
+                            </div>
+                            <div class="col-sm-3">
+                                <div class="form-group">
+                                    @Html.LabelFor(model => model.Email, htmlAttributes: new { @class = "control-label input-mask" })
+                                    @Html.EditorFor(model => model.Email, new { htmlAttributes = new { @class = "form-control " } })
+                                    <i class="form-group__bar"></i>
+                                </div>
+                                @Html.ValidationMessageFor(model => model.Email, "", new { @class = "text-danger form-control-danger" })
+                            </div>
+                            <div class="col-sm-3">
+                                <div class="form-group">
+                                    @Html.LabelFor(model => model.Password, htmlAttributes: new { @class = "control-label input-mask" })
+                                    @Html.EditorFor(model => model.Password, new { htmlAttributes = new { @type = "Password", @class = "form-control", @id = "pass-txt" } })
+                                    <i class="form-group__bar"></i>
+                                </div>
+                                @Html.ValidationMessageFor(model => model.Password, "", new { @class = "text-danger form-control-danger" })
+                            </div>
+                            <div class="col-sm-3">
+                                <div class="form-group">
+                                    @Html.LabelFor(model => model.ShortPassword, htmlAttributes: new { @class = "control-label input-mask inline_block" }) <a id="generate-shrtpass" style="cursor:pointer; color:blue;">Generate</a>
+                                    @Html.EditorFor(model => model.ShortPassword, new { htmlAttributes = new { @type = "text", @class = "form-control ", @readonly = "readonly", @id = "shrt-pass" } })
+                                    <i class="form-group__bar"></i>
+                                </div>
+                                @Html.ValidationMessageFor(model => model.ShortPassword, "", new { @class = "text-danger form-control-danger" })
+                            </div>
+
+                            <div class="col-sm-3">
+                                <div class="form-group">
+                                    @Html.LabelFor(model => model.SmsCode, htmlAttributes: new { @class = "inline_block" }) <a id="generate-smscode" style="cursor:pointer; color:blue;">Generate</a>
+                                    @Html.EditorFor(model => model.SmsCode, new { htmlAttributes = new { @class = "form-control", @id = "sms-txt", @readonly = "readonly" } })
+                                    <i class="form-group__bar"></i>
+                                </div>
+                                @Html.ValidationMessageFor(model => model.SmsCode, "", new { @class = "text-danger" })
+                            </div>
+                            <div class="col-sm-3">
+                                <div class="form-group">
+                                    @Html.LabelFor(model => model.Phone, htmlAttributes: new { @class = "control-label input-mask" })
+                                    @Html.EditorFor(model => model.Phone, new { htmlAttributes = new { @class = "form-control " } })
+                                    <i class="form-group__bar"></i>
+                                </div>
+                                @Html.ValidationMessageFor(model => model.Phone, "", new { @class = "text-danger form-control-danger" })
+                            </div>
+                            <div class="col-md-3 col-sm-3 col-xs-3">
+                                <div class="form-group">
+                                    @Html.LabelFor(model => model.CountryId, htmlAttributes: new { @class = "control-label input-mask" })
+                                    @Html.DropDownListFor(model => model.CountryId, new SelectList(listItems, "Value", "Text"), "--Select--", new { @class = "form-control" })
+                                    <i class="form-group__bar"></i>
+                                </div>
+                                @Html.ValidationMessageFor(model => model.CountryId, "", new { @class = "text-danger" })
+                            </div>
+                            <div class="col-md-3 col-sm-3 col-xs-3">
+                                <div class="form-group">
+                                    @Html.LabelFor(model => model.LangId, htmlAttributes: new { @class = "control-label" })
+                                    @Html.DropDownListFor(model => model.LangId, new SelectList(languageLookup, "Value", "Text"), "--Select--", new { @class = "form-control" })
+                                    <i class="form-group__bar"></i>
+                                </div>
+                                @Html.ValidationMessageFor(model => model.LangId, "", new { @class = "text-danger" })
+                            </div>
+                            <div class="col-md-3 col-sm-3">
+                                <div class="form-group">
+                                    @Html.LabelFor(model => model.AccountStateId, htmlAttributes: new { @class = "control-label" })
+                                    @Html.DropDownListFor(model => model.AccountStateId, new SelectList(listItems3, "Value", "Text"), "--Select--", new { @class = "form-control" })
+                                    <i class="form-group__bar"></i>
+                                </div>
+                                @Html.ValidationMessageFor(model => model.AccountStateId, "", new { @class = "text-danger" })
+                            </div>
+                            <div class="col-md-3 col-sm-3">
+                                <div class="form-group">
+                                    @Html.LabelFor(model => model.CurrencyId, htmlAttributes: new { @class = "control-label" })
+                                    @Html.DropDownListFor(model => model.CurrencyId, new SelectList(listItems4, "Value", "Text"), "--Select--", new { @class = "form-control" })
+                                    <i class="form-group__bar"></i>
+                                </div>
+                                @Html.ValidationMessageFor(model => model.CurrencyId, "", new { @class = "text-danger" })
+                            </div>
+                            <div class="col-sm-3">
+                                <div class="form-group">
+                                    @Html.LabelFor(model => model.Notes, htmlAttributes: new { @class = "control-label" })
+                                    @Html.EditorFor(model => model.Notes, new { htmlAttributes = new { @class = "form-control" } })
+                                    <i class="form-group__bar"></i>
+                                </div>
+                                @Html.ValidationMessageFor(model => model.Notes, "", new { @class = "text-danger" })
+                            </div>
+                            <div class="col-sm-3">
+                                <div class="form-group">
+                                    @Html.Label("Location Name", htmlAttributes: new { @class = "control-label" })
+                                    @Html.Editor("Location Name", new { htmlAttributes = new { @class = "form-control input-mask", @id = "buildingName" } })
+                                    <i class="form-group__bar"></i>
+                                </div>
+                                @Html.ValidationMessage("Location Name", new { @class = "text-danger" })
+                            </div>
+                            <div class="col-sm-3">
+                                <div class="form-group">
+                                    @Html.LabelFor(model => model.DeliveryTime, htmlAttributes: new { @class = "control-label" })
+                                    @Html.EditorFor(model => model.DeliveryTime, new { htmlAttributes = new { @class = "form-control" } })
+                                    <i class="form-group__bar"></i>
+                                </div>
+                                @Html.ValidationMessageFor(model => model.DeliveryTime, "", new { @class = "text-danger" })
+                            </div>
+                            <div class="col-sm-3">
+                                <div class="form-group">
+                                    @Html.LabelFor(model => model.ServiceFees, htmlAttributes: new { @class = "control-label" })
+                                    @Html.EditorFor(model => model.ServiceFees, new { htmlAttributes = new { @class = "form-control", @Value = "0" } })
+                                    <i class="form-group__bar"></i>
+                                </div>
+                                @Html.ValidationMessageFor(model => model.ServiceFees, "", new { @class = "text-danger" })
+                            </div>
+                            <div class="col-sm-3">
+                                <div class="form-group">
+                                    @Html.LabelFor(model => model.Tax, htmlAttributes: new { @class = "control-label" })
+                                    @Html.EditorFor(model => model.Tax, new { htmlAttributes = new { @class = "form-control", @Value = "0" } })
+                                    <i class="form-group__bar"></i>
+                                </div>
+                                @Html.ValidationMessageFor(model => model.Tax, "", new { @class = "text-danger" })
+                            </div>
+                            <div class="col-sm-3">
+                                <div class="form-group">
+                                    @Html.LabelFor(model => model.MinOrder, htmlAttributes: new { @class = "control-label" })
+                                    @Html.EditorFor(model => model.MinOrder, new { htmlAttributes = new { @class = "form-control", @Value = "0" } })
+                                    <i class="form-group__bar"></i>
+                                </div>
+                                @Html.ValidationMessageFor(model => model.MinOrder, "", new { @class = "text-danger" })
+                            </div>
+                            <div class="col-sm-3">
+                                <div class="form-group">
+                                    @Html.LabelFor(model => model.Latitude, htmlAttributes: new { @class = "control-label" })
+                                    @Html.EditorFor(model => model.Latitude, new { htmlAttributes = new { @class = "form-control", id = "Latitude", @readonly = "readonly" } })
+                                    <i class="form-group__bar"></i>
+                                </div>
+                                @Html.ValidationMessageFor(model => model.Latitude, "", new { @class = "text-danger" })
+                            </div>
+                            <div class="col-sm-3">
+                                <div class="form-group">
+                                    @Html.LabelFor(model => model.Longitude, htmlAttributes: new { @class = "control-label" })
+                                    @Html.EditorFor(model => model.Longitude, new { htmlAttributes = new { @class = "form-control", id = "Longitude", @readonly = "readonly" } })
+                                    <i class="form-group__bar"></i>
+                                </div>
+                                @Html.ValidationMessageFor(model => model.Longitude, "", new { @class = "text-danger" })
+                            </div>
+                            <div class="col-sm-3">
+                                <div class="form-group">
+                                    @Html.LabelFor(model => model.Percentage, htmlAttributes: new { @class = "control-label" })
+                                    @Html.EditorFor(model => model.Percentage, new { htmlAttributes = new { @class = "form-control" } })
+                                    <i class="form-group__bar"></i>
+                                </div>
+                                @Html.ValidationMessageFor(model => model.Percentage, "", new { @class = "text-danger" })
+                            </div>
+                            <div class="col-sm-3" style="visibility:hidden">
+                                <div class="form-group">
+                                    @Html.EditorFor(model => model.LogoUrl, new { @class = "form-control m-logoUrl", style = "visibility:hidden" })
+                                    <i class="form-group__bar"></i>
+                                </div>
+                                @Html.ValidationMessageFor(model => model.LogoUrl, "", new { @class = "text-danger" })
+                            </div>
+                        </div>
+                        <br />
+                        <div class="row nomargin">
+                            <div class="col-sm-3">
+                                <label class="custom-control custom-radio">
+                                    <input type="radio" value="Branch" name="radio-inline" class="custom-control-input Branch">
+                                    <span class="custom-control-indicator"></span>
+                                    <span class="custom-control-description">Branch</span>
+                                </label>
+                            </div>
+                            <div class="col-sm-3">
+                                <label class="custom-control custom-radio">
+                                    <input type="radio" name="radio-inline" class="custom-control-input">
+                                    <span class="custom-control-indicator"></span>
+                                    <span class="custom-control-description">Main</span>
+                                </label>
+                            </div>
+                        </div>
+                        <br />
+                        <div class="row nomargin">
+                            <div class="col-sm-3 isBranch" style="display:none;">
+                                <div class="form-group">
+                                    @Html.DropDownListFor(model => model.IsBranch, new SelectList(mainSubM, "Value", "Text"), "--Select Supermarket--", new { @class = "form-control" })
+                                    <i class="form-group__bar"></i>
+                                </div>
+                                @Html.ValidationMessageFor(model => model.IsBranch, "", new { @class = "text-danger" })
+                            </div>
+                        </div>
+                        <br />
+                        <div>
+                            <center>
+                                <button type="submit" id="submitMerchant" class="btn btn-primary waves-effect btn-lg">NEXT</button>
+                            </center>
+                        </div>
+                    }
+                </div>
+            </div>
+
+        </div>
+        <div class="swiper-slide step2">
+            <header class="m-header">
+                <a class="btn btn-secondary btn--icon waves-effect back_to" data-slide="4" data-step="start"><span><i class="zmdi zmdi-arrow-back"></i></span></a>
+                <h1 class="sup_header"></h1>
+            </header>
+            <div class="card">
+
+                <div class="card-block">
+                    <div class="form-horizontal">
+                        @using (Html.BeginForm("Create", "BusinessHours", FormMethod.Post, new { @id = "b-form" }))
+                        {
+                            @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+                            <div class="card-block">
+                                <div class="row">
+                                    <div class="col-sm-8">
+                                        <div class="form-group">
+                                            <label>Sunday</label>
+                                            <div id="Sunday-slider-range" data-day="1" class="noUi-target noUi-ltr noUi-horizontal">
+                                            </div>
+                                            <i class="form-group__bar"></i>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-sm-8">
+                                        <div class="form-group">
+                                            <label>Monday</label>
+                                            <div id="Monday-slider-range" data-day="2" class="noUi-target noUi-ltr noUi-horizontal">
+                                            </div>
+                                            <i class="form-group__bar"></i>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-sm-8">
+                                        <div class="form-group">
+                                            <label>Tuseday</label>
+                                            <div id="Tuseday-slider-range" data-day="3" class="noUi-target noUi-ltr noUi-horizontal">
+                                            </div>
+                                            <i class="form-group__bar"></i>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-sm-8">
+                                        <div class="form-group">
+                                            <label>Wednesday</label>
+                                            <div id="Wednesday-slider-range" data-day="4" class="noUi-target noUi-ltr noUi-horizontal">
+                                            </div>
+                                            <i class="form-group__bar"></i>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-sm-8">
+                                        <div class="form-group">
+                                            <label>Thursday</label>
+                                            <div id="Thursday-slider-range" data-day="5" class="noUi-target noUi-ltr noUi-horizontal">
+                                            </div>
+                                            <i class="form-group__bar"></i>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-sm-8">
+                                        <div class="form-group">
+                                            <label>Friday</label>
+                                            <div id="Friday-slider-range" data-day="6" class="noUi-target noUi-ltr noUi-horizontal">
+                                            </div>
+                                            <i class="form-group__bar"></i>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-sm-8">
+                                        <div class="form-group">
+                                            <label>Saturday</label>
+                                            <div id="Saturday-slider-range" data-day="7" class="noUi-target noUi-ltr noUi-horizontal">
+                                            </div>
+                                            <i class="form-group__bar"></i>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-md-offset-2 col-md-10">
+                                    <center>
+                                        <div class="form-group">
+                                            <button type="submit" class="btn btn-outline-primary waves-effect edit" style="display:none;">Edit</button>
+                                            <button type="submit" class="btn btn-outline-primary waves-effect create">Create</button>
+                                        </div>
+                                    </center>
+
+                                </div>
+                                <div class="col-sm-3" style="visibility:hidden">
+                                    @Html.DropDownList("Day", new SelectList(daysList, "Value", "Text"), "--Select--", new { @class = "form-control input-mask" })
+                                    @Html.Editor("OpenTime", new { htmlAttributes = new { @class = "form-control timepicker" } })
+                                    @Html.Editor("CloseTime", new { htmlAttributes = new { @class = "form-control timepicker" } })
+                                </div>
+                            </div>
+                        }
+                    </div>
+                </div>
+
+            </div>
+
+        </div>
+        <div class="swiper-slide step3">
+            <header class="m-header">
+                <a class="btn btn-secondary btn--icon waves-effect back_to" data-slide="4" data-step="start"><span><i class="zmdi zmdi-arrow-back"></i></span></a>
+                <h1 class="sup_header">Add or Update products' price to <span class="sup_name"></span></h1>
+            </header>
+            <div class="card">
+                <div class="card-block">
+                    <center>
+                        <div class="card-block pload-file">
+                            <div class="input-group">
+                                <form id="upload-file2" action="@Url.Action("GetFile")" method="post" style="width: 100%;" enctype="multipart/form-data">
+                                    <div class="btn-group btn-group-lg" style="width: 100%;">
+                                        <button type="button" class="btn btn-primary waves-effect nopadding btn-br-file" style="height:43px;">
+                                            <label>
+                                                <span class="span-input">
+                                                    Browse&hellip; <input type="file" id="prod-file" style="display: none;" name="file">
+                                                </span>
+                                            </label>
+                                        </button>
+                                        <input type="text" class="form-control" id="file-name" readonly style="">
+                                        <button type="submit" class="submi btn btn-success waves-effect">Upload</button>
+                                    </div>
+                                </form>
+
+                            </div>
+                        </div>
+                    </center>
+
+                </div>
+            </div>
+
+            <div class="progress" style="display:none">
+                <div class="progress-bar" role="progressbar" aria-valuemin="0" aria-valuemax="100"></div>
+            </div>
+
+            <div class="pwat" style="display:none">
+                <p>Please wait we're analysing the products </p>
+                <div>
+                    <span id="precentage">0%</span>  <img src="~/Content/images/loader.gif" />
+                </div>
+            </div>
+            <div class="card-block data_table" style="display:none">
+                <div class="tab-container">
+                    <ul class="nav nav-tabs" role="tablist">
+                        <li class="nav-item">
+                            <a class="nav-link active" data-toggle="tab" href="#matched" role="tab">Matched</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" data-toggle="tab" href="#Un-matech" role="tab">Un-Matched</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" data-toggle="tab" href="#matechedBarcode" role="tab">Matched Barcode but Names</a>
+                        </li>
+                    </ul>
+                    <div class="tab-content">
+                        <div class="card tab-pane active fade show" id="matched" role="tabpanel">
+                            <div class="card-block">
+                                <div class="tab-content">
+                                    <button class="btn btn-danger" id="insertProducts">Insert to database</button>
+                                    <button class="btn btn-danger" id="updateProducts" style="display:none;">Update Product Price</button>
+                                    <div class="pins" style="display:none">
+                                        <p>Please wait we're inserting the records to the database</p>
+                                        <div>
+                                            <span id="precentagedb">0%</span>  <img src="~/Content/images/loader.gif" />
+                                        </div>
+                                    </div>
+                                    <div class="thanx" style="display:none">
+                                        <p><b>Thank you!</b> your request completed</p>
+                                        <div>
+                                            <a href="/admin/home/merchantproduct" target="_blank">Check the product</a>
+                                        </div>
+                                    </div>
+                                    <table class="table table-bordered" id="matchedItems" cellspacing="0" width="100%">
+                                        <thead>
+                                            <tr>
+                                                <th>NameEN</th>
+                                                <th>NameAR</th>
+                                                <th>Barcode</th>
+                                                <th>Price</th>
+                                                <th>Quantity</th>
+                                            </tr>
+                                        </thead>
+                                        <tfoot>
+
+                                        </tfoot>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="card tab-pane fade" id="Un-matech" role="tabpanel">
+                            <div class="card-block">
+                                <div class="tab-content">
+                                    <table class="table table-bordered" id="Un-matechItems" cellspacing="0" width="100%">
+                                        <thead>
+                                            <tr>
+                                                <th>NameEN</th>
+                                                <th>NameAR</th>
+                                                <th>Barcode</th>
+                                                <th>Price</th>
+                                                <th>Quantity</th>
+                                            </tr>
+                                        </thead>
+                                        <tfoot></tfoot>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="card tab-pane fade" id="matechedBarcode" role="tabpanel">
+                            <div class="card-block">
+                                <div class="tab-content">
+                                    <table class="table table-bordered" id="matechedBarcodeItems" cellspacing="0" width="100%">
+                                        <thead>
+                                            <tr>
+                                                <th>NameEN</th>
+                                                <th>NameAR</th>
+                                                <th>Barcode</th>
+                                                <th>Price</th>
+                                                <th>Quantity</th>
+                                            </tr>
+                                        </thead>
+                                        <tfoot></tfoot>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="swiper-slide step4">
+            <header class="m-header">
+                <a class="btn btn-secondary btn--icon waves-effect back_to" data-slide="0" data-step="start"><span><i class="zmdi zmdi-arrow-back"></i></span></a>
+                <h1 class="sup_header sup_name"></h1>
+            </header>
+            <div class="card">
+                <div class="card-block">
+                    <h5>Please select what do you need:</h5>
+                    <br />
+                    <div>
+                        <p><a id="add_prod">Add new products?</a></p>
+                        <p><a href="#" id="updatebus_h">Update product(s) price?</a></p>
+                        <p><a href="#" id="newbus_h">Add new business hours?</a></p>
+                        <p><a href="#" id="editbus_h">Update the business hours?</a></p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+    <!-- Pagination, if required -->
+    <div class="swiper-pagination"></div>
+</div>
+
+
+
+
+
+@*<button id="next1">Next</button>*@
+@section scripts{
+
+
+    <script src="~/Scripts/datatable.controls/dataTables.buttons.min.js" type="text/javascript"></script>
+    <script src="~/Scripts/datatable.controls/buttons.flash.min.js" type="text/javascript"></script>
+    <script src="~/Scripts/datatable.controls/jszip.min.js" type="text/javascript"></script>
+    <script src="~/Scripts/datatable.controls/pdfmake.min.js" type="text/javascript"></script>
+    <script src="~/Scripts/datatable.controls/vfs_fonts.js" type="text/javascript"></script>
+    <script src="~/Scripts/datatable.controls/buttons.html5.min.js" type="text/javascript"></script>
+    <script src="~/Scripts/datatable.controls/buttons.print.min.js" type="text/javascript"></script>
+    <script>
+        (function () {
+
+            var glob_merchantId, glob_workflow = true, chkperc = 0, dbperc = 0, filecounter = 0, dbcounter = 0, placeSearch, autocomplete, ishours = false;
+            var mLocation = new ManageLocation();
+            var merchant = new Merchant();
+            var dayarr = ["Sunday", "Monday", "Tuseday", "Wednesday", "Thursday", "Friday", "Saturday"];
+            var apiURL = getHostUrl();
+            var itemsObjs = [], merchantArr = [];
+            var Objs_on = [];
+            var Objs_off = [];
+            var ObjsName_off = [];
+            var totItems, currItmIndx = 1;
+
+            merchant.bindMerchantsToSelect("supermarkets").then(function (data) {
+                merchantArr = data;
+                getMerchant();
+                var merch = $.grep(data, function (e) { return e.id == glob_merchantId; })[0];
+                console.log(merch);
+                $('.sup_name').text(merch.nameEN)
+            });
+
+            var mDt = $('#matchedItems').DataTable({
+                dom: 'Blfrtip',
+                buttons: [
+                    'copy', 'csv', 'excel', 'pdf', 'print'
+                ],
+                "lengthMenu": [[10, 25, 50, -1], [10, 25, 50, "All"]]
+            });
+            var unmDt = $('#Un-matechItems').DataTable({
+                dom: 'Blfrtip',
+                buttons: [
+                    'copy', 'csv', 'excel', 'pdf', 'print'
+                ]
+            });
+            var mBDt = $('#matechedBarcodeItems').DataTable({
+                dom: 'Blfrtip',
+                buttons: [
+                    'copy', 'csv', 'excel', 'pdf', 'print'
+                ]
+            });
+            var mySwiper = new Swiper('.swiper-container', {
+                scrollbarHide: false,
+                centeredSlides: false,
+                spaceBetween: 10,
+                grabCursor: true,
+                loop: false,
+                simulateTouch: false,
+                setWrapperSize: true,
+            });
+            var mySwiper = $('.swiper-container')[0].swiper;
+
+            $('#next1').on('click', function () {
+                mySwiper.slideNext();
+            });
+            $('#prod-file').on('change', function () {
+                var name = $(this).val().substr($(this).val().lastIndexOf('\\') + 1);
+                $('#file-name').val(name)
+            })
+            $(':radio').on('change', function () {
+                var display = ($(this).checked) ? 'none' : '';
+                if ($(this).val() != "Branch") {
+                    $('#IsBranch').val(0);
+                    $('.isBranch').hide();
+                }
+                else
+                    $('.isBranch').show();
+            });
+            $("#generate-pass").click(function () {
+                $("#pass-txt").val(guid())
+            });
+            $("#generate-smscode").click(function () {
+                $("#sms-txt").val(Math.floor(1000 + Math.random() * 9000))
+            });
+            $("#generate-shrtpass").on('click', function () {
+                console.log(Math.floor(1000 + Math.random() * 9000));
+                $("#shrt-pass").val(Math.floor(1000 + Math.random() * 9000))
+            });
+            $('#f_upload').on('change', prepareUpload);
+            $("form#upload").submit(function () {
+                $('.img-u-loader').show();
+                var files = this.f_upload.files.length
+                if (files == 0) {
+                    alert('Please Choose files first');
+                    return false;
+                }
+                if (this.f_upload.files[0].size > 81920) {
+                    alert('Please Choose file its size lower than 80k first');
+                    $('.img-u-loader').css('display', '');
+                    return false;
+                }
+                var formData = new FormData(this);
+                $.ajax({
+                    url: WeeloApi + 'upload/product/image',
+                    type: 'POST',
+                    headers: requestHeaders(),
+                    data: formData,
+                    async: false,
+                    success: function (res) {
+                        var list, vType;
+                        var types = ['png', 'jpg', 'jpeg'];
+                        for (var i = 0; i < res.data.length; i++) {
+                            if (res.data[i].status == 200) {
+                                console.log(res.data[i].url);
+                                $("#image_view").attr('src', res.data[i].url);
+                                $('#LogoUrl').val(res.data[i].url);
+                                //var img = new Image();
+                                //img.id = "itemPic";
+                                //img.style.height = "100%";
+                                //img.src = res.data[i].url;
+                                //$("#new_bgd").empty().append(img);
+                            }
+                            else {
+                                alert(res.data[i].Message);
+                            }
+                            $("#new_imageLoader").val('');
+                        }
+                        $('.img-u-loader').hide();
+                    },
+                    xhr: function () {
+                        var xhr = $.ajaxSettings.xhr();
+                        xhr.upload.onprogress = function (evt) { };
+                        xhr.upload.onload = function () { console.log('DONE!') };
+                        return xhr;
+                    },
+                    cache: false,
+                    contentType: false,
+                    processData: false,
+                    async: true
+                });
+                return false;
+            });
+            $("form#merchant").submit(function (e) {
+                var isValid = $("#merchant").valid();
+                var formData = $('#merchant').serialize();
+                if (isValid) {
+                    e.preventDefault();
+                    var data = {
+                        NameEN: $("#NameEN").val(),
+                        NameAR: $("#NameAR").val(),
+                        Email: $("#Email").val(),
+                        Password: $("#pass-txt").val(),
+                        SmsCode: $("#shrt-pass").val(),
+                        Phone: $("#Phone").val(),
+                        CountryId: $("#CountryId").val(),
+                        Notes: $("#Notes").val(),
+                        AccountStateId: $("#AccountStateId").val(),
+                        CurrencyId: $("#CurrencyId").val(),
+                        LogoUrl: $("#LogoUrl").val(),
+                        DeliveryTime: $("#DeliveryTime").val(),
+                        ServiceFees: $("#ServiceFees").val(),
+                        Tax: $("#Tax").val(), MinOrder: $("#MinOrder").val(),
+                        CreationDate: $("#CreationDate").val(),
+                        LangId: $("#LangId").val(),
+                        Latitude: $("#Latitude").val(),
+                        Longitude: $("#Longitude").val(),
+                        Percentage: $("#Percentage").val(),
+                        ShortPassword: $("#shrt-pass").val()
+                    };
+                    //data = {
+                    //    "NameEN": "Mubo Obimung", "NameAR": "juhhu",
+                    //    "Email": "script@weelo.com.eg", "Password": "123456", "SmsCode": "9578",
+                    //    "Phone": "01022222222", "CountryId": 1,
+                    //    "Notes": "sdsda", "AccountStateId": 1, "CurrencyId": 1, "LogoUrl": "https://d1pfxkxr37t8n5.cloudfront.net/product/de19e262b7724457966e0a7331dc7914.jpg", "DeliveryTime": 50, "ServiceFees": 1, "Tax": "01", "MinOrder": 3, "LangId": 1, "Latitude": "29.9660593", "Longitude": "31.2493228", "Percentage": 1, "ShortPassword": "9578"
+                    //};
+                    if (validForm(data)) {
+                        $.post("@Url.Action("CreateMerchant", "Merchant")", data).then(function (data) {
+                            if (data > 0) {
+                                saveMerchant(data);
+                                glob_workflow = true;
+                                $('#supermarkets').append('<option value=' + data + '>' + $("#NameEN").val() + '</option>')
+                                merchantArr.push({ id: data, text: $("#NameEN").val() });
+                                setStep(2);
+                            } else {
+                                alert('Something Went Wrong')
+                            }
+                        }, function (err) {
+                            console.log(err);
+                        });
+                    }
+                    else {
+                        $('form#merchant').validate();
+                    }
+                }
+            });
+            function validForm(data) {
+                for (var i in data) {
+
+                    if (i != "LogoUrl" && i != "Notes" && data[i] == "") return false;
+                }
+                return true;
+            }
+            $('#b-form').on('submit', function (e) {
+                e.preventDefault();
+                if ($('#MerchantId').val() != 0) {
+                    var result = PostBHours(dayarr);
+                    if (result) {
+                        if (glob_workflow)
+                            setStep(3);
+                        else {
+                            setStep(0);
+                        }
+                    } else {
+                        alert('something went Wrong');
+                    }
+                }
+            });
+            $('#upload-file2').submit(function (e) {
+                e.preventDefault();
+                if ($('#file-name').val() != '') {
+                    $('.submi').attr('disabled', 'disabled');
+                    $('.pwat').show();
+                    $.ajax({
+                        url: this.action,
+                        type: this.method,
+                        data: new FormData(this),
+                        cache: false,
+                        contentType: false,
+                        processData: false,
+                        success: function (data) {
+                            itemsObjs = data;
+                            totItems = data.length;
+                            compareItems(itemsObjs);
+                        },
+                        error: function (xhr, error, status) {
+                            $('.pwat').hide();
+                        }
+                    });
+                }
+
+            })
+            $('#insertProducts').on('click', function (e) {
+                $(this).attr('disabled', 'disabled');
+                $('#matchedItems_wrapper').hide();
+                $('.pins').show();
+                currItmIndx = 1;
+                InsertToDB();
+            });
+            $('#updateProducts').on('click', function (e) {
+                $(this).attr('disabled', 'disabled');
+                $('#matchedItems_wrapper').hide();
+                $('.pins').show();
+                currItmIndx = 1;
+                UpdateToDB();
+            });
+            $('.btn-br-file').click(function () {
+                newProductFile();
+            });
+            $('#new_sup').click(function () {
+                setStep(1);
+            });
+            $('.back_to').click(function () {
+                var slideno = $(this).data('slide');
+                setStep(slideno);
+                $('#supermarkets').select2({
+                    data: merchantArr.sort(function (a, b) {
+                        if (a.text < b.text) return -1;
+                        if (a.text > b.text) return 1;
+                        return 0;
+                    })
+                }).val(0).trigger('change.select2');
+            });
+
+            $('#supermarkets').change(function (e) {
+                if ($(this).val() > 0) {
+                    $('.sup_name').text($(this).find("option:selected").text());
+                    saveMerchant($(this).val());
+                    setStep(4);
+                }
+
+            });
+            $('#add_prod').click(function (e) {
+                setStep(3);
+            });
+            $('#newbus_h').click(function (e) {
+                glob_workflow = false;
+                e.preventDefault();
+                $('.sup_header').html('Add Business Hours');
+                setStep(2);
+            })
+
+            $('#editbus_h').click(function (e) {
+                glob_workflow = false;
+                e.preventDefault();
+                $('.edit').show();
+                $('.create').hide();
+                $('.sup_header').html('Update Business Hours');
+
+                CallAjax('merchant/businessHours', 'POST', { merchantId: glob_merchantId }).then(function (response) {
+                    var data = response.data;
+                    if (data) {
+                        for (var i = 0; i < data.length; i++) {
+                            var day_obj = data[i];
+                            bindNoUiSliderToMerchant(dayarr[parseInt(day_obj.day) - 1], parseInt(day_obj.openTime), parseInt(day_obj.closeTime) + 12);
+                        }
+                    }
+                })
+                setStep(2);
+            });
+            $('#updatebus_h').click(function (e) {
+                e.preventDefault();
+                $('#updateProducts').show();
+                $('#insertProducts').hide()
+                setStep(3);
+            })
+
+
+            function UpdateToDB() {
+                setTimeout(function () {
+                    if (dbcounter < Objs_on.length) {
+                        updatePrice(Objs_on[dbcounter]);
+                        $('#precentagedb').text(Math.round(dbperc) + '%');
+                        UpdateToDB();
+                    }
+                    else {
+                        $('.pins').hide();
+                        $('.thanx').fadeIn();
+                        finishWorkflow();
+                    }
+                    dbcounter++;
+                }, 200);
+            }
+            function updatePrice(itm) {
+                CallAjax('merchant/updateprice', 'POST', {
+                    merchantId: glob_merchantId, barcode: itm.Barcode,
+                    price: itm.Price
+                }).then(function (response) {
+                    var data = response.data;
+                    if (data) {
+
+                    }
+                })
+                dbperc = (currItmIndx++ / Objs_on.length) * 100;
+            }
+
+            function bindNoUiSliderToMerchant(day, start, end) {
+                console.log(day, start, end);
+                document.getElementById(day + "-slider-range").noUiSlider.updateOptions({
+                    start: [start, end]
+                });
+            }
+            function InsertToDB() {
+                setTimeout(function () {
+                    if (dbcounter < Objs_on.length) {
+                        insertItem(Objs_on[dbcounter]);
+                        $('#precentagedb').text(Math.round(dbperc) + '%');
+                        // console.log(dbperc + '%');
+                        InsertToDB();
+                    }
+                    else {
+                        $('.pins').hide();
+                        $('.thanx').fadeIn();
+                        finishWorkflow();
+                    }
+                    dbcounter++;
+                }, 200);
+            }
+            function prepareUpload(event) {
+                var files = event.target.files;
+                if (files.length > 0) {
+                    $("form#upload").submit();
+                }
+            }
+            function saveMerchant(id) {
+                localStorage.setItem('merchant', id);
+                glob_merchantId = id;
+            }
+            function getMerchant(id) {
+                var m = localStorage.getItem('merchant');
+                if (m != null) {
+                    glob_merchantId = m;
+                }
+            }
+            function deleteMerchant(id) {
+                localStorage.removeItem('merchant');
+            }
+            function setStep(indx) {
+                var steps = ['start', 'new_merchant', 'hours', 'data', 'details'];
+                window.location.hash = steps[indx];
+                localStorage.setItem('step', indx);
+                mySwiper.slideTo(indx, 200);
+            }
+            function findStep() {
+                getMerchant();
+                var step = window.location.hash;
+                if (step == "#hours" && localStorage.getItem('step') == '2') {
+                    mySwiper.slideTo(2, 100);
+                }
+                else if (step == "#data" && localStorage.getItem('step') == '3') {
+                    mySwiper.slideTo(3, 100);
+                }
+                else {
+                    if (localStorage.getItem('step') != null) {
+                        var indx = parseInt(localStorage.getItem('step'));
+                        mySwiper.slideTo(indx, 100);
+                    }
+                    else {
+                        mySwiper.slideTo(0, 100);
+                    }
+                }
+            }
+            function guid() {
+                function s4() {
+                    return Math.floor((1 + Math.random()) * 0x10000)
+                      .toString(16)
+                      .substring(1);
+                }
+                return s4() + s4() + s4() + s4() + s4();
+            }
+            function bindNoUiSlider(dayArr) {
+                for (var i = 0; i < dayArr.length; i++) {
+                    noUiSlider.create($("#" + dayArr[i] + "-slider-range")[0], {
+                        start: [8, 22],
+                        connect: true,
+                        tooltips: true,
+                        step: 1,
+                        margin: 8,
+                        range: {
+                            'min': 0,
+                            'max': 24
+                        }
+                    });
+                }
+            }
+            function applyChange(day) {
+                if (parseInt($('#' + day + '-slider-range .noUi-handle-lower').children('.noUi-tooltip').html()) < 12)
+                    $("#OpenTime").val(parseInt($('#' + day + '-slider-range .noUi-handle-lower').children('.noUi-tooltip').html()) + ':00am');
+
+                if (parseInt($('#' + day + '-slider-range .noUi-handle-upper > .noUi-tooltip').html()) >= 12)
+                    $('#CloseTime').val(parseInt($('#' + day + '-slider-range .noUi-handle-upper > .noUi-tooltip').html()) - 12 + ':00pm');
+                else {
+                    $('#CloseTime').val(parseInt($('#' + day + '-slider-range .noUi-handle-upper > .noUi-tooltip').html()) + ':00am');
+                }
+                var __day = $('#' + day + '-slider-range').data('day');
+                $('#Day').val(parseInt(__day));
+
+            };
+            function PostBHours(dayarr) {
+                for (var i = 0; i < dayarr.length; i++) {
+                    applyChange(dayarr[i]);
+                    var data = "MerchantId=" + glob_merchantId + "&";
+                    data += $('#b-form').serialize();
+                    $.post("@Url.Action("Create", "BusinessHours")", data).then(function (data) {
+                        console.log(data);
+                    }, function (err) { console.log(err); });
+                }
+                return true;
+            };
+            function compareItems(items) {
+                setTimeout(function () {
+                    if (filecounter < itemsObjs.length) {
+                        checkItem(itemsObjs[filecounter]);
+                        $('#precentage').text(Math.round(chkperc) + '%');
+                        //$('.progress-bar').css('width', perc + '%');
+                        compareItems(itemsObjs);
+                    }
+                    else {
+                        $('.pwat').hide();
+                        $('.data_table').fadeIn();
+                    }
+                    filecounter++;
+                }, 200);
+            }
+            function checkItem(item) {
+                CallAjax('product/barcode/' + item.Barcode, 'GET', {}).then(function (result) {
+                    if (result.data) {
+                        var _res = result.data[0];
+                        //console.log(_res.nameAR)
+                        //console.log(item.NameAR)
+                        //console.log(_res.nameAR.includes(item.NameAR));
+                        if (item.NameAR.includes(_res.nameAR) /*&& _res.nameEN==item.nameEN*/) {
+                            item.ProductId = _res.id;
+                            //item.Barcode = item.Barcode
+                            Objs_on.push(item);
+                            mDt.row.add([item.NameAR, item.NameEN, item.Barcode, item.Price, item.Quantity]).draw(false)
+                        } else {
+                            item.ProductId = result.data[0].id;
+                            //item.Barcode = item.Barcode
+                            ObjsName_off.push(item);
+                            mBDt.row.add([item.NameAR, item.NameEN, item.Barcode, item.Price, item.Quantity]).draw(false)
+                        }
+                    }
+                    else {
+                        Objs_off.push(item);
+                        unmDt.row.add([item.NameAR, item.NameEN, item.Barcode, item.Price, item.Quantity]).draw(false)
+                    }
+
+                }, function (xhr, error, status) {
+                });
+                chkperc = (currItmIndx++ / totItems) * 100;
+            }
+            function drawRow(item) {
+                return `
+                    <tr>
+                        <td> `+ item.NameAR + ` </td>
+                        <td> `+ item.NameEN + ` </td>
+                        <td> `+ item.Barcode + ` </td>
+                        <td> `+ item.Price + ` </td>
+                        <td> `+ item.Quantity + ` </td>
+                    </tr>
+                    `;
+            };
+            function insertItem(item) {
+                CallAjax('merchant/product', 'POST',
+                    { merchantId: glob_merchantId, productId: item.ProductId, price: item.Price, quantity: item.Quantity })
+                .then(function (response) {
+
+                }, function (error) { });
+                dbperc = (currItmIndx++ / Objs_on.length) * 100;
+            }
+            function CallAjax(endPoint, type, data) {
+                //console.log(data);
+                return $.ajax({
+                    url: apiURL + endPoint,
+                    type: type,
+                    data: data,
+                    headers: requestHeaders(),
+                    dataType: "json",
+                });
+            }
+            function getHostUrl() {
+                var _href = document.location.href;
+                if (isWebsiteLive)
+                    return 'https://www.weelo.com.eg/api/v1/';
+                else
+                    return (_href.includes('weelo.com')) ? 'https://www.weelo.com.eg/api/v1/' : '/api/v1/'
+            }
+            function getToken() {
+                var nameEQ = "_adminToken=";
+                var ca = document.cookie.split(';');
+                for (var i = 0; i < ca.length; i++) {
+                    var c = ca[i];
+                    while (c.charAt(0) == ' ') c = c.substring(1, c.length);
+                    if (c.indexOf(nameEQ) == 0) return c.substring(nameEQ.length, c.length);
+                }
+                return null;
+            }
+            function requestHeaders() {
+                var headers = {};
+                headers.Authorization = 'Bearer ' + getToken();
+                return headers;
+            }
+            function timeNow() {
+                var d = new Date(),
+                    h = (d.getHours() < 10 ? '0' : '') + d.getHours(),
+                    m = (d.getMinutes() < 10 ? '0' : '') + d.getMinutes(),
+                     s = (d.getSeconds() < 10 ? '0' : '') + d.getSeconds(),
+                      ms = (d.getMilliseconds() < 10 ? '0' : '') + d.getMilliseconds();
+                return h + ':' + m + ':' + s + ':' + ms;
+            }
+            function newProductFile() {
+                dbperc = 0; chkperc = 0, filecounter = 0, dbcounter = 0;
+                $('.data_table').fadeOut();
+                $('#insertProducts,.submi,#updateProducts').removeAttr('disabled');
+                $('.pwat,.pins,.thanx').hide();
+                $('#matchedItems_wrapper').show();
+                $('#precentagedb,#precentage').text('0%');
+                itemsObjs = [], Objs_on = [], Objs_off = []; Objs_off = [];
+                totItems, currItmIndx = 1;
+                mDt.clear().draw();
+                unmDt.clear().draw();
+                mBDt.clear().draw();
+            }
+            function finishWorkflow() {
+                localStorage.removeItem('merchant');
+                localStorage.removeItem('step');
+            }
+            function init() {
+                findStep();
+                mLocation.initAutocomplete('buildingName', 'Latitude', 'Longitude');
+
+
+                bindNoUiSlider(dayarr);
+
+            };
+            init();
+        }());
+    </script>
+
+}

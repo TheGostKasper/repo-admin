@@ -1,0 +1,104 @@
+﻿@model AMS.Models.MerchantCoupon
+
+@{
+    ViewBag.Title = "Edit";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+
+    var listItems = new List<System.Web.UI.WebControls.ListItem>();
+    foreach (var item in ViewData["MerchantsLookup"] as IEnumerable<AMS.Models.Merchant>)
+    {
+        var i = new System.Web.UI.WebControls.ListItem();
+        i.Text = item.NameEN;
+        i.Value = item.Id.ToString();
+        listItems.Add(i);
+    }
+
+    var listTypesItems = new List<System.Web.UI.WebControls.ListItem>();
+    foreach (var item in ViewData["TypesLookup"] as IEnumerable<AMS.Models.MerchantCouponType>)
+    {
+        var i = new System.Web.UI.WebControls.ListItem();
+        i.Text = item.Name;
+        i.Value = item.Id.ToString();
+        listTypesItems.Add(i);
+    }
+}
+
+<header class="m-header">
+    <a class="btn btn-secondary btn--icon waves-effect" href="~/MerchantCoupons"><span><i class="zmdi zmdi-arrow-back"></i></span></a>
+    <h2 class="m-title">Edit</h2>
+</header>
+<div class="content_inner">
+    <div class="card">
+        <div class="card-block">
+            @using (Html.BeginForm())
+            {
+                @Html.AntiForgeryToken()
+                @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+                <div class="row">
+                    <div class="col-md-4">
+                        <div class="form-group">
+                            @Html.LabelFor(model => model.CouponId, htmlAttributes: new { @class = "control-label col-md-2" })
+                            @Html.EditorFor(model => model.CouponId, new { htmlAttributes = new { @class = "form-control" } })
+                            <i class="form-group__bar"></i>
+                            @Html.ValidationMessageFor(model => model.CouponId, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+                    <div class="col-md-4">
+                        <div class="form-group">
+                            @Html.LabelFor(model => model.Amount, htmlAttributes: new { @class = "control-label col-md-2" })
+                            @Html.EditorFor(model => model.Amount, new { htmlAttributes = new { @class = "form-control" } })
+                            <i class="form-group__bar"></i>
+                            @Html.ValidationMessageFor(model => model.Amount, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+                    <div class="col-md-4">
+                        <div class="form-group">
+                            @Html.LabelFor(model => model.TypeId, htmlAttributes: new { @class = "" })
+                            @Html.DropDownListFor(model => model.TypeId, new SelectList(listTypesItems, "Value", "Text"), "--Select--", new { @class = "form-control" })
+                            <i class="form-group__bar"></i>
+                        </div>
+                        @Html.ValidationMessageFor(model => model.TypeId, "", new { @class = "text-danger" })
+                    </div>
+                    <div class="col-md-4">
+                        <div class="form-group">
+                            @Html.LabelFor(model => model.MerchantId, htmlAttributes: new { @class = "" })
+                            @Html.DropDownListFor(model => model.MerchantId, new SelectList(listItems, "Value", "Text"), "--Select--", new { @class = "form-control" })
+                            <i class="form-group__bar"></i>
+                        </div>
+                        @Html.ValidationMessageFor(model => model.MerchantId, "", new { @class = "text-danger" })
+                    </div>
+                    <div class="col-md-4">
+                        <div class="form-group">
+                            @Html.LabelFor(model => model.ExpiryDate, htmlAttributes: new { @class = "control-label col-md-2" })
+                            @Html.EditorFor(model => model.ExpiryDate, new { htmlAttributes = new { @class = "form-control",@type="date" } })
+                            <i class="form-group__bar"></i>
+                            @Html.ValidationMessageFor(model => model.ExpiryDate, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+                </div>
+                <center>
+                    <button type="submit" class="btn btn-outline-primary waves-effect">Edit</button>
+                </center>
+            }
+
+        </div>
+    </div>
+</div>
+
+
+@section scripts{
+    <script>
+        (function () {
+            var year=@Model.ExpiryDate.Value.Year;
+            var month=@Model.ExpiryDate.Value.Month;
+            var day=@Model.ExpiryDate.Value.Day;
+
+
+            var val=year.toString()+'-'+((month.toString().length<2)?'0'+month.toString():month).toString()+'-'+((day.toString().length<2)?'0'+day.toString():day).toString();
+            $('#ExpiryDate').val(val);
+
+
+        }())
+    </script>
+    
+    }

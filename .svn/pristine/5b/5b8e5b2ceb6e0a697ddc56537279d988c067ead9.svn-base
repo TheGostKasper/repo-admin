@@ -1,0 +1,79 @@
+﻿
+@{
+    ViewBag.Title = "ManageCookies";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<style>
+    .button {
+        width: 100%;
+        height: 70px;
+        font-size: 27px;
+        border-radius: 18px;
+    }
+    .chatM{
+            float: right;
+    height: 963px;
+    background-color: rgba(255, 255, 255, 0.6);
+    margin-right: -20px;
+    margin-left: 11px;
+
+    }
+    .section {
+        display: none;
+    }
+    .chat__buddies .listview__item{
+            border-bottom: 1px solid rgba(197, 196, 196, 0.36);
+    }
+</style>
+
+
+<div class="chatM" >
+    <div class="scroll-wrapper listview listview--hover chat__buddies scrollbar-inner" style="position: relative;">
+        <div id="merchantList" class="listview listview--hover chat__buddies scrollbar-inner scroll-content" style="height: 1040px; margin-bottom: 0px; margin-right: 0px; max-height: none;">
+        </div><div class="scroll-element scroll-x" style=""><div class="scroll-element_outer"><div class="scroll-element_size"></div><div class="scroll-element_track"></div><div class="scroll-bar" style="width: 100px;"></div></div></div><div class="scroll-element scroll-y" style=""><div class="scroll-element_outer"><div class="scroll-element_size"></div><div class="scroll-element_track"></div><div class="scroll-bar" style="height: 100px;"></div></div></div>
+    </div>
+</div>
+
+<section class="section">
+    <div class="card">
+        <div class="card-block profile">
+            <div class="profile__img">
+                <img id="m-img" src="~/Content/images/placeholder.gif" alt="">
+                @*<a href="" class="zmdi zmdi-camera profile__img__edit"></a>*@
+            </div>
+            <div class="profile__info">
+                <p></p>
+
+                <ul class="icon-list">
+                    <li><i class="zmdi zmdi-account"></i> <span id="m-name"></span></li>
+                    <li><i class="zmdi zmdi-email"></i><span id="m-email"></span> </li>
+                    <li><i class="zmdi zmdi-portable-wifi"></i><span id="m-status"></span> </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-6">
+            <button class="btn btn-default" id="signIn" style="float:right;">Signin</button>
+
+        </div>
+        <div class="col-md-6">
+            <button class="btn btn-danger" id="logOut">Logout</button>
+
+        </div>
+    </div>
+</section>
+<section class="merch">
+    <div class="content__inner content__inner--sm" style="margin-left:10px;">
+        <header class="content__title card" style="text-align:center;">
+            <h1 style="padding:30px">Select Supermarket !</h1>
+        </header>
+    </div>
+</section>
+
+@section scripts{
+
+    <script src="~/Scripts/admin.manage.cookies.js"></script>
+
+}
+

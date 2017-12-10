@@ -1,0 +1,471 @@
+﻿
+@{
+    ViewBag.Title = "MerchantProduct";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<style>
+    /*.sidebar:not(.toggled) {
+        opacity: 0;
+        transform: translate3d(-100%,0,0);
+    }
+
+    .content:not(.content--boxed):not(.content--full) {
+        padding: 76px 0px 0px 0px;
+    }*/
+    .select2 {
+        width: 100% !important;
+        padding-bottom: 20px;
+    }
+
+    .subCategories li {
+        height: 20px;
+        background: #1aa51f;
+        border-radius: 8px;
+        color: white;
+        cursor: pointer;
+        padding: 0px 4px;
+    }
+
+    .card.small {
+        width: 208px;
+        height: 336px;
+        border: 0;
+        box-shadow: none;
+        position: relative;
+    }
+
+        .card.small:hover, .card.small:active {
+            text-decoration: none;
+        }
+
+    .m-product li {
+        display: inline-block;
+        position: relative;
+        width: 208px;
+        height: 375px; /*height: 336px;*/
+        vertical-align: top;
+        background: #fff;
+        text-align: left;
+        color: #5a5a5a;
+        font-weight: 400;
+        cursor: pointer;
+        white-space: initial;
+        overflow: hidden;
+        padding: 7px;
+        margin: 2px;
+    }
+
+    .crd-info {
+        background: #fff;
+        min-height: 61px;
+        font-size: 13px;
+        padding: 5px 25px 0;
+    }
+
+    .crd-img {
+        text-align: center;
+    }
+
+        .crd-img .progress {
+            height: 2px;
+            position: absolute;
+            top: 70px;
+            width: 100px;
+            margin: auto;
+            left: 53px;
+        }
+
+    .m-image {
+        width: 155px;
+        height: 155px;
+        margin: 10px auto;
+    }
+
+    h4.light {
+        overflow: hidden;
+        white-space: nowrap;
+        text-overflow: ellipsis;
+    }
+
+    .m-container {
+        padding: 15px;
+    }
+
+    .m-details {
+        padding-top: 240px;
+    }
+
+    .c-product {
+        position: relative;
+        border-top: 1px solid #dfdfdf;
+    }
+
+
+
+    .subCategories li.selected {
+        color: #26a69a;
+        background: #eee;
+        border: 1px solid #26a69a;
+    }
+
+    .p-price {
+        color: #444;
+        font-weight: 600;
+        font-size: 14px;
+    }
+
+    .p-name {
+        max-height: 55px;
+        overflow: hidden;
+        display: block;
+        text-overflow: ellipsis;
+        line-height: 1.4em;
+    }
+
+    .p-size {
+        color: #999;
+    }
+
+    .fxd-top {
+        position: fixed;
+        width: 100%;
+        min-height: 216px;
+        z-index: 0;
+        background: #fff;
+        box-shadow: 1px 1px 10px 2px #ccc;
+    }
+
+    .wloader {
+        position: fixed !important;
+    }
+
+    p.msg {
+        padding: 15px;
+        background-color: #eee;
+        font-weight: 400;
+        text-align: center;
+        border: 1px solid #dfdfdf;
+        border-radius: 3px;
+        text-transform: uppercase;
+        font-size: 16px;
+    }
+
+    .modal {
+        background: transparent;
+        overflow: auto;
+        box-shadow: none;
+        width: 605px;
+    }
+
+    .modal-header {
+        padding: 0;
+        border: none;
+        text-align: right;
+    }
+
+    .crd-info:hover {
+        color: #428bca;
+    }
+
+    .modal-loader {
+        position: absolute;
+        left: 46%;
+        top: 38%;
+    }
+
+    .action-list {
+        position: absolute;
+        z-index: 999;
+        width: 100%;
+        height: 20%;
+        left: 0;
+        bottom: 0;
+        background: rgba(238, 238, 238, 0.91);
+        padding: 15px;
+        display: none;
+    }
+
+        .action-list div {
+            display: inline-block;
+        }
+
+    .m-product li:hover .action-list {
+        display: block;
+    }
+
+    .m-product li .staus-badge {
+        width: 8px;
+        height: 8px;
+        position: absolute;
+        right: 10px;
+        top: 10px;
+        border-radius: 50%;
+        box-shadow: 1px 1px 3px #aaa8a8;
+        z-index: 9;
+    }
+
+        .m-product li .staus-badge.active {
+            background: #24c733;
+        }
+
+        .m-product li .staus-badge.pending {
+            background: #c7a024;
+        }
+
+        .m-product li .staus-badge.suspended {
+            background: #2480c7;
+        }
+
+        .m-product li .staus-badge.deleted {
+            background: #c72424;
+        }
+</style>
+@Html.Partial("_Loader")
+
+<div class="card ">
+    <div class="card-block ">
+        <div class="row">
+            <div class="col-md-2 ">
+                <label>Merchants </label>
+            </div>
+            <div class="col-md-10">
+                <select class="select merchant-select form-control"></select>
+            </div>
+            <div class="col-md-2">
+                <label>Category </label>
+            </div>
+            <div class="col-md-10 text-left">
+                <select class="select merchant-category-select form-control"></select>
+            </div>
+        </div>
+        <div>
+            <ul class="list-inline subCategories c-sub"></ul>
+        </div>
+    </div>
+</div>
+<div class="">
+    <div class="row">
+        <ul class="m-product"></ul>
+    </div>
+</div>
+<a id="openimglink" class="" data-toggle="modal" data-target="#p-full-img"></a>
+<div id="p-full-img" class="modal fade" role="dialog">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button id="closemodal" type="button" class="btn btn-default" data-dismiss="modal">X</button>
+            </div>
+            <div class="modal-body" style="height: 500px;">
+            </div>
+        </div>
+    </div>
+</div>
+
+@section scripts{
+
+    <script>
+        var categoryList = [], lastId;
+        (function () {
+            var merchantId;
+            var WeeloApi = "/api/v1/";
+            $('select').select2();
+            $('.merchant-select').on('change', function (e) {
+                merchantId = $(this).val();
+                var ele = $('.merchant-category-select');
+                if (merchantId > 0) {
+                    $('.merchant-category-select').empty();
+                    getData('merchant/category/' + merchantId, "GET", {}).then(function (response) {
+                        categoryList = [];
+                        $.each(response.data, function (index, item) {
+                            categoryList.push({ id: item.id, text: item.nameEN });
+                        });
+                        categoryList.push({ id: 0, text: '-- Select Category --' });
+                        $('.merchant-category-select').select2({
+                            data: categoryList.sort(function (a, b) {
+                                if (a.text < b.text) return -1;
+                                if (a.text > b.text) return 1;
+                                return 0;
+                            })
+                        });
+                    });
+                } else {
+                    $('#products').empty();
+                }
+            });
+            $('.merchant-category-select').on('change', function (e) {
+                categoryId = $(this).val();
+                var ele = $('.subCategories');
+                ele.empty();
+                if (merchantId > 0) {
+                    $('.subCategories').empty();
+                    getData('merchant/subcategory', "POST", { MerchantId: merchantId, CategoryId: categoryId }).then(function (response) {
+                        var result = response.data;
+                        console.log(    result);
+                        if (result.length > 0) {
+                            $('.c-sub').show();
+                            for (var i = 0; i < result.length; i++) {
+                                ele.append('<li class="list-inline-item" data-id="' + result[i].id + '">' + result[i].nameEN + '</li> ')
+                            }
+                        }
+                        else {
+                            ele.append('<li class="list-inline-item">No SubCategories found</li>')
+                        }
+                    });
+
+                } else {
+                    $('#products').empty();
+                }
+            });
+            $(document).on('click', '.subCategories li', function () {
+                $('.subCategories li').removeClass('selected');
+                $(this).addClass('selected');
+                $('.wloader').show();
+
+               
+                subCategoryId = $(this).data('id');
+                console.log({ MerchantId: merchantId, SubCategoryId: subCategoryId });
+                getData('merchant/products', "POST", { MerchantId: merchantId, SubCategoryId: subCategoryId })
+                    .then(function (response) {
+                        var mp = response.data;
+                        var mpEle = $('.m-product');
+                        mpEle.empty();
+                        var prod = '';
+                        if (mp != null) {
+                            for (var i = 0; i < mp.length; i++) {
+                                itm = mp[i];
+                                var obj = JSON.stringify(itm);
+                                imageUrl = (itm.imageUrl != "") ? itm.imageUrl.replace('https://d1pfxkxr37t8n5.cloudfront.net/product/', 'http://weelo.s3-website-us-east-1.amazonaws.com/155x155/') : '/store/content/images/no-image-icon-15.png';
+                                prod = `
+                             <li id= "`+ i + `" class ="dcsx"  >
+                             <div class = "staus-badge ` + bitwisestatuscolor(itm.status) + `" ></div>
+                             <div class ="action-list">
+                                <div><input data-id= "`+ itm.id + `" id= "active_` + i + `" type="radio" name= "group` + i + `"  ` + bitwisestatus(itm.status, i) + ` /><label for= "active_` + i + `" >Active</label></div>
+                                <div><input data-id= "`+ itm.id + `" id= "pending_` + i + `" type="radio" name= "group` + i + `" ` + bitwisestatus(itm.status, i) + ` /><label for= "pending_` + i + `" >Pending</label></div>
+                                <div><input data-id= "`+ itm.id + `" id= "suspend_` + i + `" type="radio" name= "group` + i + `" ` + bitwisestatus(itm.status, i) + ` /><label for= "suspend_` + i + `" >Suspend</label></div>
+                                <div><input data-id= "`+ itm.id + `" id= "delete_` + i + `" type="radio" name= "group` + i + `" /><label for= "delete_` + i + `" >Delete</label></div>
+                             </div>
+                                <div class ="card small">
+                                    <div class ="crd-img">
+                                        <div class ="progress  sm"><div class ="indeterminate"></div></div>
+                                        <img class ="m-image" src= "` + imageUrl + `" data-fullImg= "` + itm.imageUrl + `" />
+                                        <div class ="text-left crd-info" data-barcode= "` + itm.barcode + `" >
+                                            <div> <span class="p-price"> `+ itm.price + ' ' + itm.currency + ` </span></div>
+                                            <div class ="p-name"> `+ itm.nameEN + ` </div>
+                                             <div class ="p-name"> `+ itm.nameAR + ` </div>
+                                            <div class ="p-size"> <span> `+ itm.volume + itm.unit + ` </span></div>
+                                        <div>
+                                        <svg id= "barcode-`+ itm.barcode + `" class ="barcode" jsbarcode-lineColor= "#000" jsbarcode-format="auto" jsbarcode-displayValue= "` + itm.barcode + `" jsbarcode-value= "` + itm.barcode + `" jsbarcode-textmargin="0" jsbarcode-background="#ddd" jsbarcode-textAlign="center" jsbarcode-fontoptions="normal 14px monospace" jsbarcode-width="1" jsbarcode-height="40"></svg>
+                                    </div>
+                                </div>
+                            </li>`
+
+                                mpEle.append(prod);
+                                JsBarcode("#barcode-" + itm.barcode).init();
+                                //setTimeout(function () {
+                                //    JsBarcode("#barcode-" + itm.barcode + "", itm.barcode, {
+                                //        format: "auto",
+                                //        lineColor: "#0aa",
+                                //        width: 4,
+                                //        height: 40,
+                                //        displayValue: true
+                                //    });
+                                //}, 1000);
+                                //}
+                            }
+                        } else {
+                            mpEle.append('<p class="msg">No products found</p>');
+                        }
+                        $('.wloader').hide();
+                        $('.crd-img img').on('load', function () { $(this).parent().find('.progress').hide(); });
+                    });
+
+            });
+
+            $(document).on('click', '.crd-info ', function () {
+                var barcode = $(this).data('barcode');
+                //var cuurObj = $(this).data('item');
+                //$('.m-barcode').html(cuurObj.barcode);
+                //$('.m-nameEN').html(cuurObj.nameEN);
+                //$('.m-nameAR').html(cuurObj.nameAR);
+                //$('.m-quantity').html(cuurObj.quantity);
+                //$('.m-price').html(cuurObj.price + ' ' + cuurObj.currency);
+                //$('.m-volume').html(cuurObj.volume + ' ' + cuurObj.unit);
+
+                //mImg = (cuurObj.imageUrl) ? cuurObj.imageUrl : '/store/content/images/no-image-icon-15.png';
+
+                //$('.m-img').attr('src', mImg);
+                window.open('/admin/home/items/' + barcode, '_blank');
+
+            });
+            $(document).on('click', 'input:radio', function () {
+                var radId = $(this).data('id');
+                var radVal = $(this).next('label').html();
+                var data = { id: radId, status: radVal };
+                var _this = $(this);
+                if (confirm("Are you sure to UPDATE this Product information!")) {
+                    getData("product/update/status", "POST", data)
+                               .done(function (response) {
+
+                                   _this.parent().parent().parent().hide();
+                               }, function (err) { if (err.errorCode != 200) alert("Error,Ask Developer for a help!") });
+                }
+            });
+            $(document).on('click', '.dcsx img', function () {
+                var img = $(this).data('fullimg');
+                if (img != "") {
+                    $('.modal .modal-body').empty().append(' <img src="/store/Content/loader.gif" class="modal-loader" />')
+                    $('.modal .modal-body').append('<img class="fullimg" src="' + img + '" style="width: 100%;height: 100%;" />');
+                    $('#openimglink').trigger('click');
+                    $('.modal .modal-body img.fullimg').on('load', function () { $(this).parent().find('.modal-loader').fadeOut() });
+                }
+
+            });
+            function bitwisestatus(a, b) {
+                if (lastId != b) {
+                    lastId = b;
+                    var active = 1, pending = 2, suspended = 3, deleted = 4;
+                    if ((a ^ active) == 0) return 'checked';
+                    if ((a ^ pending) == 0) return 'checked';
+                    if ((a ^ suspended) == 0) return 'checked';
+                    if ((a ^ deleted) == 0) return 'checked';
+                }
+                return false;
+            }
+            function bitwisestatuscolor(a) {
+                var active = 1, pending = 2, suspended = 3, deleted = 4;
+                if ((a ^ active) == 0) return 'active';
+                if ((a ^ pending) == 0) return 'pending';
+                if ((a ^ suspended) == 0) return 'suspended';
+                if ((a ^ deleted) == 0) return 'deleted';
+            }
+            var merchants = function () {
+                var ele = $('.merchant-select');
+                getData('merchant/list', "GET", {}).then(function (data) {
+                    var result = data.data;
+                    ele.append('<option value="0">Select</option> ')
+                    for (var i = 0; i < result.length; i++) {
+                        ele.append('<option value="' + result[i].id + '">' + result[i].nameEN + '</option> ')
+                    }
+                }, function (err) {
+                });
+            }();
+            function getData(endPoint, type, data) {
+                return $.ajax({
+                    url: WeeloApi + endPoint,
+                    type: type,
+                    data: data,
+                    headers: requestHeaders(),
+                    dataType: "json",
+                });
+            }
+
+            $(document).on('click', '.modal-backdrop', function () {
+                $('#p-full-img').modal('toggle');
+            });
+            JsBarcode(".barcode").init();
+        }());
+
+    </script>
+}
+

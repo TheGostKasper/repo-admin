@@ -1,0 +1,112 @@
+﻿<div class="row">
+    <div class="col-sm-7 col-md-9">
+
+        <label><span class="glyphicon glyphicon-barcode"></span> Barcode</label>
+        <div style="position:relative">
+            <img src="~/Content/loader.gif" class="b-input-loader" />
+            <input id="new_barcode" type="text" name="new_Barcode" class="form-control text-center" value="" />
+            <span id="resultcount"></span>
+        </div>
+        <br />
+    </div>
+    <div class="col-md-3 col-sm-5">
+        <div class="card profile">
+            <div class="profile__img">
+                <img id="image_view" src="~/Content/images/placeholder.gif" alt="">
+                <form id="upload" method="post" enctype="multipart/form-data">
+                    <label for="f_upload">
+                        <span class="zmdi zmdi-camera profile__img__edit ctv" style="cursor:pointer;"></span>
+                    </label>
+                    <label style="display: none">
+                        <input id="f_upload" type="file" class="btn btn-secondary" name="file_upload[]" multiple="multiple" />
+                        <input type="submit" class="btn btn-default btn-sm file-upload" value="Upload" style="visibility:hidden" />
+                    </label>
+                </form>
+                <div class="img-u-loader" style="display:none;"><img src="~/Content/loader.gif" style="position: absolute;top: 38%;left: 39%;height: 35px;border-radius: 50%;" /></div>
+            </div>
+
+        </div>
+        @*<label id="new_bgd" class="imgbox rel imageLoader" for="new_imageLoader">
+            <span class="glyphicon glyphicon-picture"></span>
+        </label>
+        <form id="upload" method="post" enctype="multipart/form-data">
+            <input type="file" id="new_imageLoader" name="new_imageLoader[]" multiple="multiple" />
+            <input type="submit" class="btn btn-default btn-sm file-upload" value="Upload" style="visibility:hidden" />
+        </form>
+        <div class="img-u-loader"><img src="~/Content/loader.gif" /></div>*@
+    </div>
+</div>
+<div class="row">
+    <div class="col-sm-6">
+        <div class="form-group">
+            <label>Choose Category</label>
+            <select class="select merchant-cat-select form-control"></select>
+            <i class="form-group__bar"></i>
+        </div>
+    </div>
+    <div class="col-sm-6">
+        <div class="form-group">
+            <label>Choose SubCategory</label>
+            <select class="select merchant-sub-cat-select form-control"></select>
+            <i class="form-group__bar"></i>
+        </div>
+    </div>
+    <div class="col-sm-6">
+        <div class="form-group">
+            <label>Product Name (English)</label>
+            <input id="new_nameEN" type="text" name="new_nameEN" class="form-control" value="" />
+            <i class="form-group__bar"></i>
+        </div>
+    </div>
+    <div class="col-sm-6">
+        <div class="form-group">
+            <label>Product Name (Arabic)</label>
+            <input id="new_nameAR" type="text" name="new_nameAR" class="form-control" value="" />
+            <i class="form-group__bar"></i>
+        </div>
+    </div>
+    <div class="col-sm-6">
+        <div class="form-group">
+            <label>Volume</label>
+            <input id="new_volume" type="text" name="new_volume" class="form-control" value="" />
+            <i class="form-group__bar"></i>
+        </div>
+    </div>
+    <div class="col-sm-6">
+        <div class="form-group">
+            <label>Unit</label>
+            <select class="select product-unit-select form-control"></select>
+            <i class="form-group__bar"></i>
+        </div>
+    </div>
+</div>
+<div class="row">
+    <div class="col-sm-3">
+        <div class="form-group">
+            <input type="checkbox" class="filled-in" id="Pending" value="2" />
+            <label for="Pending">Pending</label>
+            <i class="form-group__bar"></i>
+        </div>
+    </div>
+    <div class="col-sm-3">
+        <div class="form-group">
+            <input type="checkbox" class="filled-in" id="Active" value="1" />
+            <label for="Active">Active</label>
+            <i class="form-group__bar"></i>
+        </div>
+    </div>
+    <div class="col-sm-3">
+        <div class="form-group">
+            <input type="checkbox" class="filled-in" id="Suspended" value="3" />
+            <label for="Suspended">Suspended</label>
+            <i class="form-group__bar"></i>
+        </div>
+    </div>
+    <div class="col-sm-3">
+        <div class="form-group">
+            <input type="checkbox" class="filled-in" id="Deleted" value="4" />
+            <label for="Deleted">Deleted</label>
+            <i class="form-group__bar"></i>
+        </div>
+    </div>
+</div>

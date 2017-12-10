@@ -1,0 +1,141 @@
+﻿@{
+    ViewBag.Title = "Dashboard";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+@*<link href="~/Content/Dashboard/css/custom.css" rel="stylesheet" />*@
+
+<div class="row quick-stats">
+    <div class="col-sm-6 col-md-3">
+        <div class="quick-stats__item bg-blue">
+            <div class="quick-stats__info">
+                <h2 id="totalUsers">0</h2>
+                <small>Total Users</small>
+            </div>
+            <div class="quick-stats__chart sparkline-bar-stats"><a href="~/users" class="totalDisplay">Users</a></div>
+        </div>
+    </div>
+    <div class="col-sm-6 col-md-3">
+        <div class="quick-stats__item bg-amber">
+            <div class="quick-stats__info">
+                <h2 id="totalMerchant">0</h2>
+                <small>Total Merchant</small>
+            </div>
+            <div class="quick-stats__chart sparkline-bar-stats"><a href="~/merchant" class="totalDisplay">Merchants</a></div>
+        </div>
+    </div>
+    <div class="col-sm-6 col-md-3">
+        <div class="quick-stats__item bg-purple">
+            <div class="quick-stats__info">
+                <h2 id="totalOrders">0</h2>
+                <small>Total Orders</small>
+            </div>
+            <div class="quick-stats__chart sparkline-bar-stats"><a href="~/home/orders" class="totalDisplay">Orders</a></div>
+        </div>
+    </div>
+</div>
+
+
+
+<div class="row todo">
+    <div class="col-md-8">
+        <div class="card" style="height:480px;">
+            <div class="card-header">
+                <h2 class="card-title">Order Activities</h2>
+            </div>
+            <div class="card-block">
+                <canvas id="bar-chart"></canvas>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-4">
+        <div class="card" style="height:480px;">
+            <div class="card-header">
+                <h2 class="card-title">Orders</h2>
+            </div>
+            <div class="card-block">
+                <div class="listview">
+                    <a href="#" class="listview__item">
+                        <div class="listview__content">
+                            <div class="listview__heading"><p id="pendingOrdersNumber">Pending Orders</p></div>
+                            <div class="progress">
+                                <div class="progress-bar bg-orange" id="pendingOrders" role="progressbar" data-transitiongoal="0" aria-valuenow="0" style="width: 0%;"></div>
+                            </div>
+                        </div>
+                    </a>
+                    <a href="#" class="listview__item">
+                        <div class="listview__content">
+                            <div class="listview__heading"><p id="acceptedOrdersNumber">Accepted Orders</p></div>
+                            <div class="progress">
+                                <div class="progress-bar bg-blue" role="progressbar" id="acceptedOrders" data-transitiongoal="0" aria-valuenow="0" style="width: 0%;"></div>
+                            </div>
+                        </div>
+                    </a>
+                    <a href="#" class="listview__item">
+                        <div class="listview__content">
+                            <div class="listview__heading"><p id="readyOrdersNumber">Ready Orders</p></div>
+                            <div class="progress">
+                                <div class="progress-bar bg-green" id="readyOrders" role="progressbar" data-transitiongoal="0" aria-valuenow="0" style="width: 0%;"></div>
+                            </div>
+                        </div>
+                    </a>
+                    <a href="#" class="listview__item">
+                        <div class="listview__content">
+                            <div class="listview__heading"><p id="deliveredOrdersNumber">Delivered Orders</p></div>
+                            <div class="progress">
+                                <div class="progress-bar bg-green" id="deliveredOrders" role="progressbar" data-transitiongoal="0" aria-valuenow="0" style="width: 0%;"></div>
+                            </div>
+                        </div>
+                    </a>
+                    <a href="#" class="listview__item">
+                        <div class="listview__content">
+                            <div class="listview__heading"><p id="canceledOrdersNumber">Canceled Orders</p></div>
+                            <div class="progress">
+                                <div class="progress-bar bg-red" id="canceledOrders" role="progressbar" data-transitiongoal="0" aria-valuenow="0" style="width: 0%;"></div>
+                            </div>
+                        </div>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="right_col" role="main">
+    <div class="row">
+        <div class="col-md-4">
+            <div class="card" style="height:550px;">
+                <div class="card-header">
+                    <h2 class="card-title">Recent Orders Activities</h2>
+                </div>
+                <div class="card-block">
+                    <div class="listview listview--hover list-unstyled">
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-8">
+            <div class="card" style="height:550px;">
+                <div class="card-header">
+                    <h2 class="card-title">Device Usage</h2>
+                </div>
+                <div class="card-block" style="height:inherit">
+                    <div class="row">
+                        <div class="col-md-6 col-sm-6">
+                            <canvas id="doughnut-chart" ></canvas>
+                        </div>
+                        <div class="col-md-6 col-sm-6">
+                            <canvas id="lang-chart" ></canvas>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<br>
+@section scripts{
+    <script src="~/Scripts/admin.dashboard.js"></script>
+}
+
+

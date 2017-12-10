@@ -1,0 +1,57 @@
+﻿@{
+    ViewBag.Title = "ManageLookup";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<h2 class="title">
+    Manage Lookups <span class="label label-default">View</span>
+</h2>
+
+<div>
+    <div class="row">
+        <div class="col-xs-6 col-md-3">
+            <a href="~/AppClassifcation" class="thumbnail card">
+                <div class="glyphicon glyphicon-flash cadetblue" ></div>
+                <p>App Classification</p><span class="label label-info">Lookup</span>
+            </a>
+        </div>
+        <div class="col-xs-6 col-md-3">
+            <a href="~/BusinessOwner" class="thumbnail card">
+                <div class="glyphicon glyphicon-user cadetblue"></div>
+                <p>Business Owner</p><span class="label label-info">Lookup</span>
+            </a>
+        </div>
+        <div class="col-xs-6 col-md-3">
+            <a href="~/BusinessOwner" class="thumbnail card">
+                <div class="glyphicon glyphicon-hdd cadetblue"></div>
+                <p>Database</p><span class="label label-info">Lookup</span>
+            </a>
+        </div>
+        <div class="col-xs-6 col-md-3">
+            <a href="~/HostLocation" class="thumbnail card">
+                <div class="glyphicon glyphicon-tasks cadetblue"></div>
+                <p>Host Location</p><span class="label label-info">Lookup</span>
+            </a>
+        </div>
+        <div class="col-xs-6 col-md-3">
+            <a href="~/Importance" class="thumbnail card">
+                <div class="glyphicon glyphicon-warning-sign cadetblue"></div>
+                <p>Importance</p><span class="label label-info">Lookup</span>
+            </a>
+        </div>
+        <div class="col-xs-6 col-md-3">
+            <a href="~/Technology" class="thumbnail card">
+                <div class="glyphicon glyphicon-globe cadetblue"></div>
+                <p>Technology</p><span class="label label-info">Lookup</span>
+            </a>
+        </div>
+    </div>
+    @*<ul>
+            <li><a href="~/AppClassifcation/Index">App Classification</a></li>
+            <li><a href="~/BusinessOwner/Index">Business Owner</a></li>
+            <li><a href="~/Database/Index">Database</a></li>
+            <li><a href="~/HostLocation/Index">Host Location</a></li>
+            <li><a href="~/Importance/Index">Importance</a></li>
+            <li><a href="~/Technology/Index">Technology</a></li>
+        </ul>*@
+</div>
+

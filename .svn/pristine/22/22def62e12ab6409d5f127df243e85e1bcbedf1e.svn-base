@@ -1,0 +1,139 @@
+﻿@model AMS.Models.MerchantServingArea
+
+@{
+    ViewBag.Title = "Create";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<header class="m-header">
+    <a class="btn btn-secondary btn--icon-text waves-effect" href="~/MerchantServingArea/"><span><i class="zmdi zmdi-arrow-back"></i> Back</span></a>
+    <h2 class="m-title">Create</h2>
+</header>
+
+
+@using (Html.BeginForm("Create2", "MerchantServingArea", FormMethod.Post, htmlAttributes: new { id = "editForm" }))
+{
+    @Html.AntiForgeryToken()
+    
+    <div class="form-horizontal">
+        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+        <div class="form-group">
+            @Html.LabelFor(model => model.MerchantId, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @{
+                    var listItems1 = new List<System.Web.UI.WebControls.ListItem>();
+                    foreach (var item in ViewData["MerchantsLookup"] as IEnumerable<AMS.Models.Merchant>)
+                    {
+                        var i = new System.Web.UI.WebControls.ListItem();
+                        i.Text = item.NameEN;
+                        i.Value = item.Id.ToString();
+                        listItems1.Add(i);
+                    }
+                }
+                @Html.DropDownListFor(model => model.MerchantId, new SelectList(listItems1, "Value", "Text"), "--Select--", new { @class = "form-control" })
+                @Html.ValidationMessageFor(model => model.MerchantId, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.Label("Country", htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @{
+                    var CountriesLookup = new List<System.Web.UI.WebControls.ListItem>();
+                    foreach (var item in ViewData["CountriesLookup"] as IEnumerable<AMS.Models.Country>)
+                    {
+                        var i = new System.Web.UI.WebControls.ListItem();
+                        i.Text = item.Name;
+                        i.Value = item.Id.ToString();
+                        CountriesLookup.Add(i);
+                    }
+                }
+                @Html.DropDownList("CountriesLookup", new SelectList(CountriesLookup, "Value", "Text"), "--Select--", new { @class = "form-control js-example-basic-single", id = "countrySelect" })
+            </div>
+        </div>
+
+
+        <div class="form-group city hide">
+            @Html.Label("City", htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                <select class="js-example-data-array js-example-basic-single form-control">
+                    <option value="0" selected="selected">--Select-</option>
+                </select>
+            </div>
+        </div>
+        <div class="form-group area hide">
+            @Html.Label("Area", htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                <select class="js-area-data-array js-example-basic-single form-control">
+                    <option value="0" selected="selected">--Select-</option>
+                </select>
+            </div>
+        </div>
+        <div class="form-group building hide">
+            @Html.Label("Building", htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                <select class="js-building-data-array js-example-basic-single form-control">
+                    <option value="0" selected="selected">--Select-</option>
+                </select>
+            </div>
+        </div>
+
+
+       
+
+        <div class="form-group">
+            <div class="col-md-offset-2 col-md-10">
+                <input type="submit" value="Create" class="btn btn-default" id="btnSubmit" disabled="disabled" />
+            </div>
+        </div>
+    </div>
+}
+
+<div>
+   
+</div>
+@section scripts{
+
+    <script>
+        (function () {
+            var mLocation = new ManageLocation();
+
+            //$(".js-example-basic-single").select2();
+            $("#countrySelect").change(function () {
+                mLocation.bindDataArraySelect2($(this), 'country/' + $(this).val() + '/city', {}, 'GET', ".js-example-data-array", ".city");
+            });
+            $(".js-example-data-array").change(function () {
+                mLocation.bindDataArraySelect2($(this), 'city/' + $(this).val() + '/area', {}, 'GET', ".js-area-data-array", ".area");
+            })
+            $(".js-area-data-array").change(function () {
+                mLocation.bindDataArraySelect2($(this), 'area/' + $(this).val() + '/building', {}, 'GET', ".js-building-data-array", ".building");
+
+            });
+            $('.js-building-data-array').change(function () {
+                $('#btnSubmit').prop("disabled", false);
+                $('.merchant-basic').prop("disabled", false);
+            })
+
+
+            $('#editForm').on('submit', function (e) {
+                e.preventDefault();
+                var data = {BuildingId: $(".js-building-data-array").val(), MerchantId: $('#MerchantId').val() };
+
+                $.ajax({
+                    url: "@Url.Action("Create2")",
+                    data: data,
+                    type: "POST",
+                    headers: requestHeaders(),
+                    dataType: "json",
+                    success: function () {
+
+                    }
+                });
+                setTimeout(function () {
+                    window.location.href = "@Url.Action("Index")";
+                }, 1000);
+
+            })
+        }());
+    </script>
+}

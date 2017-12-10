@@ -1,0 +1,59 @@
+﻿@model IEnumerable<AMS.Models.ItemDetails>
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+
+}
+<div class="content_inner">
+    <div class="card">
+        <div class="card-block">
+            <a href="~/item/create" class="btn btn--action btn--fixed btn-danger waves-effect"><i class="zmdi zmdi-plus"></i></a>
+            
+            <div class="row">
+                <div class="col-md-12"><input type="search" class="search-table" name="name" value="" placeholder="Search for records..." /></div>
+            </div>
+            
+            <table id="itemList" class="table table-bordered">
+                <thead class="thead-default">
+                    <tr>
+                        <th class="nosorting">Barcode</th>
+                        <th class="nosorting">Image</th>
+                        <th class="nosorting">NameEN</th>
+                        <th class="nosorting">NameAR</th>
+                        <th class="nosorting">Volume </th>
+                        <th class="nosorting">SubCategory Name</th>
+                        <th class="nosorting">unit Name</th>
+                        <th class="nosorting">Creation Date</th>
+                        <th class="nosorting"></th>
+                    </tr>
+                </thead>
+                <tfoot>
+
+                </tfoot>
+            </table>
+        </div>
+    </div>
+</div>
+<div class="modal fade" tabindex="-1" role="dialog" id="myModal">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title">Image</h4>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+            </div>
+            <div class="modal-body">
+            <img src="~/Content/images/background.png" id="image-preview" style="width:100%"/>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+@section scripts{
+    <script src="~/Scripts/admin.item.js"></script>
+}
